@@ -431,6 +431,28 @@ summary {
   font-weight: 700;
 }
 
+/* ============ AdSense 광고 영역 ============ */
+.ads-section {
+  margin: 40px 0;
+  padding: 20px 0;
+  background: #fff;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ads-section .container {
+  display: flex;
+  justify-content: center;
+}
+
+.adsbygoogle {
+  display: inline-block !important;
+}
+
 footer {
   margin-top: 48px;
   padding: 28px 0;

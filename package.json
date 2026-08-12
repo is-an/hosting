@@ -1,0 +1,27 @@
+{
+  "name": "is-an-tools",
+  "version": "1.0.0",
+  "description": "무료 온라인 도구 모음 - 로또번호 생성기, D-Day 계산기",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "build": "echo 'Building...'",
+    "deploy": "git add -A && git commit -m 'Deploy' && git push",
+    "test": "echo 'Testing...'"
+  },
+  "keywords": [
+    "로또번호",
+    "생성기",
+    "디데이",
+    "계산기",
+    "온라인 도구"
+  ],
+  "author": "is-an",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/is-an/hosting.git"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

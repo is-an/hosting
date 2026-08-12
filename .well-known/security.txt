@@ -1,0 +1,6 @@
+# 보안 연락처 및 정책
+
+Contact: support@is-an.github.io
+Expires: 2027-08-12T00:00:00.000Z
+Preferred-Languages: ko, en
+Canonical: https://is-an.github.io/.well-known/security.txt
