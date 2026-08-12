@@ -12,7 +12,7 @@ GitHub Pages + AdSense를 활용한 미니 프로젝트 포트폴리오입니다
 ## 📂 프로젝트 구조
 
 ```
-hosting/
+/
 ├── index.html              # 메인 페이지
 ├── manifest.json           # PWA 설정
 ├── config.yml              # GitHub Pages 설정
