@@ -1,3 +1,4 @@
+// D-Day 계산기 관련 요소들
 const targetDate = document.getElementById("targetDate");
 const calculateBtn = document.getElementById("calculateBtn");
 const resetBtn = document.getElementById("resetBtn");
@@ -7,6 +8,56 @@ const resultLabel = document.getElementById("resultLabel");
 const resultNumber = document.getElementById("resultNumber");
 const resultDetail = document.getElementById("resultDetail");
 
+// 로또번호 생성기 관련 요소들
+const generateBtn = document.getElementById("generateBtn");
+const generateMultipleBtn = document.getElementById("generateMultipleBtn");
+const lotteryDisplay = document.getElementById("lotteryDisplay");
+const multipleNumbers = document.getElementById("multipleNumbers");
+
+// 탭 전환 관련
+const navButtons = document.querySelectorAll(".nav-btn");
+const tabContents = document.querySelectorAll(".tab-content");
+
+// ============ 탭 전환 로직 ============
+function switchTab(tabName) {
+  // 모든 탭 콘텐츠 숨기기
+  tabContents.forEach(tab => tab.classList.remove("active"));
+  
+  // 모든 네비게이션 버튼 비활성화
+  navButtons.forEach(btn => btn.classList.remove("active"));
+  
+  // 선택된 탭 표시
+  const selectedTab = document.getElementById(`${tabName}-tab`);
+  if (selectedTab) {
+    selectedTab.classList.add("active");
+  }
+  
+  // 선택된 네비게이션 버튼 활성화
+  const activeNavBtn = document.querySelector(`[data-tab="${tabName}"]`);
+  if (activeNavBtn) {
+    activeNavBtn.classList.add("active");
+  }
+}
+
+navButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const tabName = btn.getAttribute("data-tab");
+    switchTab(tabName);
+  });
+});
+
+// 홈의 도구 카드 버튼도 탭 전환 지원
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("tool-btn")) {
+    const tabName = e.target.getAttribute("data-tab");
+    if (tabName) {
+      switchTab(tabName);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+});
+
+// ============ D-Day 계산기 로직 ============
 function localDateOnly(date = new Date()) {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
@@ -81,3 +132,42 @@ calculate();
 calculateBtn.addEventListener("click", calculate);
 resetBtn.addEventListener("click", reset);
 targetDate.addEventListener("change", calculate);
+
+// ============ 로또번호 생성 로직 ============
+function generateLotteryNumbers() {
+  const numbers = new Set();
+  while (numbers.size < 6) {
+    numbers.add(Math.floor(Math.random() * 45) + 1);
+  }
+  return Array.from(numbers).sort((a, b) => a - b);
+}
+
+function displayLotteryNumbers(numbers) {
+  lotteryDisplay.innerHTML = numbers.map(num => `<div class="lottery-ball">${num}</div>`).join("");
+}
+
+function generateSingle() {
+  const numbers = generateLotteryNumbers();
+  displayLotteryNumbers(numbers);
+  multipleNumbers.classList.add("hidden");
+}
+
+function generateMultiple() {
+  multipleNumbers.classList.remove("hidden");
+  let html = "";
+  
+  for (let i = 0; i < 5; i++) {
+    const numbers = generateLotteryNumbers();
+    html += `<div class="lottery-set"><strong>세트 ${i + 1}:</strong> ${numbers.join(", ")}</div>`;
+  }
+  
+  multipleNumbers.innerHTML = html;
+  lotteryDisplay.innerHTML = "";
+}
+
+generateBtn.addEventListener("click", generateSingle);
+generateMultipleBtn.addEventListener("click", generateMultiple);
+
+// 초기 로또 번호 생성
+generateSingle();
+

@@ -51,6 +51,40 @@ nav {
   font-size: 14px;
 }
 
+.nav-btn {
+  border: none;
+  background: transparent;
+  color: #555;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 0;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  min-height: auto;
+}
+
+.nav-btn:hover {
+  color: var(--accent);
+  opacity: 1;
+}
+
+.nav-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.main-nav {
+  gap: 20px;
+}
+
 .hero {
   padding: 64px 0 44px;
   background: #fff;
@@ -218,6 +252,185 @@ summary {
   font-weight: 700;
 }
 
+/* ============ 홈 탭 스타일 ============ */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 40px 0;
+}
+
+.tool-card {
+  padding: 30px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.08);
+}
+
+.tool-card h3 {
+  margin-top: 0;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.tool-card p {
+  color: var(--muted);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.tool-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  min-height: auto;
+}
+
+.tool-btn:hover {
+  opacity: 0.85;
+}
+
+/* ============ 로또번호 생성기 스타일 ============ */
+.lottery-section {
+  padding: 36px 0;
+}
+
+.lottery-card {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 30px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.04);
+}
+
+.lottery-display {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+  min-height: 80px;
+  align-items: center;
+}
+
+.lottery-ball {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 20px;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  animation: ballPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes ballPop {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.lottery-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.primary-btn {
+  flex: 1;
+  padding: 12px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  min-height: 50px;
+}
+
+.primary-btn:hover {
+  opacity: 0.9;
+}
+
+.secondary-btn {
+  flex: 1;
+  padding: 12px 20px;
+  background: #f0f0f0;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 50px;
+}
+
+.secondary-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.multiple-numbers {
+  margin-top: 24px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  border: 1px solid #e8e8e8;
+}
+
+.multiple-numbers.hidden {
+  display: none;
+}
+
+.lottery-set {
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #fff;
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.lottery-set:last-child {
+  margin-bottom: 0;
+}
+
+.lottery-set strong {
+  color: var(--accent);
+  margin-right: 12px;
+  font-weight: 700;
+}
+
 footer {
   margin-top: 48px;
   padding: 28px 0;
@@ -236,10 +449,17 @@ footer {
 
   nav { width: 100%; justify-content: space-between; }
 
+  .nav-btn {
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+  }
+
   .hero { padding: 46px 0 34px; }
 
   .calculator-card,
-  .content-section {
+  .content-section,
+  .lottery-card {
     padding: 22px;
   }
 
@@ -248,4 +468,22 @@ footer {
   }
 
   button { width: 100%; }
+
+  .lottery-display {
+    gap: 8px;
+  }
+
+  .lottery-ball {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+  }
+
+  .lottery-buttons {
+    flex-direction: column;
+  }
+
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
 }
