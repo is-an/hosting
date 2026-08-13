@@ -97,6 +97,83 @@ function initCalcTabButtons() {
   });
 }
 
+// ============ 다크모드 ============
+
+const THEME_STORAGE_KEY = 'theme';
+
+function getStoredTheme() {
+  try {
+    return localStorage.getItem(THEME_STORAGE_KEY);
+  } catch (e) {
+    return null;
+  }
+}
+
+function getPreferredTheme() {
+  const stored = getStoredTheme();
+  if (stored === 'light' || stored === 'dark') {
+    return stored;
+  }
+  return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+}
+
+function applyTheme(theme) {
+  const activeTheme = theme === 'dark' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', activeTheme);
+  updateThemeToggleLabel();
+}
+
+function setTheme(theme) {
+  const activeTheme = theme === 'dark' ? 'dark' : 'light';
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, activeTheme);
+  } catch (e) {
+    // localStorage 사용 불가 환경(프라이벌 모드 등)에서도 테마 전환은 동작하도록 유지
+  }
+  applyTheme(activeTheme);
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  setTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+function updateThemeToggleLabel() {
+  const btn = document.getElementById('themeToggle');
+  if (!btn) {
+    return;
+  }
+
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const icon = btn.querySelector('.theme-toggle-icon');
+  if (icon) {
+    icon.textContent = isDark ? '☀️' : '🌙';
+  }
+
+  if (typeof translate === 'function' && typeof getCurrentLanguage === 'function') {
+    const lang = getCurrentLanguage();
+    const key = isDark ? 'lightMode' : 'darkMode';
+    btn.setAttribute('aria-label', translate(key, lang));
+  }
+}
+
+function initTheme() {
+  applyTheme(getPreferredTheme());
+}
+
+function attachThemeToggle() {
+  const btn = document.getElementById('themeToggle');
+  if (!btn || btn.dataset.themeBound === 'true') {
+    return;
+  }
+  btn.dataset.themeBound = 'true';
+  btn.addEventListener('click', toggleTheme);
+  updateThemeToggleLabel();
+}
+
+// 페이지 로드 즉시 테마 상태를 동기화(인라인 스크립트와 중복되어도 안전)
+initTheme();
+
 // ============ 공통 Header/Footer 로딩 ============
 
 function getSiteRootPath() {
@@ -179,6 +256,13 @@ function loadComponent(targetId, componentPath) {
       target.innerHTML = html;
       if (targetId === 'site-header') {
         applyHeaderLinks();
+        attachThemeToggle();
+        if (typeof attachLanguageSwitcher === 'function') {
+          attachLanguageSwitcher();
+        }
+      }
+      if (typeof applyLanguage === 'function' && typeof getCurrentLanguage === 'function') {
+        applyLanguage(getCurrentLanguage());
       }
     })
     .catch((error) => {

@@ -3,6 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <title>전역일 계산기 - 군 복무기간 계산 | 무료 온라인 도구</title>
   <meta name="description" content="전역일 계산기. 입대일과 군 종류를 입력하면 예상 전역일을 계산합니다.">
   <meta name="keywords" content="전역일계산, 군복무, 입대, 군계산기, 무료 온라인 도구">
@@ -81,6 +92,7 @@
   </main>
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
+<script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./discharge.js"></script>
 </body>

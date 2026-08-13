@@ -3,6 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <title>무료 온라인 도구 모음 | 계산기, 변환기, 생성기</title>
   <meta name="description" content="무료 온라인 도구 모음: 퍼센트 계산기, 나이 계산기, 글자수 세기, 단위 변환기, BMI 계산기, 연봉 계산기, 대출 이자 계산기 등 15개의 유용한 도구들을 한곳에서 만나보세요.">
   <meta name="keywords" content="계산기, 변환기, 도구, 무료 온라인 도구, 퍼센트 계산, 나이 계산, 글자수, 단위 변환, BMI, 연봉 계산, 대출 이자, 이미지 압축">
@@ -57,45 +68,45 @@
     <!-- ========== 히어로 섹션 ========== -->
     <section class="hero">
       <div class="container">
-        <p class="eyebrow">무료 온라인 도구 모음</p>
-        <h1>유용한 도구를 한곳에서</h1>
-        <p class="hero-copy">무료 온라인 계산기, 변환기, 생성기를 사용해보세요. 빠르고, 쉽고, 정확합니다.</p>
+        <p class="eyebrow" data-i18n="home_eyebrow">무료 온라인 도구 모음</p>
+        <h1 data-i18n="home_title">유용한 도구를 한곳에서</h1>
+        <p class="hero-copy" data-i18n="home_copy">무료 온라인 계산기, 변환기, 생성기를 사용해보세요. 빠르고, 쉽고, 정확합니다.</p>
       </div>
     </section>
 
     <!-- ========== 검색/필터 섹션 ========== -->
     <section class="container search-section">
-      <input type="text" id="toolSearch" class="search-input" placeholder="도구 검색... (예: BMI, 연봉, 로또)">
+      <input type="text" id="toolSearch" class="search-input" data-i18n-placeholder="home_searchPlaceholder" placeholder="도구 검색... (예: BMI, 연봉, 로또)">
       <div class="category-filter">
-        <button class="filter-btn active" data-filter="all">전체</button>
-        <button class="filter-btn" data-filter="calculator">계산기</button>
-        <button class="filter-btn" data-filter="converter">변환기</button>
-        <button class="filter-btn" data-filter="generator">생성기</button>
+        <button class="filter-btn active" data-filter="all" data-i18n="filter_all">전체</button>
+        <button class="filter-btn" data-filter="calculator" data-i18n="filter_calculator">계산기</button>
+        <button class="filter-btn" data-filter="converter" data-i18n="filter_converter">변환기</button>
+        <button class="filter-btn" data-filter="generator" data-i18n="filter_generator">생성기</button>
       </div>
     </section>
 
     <!-- ========== 계산기 카테고리 ========== -->
     <section class="container">
-      <h2>📊 계산기</h2>
+      <h2 data-i18n="cat_calculator">📊 계산기</h2>
       <div class="tools-grid" data-category="calculator">
         <a href="./cal/percent/" class="tool-card tool-link" data-name="퍼센트">
-          <h3>퍼센트 계산기</h3>
-          <p>A의 B%, A는 B의 몇 %, 증감 비율 등을 빠르게 계산합니다.</p>
+          <h3 data-i18n="tool_percent_title">퍼센트 계산기</h3>
+          <p data-i18n="tool_percent_desc">A의 B%, A는 B의 몇 %, 증감 비율 등을 빠르게 계산합니다.</p>
           <span class="arrow" aria-label="바로가기">➜</span>
         </a>
         <a href="./cal/age/" class="tool-card tool-link" data-name="나이">
-          <h3>나이 계산기</h3>
-          <p>생년월일을 입력하면 만 나이, 경과 일수, 다음 생일까지의 날짜를 계산합니다.</p>
+          <h3 data-i18n="tool_age_title">나이 계산기</h3>
+          <p data-i18n="tool_age_desc">생년월일을 입력하면 만 나이, 경과 일수, 다음 생일까지의 날짜를 계산합니다.</p>
           <span class="arrow" aria-label="바로가기">➜</span>
         </a>
         <a href="./cal/dday/" class="tool-card tool-link" data-name="D-Day">
-          <h3>D-Day 계산기</h3>
-          <p>목표 날짜를 입력하면 오늘을 기준으로 D-Day까지 남은 날짜를 계산합니다.</p>
+          <h3 data-i18n="tool_dday_title">D-Day 계산기</h3>
+          <p data-i18n="tool_dday_desc">목표 날짜를 입력하면 오늘을 기준으로 D-Day까지 남은 날짜를 계산합니다.</p>
           <span class="arrow" aria-label="바로가기">➜</span>
         </a>
         <a href="./cal/discharge/" class="tool-card tool-link" data-name="전역일">
-          <h3>전역일 계산기</h3>
-          <p>입대일과 복무기간으로부터 전역일을 계산합니다.</p>
+          <h3 data-i18n="tool_discharge_title">전역일 계산기</h3>
+          <p data-i18n="tool_discharge_desc">입대일과 복무기간으로부터 전역일을 계산합니다.</p>
           <span class="arrow" aria-label="바로가기">➜</span>
         </a>
       </div>
@@ -103,21 +114,21 @@
 
     <!-- ========== 변환기 카테고리 ========== -->
     <section class="container">
-      <h2>🔄 변환기</h2>
+      <h2 data-i18n="cat_converter">🔄 변환기</h2>
       <div class="tools-grid" data-category="converter">
         <a href="./tools/charcount/" class="tool-card tool-link" data-name="글자수">
-          <h3>글자수/바이트 계산기</h3>
-          <p>텍스트의 글자수, 공백 포함/제외 글자수, 바이트 수를 실시간으로 계산합니다.</p>
+          <h3 data-i18n="tool_charcount_title">글자수/바이트 계산기</h3>
+          <p data-i18n="tool_charcount_desc">텍스트의 글자수, 공백 포함/제외 글자수, 바이트 수를 실시간으로 계산합니다.</p>
           <span class="arrow" aria-label="바로가기">➜</span>
         </a>
         <a href="./tools/unit/" class="tool-card tool-link" data-name="단위변환">
-          <h3>단위 변환기</h3>
-          <p>길이, 무게, 온도, 면적, 부피, 시간, 데이터 용량을 변환합니다.</p>
+          <h3 data-i18n="tool_unit_title">단위 변환기</h3>
+          <p data-i18n="tool_unit_desc">길이, 무게, 온도, 면적, 부피, 시간, 데이터 용량을 변환합니다.</p>
           <span class="arrow" aria-label="바로가기">➜</span>
         </a>
         <a href="./tools/textconv/" class="tool-card tool-link" data-name="텍스트">
-          <h3>텍스트 변환 도구</h3>
-          <p>텍스트를 다양한 방식으로 변환하고 처리합니다.</p>
+          <h3 data-i18n="tool_textconv_title">텍스트 변환 도구</h3>
+          <p data-i18n="tool_textconv_desc">텍스트를 다양한 방식으로 변환하고 처리합니다.</p>
           <span class="arrow" aria-label="바로가기">➜</span>
         </a>
       </div>
@@ -125,36 +136,36 @@
 
     <!-- ========== 금융 계산기 카테고리 ========== -->
     <section class="container">
-      <h2>💰 금융 계산기</h2>
+      <h2 data-i18n="cat_finance">💰 금융 계산기</h2>
       <div class="tools-grid" data-category="calculator">
         <a href="./tools/bmi/" class="tool-card tool-link" data-name="BMI">
-          <h3>BMI 계산기</h3>
-          <p>키와 체중을 입력하면 BMI와 건강 상태를 표시합니다.</p>
+          <h3 data-i18n="tool_bmi_title">BMI 계산기</h3>
+          <p data-i18n="tool_bmi_desc">키와 체중을 입력하면 BMI와 건강 상태를 표시합니다.</p>
           <span class="arrow" aria-label="바로가기">➜</span>
         </a>
         <a href="./tools/salary/" class="tool-card tool-link" data-name="연봉">
-          <h3>연봉 계산기</h3>
-          <p>연봉으로부터 월급, 세전/세후 금액을 계산합니다.</p>
+          <h3 data-i18n="tool_salary_title">연봉 계산기</h3>
+          <p data-i18n="tool_salary_desc">연봉으로부터 월급, 세전/세후 금액을 계산합니다.</p>
           <span class="arrow" aria-label="바로가기">➜</span>
         </a>
         <a href="./tools/vat/" class="tool-card tool-link" data-name="부가세">
-          <h3>부가세 계산기</h3>
-          <p>공급가액, 부가세, 합계금액을 계산하고 역산합니다.</p>
+          <h3 data-i18n="tool_vat_title">부가세 계산기</h3>
+          <p data-i18n="tool_vat_desc">공급가액, 부가세, 합계금액을 계산하고 역산합니다.</p>
           <span class="arrow" aria-label="바로가기">➜</span>
         </a>
         <a href="./tools/loan/" class="tool-card tool-link" data-name="대출">
-          <h3>대출 이자 계산기</h3>
-          <p>대출금액, 이율, 기간으로부터 월 상환액과 총 이자를 계산합니다.</p>
+          <h3 data-i18n="tool_loan_title">대출 이자 계산기</h3>
+          <p data-i18n="tool_loan_desc">대출금액, 이율, 기간으로부터 월 상환액과 총 이자를 계산합니다.</p>
           <span class="arrow" aria-label="바로가기">➜</span>
         </a>
         <a href="./tools/savings/" class="tool-card tool-link" data-name="예금">
-          <h3>예금/적금 이자 계산기</h3>
-          <p>예치금과 이율로부터 이자와 만기 수령액을 계산합니다.</p>
+          <h3 data-i18n="tool_savings_title">예금/적금 이자 계산기</h3>
+          <p data-i18n="tool_savings_desc">예치금과 이율로부터 이자와 만기 수령액을 계산합니다.</p>
           <span class="arrow" aria-label="바로가기">➜</span>
         </a>
         <a href="./tools/retirement/" class="tool-card tool-link" data-name="퇴직금">
-          <h3>퇴직금 계산기</h3>
-          <p>입사일과 퇴사일로부터 예상 퇴직금을 계산합니다.</p>
+          <h3 data-i18n="tool_retirement_title">퇴직금 계산기</h3>
+          <p data-i18n="tool_retirement_desc">입사일과 퇴사일로부터 예상 퇴직금을 계산합니다.</p>
           <span class="arrow" aria-label="바로가기">➜</span>
         </a>
       </div>
@@ -162,11 +173,11 @@
 
     <!-- ========== 생성기 카테고리 ========== -->
     <section class="container">
-      <h2>🎰 생성기</h2>
+      <h2 data-i18n="cat_generator">🎰 생성기</h2>
       <div class="tools-grid" data-category="generator">
         <a href="./lotto/" class="tool-card tool-link" data-name="로또">
-          <h3>로또번호 생성기</h3>
-          <p>1부터 45까지의 숫자 중 6개를 무작위로 선택하여 로또번호를 추천합니다.</p>
+          <h3 data-i18n="tool_lotto_title">로또번호 생성기</h3>
+          <p data-i18n="tool_lotto_desc">1부터 45까지의 숫자 중 6개를 무작위로 선택하여 로또번호를 추천합니다.</p>
           <span class="arrow" aria-label="바로가기">➜</span>
         </a>
       </div>
@@ -174,45 +185,45 @@
 
     <!-- ========== 인기 도구 ========== -->
     <section class="container popular-tools">
-      <h2>⭐ 인기 도구</h2>
+      <h2 data-i18n="cat_popular">⭐ 인기 도구</h2>
       <div class="popular-list">
         <a href="./tools/salary/" class="popular-item">
           <span class="rank">1</span>
-          <h4>연봉 계산기</h4>
-          <p>연봉을 입력하고 실수령액을 확인하세요</p>
+          <h4 data-i18n="tool_salary_title">연봉 계산기</h4>
+          <p data-i18n="popular_salary_desc">연봉을 입력하고 실수령액을 확인하세요</p>
         </a>
         <a href="./tools/bmi/" class="popular-item">
           <span class="rank">2</span>
-          <h4>BMI 계산기</h4>
-          <p>건강한 체중을 유지하세요</p>
+          <h4 data-i18n="tool_bmi_title">BMI 계산기</h4>
+          <p data-i18n="popular_bmi_desc">건강한 체중을 유지하세요</p>
         </a>
         <a href="./cal/dday/" class="popular-item">
           <span class="rank">3</span>
-          <h4>D-Day 계산기</h4>
-          <p>목표 날짜까지 남은 날짜를 확인하세요</p>
+          <h4 data-i18n="tool_dday_title">D-Day 계산기</h4>
+          <p data-i18n="popular_dday_desc">목표 날짜까지 남은 날짜를 확인하세요</p>
         </a>
       </div>
     </section>
 
     <!-- ========== FAQ ========== -->
     <section class="container faq-section">
-      <h2>❓ 자주 묻는 질문</h2>
+      <h2 data-i18n="cat_faq">❓ 자주 묻는 질문</h2>
       <div class="faq-list">
         <div class="faq-item">
-          <h4>이 도구들을 사용하려면 회원가입이 필요한가요?</h4>
-          <p>아니요, 모든 도구는 완전히 무료이며 회원가입 없이 사용할 수 있습니다.</p>
+          <h4 data-i18n="faq_q1">이 도구들을 사용하려면 회원가입이 필요한가요?</h4>
+          <p data-i18n="faq_a1">아니요, 모든 도구는 완전히 무료이며 회원가입 없이 사용할 수 있습니다.</p>
         </div>
         <div class="faq-item">
-          <h4>계산 결과가 정확한가요?</h4>
-          <p>네, 모든 계산은 정확한 알고리즘으로 계산되지만, 세금이나 복지혜택 등 개인의 상황에 따라 실제 금액과 다를 수 있습니다.</p>
+          <h4 data-i18n="faq_q2">계산 결과가 정확한가요?</h4>
+          <p data-i18n="faq_a2">네, 모든 계산은 정확한 알고리즘으로 계산되지만, 세금이나 복지혜택 등 개인의 상황에 따라 실제 금액과 다를 수 있습니다.</p>
         </div>
         <div class="faq-item">
-          <h4>결과를 저장하거나 내보낼 수 있나요?</h4>
-          <p>각 도구의 복사 버튼으로 결과를 클립보드에 복사할 수 있습니다. 현재는 파일 저장 기능은 제공하지 않습니다.</p>
+          <h4 data-i18n="faq_q3">결과를 저장하거나 내보낼 수 있나요?</h4>
+          <p data-i18n="faq_a3">각 도구의 복사 버튼으로 결과를 클립보드에 복사할 수 있습니다. 현재는 파일 저장 기능은 제공하지 않습니다.</p>
         </div>
         <div class="faq-item">
-          <h4>모바일에서도 사용할 수 있나요?</h4>
-          <p>네, 모든 도구는 모바일 기기에 최적화되어 있습니다.</p>
+          <h4 data-i18n="faq_q4">모바일에서도 사용할 수 있나요?</h4>
+          <p data-i18n="faq_a4">네, 모든 도구는 모바일 기기에 최적화되어 있습니다.</p>
         </div>
       </div>
     </section>
@@ -220,6 +231,7 @@
 
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
+<script src="./assets/js/i18n.js"></script>
 <script src="./assets/js/common.js"></script>
 </body>
 </html>

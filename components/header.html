@@ -4,13 +4,37 @@
       <img src="#" alt="도구 모음" class="logo-img">
     </a>
     <nav class="main-nav">
-      <a href="#" class="nav-link" data-route="home">홈</a>
+      <a href="#" class="nav-link" data-route="home" data-i18n="nav_home">홈</a>
       <span class="nav-separator">|</span>
-      <a href="#" class="nav-link" data-route="cal">계산기</a>
+      <a href="#" class="nav-link" data-route="cal" data-i18n="nav_calculator">계산기</a>
       <span class="nav-separator">|</span>
-      <a href="#" class="nav-link" data-route="lotto">로또</a>
+      <a href="#" class="nav-link" data-route="lotto" data-i18n="nav_lotto">로또</a>
       <span class="nav-separator">|</span>
-      <a href="#" class="nav-link" data-route="tools">도구</a>
+      <a href="#" class="nav-link" data-route="tools" data-i18n="nav_tools">도구</a>
     </nav>
+    <div class="header-actions">
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="다크모드로 전환">
+        <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+      </button>
+      <div class="lang-switch">
+        <button
+          type="button"
+          id="langToggle"
+          class="lang-toggle"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          data-i18n-aria-label="language"
+          aria-label="언어 선택">
+          <span class="lang-current" id="langCurrent">한국어</span>
+          <span class="lang-caret" aria-hidden="true">▾</span>
+        </button>
+        <ul class="lang-dropdown" id="langDropdown" role="listbox" aria-label="언어 선택">
+          <li role="option" data-lang="ko" tabindex="0">한국어</li>
+          <li role="option" data-lang="en" tabindex="0">English</li>
+          <li role="option" data-lang="zh" tabindex="0">中文</li>
+          <li role="option" data-lang="ja" tabindex="0">日本語</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </header>

@@ -3,6 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <title>퍼센트 계산기 - 할인, 증감 비율 계산 | 무료 온라인 도구</title>
   <meta name="description" content="무료 퍼센트 계산기. A의 B%, A는 B의 몇%, 증감 비율, 할인율을 빠르고 정확하게 계산하세요.">
   <meta name="keywords" content="퍼센트 계산기, 할인계산, 증감비율, 비율계산, 무료 온라인 도구">
@@ -144,6 +155,7 @@
   </main>
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
+<script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./percent.js"></script>
 </body>

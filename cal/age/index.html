@@ -3,6 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <title>나이 계산기 - 만 나이, 경과 일수 계산 | 무료 온라인 도구</title>
   <meta name="description" content="나이 계산기. 생년월일을 입력하면 만 나이, 경과 일수, 다음 생일까지 남은 날짜를 계산합니다.">
   <meta name="keywords" content="나이계산, 나이계산기, 만나이, 생일계산, 무료 온라인 도구">
@@ -85,6 +96,7 @@
   </main>
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
+<script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./age.js"></script>
 </body>

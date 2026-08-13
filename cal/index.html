@@ -3,6 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <title>계산기 카테고리 - 무료 온라인 계산기 모음</title>
   <meta name="description" content="퍼센트 계산기, 나이 계산기, D-Day 계산기, 전역일 계산기 등 무료 온라인 계산기 모음입니다.">
   <meta name="robots" content="index,follow">
@@ -45,6 +56,7 @@
       </div>
     </section>
   </main>  <div id="ads-slot" class="ads-slot"></div>  <div id="site-footer"></div>
+<script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
 </body>
 </html>

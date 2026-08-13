@@ -3,6 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <title>연봉 계산기 - 세후 실수령액 계산 | 무료 온라인 도구</title>
   <meta name="description" content="연봉 계산기. 연봉을 입력하면 월급, 세전/세후 금액을 계산합니다.">
   <meta name="keywords" content="연봉계산, 급여계산, 세금계산, 실수령액, 무료 온라인 도구">
@@ -64,6 +75,7 @@
     </div>
   </main>
   <div id="site-footer"></div>
+<script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./salary.js"></script>
 </body>

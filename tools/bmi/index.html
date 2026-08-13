@@ -3,6 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <title>BMI 계산기 - 건강 체중 계산 | 무료 온라인 도구</title>
   <meta name="description" content="BMI 계산기. 키와 체중을 입력하면 BMI와 건강 상태, 적정 체중을 표시합니다.">
   <meta name="keywords" content="BMI계산, 체중계산, 건강지수, 비만도, 무료 온라인 도구">
@@ -69,6 +80,7 @@
   </main>
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
+<script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./bmi.js"></script>
 </body>

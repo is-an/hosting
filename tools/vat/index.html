@@ -3,6 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <title>부가세 계산기 - 공급가액, 부가세 계산 | 무료 온라인 도구</title>
   <meta name="description" content="부가세 계산기. 공급가액, 부가세, 합계금액을 계산하고 역산합니다.">
   <meta name="keywords" content="부가세계산, 부가세, 공급가액, 세금계산, 무료 온라인 도구">
@@ -101,6 +112,7 @@
     </div>
   </main>
   <div id="site-footer"></div>
+<script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./vat.js"></script>
 </body>

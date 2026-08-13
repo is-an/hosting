@@ -3,6 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <title>퇴직금 계산기 - 예상 퇴직금 계산 | 무료 온라인 도구</title>
   <meta name="description" content="퇴직금 계산기. 입사일과 퇴사일로부터 예상 퇴직금을 계산합니다.">
   <meta name="keywords" content="퇴직금계산, 퇴직, 근무기간, 평균임금, 무료 온라인 도구">
@@ -80,6 +91,7 @@
   </main>
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
+<script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./retirement.js"></script>
 </body>

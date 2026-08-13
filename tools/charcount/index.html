@@ -3,6 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <title>글자수/바이트 계산기 - 텍스트 글자수 세기 | 무료 온라인 도구</title>
   <meta name="description" content="글자수 계산기. 텍스트의 글자수, 공백 포함/제외, 바이트 수, 줄 수를 실시간으로 계산합니다.">
   <meta name="keywords" content="글자수계산, 바이트계산, 텍스트분석, 글자수세기, 무료 온라인 도구">
@@ -76,6 +87,7 @@
   </main>
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
+<script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./charcount.js"></script>
 </body>

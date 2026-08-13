@@ -3,6 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <title>로또번호 생성기 - 무료 로또번호 추천 | 온라인 도구</title>
   <meta name="description" content="로또번호 생성기. 1부터 45까지의 숫자 중 6개를 무작위로 선택하여 로또번호를 추천합니다. 무료로 사용하세요.">
   <meta name="keywords" content="로또, 로또번호, 로또번호생성, 번호생성, 무료 온라인 도구">
@@ -266,6 +277,7 @@
   </main>
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
+<script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./lottery.js"></script>
 </body>
