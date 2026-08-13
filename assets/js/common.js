@@ -113,23 +113,27 @@ function getSiteRootPath() {
   return pathname || '/';
 }
 
+function getSiteBasePath() {
+  const siteRoot = getSiteRootPath();
+  return siteRoot === '/' ? '' : siteRoot;
+}
+
 function applyHeaderLinks() {
   const header = document.querySelector('.site-header');
   if (!header) {
     return;
   }
 
-  const siteRoot = getSiteRootPath();
-  const siteRootPath = siteRoot === '/' ? '' : siteRoot;
+  const siteRootPath = getSiteBasePath();
   const logoLink = header.querySelector('.logo');
   const logoImage = header.querySelector('.logo-img');
 
   if (logoLink) {
-    logoLink.href = `${siteRootPath}/`;
+    logoLink.href = `${siteRootPath}/` || '/';
   }
 
   if (logoImage) {
-    logoImage.src = `${siteRootPath}/logo.png`;
+    logoImage.src = `${siteRootPath}/logo.png` || '/logo.png';
   }
 
   const currentPath = window.location.pathname.replace(/\/+$/, '');
@@ -137,7 +141,7 @@ function applyHeaderLinks() {
 
   header.querySelectorAll('.nav-link').forEach((link) => {
     const route = link.dataset.route;
-    const href = route === 'home' ? `${siteRootPath}/` : `${siteRootPath}/${route}/`;
+    const href = route === 'home' ? `${siteRootPath}/` || '/' : `${siteRootPath}/${route}/`;
     link.href = href;
     link.classList.remove('active');
 
@@ -177,9 +181,9 @@ function loadComponent(targetId, componentPath) {
 }
 
 function initSharedComponents() {
-  const siteRoot = getSiteRootPath();
-  const headerUrl = `${siteRoot}/components/header.html`;
-  const footerUrl = `${siteRoot}/components/footer.html`;
+  const siteRootPath = getSiteBasePath();
+  const headerUrl = `${siteRootPath}/components/header.html` || '/components/header.html';
+  const footerUrl = `${siteRootPath}/components/footer.html` || '/components/footer.html';
 
   const headerPromise = loadComponent('site-header', headerUrl);
   const footerPromise = loadComponent('site-footer', footerUrl);
