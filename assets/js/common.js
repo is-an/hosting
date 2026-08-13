@@ -191,11 +191,13 @@ function initSharedComponents() {
   const siteRootPath = getSiteBasePath();
   const headerUrl = `${siteRootPath}/components/header.html` || '/components/header.html';
   const footerUrl = `${siteRootPath}/components/footer.html` || '/components/footer.html';
+  const adUrl = `${siteRootPath}/components/ads.html` || '/components/ads.html';
 
   const headerPromise = loadComponent('site-header', headerUrl);
   const footerPromise = loadComponent('site-footer', footerUrl);
+  const adPromise = loadComponent('ads-slot', adUrl);
 
-  return Promise.all([headerPromise, footerPromise]);
+  return Promise.all([headerPromise, footerPromise, adPromise]);
 }
 
 // ============ 메인 홈페이지 검색 및 필터 기능 ============
