@@ -22,7 +22,6 @@ function generateSingle() {
   const numbers = generateLotteryNumbers();
   displayLotteryNumbers(numbers);
   multipleNumbers.classList.add("hidden");
-  copyToClipboard(numbers.join(", "));
 }
 
 function generateMultiple() {
