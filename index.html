@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -49,22 +49,8 @@
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="./" title="홈으로"><img src="logo.png" alt="도구 모음" class="logo-img"></a>
-      <nav class="main-nav">
-        <a href="./" class="nav-link active">홈</a>
-        <span class="nav-separator">|</span>
-        <a href="./cal/" class="nav-link">계산기</a>
-        <span class="nav-separator">|</span>
-        <a href="./lotto/generator/" class="nav-link">로또</a>
-        <span class="nav-separator">|</span>
-        <a href="./tools/" class="nav-link">도구</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
+  <div id="site-header"></div>
+<main>
     <!-- ========== 히어로 섹션 ========== -->
     <section class="hero">
       <div class="container">
@@ -228,27 +214,7 @@
       </div>
     </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-section">
-        <h4>도구 모음</h4>
-        <p>계산기 · 로또 · 도구</p>
-      </div>
-      <div class="footer-section">
-        <h4>정보</h4>
-        <p>홈 · 문의 · 계산기</p>
-      </div>
-      <div class="footer-section">
-        <h4>소셜</h4>
-        <p>GitHub · Twitter</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 is-an Labs.</p>
-    </div>
-  </footer>
-
-  <script src="./assets/js/common.js"></script>
+  <div id="site-footer"></div>
+<script src="./assets/js/common.js"></script>
 </body>
 </html>

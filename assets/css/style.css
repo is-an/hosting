@@ -117,6 +117,46 @@ h1 {
   font-size: 17px;
 }
 
+.search-section {
+  margin-top: 28px;
+}
+
+.search-input {
+  width: 100%;
+  margin: 0 0 14px;
+  padding: 15px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-btn {
+  flex: 1 1 140px;
+  min-height: 46px;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--muted);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
 .calculator-section {
   padding: 36px 0;
 }
@@ -520,8 +560,16 @@ footer {
 }
 
 .footer-bottom {
-  margin-top: 18px;
+  margin-top: 26px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(34, 34, 34, 0.06);
   white-space: nowrap;
+}
+
+.footer-bottom p {
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
 }
 
 .site-footer a,
@@ -935,6 +983,21 @@ textarea {
   }
 
   .hero { padding: 46px 0 34px; }
+
+  .search-section {
+    margin-top: 20px;
+  }
+
+  .category-filter {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .filter-btn {
+    flex: 1 1 auto;
+    width: 100%;
+  }
 
   .calculator-card,
   .content-section,

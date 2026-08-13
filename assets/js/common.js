@@ -97,6 +97,96 @@ function initCalcTabButtons() {
   });
 }
 
+// ============ 공통 Header/Footer 로딩 ============
+
+function getSiteRootPath() {
+  const commonScript = Array.from(document.scripts).find(script =>
+    script.src && /assets\/js\/common\.js(?:\?.*)?$/.test(script.src)
+  );
+
+  if (!commonScript) {
+    return '/';
+  }
+
+  const scriptUrl = new URL(commonScript.src, window.location.href);
+  const pathname = scriptUrl.pathname.replace(/\/assets\/js\/common\.js.*$/, '');
+  return pathname || '/';
+}
+
+function applyHeaderLinks() {
+  const header = document.querySelector('.site-header');
+  if (!header) {
+    return;
+  }
+
+  const siteRoot = getSiteRootPath();
+  const siteRootPath = siteRoot === '/' ? '' : siteRoot;
+  const logoLink = header.querySelector('.logo');
+  const logoImage = header.querySelector('.logo-img');
+
+  if (logoLink) {
+    logoLink.href = `${siteRootPath}/`;
+  }
+
+  if (logoImage) {
+    logoImage.src = `${siteRootPath}/logo.png`;
+  }
+
+  const currentPath = window.location.pathname.replace(/\/+$/, '');
+  const normalizedCurrent = currentPath || '/';
+
+  header.querySelectorAll('.nav-link').forEach((link) => {
+    const route = link.dataset.route;
+    const href = route === 'home' ? `${siteRootPath}/` : `${siteRootPath}/${route}/`;
+    link.href = href;
+    link.classList.remove('active');
+
+    const targetPath = new URL(href, window.location.href).pathname.replace(/\/+$/, '');
+    if (
+      (route === 'home' && (normalizedCurrent === siteRootPath || normalizedCurrent === siteRootPath + '/')) ||
+      (route !== 'home' && targetPath === normalizedCurrent)
+    ) {
+      link.classList.add('active');
+    }
+  });
+}
+
+function loadComponent(targetId, componentPath) {
+  const target = document.getElementById(targetId);
+  if (!target) {
+    return Promise.resolve();
+  }
+
+  return fetch(componentPath, { cache: 'no-cache' })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Failed to load ${componentPath}: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then((html) => {
+      target.innerHTML = html;
+      if (targetId === 'site-header') {
+        applyHeaderLinks();
+      }
+    })
+    .catch((error) => {
+      console.warn(error.message);
+      target.innerHTML = '';
+    });
+}
+
+function initSharedComponents() {
+  const siteRoot = getSiteRootPath();
+  const headerUrl = `${siteRoot}/components/header.html`;
+  const footerUrl = `${siteRoot}/components/footer.html`;
+
+  const headerPromise = loadComponent('site-header', headerUrl);
+  const footerPromise = loadComponent('site-footer', footerUrl);
+
+  return Promise.all([headerPromise, footerPromise]);
+}
+
 // ============ 메인 홈페이지 검색 및 필터 기능 ============
 
 /**
@@ -106,6 +196,9 @@ function initToolsFilter() {
   const searchInput = document.getElementById('toolSearch');
   const filterBtns = document.querySelectorAll('.filter-btn');
   const toolCards = document.querySelectorAll('.tool-card');
+  const categorySections = Array.from(document.querySelectorAll('main section.container'))
+    .filter(section => section.querySelector('.tools-grid') && !section.classList.contains('popular-tools') && !section.classList.contains('faq-section'));
+  const extraSections = document.querySelectorAll('main section.container.popular-tools, main section.container.faq-section');
   
   if (!searchInput || !filterBtns.length || !toolCards.length) {
     return; // 홈페이지가 아닐 경우 실행하지 않음
@@ -124,6 +217,31 @@ function initToolsFilter() {
       
       card.style.display = (matchesSearch && matchesFilter) ? '' : 'none';
     });
+
+    if (activeFilter === 'all') {
+      categorySections.forEach(section => {
+        section.style.display = '';
+      });
+      extraSections.forEach(section => {
+        section.style.display = '';
+      });
+      return;
+    }
+
+    categorySections.forEach(section => {
+      const grid = section.querySelector('.tools-grid');
+      const sectionCategory = grid ? grid.dataset.category : '';
+      const visibleCards = Array.from(grid ? grid.querySelectorAll('.tool-card') : []).filter(card => {
+        const name = card.dataset.name?.toLowerCase() || '';
+        return name.includes(searchTerm) && sectionCategory === activeFilter;
+      });
+
+      section.style.display = (sectionCategory === activeFilter && visibleCards.length > 0) ? '' : 'none';
+    });
+
+    extraSections.forEach(section => {
+      section.style.display = 'none';
+    });
   }
   
   searchInput.addEventListener('input', filterTools);
@@ -137,9 +255,15 @@ function initToolsFilter() {
   });
 }
 
-// 페이지 로드 시 필터 초기화
+// 페이지 로드 시 공통 컴포넌트와 필터 초기화
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initToolsFilter);
+  document.addEventListener('DOMContentLoaded', () => {
+    initSharedComponents().then(() => {
+      initToolsFilter();
+    });
+  });
 } else {
-  initToolsFilter();
+  initSharedComponents().then(() => {
+    initToolsFilter();
+  });
 }

@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -38,18 +38,35 @@
     }
     
     .lottery-ball {
-      width: 50px;
-      height: 50px;
+      position: relative;
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), #666);
-      color: white;
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
+      font-weight: 800;
       font-size: 18px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      border: 2px solid rgba(255,255,255,0.65);
+      box-shadow:
+        inset 0 4px 10px rgba(255,255,255,0.45),
+        inset 0 -8px 12px rgba(0,0,0,0.22),
+        0 8px 16px rgba(0,0,0,0.18);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
       animation: pop 0.5s ease-out;
+    }
+
+    .lottery-ball::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 9px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.38);
+      filter: blur(1px);
     }
     
     @keyframes pop {
@@ -63,6 +80,74 @@
         transform: scale(1);
       }
     }
+
+    .lottery-options {
+      margin: 20px 0 24px;
+      padding: 18px;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .lottery-options label {
+      display: block;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .fixed-slots {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .fixed-slot {
+      width: 100%;
+      min-height: 42px;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 15px;
+      background: #fff;
+      color: var(--text);
+    }
+
+    .lottery-mini-list {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lottery-mini-ball {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow:
+        inset 0 3px 6px rgba(255,255,255,0.32),
+        inset 0 -4px 7px rgba(0,0,0,0.15),
+        0 4px 8px rgba(0,0,0,0.12);
+    }
+
+    .lottery-mini-ball::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 5px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+    }
     
     .lottery-set {
       padding: 15px;
@@ -75,22 +160,8 @@
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="../../" title="홈으로"><img src="logo.png" alt="도구 모음" class="logo-img"></a>
-      <nav class="main-nav">
-        <a href="../../" class="nav-link">홈</a>
-        <span class="nav-separator">|</span>
-        <a href="../../cal/" class="nav-link active">계산기</a>
-        <span class="nav-separator">|</span>
-        <a href="./" class="nav-link">로또</a>
-        <span class="nav-separator">|</span>
-        <a href="../../tools/" class="nav-link">도구</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
+  <div id="site-header"></div>
+<main>
     <!-- ========== 히어로 섹션 ========== -->
     <section class="hero">
       <div class="container">
@@ -105,6 +176,80 @@
       <section class="calculator-section">
         <div class="calculator-card">
           <p>기운이 있는 로또번호를 추천해드립니다.</p>
+
+          <div class="lottery-options">
+            <label for="fixedSlot1">번호 고정 설정 (1~6자리)</label>
+            <div class="fixed-slots">
+              <select class="fixed-slot" data-index="0" aria-label="1번째 번호 고정">
+                <option value="">1번째</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+              </select>
+              <select class="fixed-slot" data-index="1" aria-label="2번째 번호 고정">
+                <option value="">2번째</option>
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+              </select>
+              <select class="fixed-slot" data-index="2" aria-label="3번째 번호 고정">
+                <option value="">3번째</option>
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+              </select>
+              <select class="fixed-slot" data-index="3" aria-label="4번째 번호 고정">
+                <option value="">4번째</option>
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+              </select>
+              <select class="fixed-slot" data-index="4" aria-label="5번째 번호 고정">
+                <option value="">5번째</option>
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+              </select>
+              <select class="fixed-slot" data-index="5" aria-label="6번째 번호 고정">
+                <option value="">6번째</option>
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+              </select>
+            </div>
+          </div>
           
           <div id="lotteryDisplay" class="lottery-display"></div>
 
@@ -117,68 +262,10 @@
           <div id="multipleNumbers" class="hidden"></div>
         </div>
       </section>
-
-      <!-- ========== FAQ ========== -->
-      <section class="faq-section">
-        <h2>❓ 자주 묻는 질문</h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <h4>이 도구로 생성된 번호로 구매하면 당첨될까요?</h4>
-            <p>이 도구는 무작위로 번호를 생성할 뿐, 당첨을 보장하지 않습니다. 로또는 완전히 운의 게임입니다.</p>
-          </div>
-          <div class="faq-item">
-            <h4>여러 번 생성할 수 있나요?</h4>
-            <p>네, 원하는 만큼 여러 번 생성할 수 있습니다.</p>
-          </div>
-          <div class="faq-item">
-            <h4>생성된 번호를 저장할 수 있나요?</h4>
-            <p>현재는 저장 기능이 없습니다. 필요시 직접 메모해주세요.</p>
-          </div>
-          <div class="faq-item">
-            <h4>파워볼도 생성할 수 있나요?</h4>
-            <p>현재는 로또(숫자 6개) 생성만 지원합니다.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========== 관련 도구 ========== -->
-      <section class="related-tools">
-        <h2>🔗 관련 도구</h2>
-        <div class="tools-grid">
-          <a href="../../cal/dday/" class="tool-card">
-            <h4>D-Day 계산기</h4>
-            <p>목표 날짜까지의 남은 날짜 계산</p>
-          </a>
-        </div>
-      </section>
     </div>
   </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-section">
-        <h4>도구</h4>
-        <ul>
-          <li><a href="../../">홈</a></li>
-          <li><a href="">로또</a></li>
-          <li><a href="../../cal/dday/">D-Day</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>정보</h4>
-        <ul>
-          <li><a href="../../">홈</a></li>
-          <li><a href="../../cal/">계산기</a></li>
-          <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 is-an Labs.</p>
-    </div>
-  </footer>
-
-  <script src="../../assets/js/common.js"></script>
+  <div id="site-footer"></div>
+<script src="../../assets/js/common.js"></script>
   <script src="./lottery.js"></script>
 </body>
 </html>
