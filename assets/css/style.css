@@ -1261,3 +1261,34 @@ textarea {
   .game-stats { grid-template-columns: repeat(3, 1fr); }
   .game-stats div { padding: 9px; }
 }
+
+/* ============ 카메라 셔터카운트 확인기 ============ */
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; clip-path: inset(50%); }
+.shutter-card { max-width: 760px; }
+.shutter-dropzone { display: flex; min-height: 240px; padding: 30px; border: 2px dashed var(--border); border-radius: 12px; background: var(--result-bg); align-items: center; justify-content: center; flex-direction: column; gap: 8px; color: var(--muted); cursor: pointer; text-align: center; transition: border-color .2s ease, background-color .2s ease; }
+.shutter-dropzone:hover, .shutter-dropzone:focus-visible, .shutter-dropzone.dragging { border-color: var(--accent); background: var(--hover-bg); outline: 0; }
+.shutter-dropzone strong { color: var(--text); font-size: 22px; }
+.shutter-icon { font-size: 42px; line-height: 1; }
+.shutter-dropzone .tool-btn { margin-top: 8px; }
+.shutter-preview { display: grid; grid-template-columns: minmax(0, 180px) 1fr; gap: 18px; align-items: center; margin-top: 18px; padding: 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--result-bg); }
+.shutter-preview img { display: block; width: 100%; max-height: 180px; object-fit: contain; border-radius: 6px; background: var(--card); }
+.shutter-preview .text-button { width: max-content; }
+.shutter-result { margin-top: 20px; padding: 22px; border: 1px solid var(--border); border-radius: 12px; background: var(--card); }
+.shutter-result h2 { margin-bottom: 18px; font-size: 22px; }
+.shutter-count-box { padding: 18px; margin-bottom: 18px; border-radius: 10px; background: var(--result-bg); text-align: center; }
+.shutter-count-box span, .shutter-count-box b { display: block; }
+.shutter-count-box span { color: var(--muted); font-weight: 700; }
+.shutter-count-box b { margin: 3px 0; color: var(--accent); font-size: clamp(28px, 8vw, 48px); line-height: 1.2; }
+.shutter-count-box p { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+.shutter-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; background: var(--border); }
+.shutter-row { display: flex; justify-content: space-between; gap: 14px; padding: 11px 12px; background: var(--card); font-size: 14px; }
+.shutter-row span { color: var(--muted); }
+.shutter-row strong { overflow-wrap: anywhere; text-align: right; }
+.shutter-privacy { border-left: 4px solid var(--accent); }
+
+@media (max-width: 640px) {
+  .shutter-dropzone { min-height: 210px; padding: 22px; }
+  .shutter-preview { grid-template-columns: 1fr; }
+  .shutter-preview img { max-height: 220px; }
+  .shutter-grid { grid-template-columns: 1fr; }
+}
