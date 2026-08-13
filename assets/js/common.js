@@ -141,7 +141,14 @@ function applyHeaderLinks() {
 
   header.querySelectorAll('.nav-link').forEach((link) => {
     const route = link.dataset.route;
-    const href = route === 'home' ? `${siteRootPath}/` || '/' : `${siteRootPath}/${route}/`;
+    const routeMap = {
+      home: `${siteRootPath}/`,
+      cal: `${siteRootPath}/cal/`,
+      lotto: `${siteRootPath}/lotto/`,
+      tools: `${siteRootPath}/tools/`
+    };
+
+    const href = routeMap[route] || `${siteRootPath}/`;
     link.href = href;
     link.classList.remove('active');
 
