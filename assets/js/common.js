@@ -222,7 +222,8 @@ function applyHeaderLinks() {
       home: `${siteRootPath}/`,
       cal: `${siteRootPath}/cal/`,
       lotto: `${siteRootPath}/lotto/`,
-      tools: `${siteRootPath}/tools/`
+      tools: `${siteRootPath}/tools/`,
+      games: `${siteRootPath}/games/`
     };
 
     const href = routeMap[route] || `${siteRootPath}/`;

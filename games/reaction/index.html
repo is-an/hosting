@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>(function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',(t==='light'||t==='dark')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));}catch(e){}})();</script>
+  <title>반응속도 테스트 - 내 반응속도 측정 | is-an</title>
+  <meta name="description" content="화면이 바뀌는 순간 클릭하여 내 반응속도를 무료로 측정하세요. 최고 기록과 5회 평균을 저장합니다.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="./">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"반응속도 테스트","description":"클릭 반응 시간을 측정하는 무료 웹 게임","applicationCategory":"GameApplication","operatingSystem":"Any"}</script>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main>
+    <section class="hero"><div class="container"><p class="eyebrow">MINI GAME</p><h1 data-i18n="game_reaction_title">반응속도 테스트</h1><p class="hero-copy">화면이 초록색으로 바뀌는 순간 빠르게 눌러 반응 시간을 확인하세요.</p></div></section>
+    <section class="container game-page">
+      <div class="game-card reaction-card">
+        <div class="game-toolbar"><div><strong data-i18n="game_best">최고 기록</strong><span id="reactionBest">-</span></div><label class="game-mode"><input id="averageMode" type="checkbox"> <span>5회 평균</span></label></div>
+        <button id="reactionPad" class="reaction-pad" type="button" aria-live="polite"><span id="reactionMessage">시작 버튼을 눌러 준비하세요.</span></button>
+        <div class="game-actions"><button id="reactionStart" type="button" class="primary-btn" data-i18n="game_start">게임 시작</button><button id="reactionShare" type="button" class="secondary-btn" data-i18n="game_share">결과 공유</button><button id="reactionCopy" type="button" class="secondary-btn" data-i18n="game_copyLink">게임 링크 복사</button></div>
+        <div id="reactionResult" class="game-result hidden" aria-live="polite"></div>
+      </div>
+      <section class="game-info"><h2>게임 방법</h2><p>시작 후 잠시 기다리세요. 화면이 바뀐 뒤 패드를 누르면 밀리초 단위의 반응 시간을 확인할 수 있습니다. 5회 평균 모드는 여러 번의 기록을 한 번에 비교하기 좋습니다.</p></section>
+      <nav class="game-links" aria-label="다른 게임"><a href="../sudoku/" data-i18n="game_sudoku_title">스도쿠</a><a href="../typing/" data-i18n="game_typing_title">타자 속도 테스트</a><a href="../block-puzzle/" data-i18n="game_block_title">블록 퍼즐</a><a href="../../">홈</a></nav>
+    </section>
+  </main>
+  <div id="ads-slot" class="ads-slot"></div><div id="site-footer"></div>
+  <script src="../../assets/js/i18n.js"></script><script src="../../assets/js/common.js"></script><script src="../../assets/js/share.js"></script><script src="./game.js"></script>
+</body>
+</html>

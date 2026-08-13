@@ -358,6 +358,52 @@ const translations = {
   }
 };
 
+const gameTranslations = {
+  ko: {
+    nav_games: '게임', filter_game: '게임', cat_games: '🎮 미니게임',
+    game_start: '게임 시작', game_new: '새 게임', game_restart: '다시하기', game_result: '게임 결과', game_best: '최고 기록', game_share: '결과 공유', game_copyLink: '게임 링크 복사', game_other: '다른 게임', game_linkCopied: '링크가 복사되었습니다.', game_copyManual: '위 텍스트를 직접 복사하세요.', game_time: '시간', game_score: '점수', game_level: '레벨', game_lines: '줄', game_easy: '쉬움', game_medium: '보통', game_hard: '어려움', game_complete: '축하합니다!', game_gameOver: '게임 오버',
+    game_reaction_title: '반응속도 테스트', game_reaction_desc: '화면이 바뀌는 순간을 눌러 내 반응 시간을 확인하세요.',
+    game_sudoku_title: '스도쿠', game_sudoku_desc: '난이도를 고르고 새로운 9x9 퍼즐에 도전하세요.',
+    game_typing_title: '타자 속도 테스트', game_typing_desc: '정확도와 분당 속도를 측정해 보세요.',
+    game_block_title: '블록 퍼즐', game_block_desc: '블록을 쌓고 줄을 완성해 최고 점수에 도전하세요.'
+  },
+  en: {
+    nav_games: 'Games', filter_game: 'Games', cat_games: '🎮 Mini Games',
+    game_start: 'Start game', game_new: 'New game', game_restart: 'Play again', game_result: 'Game result', game_best: 'Best record', game_share: 'Share result', game_copyLink: 'Copy game link', game_other: 'Other games', game_linkCopied: 'Link copied.', game_copyManual: 'Copy the text above manually.', game_time: 'Time', game_score: 'Score', game_level: 'Level', game_lines: 'Lines', game_easy: 'Easy', game_medium: 'Medium', game_hard: 'Hard', game_complete: 'Congratulations!', game_gameOver: 'Game over',
+    game_reaction_title: 'Reaction Time Test', game_reaction_desc: 'Tap the moment the screen changes to measure your reaction time.',
+    game_sudoku_title: 'Sudoku', game_sudoku_desc: 'Choose a difficulty and solve a fresh 9x9 puzzle.',
+    game_typing_title: 'Typing Speed Test', game_typing_desc: 'Measure your accuracy and words per minute.',
+    game_block_title: 'Block Puzzle', game_block_desc: 'Stack blocks, clear lines, and chase a high score.'
+  },
+  zh: {
+    nav_games: '游戏', filter_game: '游戏', cat_games: '🎮 迷你游戏',
+    game_start: '开始游戏', game_new: '新游戏', game_restart: '再玩一次', game_result: '游戏结果', game_best: '最高纪录', game_share: '分享结果', game_copyLink: '复制游戏链接', game_other: '其他游戏', game_linkCopied: '链接已复制。', game_copyManual: '请手动复制上方文本。', game_time: '时间', game_score: '分数', game_level: '等级', game_lines: '行数', game_easy: '简单', game_medium: '中等', game_hard: '困难', game_complete: '恭喜！', game_gameOver: '游戏结束',
+    game_reaction_title: '反应速度测试', game_reaction_desc: '屏幕变化时立即点击，测量反应速度。',
+    game_sudoku_title: '数独', game_sudoku_desc: '选择难度，挑战新的 9x9 谜题。',
+    game_typing_title: '打字速度测试', game_typing_desc: '测量准确率和每分钟打字速度。',
+    game_block_title: '方块拼图', game_block_desc: '堆叠方块、消除行并挑战最高分。'
+  },
+  ja: {
+    nav_games: 'ゲーム', filter_game: 'ゲーム', cat_games: '🎮 ミニゲーム',
+    game_start: 'ゲームを始める', game_new: '新しいゲーム', game_restart: 'もう一度', game_result: 'ゲーム結果', game_best: 'ベスト記録', game_share: '結果を共有', game_copyLink: 'ゲームリンクをコピー', game_other: 'ほかのゲーム', game_linkCopied: 'リンクをコピーしました。', game_copyManual: '上のテキストを手動でコピーしてください。', game_time: '時間', game_score: 'スコア', game_level: 'レベル', game_lines: 'ライン', game_easy: 'かんたん', game_medium: 'ふつう', game_hard: 'むずかしい', game_complete: 'おめでとうございます！', game_gameOver: 'ゲームオーバー',
+    game_reaction_title: '反応速度テスト', game_reaction_desc: '画面が変わった瞬間にタップして反応時間を測ります。',
+    game_sudoku_title: '数独', game_sudoku_desc: '難易度を選んで新しい 9x9 パズルに挑戦しましょう。',
+    game_typing_title: 'タイピング速度テスト', game_typing_desc: '正確さと 1 分あたりの入力速度を測定します。',
+    game_block_title: 'ブロックパズル', game_block_desc: 'ブロックを積み、ラインを消してハイスコアを目指します。'
+  }
+};
+
+Object.keys(gameTranslations).forEach((lang) => Object.assign(translations[lang], gameTranslations[lang]));
+
+const gamePageTranslations = {
+  ko: { sudoku_copy: '난이도를 선택하고 새로운 9x9 퍼즐을 완성하세요.', sudoku_difficulty: '난이도', sudoku_mistakes: '실수', sudoku_check: '정답 확인', sudoku_how: '게임 방법', sudoku_info: '빈 칸을 선택한 뒤 아래 숫자 버튼 또는 키보드 숫자를 입력하세요. 같은 숫자는 강조되고, 틀린 답은 표시됩니다.', typing_copy: '문장을 정확하게 입력하고 타자 속도를 확인하세요.', typing_language: '언어', typing_duration: '시간', typing_placeholder: '시작 후 여기에 입력하세요.', typing_how: '게임 방법', typing_info: '시작을 누른 뒤 표시된 문장을 입력하세요. 선택한 시간이 끝나면 실제 입력을 기준으로 속도와 정확도를 계산합니다.', block_copy: '블록을 쌓고 줄을 완성해 최고 점수에 도전하세요.', block_how: '게임 방법', block_info: '왼쪽/오른쪽 화살표로 이동하고 위쪽 화살표로 회전합니다. 아래쪽 화살표는 빠르게 내리고, 스페이스바는 즉시 떨어뜨립니다.' },
+  en: { sudoku_copy: 'Choose a difficulty and complete a fresh 9x9 puzzle.', sudoku_difficulty: 'Difficulty', sudoku_mistakes: 'Mistakes', sudoku_check: 'Check answer', sudoku_how: 'How to play', sudoku_info: 'Select an empty cell, then use the number buttons or keyboard. Matching numbers are highlighted and incorrect entries are marked.', typing_copy: 'Type the sentence accurately and check your typing speed.', typing_language: 'Language', typing_duration: 'Duration', typing_placeholder: 'Type here after starting.', typing_how: 'How to play', typing_info: 'Press start and type the displayed sentence. At the end of your chosen time, speed and accuracy are calculated from your actual input.', block_copy: 'Stack blocks, clear lines, and aim for a high score.', block_how: 'How to play', block_info: 'Use left and right arrows to move, up to rotate, down to soft drop, and space to drop instantly.' },
+  zh: { sudoku_copy: '选择难度并完成新的 9x9 谜题。', sudoku_difficulty: '难度', sudoku_mistakes: '失误', sudoku_check: '检查答案', sudoku_how: '游戏方法', sudoku_info: '选择空格后使用下方数字或键盘输入。相同数字会突出显示，错误输入会标记。', typing_copy: '准确输入句子并查看打字速度。', typing_language: '语言', typing_duration: '时间', typing_placeholder: '开始后在这里输入。', typing_how: '游戏方法', typing_info: '点击开始后输入显示的句子。时间结束时会根据实际输入计算速度和准确率。', block_copy: '堆叠方块、消除行并挑战最高分。', block_how: '游戏方法', block_info: '使用左右方向键移动，上方向键旋转，下方向键快速下落，空格键立即落下。' },
+  ja: { sudoku_copy: '難易度を選んで新しい 9x9 パズルを完成させましょう。', sudoku_difficulty: '難易度', sudoku_mistakes: 'ミス', sudoku_check: '答えを確認', sudoku_how: '遊び方', sudoku_info: '空のマスを選び、下の数字またはキーボードで入力します。同じ数字は強調され、間違いは表示されます。', typing_copy: '文章を正確に入力してタイピング速度を確認しましょう。', typing_language: '言語', typing_duration: '時間', typing_placeholder: '開始後にここへ入力します。', typing_how: '遊び方', typing_info: '開始後に表示された文章を入力します。選択した時間が終わると、実際の入力から速度と正確さを計算します。', block_copy: 'ブロックを積み、ラインを消してハイスコアを目指しましょう。', block_how: '遊び方', block_info: '左右矢印で移動、上矢印で回転、下矢印で高速落下、スペースで即時落下します。' }
+};
+
+Object.keys(gamePageTranslations).forEach((lang) => Object.assign(translations[lang], gamePageTranslations[lang]));
+
 function getStoredLanguage() {
   try {
     return localStorage.getItem(LANGUAGE_STORAGE_KEY);
