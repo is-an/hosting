@@ -507,6 +507,23 @@ footer {
   font-size: 13px;
 }
 
+.footer-inner {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.footer-section {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.footer-bottom {
+  margin-top: 18px;
+  white-space: nowrap;
+}
+
 .site-footer a,
 .site-footer a:hover,
 .site-footer a:visited,
