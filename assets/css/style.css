@@ -705,13 +705,14 @@ footer {
 }
 
 .site-footer a,
-.site-footer a:hover,
-.site-footer a:visited,
-.site-footer a:focus {
+.site-footer a:visited {
   color: inherit;
   text-decoration: none;
-  pointer-events: none;
-  cursor: default;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  text-decoration: underline;
 }
 
 .site-footer ul,
