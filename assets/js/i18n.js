@@ -28,6 +28,11 @@ const translations = {
     lightMode: "라이트모드로 전환",
     language: "언어 선택",
 
+    meta_title: "무료 온라인 도구 모음 | 계산기, 변환기, 생성기",
+    meta_description: "무료 온라인 도구 모음: 퍼센트 계산기, 나이 계산기, 글자수 세기, 단위 변환기, BMI 계산기, 연봉 계산기, 대출 이자 계산기 등 15개의 유용한 도구들을 한곳에서 만나보세요.",
+    og_title: "무료 온라인 도구 모음",
+    og_description: "퍼센트, 나이, 글자수, 단위 변환, BMI, 연봉, 대출, 이미지 처리 등 15개 도구 모음",
+
     home_eyebrow: "무료 온라인 도구 모음",
     home_title: "유용한 도구를 한곳에서",
     home_copy: "무료 온라인 계산기, 변환기, 생성기를 사용해보세요. 빠르고, 쉽고, 정확합니다.",
@@ -109,6 +114,11 @@ const translations = {
     darkMode: "Switch to dark mode",
     lightMode: "Switch to light mode",
     language: "Select language",
+
+    meta_title: "Free Online Tools | Calculators, Converters, Generators",
+    meta_description: "Free online tools: percentage calculator, age calculator, character counter, unit converter, BMI calculator, salary calculator, loan interest calculator, and more — 15 useful tools in one place.",
+    og_title: "Free Online Tools",
+    og_description: "15 tools including percentage, age, character count, unit conversion, BMI, salary, loan, and image processing",
 
     home_eyebrow: "Free Online Tools",
     home_title: "Useful tools, all in one place",
@@ -192,6 +202,11 @@ const translations = {
     lightMode: "切换至浅色模式",
     language: "选择语言",
 
+    meta_title: "免费在线工具 | 计算器、转换器、生成器",
+    meta_description: "免费在线工具集合：百分比计算器、年龄计算器、字数统计、单位换算器、BMI计算器、薪资计算器、贷款利息计算器等15款实用工具，一站获取。",
+    og_title: "免费在线工具集合",
+    og_description: "包含百分比、年龄、字数、单位换算、BMI、薪资、贷款、图片处理等15款工具",
+
     home_eyebrow: "免费在线工具集合",
     home_title: "实用工具，一站搞定",
     home_copy: "使用免费的在线计算器、转换器和生成器。快速、简单、准确。",
@@ -273,6 +288,11 @@ const translations = {
     darkMode: "ダークモードに切り替え",
     lightMode: "ライトモードに切り替え",
     language: "言語を選択",
+
+    meta_title: "無料オンラインツール | 計算機、変換ツール、生成ツール",
+    meta_description: "無料オンラインツール集：パーセント計算機、年齢計算機、文字数カウント、単位変換機、BMI計算機、給与計算機、ローン利息計算機な〩15の便利なツールを一箇所で。",
+    og_title: "無料オンラインツール集",
+    og_description: "パーセント、年齢、文字数、単位変換、BMI、給与、ローン、画像処理な〩15のツール集",
 
     home_eyebrow: "無料オンラインツール集",
     home_title: "便利なツールを一箇所に",
@@ -393,6 +413,11 @@ function applyLanguage(lang) {
   document.querySelectorAll('[data-i18n-title]').forEach((el) => {
     const key = el.getAttribute('data-i18n-title');
     el.setAttribute('title', translate(key, activeLang));
+  });
+
+  document.querySelectorAll('[data-i18n-content]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-content');
+    el.setAttribute('content', translate(key, activeLang));
   });
 
   document.documentElement.setAttribute('lang', activeLang);

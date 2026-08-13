@@ -36,7 +36,7 @@
       "name": "로또번호 생성기",
       "short_name": "로또",
       "description": "로또 번호를 무작위로 생성합니다",
-      "url": "/?tab=lottery",
+      "url": "/lotto/",
       "icons": [
         {
           "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><circle cx='48' cy='48' r='40' fill='%23667eea'/><text x='50%' y='50%' font-size='50' text-anchor='middle' dy='.35em' fill='white'>🎰</text></svg>",
@@ -49,7 +49,7 @@
       "name": "D-Day 계산기",
       "short_name": "D-Day",
       "description": "특정 날짜까지 남은 일수를 계산합니다",
-      "url": "/?tab=dday",
+      "url": "/cal/dday/",
       "icons": [
         {
           "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><circle cx='48' cy='48' r='40' fill='%23764ba2'/><text x='50%' y='50%' font-size='50' text-anchor='middle' dy='.35em' fill='white'>📅</text></svg>",
