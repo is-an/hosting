@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>무료 온라인 도구 모음 | 계산기, 변환기, 생성기</title>
+  <meta name="description" content="무료 온라인 도구 모음: 퍼센트 계산기, 나이 계산기, 글자수 세기, 단위 변환기, BMI 계산기, 연봉 계산기, 대출 이자 계산기 등 15개의 유용한 도구들을 한곳에서 만나보세요.">
+  <meta name="keywords" content="계산기, 변환기, 도구, 무료 온라인 도구, 퍼센트 계산, 나이 계산, 글자수, 단위 변환, BMI, 연봉 계산, 대출 이자, 이미지 압축">
+  <meta name="robots" content="index,follow">
+  <meta name="google-site-verification" content="61Wo6IhItM5xXEOkCjBKGPx4UuRBeWKJD5er1pICJy4" />
+  <meta name="naver-site-verification" content="cb09823427c2b4706f6850488ddc85400b681d64" />
+  <link rel="canonical" href="./">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="./">
+  <meta property="og:title" content="무료 온라인 도구 모음">
+  <meta property="og:description" content="퍼센트, 나이, 글자수, 단위 변환, BMI, 연봉, 대출, 이미지 처리 등 15개 도구 모음">
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "무료 온라인 도구 모음",
+    "description": "퍼센트 계산기, 나이 계산기, 글자수 세기, 단위 변환기 등 15개의 유용한 도구 모음",
+    "url": "./",
+    "applicationCategory": "UtilityApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "KRW"
+    }
+  }
+  </script>
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#222">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="도구 모음">
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8605989057986820"
+     crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="./"><img src="logo.png" alt="도구 모음" class="logo-img"></a>
+      <nav class="main-nav">
+        <button class="nav-btn active" data-tab="home" type="button">홈</button>
+        <button class="nav-btn" data-tab="percent" type="button">퍼센트</button>
+        <button class="nav-btn" data-tab="age" type="button">나이</button>
+        <button class="nav-btn" data-tab="charcount" type="button">글자수</button>
+        <button class="nav-btn" data-tab="unit" type="button">단위변환</button>
+        <button class="nav-btn" data-tab="vat" type="button">부가세</button>
+        <button class="nav-btn" data-tab="bmi" type="button">BMI</button>
+        <button class="nav-btn" data-tab="salary" type="button">연봉</button>
+        <button class="nav-btn" data-tab="loan" type="button">대출</button>
+        <button class="nav-btn" data-tab="savings" type="button">예금</button>
+        <button class="nav-btn" data-tab="retirement" type="button">퇴직금</button>
+        <button class="nav-btn" data-tab="discharge" type="button">전역일</button>
+        <button class="nav-btn" data-tab="textconv" type="button">텍스트</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========== 홈 탭 ========== -->
+    <section id="home-tab" class="tab-content active">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">무료 온라인 도구 모음</p>
+          <h1>도구 모음</h1>
+          <p class="hero-copy">유용한 온라인 도구들을 한곳에서 만나보세요.</p>
+        </div>
+      </section>
+
+      <section class="container tools-grid">
+        <div class="tool-card">
+          <h3>퍼센트 계산기</h3>
+          <p>A의 B%, A는 B의 몇 %, 증감 비율 등을 빠르게 계산합니다.</p>
+          <button class="tool-btn" data-tab="percent" type="button">사용하기 →</button>
+        </div>
+        <div class="tool-card">
+          <h3>나이 계산기</h3>
+          <p>생년월일을 입력하면 만 나이, 경과 일수, 다음 생일까지의 날짜를 계산합니다.</p>
+          <button class="tool-btn" data-tab="age" type="button">사용하기 →</button>
+        </div>
+        <div class="tool-card">
+          <h3>글자수/바이트 계산기</h3>
+          <p>텍스트의 글자수, 공백 포함/제외 글자수, 바이트 수를 실시간으로 계산합니다.</p>
+          <button class="tool-btn" data-tab="charcount" type="button">사용하기 →</button>
+        </div>
+        <div class="tool-card">
+          <h3>단위 변환기</h3>
+          <p>길이, 무게, 온도, 면적, 부피, 시간, 데이터 용량 등을 변환합니다.</p>
+          <button class="tool-btn" data-tab="unit" type="button">사용하기 →</button>
+        </div>
+        <div class="tool-card">
+          <h3>부가세 계산기</h3>
+          <p>공급가액, 부가세, 합계금액을 계산하고 역산합니다.</p>
+          <button class="tool-btn" data-tab="vat" type="button">사용하기 →</button>
+        </div>
+        <div class="tool-card">
+          <h3>BMI 계산기</h3>
+          <p>키와 체중을 입력하면 BMI와 건강 상태를 표시합니다.</p>
+          <button class="tool-btn" data-tab="bmi" type="button">사용하기 →</button>
+        </div>
+        <div class="tool-card">
+          <h3>연봉 계산기</h3>
+          <p>연봉으로부터 월급, 세전/세후 금액을 계산합니다.</p>
+          <button class="tool-btn" data-tab="salary" type="button">사용하기 →</button>
+        </div>
+        <div class="tool-card">
+          <h3>대출 이자 계산기</h3>
+          <p>대출금액, 이율, 기간으로부터 월 상환액과 총 이자를 계산합니다.</p>
+          <button class="tool-btn" data-tab="loan" type="button">사용하기 →</button>
+        </div>
+        <div class="tool-card">
+          <h3>예금/적금 이자 계산기</h3>
+          <p>예치금과 이율로부터 이자와 만기 수령액을 계산합니다.</p>
+          <button class="tool-btn" data-tab="savings" type="button">사용하기 →</button>
+        </div>
+        <div class="tool-card">
+          <h3>퇴직금 계산기</h3>
+          <p>입사일과 퇴사일로부터 예상 퇴직금을 계산합니다.</p>
+          <button class="tool-btn" data-tab="retirement" type="button">사용하기 →</button>
+        </div>
+        <div class="tool-card">
+          <h3>전역일 계산기</h3>
+          <p>입대일과 복무기간으로부터 전역일을 계산합니다.</p>
+          <button class="tool-btn" data-tab="discharge" type="button">사용하기 →</button>
+        </div>
+        <div class="tool-card">
+          <h3>텍스트 변환 도구</h3>
+          <p>텍스트를 다양한 방식으로 변환하고 처리합니다.</p>
+          <button class="tool-btn" data-tab="textconv" type="button">사용하기 →</button>
+        </div>
+        <div class="tool-card">
+          <h3>D-Day 계산기</h3>
+          <p>목표 날짜를 입력하면 오늘을 기준으로 D-Day까지 남은 날짜를 계산합니다.</p>
+          <button class="tool-btn" data-tab="dday" type="button">사용하기 →</button>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== 퍼센트 계산기 ========== -->
+    <section id="percent-tab" class="tab-content">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">빠른 계산 도구</p>
+          <h1>퍼센트 계산기</h1>
+          <p class="hero-copy">A의 B%, A는 B의 몇 %, 증감 비율을 빠르게 계산합니다.</p>
+        </div>
+      </section>
+
+      <section class="container calculator-section">
+        <div class="calculator-card">
+          <h2>퍼센트 계산</h2>
+          <div class="calc-tabs">
+            <button class="calc-tab-btn active" data-calc="percent-of">A의 B%</button>
+            <button class="calc-tab-btn" data-calc="percent-is">A는 B의 몇%</button>
+            <button class="calc-tab-btn" data-calc="percent-increase">증가율</button>
+            <button class="calc-tab-btn" data-calc="percent-decrease">감소율</button>
+          </div>
+
+          <div class="calc-tab-content active" id="percent-of">
+            <label>수치 A</label>
+            <input type="number" id="percentOf_a" placeholder="예: 10000">
+            <label>퍼센트 B</label>
+            <input type="number" id="percentOf_b" placeholder="예: 15">
+            <div class="result-display" id="percentOf_result"></div>
+          </div>
+
+          <div class="calc-tab-content" id="percent-is">
+            <label>수치 A</label>
+            <input type="number" id="percentIs_a" placeholder="예: 1500">
+            <label>수치 B</label>
+            <input type="number" id="percentIs_b" placeholder="예: 10000">
+            <div class="result-display" id="percentIs_result"></div>
+          </div>
+
+          <div class="calc-tab-content" id="percent-increase">
+            <label>이전 값</label>
+            <input type="number" id="increase_from" placeholder="예: 1000">
+            <label>증가된 값</label>
+            <input type="number" id="increase_to" placeholder="예: 1500">
+            <div class="result-display" id="increase_result"></div>
+          </div>
+
+          <div class="calc-tab-content" id="percent-decrease">
+            <label>이전 값</label>
+            <input type="number" id="decrease_from" placeholder="예: 1000">
+            <label>감소된 값</label>
+            <input type="number" id="decrease_to" placeholder="예: 700">
+            <div class="result-display" id="decrease_result"></div>
+          </div>
+
+          <div class="button-group">
+            <button class="primary-btn" id="percentCalcBtn">계산</button>
+            <button class="secondary-btn" id="percentCopyBtn">결과 복사</button>
+            <button class="text-button" id="percentResetBtn">초기화</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== 나이 계산기 ========== -->
+    <section id="age-tab" class="tab-content">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">날짜 계산 도구</p>
+          <h1>나이 계산기</h1>
+          <p class="hero-copy">생년월일을 입력하면 현재 만 나이와 추가 정보를 계산합니다.</p>
+        </div>
+      </section>
+
+      <section class="container calculator-section">
+        <div class="calculator-card">
+          <h2>나이 계산</h2>
+          <label for="birthDate">생년월일</label>
+          <input type="date" id="birthDate" aria-label="생년월일">
+          <label for="baseDate">기준일</label>
+          <input type="date" id="baseDate" aria-label="기준일">
+          <p class="helper-text"><button type="button" class="text-button" id="setTodayBtn">오늘 날짜 적용</button></p>
+
+          <div id="ageResult" class="result hidden">
+            <div class="result-item">
+              <span class="label">만 나이</span>
+              <span class="value" id="ageValue"></span>
+            </div>
+            <div class="result-item">
+              <span class="label">경과한 일수</span>
+              <span class="value" id="ageDays"></span>
+            </div>
+            <div class="result-item">
+              <span class="label">다음 생일까지 남은 날</span>
+              <span class="value" id="daysUntilBirthday"></span>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button class="primary-btn" id="ageCalcBtn">계산하기</button>
+            <button class="secondary-btn" id="ageCopyBtn">결과 복사</button>
+            <button class="text-button" id="ageResetBtn">초기화</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== 글자수/바이트 계산기 ========== -->
+    <section id="charcount-tab" class="tab-content">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">텍스트 분석 도구</p>
+          <h1>글자수/바이트 계산기</h1>
+          <p class="hero-copy">텍스트의 글자수, 바이트 수를 실시간으로 계산합니다.</p>
+        </div>
+      </section>
+
+      <section class="container calculator-section">
+        <div class="calculator-card">
+          <h2>텍스트 입력</h2>
+          <textarea id="charCountText" placeholder="여기에 텍스트를 입력하세요..." rows="6"></textarea>
+
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="label">전체 글자수</span>
+              <span class="value" id="totalChars">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="label">공백 포함</span>
+              <span class="value" id="charsWithSpace">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="label">공백 제외</span>
+              <span class="value" id="charsWithoutSpace">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="label">줄 수</span>
+              <span class="value" id="lineCount">1</span>
+            </div>
+            <div class="stat-item">
+              <span class="label">바이트 수</span>
+              <span class="value" id="byteCount">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="label">단어 수</span>
+              <span class="value" id="wordCount">0</span>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button class="secondary-btn" id="charCountCopyBtn">결과 복사</button>
+            <button class="text-button" id="charCountResetBtn">전체 삭제</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== 단위 변환기 ========== -->
+    <section id="unit-tab" class="tab-content">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">편리한 변환 도구</p>
+          <h1>단위 변환기</h1>
+          <p class="hero-copy">길이, 무게, 온도, 면적, 부피, 시간, 데이터 용량을 변환합니다.</p>
+        </div>
+      </section>
+
+      <section class="container calculator-section">
+        <div class="calculator-card">
+          <h2>단위 변환</h2>
+          <label for="unitType">변환 종류</label>
+          <select id="unitType">
+            <option value="length">길이 (m, cm, mm, km, in, ft)</option>
+            <option value="weight">무게 (kg, g, mg, lb, oz)</option>
+            <option value="temperature">온도 (°C, °F, K)</option>
+            <option value="area">면적 (m², cm², km², in², ft²)</option>
+            <option value="volume">부피 (L, mL, m³, gal, pt)</option>
+            <option value="time">시간 (s, min, h, day)</option>
+            <option value="data">데이터 용량 (B, KB, MB, GB, TB)</option>
+          </select>
+
+          <div class="convert-pair">
+            <div>
+              <label for="unitFrom">입력값</label>
+              <div class="unit-input">
+                <input type="number" id="unitFrom" placeholder="0">
+                <select id="unitFromUnit"></select>
+              </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+              <button type="button" class="text-button" id="unitSwapBtn">↔ 바꾸기</button>
+            </div>
+            <div>
+              <label for="unitTo">변환값</label>
+              <div class="unit-input">
+                <input type="number" id="unitTo" placeholder="0" readonly>
+                <select id="unitToUnit"></select>
+              </div>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button class="secondary-btn" id="unitCopyBtn">결과 복사</button>
+            <button class="text-button" id="unitResetBtn">초기화</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== 부가세 계산기 ========== -->
+    <section id="vat-tab" class="tab-content">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">세금 계산 도구</p>
+          <h1>부가세 계산기</h1>
+          <p class="hero-copy">공급가액, 부가세, 합계금액을 계산하고 역산합니다.</p>
+        </div>
+      </section>
+
+      <section class="container calculator-section">
+        <div class="calculator-card">
+          <h2>부가세 계산</h2>
+          <div class="calc-tabs">
+            <button class="calc-tab-btn active" data-calc="vat-forward">정방향</button>
+            <button class="calc-tab-btn" data-calc="vat-reverse">역산</button>
+          </div>
+
+          <div class="calc-tab-content active" id="vat-forward">
+            <label>공급가액</label>
+            <input type="number" id="vatSupply" placeholder="0">
+            <label>세율 (%)</label>
+            <input type="number" id="vatRate" placeholder="10" value="10">
+            <div class="result-display">
+              <div class="result-row">
+                <span>공급가액</span>
+                <span id="vatSupplyResult">0</span>
+              </div>
+              <div class="result-row">
+                <span>부가세</span>
+                <span id="vatAmountResult">0</span>
+              </div>
+              <div class="result-row highlight">
+                <span>합계</span>
+                <span id="vatTotalResult">0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-tab-content" id="vat-reverse">
+            <label>합계금액</label>
+            <input type="number" id="vatTotal" placeholder="0">
+            <label>세율 (%)</label>
+            <input type="number" id="vatRateReverse" placeholder="10" value="10">
+            <div class="result-display">
+              <div class="result-row">
+                <span>합계</span>
+                <span id="vatTotalReverseResult">0</span>
+              </div>
+              <div class="result-row">
+                <span>공급가액</span>
+                <span id="vatSupplyReverseResult">0</span>
+              </div>
+              <div class="result-row">
+                <span>부가세</span>
+                <span id="vatAmountReverseResult">0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button class="primary-btn" id="vatCalcBtn">계산</button>
+            <button class="secondary-btn" id="vatCopyBtn">결과 복사</button>
+            <button class="text-button" id="vatResetBtn">초기화</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== BMI 계산기 ========== -->
+    <section id="bmi-tab" class="tab-content">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">건강 계산 도구</p>
+          <h1>BMI 계산기</h1>
+          <p class="hero-copy">키와 체중으로 BMI를 계산하고 건강 상태를 확인합니다.</p>
+        </div>
+      </section>
+
+      <section class="container calculator-section">
+        <div class="calculator-card">
+          <h2>BMI 계산</h2>
+          <label>키</label>
+          <div class="unit-input">
+            <input type="number" id="bmiHeight" placeholder="170">
+            <span>cm</span>
+          </div>
+          <label>체중</label>
+          <div class="unit-input">
+            <input type="number" id="bmiWeight" placeholder="70">
+            <span>kg</span>
+          </div>
+
+          <div id="bmiResult" class="result hidden">
+            <div class="bmi-display">
+              <span class="label">BMI</span>
+              <span class="value" id="bmiValue"></span>
+            </div>
+            <div class="bmi-status" id="bmiStatus"></div>
+            <div class="ideal-weight" id="idealWeight"></div>
+          </div>
+
+          <div class="button-group">
+            <button class="primary-btn" id="bmiCalcBtn">계산</button>
+            <button class="secondary-btn" id="bmiCopyBtn">결과 복사</button>
+            <button class="text-button" id="bmiResetBtn">초기화</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== 연봉 계산기 ========== -->
+    <section id="salary-tab" class="tab-content">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">재무 계산 도구</p>
+          <h1>연봉 계산기</h1>
+          <p class="hero-copy">연봉으로부터 월급과 세금을 계산합니다.</p>
+        </div>
+      </section>
+
+      <section class="container calculator-section">
+        <div class="calculator-card">
+          <h2>연봉 계산</h2>
+          <label for="annualSalary">연봉 (원)</label>
+          <input type="number" id="annualSalary" placeholder="36000000">
+          <label for="dependents">부양가족 수</label>
+          <input type="number" id="dependents" placeholder="0" min="0" value="0">
+
+          <div id="salaryResult" class="result hidden">
+            <div class="result-item">
+              <span class="label">월급 (세전)</span>
+              <span class="value" id="monthlySalary"></span>
+            </div>
+            <div class="result-item">
+              <span class="label">예상 실수령액 (월)</span>
+              <span class="value" id="monthlyNetSalary"></span>
+            </div>
+            <div class="result-item">
+              <span class="label">예상 연 실수령액</span>
+              <span class="value" id="annualNetSalary"></span>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button class="primary-btn" id="salaryCalcBtn">계산</button>
+            <button class="secondary-btn" id="salaryCopyBtn">결과 복사</button>
+            <button class="text-button" id="salaryResetBtn">초기화</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== 대출 이자 계산기 ========== -->
+    <section id="loan-tab" class="tab-content">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">금융 계산 도구</p>
+          <h1>대출 이자 계산기</h1>
+          <p class="hero-copy">대출금액, 이율, 기간으로부터 월 상환액을 계산합니다.</p>
+        </div>
+      </section>
+
+      <section class="container calculator-section">
+        <div class="calculator-card">
+          <h2>대출 계산</h2>
+          <label for="loanAmount">대출금액 (원)</label>
+          <input type="number" id="loanAmount" placeholder="10000000">
+          <label for="loanRate">연이율 (%)</label>
+          <input type="number" id="loanRate" placeholder="4.5" step="0.1">
+          <label for="loanTerm">대출기간 (개월)</label>
+          <input type="number" id="loanTerm" placeholder="120">
+          <label>상환방식</label>
+          <select id="loanType">
+            <option value="equal-payment">원리금균등</option>
+            <option value="equal-principal">원금균등</option>
+          </select>
+
+          <div id="loanResult" class="result hidden">
+            <div class="result-item">
+              <span class="label">월 상환액</span>
+              <span class="value" id="monthlyPayment"></span>
+            </div>
+            <div class="result-item">
+              <span class="label">총 이자</span>
+              <span class="value" id="totalInterest"></span>
+            </div>
+            <div class="result-item">
+              <span class="label">총 상환액</span>
+              <span class="value" id="totalPayment"></span>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button class="primary-btn" id="loanCalcBtn">계산</button>
+            <button class="secondary-btn" id="loanCopyBtn">결과 복사</button>
+            <button class="text-button" id="loanResetBtn">초기화</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== D-Day 계산기 ========== -->
+    <section id="dday-tab" class="tab-content">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">무료 날짜 계산 도구</p>
+          <h1>D-Day 계산기</h1>
+          <p class="hero-copy">목표 날짜를 입력하면 오늘을 기준으로 D-Day까지 남은 날짜를 바로 계산합니다.</p>
+        </div>
+      </section>
+
+      <section class="container calculator-section">
+        <div class="calculator-card">
+          <h2>목표 날짜를 입력하세요</h2>
+          <label for="targetDate">목표 날짜</label>
+          <div class="input-row">
+            <input id="targetDate" type="date" aria-label="목표 날짜">
+            <button id="calculateBtn" type="button">계산하기</button>
+          </div>
+          <p class="today">오늘: <strong id="todayText"></strong></p>
+
+          <div id="result" class="result hidden" aria-live="polite">
+            <p id="resultLabel" class="result-label"></p>
+            <div id="resultNumber" class="result-number"></div>
+            <p id="resultDetail" class="result-detail"></p>
+          </div>
+
+          <button id="resetBtn" class="text-button" type="button">초기화</button>
+        </div>
+      </section>
+
+      <section id="guide" class="container content-section">
+        <h2>D-Day 계산기 사용법</h2>
+        <ol>
+          <li>목표 날짜를 선택합니다.</li>
+          <li><strong>계산하기</strong> 버튼을 누릅니다.</li>
+          <li>오늘을 기준으로 목표일까지 남은 날짜를 확인합니다.</li>
+        </ol>
+      </section>
+    </section>
+
+    <!-- ========== 로또번호 생성기 ========== -->
+    <section id="lottery-tab" class="tab-content">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">무료 로또번호 추천 도구</p>
+          <h1>로또번호 생성기</h1>
+          <p class="hero-copy">무료 로또번호 생성기로 행운의 로또 번호를 추천받으세요.</p>
+        </div>
+      </section>
+
+      <section class="container lottery-section">
+        <div class="lottery-card">
+          <h2>행운의 로또번호 추천</h2>
+          
+          <div id="lotteryDisplay" class="lottery-display"></div>
+
+          <div class="lottery-buttons">
+            <button id="generateBtn" type="button" class="primary-btn">로또번호 생성</button>
+            <button id="generateMultipleBtn" type="button" class="secondary-btn">5개 생성</button>
+          </div>
+
+          <div id="multipleNumbers" class="multiple-numbers hidden"></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== 예금/적금 이자 계산기 ========== -->
+    <section id="savings-tab" class="tab-content">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">금융 계산 도구</p>
+          <h1>예금/적금 이자 계산기</h1>
+          <p class="hero-copy">예치금과 이율로부터 이자와 만기 수령액을 계산합니다.</p>
+        </div>
+      </section>
+
+      <section class="container calculator-section">
+        <div class="calculator-card">
+          <h2>예금/적금 이자 계산</h2>
+          <label for="savingsAmount">예치금/월 납입금 (원)</label>
+          <input type="number" id="savingsAmount" placeholder="1000000">
+          <label for="savingsTerm">기간 (개월)</label>
+          <input type="number" id="savingsTerm" placeholder="12">
+          <label for="savingsRate">연이율 (%)</label>
+          <input type="number" id="savingsRate" placeholder="3.5" step="0.1">
+          <label>계산 방식</label>
+          <select id="savingsType">
+            <option value="deposit">예금 (단리)</option>
+            <option value="installment">적금 (월복리)</option>
+          </select>
+
+          <div id="savingsResult" class="result hidden">
+            <div class="result-item">
+              <span class="label">예상 이자</span>
+              <span class="value" id="savingsInterest"></span>
+            </div>
+            <div class="result-item">
+              <span class="label">세전 이자</span>
+              <span class="value" id="savingsInterestBeforeTax"></span>
+            </div>
+            <div class="result-item">
+              <span class="label">만기 수령액</span>
+              <span class="value" id="savingsMaturityAmount"></span>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button class="primary-btn" id="savingsCalcBtn">계산</button>
+            <button class="secondary-btn" id="savingsCopyBtn">결과 복사</button>
+            <button class="text-button" id="savingsResetBtn">초기화</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== 퇴직금 계산기 ========== -->
+    <section id="retirement-tab" class="tab-content">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">노후 계획 도구</p>
+          <h1>퇴직금 계산기</h1>
+          <p class="hero-copy">입사일과 퇴사일로부터 예상 퇴직금을 계산합니다.</p>
+        </div>
+      </section>
+
+      <section class="container calculator-section">
+        <div class="calculator-card">
+          <h2>퇴직금 계산</h2>
+          <label for="joinDate">입사일</label>
+          <input type="date" id="joinDate">
+          <label for="leaveDate">퇴사일</label>
+          <input type="date" id="leaveDate">
+          <label for="lastSalary">최근 3개월 평균 급여 (원)</label>
+          <input type="number" id="lastSalary" placeholder="3000000">
+          <label for="bonus">상여금 (원)</label>
+          <input type="number" id="bonus" placeholder="0" value="0">
+
+          <div id="retirementResult" class="result hidden">
+            <div class="result-item">
+              <span class="label">근무 기간</span>
+              <span class="value" id="serviceYears"></span>
+            </div>
+            <div class="result-item">
+              <span class="label">평균임금</span>
+              <span class="value" id="averageWage"></span>
+            </div>
+            <div class="result-item">
+              <span class="label">예상 퇴직금</span>
+              <span class="value" id="estimatedRetirement"></span>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button class="primary-btn" id="retirementCalcBtn">계산</button>
+            <button class="secondary-btn" id="retirementCopyBtn">결과 복사</button>
+            <button class="text-button" id="retirementResetBtn">초기화</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== 전역일 계산기 ========== -->
+    <section id="discharge-tab" class="tab-content">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">병역 계산 도구</p>
+          <h1>전역일 계산기</h1>
+          <p class="hero-copy">입대일과 복무기간으로부터 전역일을 계산합니다.</p>
+        </div>
+      </section>
+
+      <section class="container calculator-section">
+        <div class="calculator-card">
+          <h2>전역일 계산</h2>
+          <label for="enlistDate">입대일</label>
+          <input type="date" id="enlistDate">
+          <label>복무기간</label>
+          <select id="dischargeType">
+            <option value="army">육군 (18개월)</option>
+            <option value="navy">해군 (20개월)</option>
+            <option value="airforce">공군 (21개월)</option>
+            <option value="marine">해병대 (18개월)</option>
+            <option value="custom">직접 입력</option>
+          </select>
+          <div id="customTermDiv" style="display:none;">
+            <label for="customTerm">복무기간 (개월)</label>
+            <input type="number" id="customTerm" placeholder="18">
+          </div>
+
+          <div id="dischargeResult" class="result hidden">
+            <div class="result-item">
+              <span class="label">예상 전역일</span>
+              <span class="value" id="dischargeDate"></span>
+            </div>
+            <div class="result-item">
+              <span class="label">남은 복무일</span>
+              <span class="value" id="remainingDays"></span>
+            </div>
+            <div class="result-item">
+              <span class="label">복무 진행률</span>
+              <span class="value" id="progressPercent"></span>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button class="primary-btn" id="dischargeCalcBtn">계산</button>
+            <button class="secondary-btn" id="dischargeCopyBtn">결과 복사</button>
+            <button class="text-button" id="dischargeResetBtn">초기화</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== 텍스트 변환 도구 ========== -->
+    <section id="textconv-tab" class="tab-content">
+      <section class="hero">
+        <div class="container">
+          <p class="eyebrow">텍스트 처리 도구</p>
+          <h1>텍스트 변환 도구</h1>
+          <p class="hero-copy">텍스트를 다양한 방식으로 변환하고 처리합니다.</p>
+        </div>
+      </section>
+
+      <section class="container calculator-section">
+        <div class="calculator-card">
+          <h2>텍스트 입력</h2>
+          <textarea id="textConvInput" placeholder="여기에 텍스트를 입력하세요..."></textarea>
+
+          <div class="button-group" style="margin-top: 12px;">
+            <button class="secondary-btn" id="textRemoveSpaceBtn">공백 제거</button>
+            <button class="secondary-btn" id="textRemoveLineBtn">줄바꿈 제거</button>
+            <button class="secondary-btn" id="textUpperBtn">대문자</button>
+            <button class="secondary-btn" id="textLowerBtn">소문자</button>
+            <button class="secondary-btn" id="textTrimBtn">공백 정렬</button>
+            <button class="secondary-btn" id="textReverseBtn">역순</button>
+          </div>
+
+          <h3>결과</h3>
+          <textarea id="textConvOutput" placeholder="결과가 여기에 표시됩니다..." readonly></textarea>
+
+          <div class="button-group">
+            <button class="secondary-btn" id="textConvCopyBtn">결과 복사</button>
+            <button class="text-button" id="textConvResetBtn">초기화</button>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- AdSense Advertisement Area -->
+  <section class="ads-section">
+    <div class="container">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-8605989057986820"
+        data-ad-slot="7685453456"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 is-an Labs. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

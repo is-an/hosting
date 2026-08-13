@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>퍼센트 계산기 - 할인, 증감 비율 계산 | 무료 온라인 도구</title>
+  <meta name="description" content="무료 퍼센트 계산기. A의 B%, A는 B의 몇%, 증감 비율, 할인율을 빠르고 정확하게 계산하세요.">
+  <meta name="keywords" content="퍼센트 계산기, 할인계산, 증감비율, 비율계산, 무료 온라인 도구">
+  <meta name="robots" content="index,follow">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="./index.html">
+  <meta property="og:title" content="퍼센트 계산기">
+  <meta property="og:description" content="A의 B%, 증감 비율, 할인율을 빠르게 계산">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "퍼센트 계산기",
+    "description": "퍼센트 계산 도구",
+    "url": "./index.html",
+    "applicationCategory": "UtilityApplication"
+  }
+  </script>
+  
+  <link rel="canonical" href="./index.html">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../../" title="홈으로">📊 도구 모음</a>
+      <nav class="main-nav">
+        <a href="../../" class="nav-link">홈</a>
+        <span class="nav-separator">|</span>
+        <a href="./" class="nav-link active">퍼센트</a>
+        <span class="nav-separator">|</span>
+        <a href="../../lotto/generator/" class="nav-link">로또</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>퍼센트 계산기</h1>
+        <p class="hero-copy">A의 B%, A는 B의 몇%, 증감 비율을 쉽고 빠르게 계산하세요.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="calculator-section">
+        <div class="calc-tabs">
+          <button class="calc-tab-btn active" data-calc="percent-of">A의 B%</button>
+          <button class="calc-tab-btn" data-calc="percent-is">A는 B의 몇%</button>
+          <button class="calc-tab-btn" data-calc="percent-increase">증가 비율</button>
+          <button class="calc-tab-btn" data-calc="percent-decrease">감소 비율</button>
+        </div>
+
+        <div id="percent-of" class="calc-tab-content active">
+          <div class="calculator-card">
+            <div class="form-group">
+              <label for="percentOf_a">A (기준값)</label>
+              <input type="number" id="percentOf_a" placeholder="예: 1000" step="0.01">
+            </div>
+            <div class="form-group">
+              <label for="percentOf_b">B (%)</label>
+              <input type="number" id="percentOf_b" placeholder="예: 15" step="0.01">
+            </div>
+            <div id="percentOf_result" class="result-display"></div>
+          </div>
+        </div>
+
+        <div id="percent-is" class="calc-tab-content">
+          <div class="calculator-card">
+            <div class="form-group">
+              <label for="percentIs_a">A (값)</label>
+              <input type="number" id="percentIs_a" placeholder="예: 150" step="0.01">
+            </div>
+            <div class="form-group">
+              <label for="percentIs_b">B (기준값)</label>
+              <input type="number" id="percentIs_b" placeholder="예: 1000" step="0.01">
+            </div>
+            <div id="percentIs_result" class="result-display"></div>
+          </div>
+        </div>
+
+        <div id="percent-increase" class="calc-tab-content">
+          <div class="calculator-card">
+            <div class="form-group">
+              <label for="increase_from">이전 값</label>
+              <input type="number" id="increase_from" placeholder="예: 100" step="0.01">
+            </div>
+            <div class="form-group">
+              <label for="increase_to">현재 값</label>
+              <input type="number" id="increase_to" placeholder="예: 120" step="0.01">
+            </div>
+            <div id="increase_result" class="result-display"></div>
+          </div>
+        </div>
+
+        <div id="percent-decrease" class="calc-tab-content">
+          <div class="calculator-card">
+            <div class="form-group">
+              <label for="decrease_from">이전 값</label>
+              <input type="number" id="decrease_from" placeholder="예: 100" step="0.01">
+            </div>
+            <div class="form-group">
+              <label for="decrease_to">현재 값</label>
+              <input type="number" id="decrease_to" placeholder="예: 80" step="0.01">
+            </div>
+            <div id="decrease_result" class="result-display"></div>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button id="percentCalcBtn" class="primary-btn">계산하기</button>
+          <button id="percentCopyBtn" class="secondary-btn">복사</button>
+          <button id="percentResetBtn" class="text-button">초기화</button>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <h2>❓ 자주 묻는 질문</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4>1000의 15%는 얼마인가요?</h4>
+            <p>첫 번째 탭 "A의 B%"에서 A에 1000, B에 15를 입력하면 150이라는 답을 얻을 수 있습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4>할인가를 계산하려면?</h4>
+            <p>예를 들어 10,000원에서 20% 할인받으면, A의 B%에서 10000의 80%를 계산하면 됩니다. (원래 가격의 80%가 할인가)</p>
+          </div>
+          <div class="faq-item">
+            <h4>증감 비율을 어떻게 계산하나요?</h4>
+            <p>"증가 비율" 탭에서 이전 값과 현재 값을 입력하면 몇 %가 증가했는지 계산됩니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="related-tools">
+        <h2>🔗 관련 도구</h2>
+        <div class="tools-grid">
+          <a href="../../tools/vat/" class="tool-card">
+            <h4>부가세 계산기</h4>
+            <p>공급가액과 부가세 계산</p>
+          </a>
+          <a href="../../tools/salary/" class="tool-card">
+            <h4>연봉 계산기</h4>
+            <p>연봉에서 세후 급여 계산</p>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-section">
+        <h4>도구</h4>
+        <ul>
+          <li><a href="../../">홈</a></li>
+          <li><a href="">퍼센트</a></li>
+          <li><a href="../../lotto/generator/">로또</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 무료 온라인 도구 모음.</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/common.js"></script>
+  <script src="./percent.js"></script>
+</body>
+</html>

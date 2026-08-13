@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>전역일 계산기 - 군 복무기간 계산 | 무료 온라인 도구</title>
+  <meta name="description" content="전역일 계산기. 입대일과 군 종류를 입력하면 예상 전역일을 계산합니다.">
+  <meta name="keywords" content="전역일계산, 군복무, 입대, 군계산기, 무료 온라인 도구">
+  <meta name="robots" content="index,follow">
+  
+  <link rel="canonical" href="./index.html">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../../" title="홈으로">📊 도구 모음</a>
+      <nav class="main-nav">
+        <a href="../../" class="nav-link">홈</a>
+        <span class="nav-separator">|</span>
+        <a href="./" class="nav-link active">전역일</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>전역일 계산기</h1>
+        <p class="hero-copy">입대일과 군 종류를 입력하면 전역일을 계산합니다.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="calculator-section">
+        <div class="calculator-card">
+          <div class="form-group">
+            <label for="enlistDate">입대일</label>
+            <input type="date" id="enlistDate">
+          </div>
+          
+          <div class="form-group">
+            <label for="dischargeType">군 종류</label>
+            <select id="dischargeType">
+              <option value="army">육군 (18개월)</option>
+              <option value="navy">해군 (20개월)</option>
+              <option value="airforce">공군 (21개월)</option>
+              <option value="marine">해병대 (18개월)</option>
+              <option value="custom">기타 (직접입력)</option>
+            </select>
+          </div>
+
+          <div id="customTermDiv" class="form-group" style="display: none;">
+            <label for="customTerm">복무기간 (개월)</label>
+            <input type="number" id="customTerm" placeholder="예: 18" min="1">
+          </div>
+
+          <div class="button-group">
+            <button id="dischargeCalcBtn" class="primary-btn">계산하기</button>
+            <button id="dischargeCopyBtn" class="secondary-btn">복사</button>
+            <button id="dischargeResetBtn" class="text-button">초기화</button>
+          </div>
+
+          <div id="dischargeResult" class="result hidden">
+            <div class="result-row">
+              <span>전역일:</span>
+              <span id="dischargeDate"></span>
+            </div>
+            <div class="result-row">
+              <span>남은 기간:</span>
+              <span id="remainingDays"></span>
+            </div>
+            <div class="result-row">
+              <span>진행률:</span>
+              <span id="progressPercent"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <h2>❓ 자주 묻는 질문</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4>정확한 복무기간은 얼마인가요?</h4>
+            <p>기본 복무기간은 육군 18개월, 해군 20개월, 공군 21개월, 해병대 18개월입니다. 단, 실제 복무기간은 입대 및 전역 일자에 따라 다를 수 있습니다.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <p>&copy; 2024 무료 온라인 도구 모음.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/common.js"></script>
+  <script src="./discharge.js"></script>
+</body>
+</html>

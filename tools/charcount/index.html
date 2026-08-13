@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>글자수/바이트 계산기 - 텍스트 글자수 세기 | 무료 온라인 도구</title>
+  <meta name="description" content="글자수 계산기. 텍스트의 글자수, 공백 포함/제외, 바이트 수, 줄 수를 실시간으로 계산합니다.">
+  <meta name="keywords" content="글자수계산, 바이트계산, 텍스트분석, 글자수세기, 무료 온라인 도구">
+  <meta name="robots" content="index,follow">
+  
+  <link rel="canonical" href="./index.html">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../../" title="홈으로">📊 도구 모음</a>
+      <nav class="main-nav">
+        <a href="../../" class="nav-link">홈</a>
+        <span class="nav-separator">|</span>
+        <a href="./" class="nav-link active">글자수</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>글자수/바이트 계산기</h1>
+        <p class="hero-copy">텍스트를 입력하면 글자수, 바이트 수, 줄 수 등을 실시간으로 계산합니다.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="calculator-section">
+        <div class="calculator-card">
+          <div class="form-group">
+            <label for="charCountText">텍스트 입력</label>
+            <textarea id="charCountText" placeholder="계산할 텍스트를 여기에 입력하세요." rows="8"></textarea>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-label">전체 글자수</div>
+              <div class="stat-value" id="totalChars">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">공백 제외</div>
+              <div class="stat-value" id="charsWithoutSpace">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">바이트 수</div>
+              <div class="stat-value" id="byteCount">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">줄 수</div>
+              <div class="stat-value" id="lineCount">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">단어 수</div>
+              <div class="stat-value" id="wordCount">0</div>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button id="charCountCopyBtn" class="secondary-btn">복사</button>
+            <button id="charCountResetBtn" class="text-button">초기화</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <h2>❓ 자주 묻는 질문</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4>바이트와 글자수는 무엇이 다른가요?</h4>
+            <p>한글은 1글자에 3바이트, 영문은 1글자에 1바이트입니다. 이모지나 특수문자는 더 많은 바이트를 차지할 수 있습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4>공백을 포함해야 하나요?</h4>
+            <p>용도에 따라 다릅니다. SNS나 문자 제한에서는 보통 공백을 포함해서 세지만, 순수 텍스트 길이는 공백을 제외하기도 합니다.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <p>&copy; 2024 무료 온라인 도구 모음.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/common.js"></script>
+  <script src="./charcount.js"></script>
+</body>
+</html>

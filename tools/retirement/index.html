@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>퇴직금 계산기 - 예상 퇴직금 계산 | 무료 온라인 도구</title>
+  <meta name="description" content="퇴직금 계산기. 입사일과 퇴사일로부터 예상 퇴직금을 계산합니다.">
+  <meta name="keywords" content="퇴직금계산, 퇴직, 근무기간, 평균임금, 무료 온라인 도구">
+  <meta name="robots" content="index,follow">
+  
+  <link rel="canonical" href="./index.html">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../../" title="홈으로">📊 도구 모음</a>
+      <nav class="main-nav">
+        <a href="../../" class="nav-link">홈</a>
+        <span class="nav-separator">|</span>
+        <a href="./" class="nav-link active">퇴직금</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>퇴직금 계산기</h1>
+        <p class="hero-copy">입사일과 퇴사일로부터 예상 퇴직금을 계산합니다.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="calculator-section">
+        <div class="calculator-card">
+          <div class="form-group">
+            <label for="joinDate">입사일</label>
+            <input type="date" id="joinDate">
+          </div>
+          
+          <div class="form-group">
+            <label for="leaveDate">퇴사일</label>
+            <input type="date" id="leaveDate">
+          </div>
+          
+          <div class="form-group">
+            <label for="lastSalary">마지막 월급 (원)</label>
+            <input type="number" id="lastSalary" placeholder="예: 3000000" step="100000">
+          </div>
+          
+          <div class="form-group">
+            <label for="bonus">보너스/상여금 (원)</label>
+            <input type="number" id="bonus" placeholder="0" value="0" step="100000">
+          </div>
+
+          <div class="button-group">
+            <button id="retirementCalcBtn" class="primary-btn">계산하기</button>
+            <button id="retirementCopyBtn" class="secondary-btn">복사</button>
+            <button id="retirementResetBtn" class="text-button">초기화</button>
+          </div>
+
+          <div id="retirementResult" class="result hidden">
+            <div class="result-row">
+              <span>근무기간:</span>
+              <span id="serviceYears"></span>
+            </div>
+            <div class="result-row">
+              <span>평균임금:</span>
+              <span id="averageWage"></span>
+            </div>
+            <div class="result-row">
+              <span>예상퇴직금:</span>
+              <span id="estimatedRetirement"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <h2>❓ 자주 묻는 질문</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4>퇴직금은 정확히 얼마인가요?</h4>
+            <p>이 도구는 기본적인 계산 모델을 사용합니다. 실제 퇴직금은 회사 규정과 개인 상황에 따라 달라질 수 있습니다.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <p>&copy; 2024 무료 온라인 도구 모음.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/common.js"></script>
+  <script src="./retirement.js"></script>
+</body>
+</html>

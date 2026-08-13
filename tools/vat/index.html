@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>부가세 계산기 - 공급가액, 부가세 계산 | 무료 온라인 도구</title>
+  <meta name="description" content="부가세 계산기. 공급가액, 부가세, 합계금액을 계산하고 역산합니다.">
+  <meta name="keywords" content="부가세계산, 부가세, 공급가액, 세금계산, 무료 온라인 도구">
+  <meta name="robots" content="index,follow">
+  
+  <link rel="canonical" href="./index.html">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../../" title="홈으로">📊 도구 모음</a>
+      <nav class="main-nav">
+        <a href="../../" class="nav-link">홈</a>
+        <span class="nav-separator">|</span>
+        <a href="./" class="nav-link active">부가세</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>부가세 계산기</h1>
+        <p class="hero-copy">공급가액과 부가세를 계산합니다.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="calculator-section">
+        <div class="calc-tabs">
+          <button class="calc-tab-btn active" data-calc="vat-forward">공급가액 → 합계</button>
+          <button class="calc-tab-btn" data-calc="vat-reverse">합계 → 공급가액</button>
+        </div>
+
+        <div id="vat-forward" class="calc-tab-content active">
+          <div class="calculator-card">
+            <div class="form-group">
+              <label for="vatSupply">공급가액</label>
+              <input type="number" id="vatSupply" placeholder="예: 100000" step="100">
+            </div>
+            
+            <div class="form-group">
+              <label for="vatRate">세율 (%)</label>
+              <input type="number" id="vatRate" value="10" placeholder="예: 10" step="0.1">
+            </div>
+
+            <div class="result-row">
+              <span>공급가액:</span>
+              <span id="vatSupplyResult"></span>
+            </div>
+            <div class="result-row">
+              <span>부가세:</span>
+              <span id="vatAmountResult"></span>
+            </div>
+            <div class="result-row">
+              <span>합계:</span>
+              <span id="vatTotalResult"></span>
+            </div>
+          </div>
+        </div>
+
+        <div id="vat-reverse" class="calc-tab-content">
+          <div class="calculator-card">
+            <div class="form-group">
+              <label for="vatTotal">합계 금액</label>
+              <input type="number" id="vatTotal" placeholder="예: 110000" step="100">
+            </div>
+            
+            <div class="form-group">
+              <label for="vatRateReverse">세율 (%)</label>
+              <input type="number" id="vatRateReverse" value="10" placeholder="예: 10" step="0.1">
+            </div>
+
+            <div class="result-row">
+              <span>합계:</span>
+              <span id="vatTotalReverseResult"></span>
+            </div>
+            <div class="result-row">
+              <span>공급가액:</span>
+              <span id="vatSupplyReverseResult"></span>
+            </div>
+            <div class="result-row">
+              <span>부가세:</span>
+              <span id="vatAmountReverseResult"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button id="vatCalcBtn" class="primary-btn">계산하기</button>
+          <button id="vatCopyBtn" class="secondary-btn">복사</button>
+          <button id="vatResetBtn" class="text-button">초기화</button>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <h2>❓ 자주 묻는 질문</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4>한국의 표준 부가세율은?</h4>
+            <p>한국의 표준 부가세율은 10%입니다. 생활필수품 등 일부 품목에는 다른 세율이 적용될 수 있습니다.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <p>&copy; 2024 무료 온라인 도구 모음.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/common.js"></script>
+  <script src="./vat.js"></script>
+</body>
+</html>

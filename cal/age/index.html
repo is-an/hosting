@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>나이 계산기 - 만 나이, 경과 일수 계산 | 무료 온라인 도구</title>
+  <meta name="description" content="나이 계산기. 생년월일을 입력하면 만 나이, 경과 일수, 다음 생일까지 남은 날짜를 계산합니다.">
+  <meta name="keywords" content="나이계산, 나이계산기, 만나이, 생일계산, 무료 온라인 도구">
+  <meta name="robots" content="index,follow">
+  
+  <link rel="canonical" href="./index.html">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../../" title="홈으로">📊 도구 모음</a>
+      <nav class="main-nav">
+        <a href="../../" class="nav-link">홈</a>
+        <span class="nav-separator">|</span>
+        <a href="./" class="nav-link active">나이</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>나이 계산기</h1>
+        <p class="hero-copy">생년월일을 입력하면 만 나이와 경과 일수를 계산합니다.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="calculator-section">
+        <div class="calculator-card">
+          <div class="form-group">
+            <label for="birthDate">생년월일</label>
+            <input type="date" id="birthDate">
+          </div>
+          
+          <div class="form-group">
+            <label for="baseDate">기준 날짜</label>
+            <input type="date" id="baseDate">
+            <button id="setTodayBtn" class="text-button">오늘로 설정</button>
+          </div>
+
+          <div class="button-group">
+            <button id="ageCalcBtn" class="primary-btn">계산하기</button>
+            <button id="ageCopyBtn" class="secondary-btn">복사</button>
+            <button id="ageResetBtn" class="text-button">초기화</button>
+          </div>
+
+          <div id="ageResult" class="result hidden">
+            <div class="result-row">
+              <span>만 나이:</span>
+              <span id="ageValue"></span>
+            </div>
+            <div class="result-row">
+              <span>경과 일수:</span>
+              <span id="ageDays"></span>
+            </div>
+            <div class="result-row">
+              <span>다음 생일까지:</span>
+              <span id="daysUntilBirthday"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <h2>❓ 자주 묻는 질문</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4>만 나이와 세는 나이의 차이는?</h4>
+            <p>만 나이는 국제적으로 통용되는 나이이며, 출생 이후 정확히 몇 년이 지났는지를 나타냅니다. 세는 나이는 한국, 중국 등에서 사용하며, 출생 시 1세로 시작합니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4>기준 날짜를 다르게 설정할 수 있나요?</h4>
+            <p>네, 기준 날짜를 직접 입력하면 그 날짜 기준으로 나이를 계산합니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="related-tools">
+        <h2>🔗 관련 도구</h2>
+        <div class="tools-grid">
+          <a href="../dday/" class="tool-card">
+            <h4>D-Day 계산기</h4>
+            <p>목표 날짜까지의 남은 날짜 계산</p>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <p>&copy; 2024 무료 온라인 도구 모음.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/common.js"></script>
+  <script src="./age.js"></script>
+</body>
+</html>

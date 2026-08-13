@@ -1,0 +1,891 @@
+// ============ 공통 유틸리티 함수 ============
+function formatNumber(num) {
+  return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function formatDecimal(num, digits = 2) {
+  return (Math.round(num * Math.pow(10, digits)) / Math.pow(10, digits)).toFixed(digits);
+}
+
+function copyToClipboard(text) {
+  const el = document.createElement("textarea");
+  el.value = text;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
+  alert("복사되었습니다!");
+}
+
+// ============ 탭 전환 로직 ============
+const navButtons = document.querySelectorAll(".nav-btn");
+const tabContents = document.querySelectorAll(".tab-content");
+
+function switchTab(tabName) {
+  tabContents.forEach(tab => tab.classList.remove("active"));
+  navButtons.forEach(btn => btn.classList.remove("active"));
+  
+  const selectedTab = document.getElementById(`${tabName}-tab`);
+  if (selectedTab) {
+    selectedTab.classList.add("active");
+  }
+  
+  const activeNavBtn = document.querySelector(`[data-tab="${tabName}"]`);
+  if (activeNavBtn) {
+    activeNavBtn.classList.add("active");
+  }
+}
+
+navButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const tabName = btn.getAttribute("data-tab");
+    switchTab(tabName);
+  });
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("tool-btn")) {
+    const tabName = e.target.getAttribute("data-tab");
+    if (tabName) {
+      switchTab(tabName);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+});
+
+// ============ D-Day 계산기 로직 ============
+function localDateOnly(date = new Date()) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function formatDate(date) {
+  return new Intl.DateTimeFormat("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  }).format(date);
+}
+
+function dateToInputValue(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
+function parseInputDate(value) {
+  const [y, m, d] = value.split("-").map(Number);
+  return new Date(y, m - 1, d);
+}
+
+const targetDate = document.getElementById("targetDate");
+const calculateBtn = document.getElementById("calculateBtn");
+const resetBtn = document.getElementById("resetBtn");
+const todayText = document.getElementById("todayText");
+const result = document.getElementById("result");
+const resultLabel = document.getElementById("resultLabel");
+const resultNumber = document.getElementById("resultNumber");
+const resultDetail = document.getElementById("resultDetail");
+
+function updateToday() {
+  const today = localDateOnly();
+  todayText.textContent = formatDate(today);
+}
+
+function calculateDday() {
+  if (!targetDate.value) {
+    result.classList.add("hidden");
+    return;
+  }
+
+  const today = localDateOnly();
+  const target = localDateOnly(parseInputDate(targetDate.value));
+  const msPerDay = 24 * 60 * 60 * 1000;
+  const diffDays = Math.round((target - today) / msPerDay);
+
+  result.classList.remove("hidden");
+
+  if (diffDays > 0) {
+    resultLabel.textContent = "목표일까지";
+    resultNumber.textContent = `D-${diffDays}`;
+    resultDetail.textContent = `${formatDate(target)}까지 ${diffDays}일 남았습니다.`;
+  } else if (diffDays === 0) {
+    resultLabel.textContent = "오늘은";
+    resultNumber.textContent = "D-Day";
+    resultDetail.textContent = "목표 날짜가 오늘입니다.";
+  } else {
+    const passed = Math.abs(diffDays);
+    resultLabel.textContent = "목표 날짜로부터";
+    resultNumber.textContent = `D+${passed}`;
+    resultDetail.textContent = `${formatDate(target)}로부터 ${passed}일이 지났습니다.`;
+  }
+}
+
+function resetDday() {
+  targetDate.value = "";
+  result.classList.add("hidden");
+}
+
+updateToday();
+const today = localDateOnly();
+targetDate.min = "1900-01-01";
+targetDate.value = dateToInputValue(today);
+calculateDday();
+
+calculateBtn.addEventListener("click", calculateDday);
+resetBtn.addEventListener("click", resetDday);
+targetDate.addEventListener("change", calculateDday);
+
+// ============ 로또번호 생성 로직 ============
+const generateBtn = document.getElementById("generateBtn");
+const generateMultipleBtn = document.getElementById("generateMultipleBtn");
+const lotteryDisplay = document.getElementById("lotteryDisplay");
+const multipleNumbers = document.getElementById("multipleNumbers");
+
+function generateLotteryNumbers() {
+  const numbers = new Set();
+  while (numbers.size < 6) {
+    numbers.add(Math.floor(Math.random() * 45) + 1);
+  }
+  return Array.from(numbers).sort((a, b) => a - b);
+}
+
+function displayLotteryNumbers(numbers) {
+  lotteryDisplay.innerHTML = numbers.map(num => `<div class="lottery-ball">${num}</div>`).join("");
+}
+
+function generateSingle() {
+  const numbers = generateLotteryNumbers();
+  displayLotteryNumbers(numbers);
+  multipleNumbers.classList.add("hidden");
+}
+
+function generateMultiple() {
+  multipleNumbers.classList.remove("hidden");
+  let html = "";
+  
+  for (let i = 0; i < 5; i++) {
+    const numbers = generateLotteryNumbers();
+    html += `<div class="lottery-set"><strong>세트 ${i + 1}:</strong> ${numbers.join(", ")}</div>`;
+  }
+  
+  multipleNumbers.innerHTML = html;
+  lotteryDisplay.innerHTML = "";
+}
+
+generateBtn.addEventListener("click", generateSingle);
+generateMultipleBtn.addEventListener("click", generateMultiple);
+generateSingle();
+
+// ============ 퍼센트 계산기 ============
+const percentCalcBtn = document.getElementById("percentCalcBtn");
+const percentCopyBtn = document.getElementById("percentCopyBtn");
+const percentResetBtn = document.getElementById("percentResetBtn");
+const calcTabBtns = document.querySelectorAll(".calc-tab-btn");
+
+function switchCalcTab(tabName) {
+  const contents = document.querySelectorAll(".calc-tab-content");
+  const buttons = document.querySelectorAll(".calc-tab-btn");
+  
+  contents.forEach(c => c.classList.remove("active"));
+  buttons.forEach(b => b.classList.remove("active"));
+  
+  const activeContent = document.getElementById(tabName);
+  const activeBtn = document.querySelector(`.calc-tab-btn[data-calc="${tabName}"]`);
+  
+  if (activeContent) activeContent.classList.add("active");
+  if (activeBtn) activeBtn.classList.add("active");
+}
+
+calcTabBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const tabName = btn.getAttribute("data-calc");
+    switchCalcTab(tabName);
+  });
+});
+
+function calculatePercent() {
+  const activeTab = document.querySelector(".calc-tab-content.active");
+  const tabId = activeTab.id;
+  let result = "";
+  
+  if (tabId === "percent-of") {
+    const a = parseFloat(document.getElementById("percentOf_a").value);
+    const b = parseFloat(document.getElementById("percentOf_b").value);
+    if (!isNaN(a) && !isNaN(b)) {
+      const res = (a * b) / 100;
+      result = `${formatNumber(a)}의 ${b}% = ${formatNumber(res)}`;
+      document.getElementById("percentOf_result").textContent = result;
+    }
+  } else if (tabId === "percent-is") {
+    const a = parseFloat(document.getElementById("percentIs_a").value);
+    const b = parseFloat(document.getElementById("percentIs_b").value);
+    if (!isNaN(a) && !isNaN(b) && b !== 0) {
+      const res = (a / b) * 100;
+      result = `${formatNumber(a)}는 ${formatNumber(b)}의 ${formatDecimal(res)}%`;
+      document.getElementById("percentIs_result").textContent = result;
+    }
+  } else if (tabId === "percent-increase") {
+    const from = parseFloat(document.getElementById("increase_from").value);
+    const to = parseFloat(document.getElementById("increase_to").value);
+    if (!isNaN(from) && !isNaN(to) && from !== 0) {
+      const res = ((to - from) / from) * 100;
+      result = `${formatNumber(from)}에서 ${formatNumber(to)}로 증가 = ${formatDecimal(res)}%`;
+      document.getElementById("increase_result").textContent = result;
+    }
+  } else if (tabId === "percent-decrease") {
+    const from = parseFloat(document.getElementById("decrease_from").value);
+    const to = parseFloat(document.getElementById("decrease_to").value);
+    if (!isNaN(from) && !isNaN(to) && from !== 0) {
+      const res = ((from - to) / from) * 100;
+      result = `${formatNumber(from)}에서 ${formatNumber(to)}로 감소 = ${formatDecimal(res)}%`;
+      document.getElementById("decrease_result").textContent = result;
+    }
+  }
+}
+
+function resetPercent() {
+  document.querySelectorAll("#percent-of input, #percent-is input, #percent-increase input, #percent-decrease input").forEach(inp => inp.value = "");
+  document.querySelectorAll(".result-display").forEach(el => el.textContent = "");
+}
+
+percentCalcBtn.addEventListener("click", calculatePercent);
+percentCopyBtn.addEventListener("click", () => {
+  const activeTab = document.querySelector(".calc-tab-content.active");
+  const result = activeTab.querySelector(".result-display").textContent;
+  if (result) copyToClipboard(result);
+});
+percentResetBtn.addEventListener("click", resetPercent);
+
+document.getElementById("percentOf_a").addEventListener("input", calculatePercent);
+document.getElementById("percentOf_b").addEventListener("input", calculatePercent);
+document.getElementById("percentIs_a").addEventListener("input", calculatePercent);
+document.getElementById("percentIs_b").addEventListener("input", calculatePercent);
+document.getElementById("increase_from").addEventListener("input", calculatePercent);
+document.getElementById("increase_to").addEventListener("input", calculatePercent);
+document.getElementById("decrease_from").addEventListener("input", calculatePercent);
+document.getElementById("decrease_to").addEventListener("input", calculatePercent);
+
+// ============ 나이 계산기 ============
+const birthDate = document.getElementById("birthDate");
+const baseDate = document.getElementById("baseDate");
+const setTodayBtn = document.getElementById("setTodayBtn");
+const ageCalcBtn = document.getElementById("ageCalcBtn");
+const ageCopyBtn = document.getElementById("ageCopyBtn");
+const ageResetBtn = document.getElementById("ageResetBtn");
+const ageResult = document.getElementById("ageResult");
+
+function calculateAge() {
+  if (!birthDate.value || !baseDate.value) return;
+  
+  const birth = new Date(birthDate.value);
+  const base = new Date(baseDate.value);
+  
+  let age = base.getFullYear() - birth.getFullYear();
+  const m = base.getMonth() - birth.getMonth();
+  if (m < 0 || (m === 0 && base.getDate() < birth.getDate())) {
+    age--;
+  }
+  
+  const days = Math.floor((base - birth) / (1000 * 60 * 60 * 24));
+  
+  let nextBirthday = new Date(base.getFullYear(), birth.getMonth(), birth.getDate());
+  if (nextBirthday < base) {
+    nextBirthday = new Date(base.getFullYear() + 1, birth.getMonth(), birth.getDate());
+  }
+  const daysUntil = Math.ceil((nextBirthday - base) / (1000 * 60 * 60 * 24));
+  
+  document.getElementById("ageValue").textContent = `${age}세`;
+  document.getElementById("ageDays").textContent = `${formatNumber(days)}일`;
+  document.getElementById("daysUntilBirthday").textContent = `${daysUntil}일`;
+  ageResult.classList.remove("hidden");
+}
+
+function resetAge() {
+  birthDate.value = "";
+  baseDate.value = "";
+  ageResult.classList.add("hidden");
+}
+
+setTodayBtn.addEventListener("click", () => {
+  baseDate.value = dateToInputValue(new Date());
+  calculateAge();
+});
+
+ageCalcBtn.addEventListener("click", calculateAge);
+ageCopyBtn.addEventListener("click", () => {
+  const text = `만 나이: ${document.getElementById("ageValue").textContent}, 경과일: ${document.getElementById("ageDays").textContent}, 다음생일: ${document.getElementById("daysUntilBirthday").textContent}`;
+  copyToClipboard(text);
+});
+ageResetBtn.addEventListener("click", resetAge);
+
+// ============ 글자수/바이트 계산기 ============
+const charCountText = document.getElementById("charCountText");
+const charCountCopyBtn = document.getElementById("charCountCopyBtn");
+const charCountResetBtn = document.getElementById("charCountResetBtn");
+
+function updateCharCount() {
+  const text = charCountText.value;
+  const totalChars = text.length;
+  const charsWithoutSpace = text.replace(/\s/g, "").length;
+  const lineCount = text.split("\n").length;
+  const byteCount = new TextEncoder().encode(text).length;
+  const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
+  
+  document.getElementById("totalChars").textContent = formatNumber(totalChars);
+  document.getElementById("charsWithSpace").textContent = formatNumber(totalChars);
+  document.getElementById("charsWithoutSpace").textContent = formatNumber(charsWithoutSpace);
+  document.getElementById("lineCount").textContent = formatNumber(lineCount);
+  document.getElementById("byteCount").textContent = formatNumber(byteCount);
+  document.getElementById("wordCount").textContent = formatNumber(wordCount);
+}
+
+charCountText.addEventListener("input", updateCharCount);
+
+charCountCopyBtn.addEventListener("click", () => {
+  const text = `글자수: ${document.getElementById("totalChars").textContent}, 공백제외: ${document.getElementById("charsWithoutSpace").textContent}, 바이트: ${document.getElementById("byteCount").textContent}`;
+  copyToClipboard(text);
+});
+
+charCountResetBtn.addEventListener("click", () => {
+  charCountText.value = "";
+  updateCharCount();
+});
+
+// ============ 단위 변환기 ============
+const unitType = document.getElementById("unitType");
+const unitFrom = document.getElementById("unitFrom");
+const unitFromUnit = document.getElementById("unitFromUnit");
+const unitTo = document.getElementById("unitTo");
+const unitToUnit = document.getElementById("unitToUnit");
+const unitSwapBtn = document.getElementById("unitSwapBtn");
+const unitCopyBtn = document.getElementById("unitCopyBtn");
+const unitResetBtn = document.getElementById("unitResetBtn");
+
+const unitConversions = {
+  length: {
+    units: ["m", "cm", "mm", "km", "in", "ft"],
+    to_m: { m: 1, cm: 0.01, mm: 0.001, km: 1000, in: 0.0254, ft: 0.3048 }
+  },
+  weight: {
+    units: ["kg", "g", "mg", "lb", "oz"],
+    to_kg: { kg: 1, g: 0.001, mg: 0.000001, lb: 0.453592, oz: 0.0283495 }
+  },
+  temperature: {
+    units: ["°C", "°F", "K"],
+    custom: true
+  },
+  area: {
+    units: ["m²", "cm²", "km²", "in²", "ft²"],
+    to_m2: { "m²": 1, "cm²": 0.0001, "km²": 1000000, "in²": 0.00064516, "ft²": 0.092903 }
+  },
+  volume: {
+    units: ["L", "mL", "m³", "gal", "pt"],
+    to_L: { L: 1, mL: 0.001, "m³": 1000, gal: 3.78541, pt: 0.473176 }
+  },
+  time: {
+    units: ["s", "min", "h", "day"],
+    to_s: { s: 1, min: 60, h: 3600, day: 86400 }
+  },
+  data: {
+    units: ["B", "KB", "MB", "GB", "TB"],
+    to_B: { B: 1, KB: 1024, MB: 1048576, GB: 1073741824, TB: 1099511627776 }
+  }
+};
+
+function updateUnitOptions() {
+  const type = unitType.value;
+  const config = unitConversions[type];
+  
+  unitFromUnit.innerHTML = config.units.map(u => `<option>${u}</option>`).join("");
+  unitToUnit.innerHTML = config.units.map(u => `<option>${u}</option>`).join("");
+  
+  if (config.units.length > 1) {
+    unitToUnit.value = config.units[1];
+  }
+  
+  convertUnit();
+}
+
+function convertUnit() {
+  const type = unitType.value;
+  const config = unitConversions[type];
+  const fromVal = parseFloat(unitFrom.value) || 0;
+  const fromUnit = unitFromUnit.value;
+  const toUnit = unitToUnit.value;
+  
+  let toVal = 0;
+  
+  if (type === "temperature") {
+    if (fromUnit === "°C" && toUnit === "°F") toVal = (fromVal * 9/5) + 32;
+    else if (fromUnit === "°F" && toUnit === "°C") toVal = (fromVal - 32) * 5/9;
+    else if (fromUnit === "°C" && toUnit === "K") toVal = fromVal + 273.15;
+    else if (fromUnit === "K" && toUnit === "°C") toVal = fromVal - 273.15;
+    else if (fromUnit === "°F" && toUnit === "K") toVal = (fromVal - 32) * 5/9 + 273.15;
+    else if (fromUnit === "K" && toUnit === "°F") toVal = (fromVal - 273.15) * 9/5 + 32;
+    else toVal = fromVal;
+  } else {
+    const baseKey = Object.keys(config)[1];
+    const baseUnit = config[baseKey];
+    toVal = fromVal * baseUnit[fromUnit] / baseUnit[toUnit];
+  }
+  
+  unitTo.value = formatDecimal(toVal);
+}
+
+unitType.addEventListener("change", updateUnitOptions);
+unitFromUnit.addEventListener("change", convertUnit);
+unitToUnit.addEventListener("change", convertUnit);
+unitFrom.addEventListener("input", convertUnit);
+
+unitSwapBtn.addEventListener("click", () => {
+  const temp = unitFromUnit.value;
+  unitFromUnit.value = unitToUnit.value;
+  unitToUnit.value = temp;
+  convertUnit();
+});
+
+unitCopyBtn.addEventListener("click", () => {
+  const text = `${unitFrom.value} ${unitFromUnit.value} = ${unitTo.value} ${unitToUnit.value}`;
+  copyToClipboard(text);
+});
+
+unitResetBtn.addEventListener("click", () => {
+  unitFrom.value = "";
+  unitTo.value = "";
+});
+
+updateUnitOptions();
+
+// ============ 부가세 계산기 ============
+const vatCalcBtn = document.getElementById("vatCalcBtn");
+const vatCopyBtn = document.getElementById("vatCopyBtn");
+const vatResetBtn = document.getElementById("vatResetBtn");
+const vatTabBtns = document.querySelectorAll(".calc-tab-btn[data-calc^='vat']");
+
+vatTabBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const tabName = btn.getAttribute("data-calc");
+    switchCalcTab(tabName);
+  });
+});
+
+function calculateVat() {
+  const activeTab = document.querySelector(".calc-tab-content.active");
+  const tabId = activeTab.id;
+  
+  if (tabId === "vat-forward") {
+    const supply = parseFloat(document.getElementById("vatSupply").value) || 0;
+    const rate = parseFloat(document.getElementById("vatRate").value) || 0;
+    const vat = supply * (rate / 100);
+    const total = supply + vat;
+    
+    document.getElementById("vatSupplyResult").textContent = formatNumber(supply);
+    document.getElementById("vatAmountResult").textContent = formatNumber(vat);
+    document.getElementById("vatTotalResult").textContent = formatNumber(total);
+  } else {
+    const total = parseFloat(document.getElementById("vatTotal").value) || 0;
+    const rate = parseFloat(document.getElementById("vatRateReverse").value) || 0;
+    const supply = total / (1 + rate / 100);
+    const vat = total - supply;
+    
+    document.getElementById("vatTotalReverseResult").textContent = formatNumber(total);
+    document.getElementById("vatSupplyReverseResult").textContent = formatNumber(supply);
+    document.getElementById("vatAmountReverseResult").textContent = formatNumber(vat);
+  }
+}
+
+vatCalcBtn.addEventListener("click", calculateVat);
+vatCopyBtn.addEventListener("click", () => {
+  const activeTab = document.querySelector(".calc-tab-content.active");
+  const rows = activeTab.querySelectorAll(".result-row");
+  let text = "";
+  rows.forEach(row => {
+    const label = row.querySelector("span").textContent;
+    const value = row.querySelectorAll("span")[1].textContent;
+    text += `${label}: ${value}\n`;
+  });
+  copyToClipboard(text);
+});
+vatResetBtn.addEventListener("click", () => {
+  document.getElementById("vatSupply").value = "";
+  document.getElementById("vatRate").value = "10";
+  document.getElementById("vatTotal").value = "";
+  document.getElementById("vatRateReverse").value = "10";
+  calculateVat();
+});
+
+document.getElementById("vatSupply").addEventListener("input", calculateVat);
+document.getElementById("vatRate").addEventListener("input", calculateVat);
+document.getElementById("vatTotal").addEventListener("input", calculateVat);
+document.getElementById("vatRateReverse").addEventListener("input", calculateVat);
+
+// ============ BMI 계산기 ============
+const bmiHeight = document.getElementById("bmiHeight");
+const bmiWeight = document.getElementById("bmiWeight");
+const bmiCalcBtn = document.getElementById("bmiCalcBtn");
+const bmiCopyBtn = document.getElementById("bmiCopyBtn");
+const bmiResetBtn = document.getElementById("bmiResetBtn");
+const bmiResult = document.getElementById("bmiResult");
+
+function calculateBmi() {
+  const h = parseFloat(bmiHeight.value);
+  const w = parseFloat(bmiWeight.value);
+  
+  if (!h || !w || h <= 0 || w <= 0) return;
+  
+  const bmi = w / ((h / 100) ** 2);
+  let status = "";
+  let statusClass = "";
+  
+  if (bmi < 18.5) {
+    status = "저체중";
+    statusClass = "underweight";
+  } else if (bmi < 25) {
+    status = "정상체중";
+    statusClass = "normal";
+  } else if (bmi < 30) {
+    status = "과체중";
+    statusClass = "overweight";
+  } else {
+    status = "비만";
+    statusClass = "obese";
+  }
+  
+  const minWeight = 18.5 * ((h / 100) ** 2);
+  const maxWeight = 25 * ((h / 100) ** 2);
+  
+  document.getElementById("bmiValue").textContent = formatDecimal(bmi);
+  document.getElementById("bmiStatus").innerHTML = `<p class="status ${statusClass}">${status}</p>`;
+  document.getElementById("idealWeight").innerHTML = `<p>적정 체중: ${formatNumber(minWeight)}kg ~ ${formatNumber(maxWeight)}kg</p>`;
+  bmiResult.classList.remove("hidden");
+}
+
+bmiCalcBtn.addEventListener("click", calculateBmi);
+bmiCopyBtn.addEventListener("click", () => {
+  const text = `BMI: ${document.getElementById("bmiValue").textContent}, ${document.querySelector(".status").textContent}`;
+  copyToClipboard(text);
+});
+bmiResetBtn.addEventListener("click", () => {
+  bmiHeight.value = "";
+  bmiWeight.value = "";
+  bmiResult.classList.add("hidden");
+});
+
+// ============ 연봉 계산기 ============
+const annualSalary = document.getElementById("annualSalary");
+const dependents = document.getElementById("dependents");
+const salaryCalcBtn = document.getElementById("salaryCalcBtn");
+const salaryCopyBtn = document.getElementById("salaryCopyBtn");
+const salaryResetBtn = document.getElementById("salaryResetBtn");
+const salaryResult = document.getElementById("salaryResult");
+
+function calculateSalary() {
+  const annual = parseFloat(annualSalary.value) || 0;
+  const monthly = annual / 12;
+  
+  const incomeTax = monthly * 0.08;
+  const employmentInsurance = monthly * 0.01;
+  const healthInsurance = monthly * 0.032;
+  const pensionInsurance = monthly * 0.045;
+  
+  const totalDeduction = incomeTax + employmentInsurance + healthInsurance + pensionInsurance;
+  const netMonthly = monthly - totalDeduction;
+  const netAnnual = netMonthly * 12;
+  
+  document.getElementById("monthlySalary").textContent = formatNumber(monthly);
+  document.getElementById("monthlyNetSalary").textContent = formatNumber(netMonthly);
+  document.getElementById("annualNetSalary").textContent = formatNumber(netAnnual);
+  salaryResult.classList.remove("hidden");
+}
+
+salaryCalcBtn.addEventListener("click", calculateSalary);
+salaryCopyBtn.addEventListener("click", () => {
+  const text = `월급: ${document.getElementById("monthlySalary").textContent}, 월 실수령액: ${document.getElementById("monthlyNetSalary").textContent}, 연 실수령액: ${document.getElementById("annualNetSalary").textContent}`;
+  copyToClipboard(text);
+});
+salaryResetBtn.addEventListener("click", () => {
+  annualSalary.value = "";
+  dependents.value = "0";
+  salaryResult.classList.add("hidden");
+});
+
+// ============ 대출 이자 계산기 ============
+const loanAmount = document.getElementById("loanAmount");
+const loanRate = document.getElementById("loanRate");
+const loanTerm = document.getElementById("loanTerm");
+const loanType = document.getElementById("loanType");
+const loanCalcBtn = document.getElementById("loanCalcBtn");
+const loanCopyBtn = document.getElementById("loanCopyBtn");
+const loanResetBtn = document.getElementById("loanResetBtn");
+const loanResult = document.getElementById("loanResult");
+
+function calculateLoan() {
+  const principal = parseFloat(loanAmount.value) || 0;
+  const annualRate = parseFloat(loanRate.value) || 0;
+  const months = parseFloat(loanTerm.value) || 0;
+  const type = loanType.value;
+  
+  if (!principal || !annualRate || !months) return;
+  
+  const monthlyRate = annualRate / 12 / 100;
+  let monthlyPayment = 0;
+  let totalInterest = 0;
+  
+  if (type === "equal-payment") {
+    monthlyPayment = principal * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+    totalInterest = monthlyPayment * months - principal;
+  } else {
+    const principalPerMonth = principal / months;
+    let totalPayment = 0;
+    for (let i = 0; i < months; i++) {
+      const remainingPrincipal = principal - (principalPerMonth * i);
+      const interest = remainingPrincipal * monthlyRate;
+      totalPayment += principalPerMonth + interest;
+    }
+    monthlyPayment = (principal / months) + (principal * monthlyRate);
+    totalInterest = totalPayment - principal;
+  }
+  
+  document.getElementById("monthlyPayment").textContent = formatNumber(monthlyPayment);
+  document.getElementById("totalInterest").textContent = formatNumber(totalInterest);
+  document.getElementById("totalPayment").textContent = formatNumber(principal + totalInterest);
+  loanResult.classList.remove("hidden");
+}
+
+loanCalcBtn.addEventListener("click", calculateLoan);
+loanCopyBtn.addEventListener("click", () => {
+  const text = `월 상환액: ${document.getElementById("monthlyPayment").textContent}, 총 이자: ${document.getElementById("totalInterest").textContent}, 총 상환액: ${document.getElementById("totalPayment").textContent}`;
+  copyToClipboard(text);
+});
+loanResetBtn.addEventListener("click", () => {
+  loanAmount.value = "";
+  loanRate.value = "";
+  loanTerm.value = "";
+  loanResult.classList.add("hidden");
+});
+
+document.getElementById("loanAmount").addEventListener("input", calculateLoan);
+document.getElementById("loanRate").addEventListener("input", calculateLoan);
+document.getElementById("loanTerm").addEventListener("input", calculateLoan);
+document.getElementById("loanType").addEventListener("change", calculateLoan);
+
+// ============ 예금/적금 이자 계산기 ============
+const savingsAmount = document.getElementById("savingsAmount");
+const savingsTerm = document.getElementById("savingsTerm");
+const savingsRate = document.getElementById("savingsRate");
+const savingsType = document.getElementById("savingsType");
+const savingsCalcBtn = document.getElementById("savingsCalcBtn");
+const savingsCopyBtn = document.getElementById("savingsCopyBtn");
+const savingsResetBtn = document.getElementById("savingsResetBtn");
+const savingsResult = document.getElementById("savingsResult");
+
+function calculateSavings() {
+  const amount = parseFloat(savingsAmount.value) || 0;
+  const term = parseFloat(savingsTerm.value) || 0;
+  const rate = parseFloat(savingsRate.value) || 0;
+  const type = savingsType.value;
+  
+  if (!amount || !term || !rate) return;
+  
+  let interest = 0;
+  let maturityAmount = 0;
+  
+  if (type === "deposit") {
+    interest = (amount * rate / 100 * term) / 12;
+    maturityAmount = amount + interest;
+  } else {
+    const monthlyRate = rate / 12 / 100;
+    maturityAmount = amount * (((Math.pow(1 + monthlyRate, term) - 1) / monthlyRate) * (1 + monthlyRate));
+    interest = maturityAmount - (amount * term);
+  }
+  
+  const tax = interest * 0.154;
+  const netInterest = interest - tax;
+  
+  document.getElementById("savingsInterest").textContent = formatNumber(netInterest);
+  document.getElementById("savingsInterestBeforeTax").textContent = formatNumber(interest);
+  document.getElementById("savingsMaturityAmount").textContent = formatNumber(maturityAmount);
+  savingsResult.classList.remove("hidden");
+}
+
+savingsCalcBtn.addEventListener("click", calculateSavings);
+savingsCopyBtn.addEventListener("click", () => {
+  const text = `예상이자: ${document.getElementById("savingsInterest").textContent}, 세전이자: ${document.getElementById("savingsInterestBeforeTax").textContent}, 만기액: ${document.getElementById("savingsMaturityAmount").textContent}`;
+  copyToClipboard(text);
+});
+savingsResetBtn.addEventListener("click", () => {
+  savingsAmount.value = "";
+  savingsTerm.value = "";
+  savingsRate.value = "";
+  savingsResult.classList.add("hidden");
+});
+
+savingsAmount.addEventListener("input", calculateSavings);
+savingsTerm.addEventListener("input", calculateSavings);
+savingsRate.addEventListener("input", calculateSavings);
+savingsType.addEventListener("change", calculateSavings);
+
+// ============ 퇴직금 계산기 ============
+const joinDate = document.getElementById("joinDate");
+const leaveDate = document.getElementById("leaveDate");
+const lastSalary = document.getElementById("lastSalary");
+const bonus = document.getElementById("bonus");
+const retirementCalcBtn = document.getElementById("retirementCalcBtn");
+const retirementCopyBtn = document.getElementById("retirementCopyBtn");
+const retirementResetBtn = document.getElementById("retirementResetBtn");
+const retirementResult = document.getElementById("retirementResult");
+
+function calculateRetirement() {
+  if (!joinDate.value || !leaveDate.value) return;
+  
+  const join = new Date(joinDate.value);
+  const leave = new Date(leaveDate.value);
+  
+  const diff = leave - join;
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const years = (days / 365).toFixed(2);
+  
+  const salary = parseFloat(lastSalary.value) || 0;
+  const bonusAmount = parseFloat(bonus.value) || 0;
+  const totalWage = (salary * 12 + bonusAmount) / 12;
+  
+  const retirementAmount = totalWage * (days / 365) * 1 / 30 * 30;
+  
+  document.getElementById("serviceYears").textContent = `${years}년 (${days}일)`;
+  document.getElementById("averageWage").textContent = formatNumber(totalWage);
+  document.getElementById("estimatedRetirement").textContent = formatNumber(retirementAmount);
+  retirementResult.classList.remove("hidden");
+}
+
+retirementCalcBtn.addEventListener("click", calculateRetirement);
+retirementCopyBtn.addEventListener("click", () => {
+  const text = `근무: ${document.getElementById("serviceYears").textContent}, 평균임금: ${document.getElementById("averageWage").textContent}, 예상퇴직금: ${document.getElementById("estimatedRetirement").textContent}`;
+  copyToClipboard(text);
+});
+retirementResetBtn.addEventListener("click", () => {
+  joinDate.value = "";
+  leaveDate.value = "";
+  lastSalary.value = "";
+  bonus.value = "0";
+  retirementResult.classList.add("hidden");
+});
+
+// ============ 전역일 계산기 ============
+const enlistDate = document.getElementById("enlistDate");
+const dischargeType = document.getElementById("dischargeType");
+const customTermDiv = document.getElementById("customTermDiv");
+const customTerm = document.getElementById("customTerm");
+const dischargeCalcBtn = document.getElementById("dischargeCalcBtn");
+const dischargeCopyBtn = document.getElementById("dischargeCopyBtn");
+const dischargeResetBtn = document.getElementById("dischargeResetBtn");
+const dischargeResult = document.getElementById("dischargeResult");
+
+const dischargeTerm = {
+  army: 18,
+  navy: 20,
+  airforce: 21,
+  marine: 18
+};
+
+dischargeType.addEventListener("change", () => {
+  if (dischargeType.value === "custom") {
+    customTermDiv.style.display = "block";
+  } else {
+    customTermDiv.style.display = "none";
+  }
+});
+
+function calculateDischarge() {
+  if (!enlistDate.value) return;
+  
+  const enlist = new Date(enlistDate.value);
+  let months = dischargeTerm[dischargeType.value];
+  
+  if (dischargeType.value === "custom") {
+    months = parseFloat(customTerm.value) || 18;
+  }
+  
+  const discharge = new Date(enlist.getFullYear(), enlist.getMonth() + months, enlist.getDate());
+  const today = new Date();
+  
+  const diff = discharge - today;
+  const remainingDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  const totalDays = months * 30;
+  const elapsedDays = totalDays - remainingDays;
+  const progress = Math.min((elapsedDays / totalDays) * 100, 100).toFixed(1);
+  
+  document.getElementById("dischargeDate").textContent = formatDate(discharge);
+  document.getElementById("remainingDays").textContent = `${Math.max(remainingDays, 0)}일`;
+  document.getElementById("progressPercent").textContent = `${progress}%`;
+  dischargeResult.classList.remove("hidden");
+}
+
+dischargeCalcBtn.addEventListener("click", calculateDischarge);
+dischargeCopyBtn.addEventListener("click", () => {
+  const text = `전역일: ${document.getElementById("dischargeDate").textContent}, 남은날: ${document.getElementById("remainingDays").textContent}, 진행률: ${document.getElementById("progressPercent").textContent}`;
+  copyToClipboard(text);
+});
+dischargeResetBtn.addEventListener("click", () => {
+  enlistDate.value = "";
+  customTerm.value = "";
+  dischargeResult.classList.add("hidden");
+});
+
+// ============ 텍스트 변환 도구 ============
+const textConvInput = document.getElementById("textConvInput");
+const textConvOutput = document.getElementById("textConvOutput");
+const textRemoveSpaceBtn = document.getElementById("textRemoveSpaceBtn");
+const textRemoveLineBtn = document.getElementById("textRemoveLineBtn");
+const textUpperBtn = document.getElementById("textUpperBtn");
+const textLowerBtn = document.getElementById("textLowerBtn");
+const textTrimBtn = document.getElementById("textTrimBtn");
+const textReverseBtn = document.getElementById("textReverseBtn");
+const textConvCopyBtn = document.getElementById("textConvCopyBtn");
+const textConvResetBtn = document.getElementById("textConvResetBtn");
+
+function updateOutput(text) {
+  textConvOutput.value = text;
+}
+
+textRemoveSpaceBtn.addEventListener("click", () => {
+  const result = textConvInput.value.replace(/\s/g, "");
+  updateOutput(result);
+});
+
+textRemoveLineBtn.addEventListener("click", () => {
+  const result = textConvInput.value.replace(/\n/g, " ");
+  updateOutput(result);
+});
+
+textUpperBtn.addEventListener("click", () => {
+  const result = textConvInput.value.toUpperCase();
+  updateOutput(result);
+});
+
+textLowerBtn.addEventListener("click", () => {
+  const result = textConvInput.value.toLowerCase();
+  updateOutput(result);
+});
+
+textTrimBtn.addEventListener("click", () => {
+  const result = textConvInput.value.split("\n").map(line => line.trim()).join("\n");
+  updateOutput(result);
+});
+
+textReverseBtn.addEventListener("click", () => {
+  const result = textConvInput.value.split("").reverse().join("");
+  updateOutput(result);
+});
+
+textConvCopyBtn.addEventListener("click", () => {
+  if (textConvOutput.value) {
+    copyToClipboard(textConvOutput.value);
+  }
+});
+
+textConvResetBtn.addEventListener("click", () => {
+  textConvInput.value = "";
+  textConvOutput.value = "";
+});
+

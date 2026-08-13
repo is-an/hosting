@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>D-Day 계산기 - 남은 날짜 계산 | 무료 온라인 도구</title>
+  <meta name="description" content="D-Day 계산기. 목표 날짜를 입력하면 오늘을 기준으로 남은 날짜 또는 지난 날짜를 D-Day 형식으로 계산합니다.">
+  <meta name="keywords" content="D-Day 계산, 남은 날짜, 기념일, 계산기, 무료 온라인 도구">
+  <meta name="robots" content="index,follow">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="./index.html">
+  <meta property="og:title" content="D-Day 계산기">
+  <meta property="og:description" content="목표 날짜까지 남은 날짜를 D-Day 형식으로 계산">
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "D-Day 계산기",
+    "description": "목표 날짜까지의 남은 날짜를 계산하는 도구",
+    "url": "./index.html",
+    "applicationCategory": "UtilityApplication"
+  }
+  </script>
+  
+  <link rel="canonical" href="./index.html">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <style>
+    .result-number {
+      font-size: 3em;
+      font-weight: bold;
+      color: var(--accent);
+      margin: 20px 0;
+    }
+    .result-detail {
+      color: var(--muted);
+      font-size: 0.95em;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../../" title="홈으로">📊 도구 모음</a>
+      <nav class="main-nav">
+        <a href="../../" class="nav-link">홈</a>
+        <span class="nav-separator">|</span>
+        <a href="./" class="nav-link active">D-Day</a>
+        <span class="nav-separator">|</span>
+        <a href="../../lotto/generator/" class="nav-link">로또</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========== 히어로 섹션 ========== -->
+    <section class="hero">
+      <div class="container">
+        <h1>D-Day 계산기</h1>
+        <p class="hero-copy">목표 날짜를 입력하면 오늘을 기준으로 남은 날짜를 계산합니다.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- ========== 계산기 섹션 ========== -->
+      <section class="calculator-section">
+        <div class="calculator-card">
+          <div class="form-group">
+            <label for="targetDate">목표 날짜</label>
+            <input type="date" id="targetDate" value="">
+          </div>
+          
+          <div class="form-group">
+            <label>오늘 날짜</label>
+            <p id="todayText"></p>
+          </div>
+
+          <div class="button-group">
+            <button id="calculateBtn" class="primary-btn">계산하기</button>
+            <button id="resetBtn" class="secondary-btn">초기화</button>
+          </div>
+
+          <div id="result" class="result hidden">
+            <p id="resultLabel" class="result-label"></p>
+            <div id="resultNumber" class="result-number"></div>
+            <p id="resultDetail" class="result-detail"></p>
+            <button id="resultCopyBtn" class="secondary-btn" style="width: 100%; margin-top: 10px;">결과 복사</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== FAQ ========== -->
+      <section class="faq-section">
+        <h2>❓ 자주 묻는 질문</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4>D-Day는 무엇인가요?</h4>
+            <p>D-Day는 특정 목표일을 기준으로 남은 일수를 계산하는 형식입니다. 예를 들어 생일까지 10일이 남으면 D-10, 생일 당일은 D-Day, 생일이 지난 지 5일이면 D+5입니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4>과거 날짜를 입력할 수 있나요?</h4>
+            <p>네, 과거 날짜를 입력하면 그 날짜로부터 지난 날짜를 D+ 형식으로 표시합니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4>시간 단위로도 계산할 수 있나요?</h4>
+            <p>현재는 날짜 단위로만 계산됩니다. 시간 단위 계산이 필요하신 경우 피드백을 남겨주세요.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 관련 도구 ========== -->
+      <section class="related-tools">
+        <h2>🔗 관련 도구</h2>
+        <div class="tools-grid">
+          <a href="../age/" class="tool-card">
+            <h4>나이 계산기</h4>
+            <p>생년월일로 만 나이와 경과 일수 계산</p>
+          </a>
+          <a href="../discharge/" class="tool-card">
+            <h4>전역일 계산기</h4>
+            <p>입대일로부터 전역일 계산</p>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-section">
+        <h4>도구</h4>
+        <ul>
+          <li><a href="../../">홈</a></li>
+          <li><a href="">D-Day</a></li>
+          <li><a href="../../lotto/generator/">로또</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>정보</h4>
+        <ul>
+          <li><a href="../../README.md">사용법</a></li>
+          <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 무료 온라인 도구 모음. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/common.js"></script>
+  <script src="./dday.js"></script>
+</body>
+</html>

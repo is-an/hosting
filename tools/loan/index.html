@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>대출 이자 계산기 - 월 상환액 계산 | 무료 온라인 도구</title>
+  <meta name="description" content="대출 이자 계산기. 대출금액, 이율, 기간으로부터 월 상환액과 총 이자를 계산합니다.">
+  <meta name="keywords" content="대출계산, 이자계산, 상환금, 대출이자, 무료 온라인 도구">
+  <meta name="robots" content="index,follow">
+  
+  <link rel="canonical" href="./index.html">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../../" title="홈으로">📊 도구 모음</a>
+      <nav class="main-nav">
+        <a href="../../" class="nav-link">홈</a>
+        <span class="nav-separator">|</span>
+        <a href="./" class="nav-link active">대출</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>대출 이자 계산기</h1>
+        <p class="hero-copy">대출금액, 이율, 기간으로부터 월 상환액과 총 이자를 계산합니다.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="calculator-section">
+        <div class="calculator-card">
+          <div class="form-group">
+            <label for="loanAmount">대출금액 (원)</label>
+            <input type="number" id="loanAmount" placeholder="예: 10000000" step="100000">
+          </div>
+          
+          <div class="form-group">
+            <label for="loanRate">연 이율 (%)</label>
+            <input type="number" id="loanRate" placeholder="예: 4.5" step="0.1">
+          </div>
+          
+          <div class="form-group">
+            <label for="loanTerm">대출기간 (개월)</label>
+            <input type="number" id="loanTerm" placeholder="예: 60" step="1">
+          </div>
+          
+          <div class="form-group">
+            <label for="loanType">상환 방식</label>
+            <select id="loanType">
+              <option value="equal-payment">원리금균등</option>
+              <option value="equal-principal">원금균등</option>
+            </select>
+          </div>
+
+          <div class="button-group">
+            <button id="loanCalcBtn" class="primary-btn">계산하기</button>
+            <button id="loanCopyBtn" class="secondary-btn">복사</button>
+            <button id="loanResetBtn" class="text-button">초기화</button>
+          </div>
+
+          <div id="loanResult" class="result hidden">
+            <div class="result-row">
+              <span>월 상환액:</span>
+              <span id="monthlyPayment"></span>
+            </div>
+            <div class="result-row">
+              <span>총 이자:</span>
+              <span id="totalInterest"></span>
+            </div>
+            <div class="result-row">
+              <span>총 상환액:</span>
+              <span id="totalPayment"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <h2>❓ 자주 묻는 질문</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4>원리금균등과 원금균등의 차이는?</h4>
+            <p>원리금균등은 매월 같은 금액을 상환하고, 원금균등은 원금을 균등하게 나누어 상환합니다.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <p>&copy; 2024 무료 온라인 도구 모음.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/common.js"></script>
+  <script src="./loan.js"></script>
+</body>
+</html>

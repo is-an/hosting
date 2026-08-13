@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>로또번호 생성기 - 무료 로또번호 추천 | 온라인 도구</title>
+  <meta name="description" content="로또번호 생성기. 1부터 45까지의 숫자 중 6개를 무작위로 선택하여 로또번호를 추천합니다. 무료로 사용하세요.">
+  <meta name="keywords" content="로또, 로또번호, 로또번호생성, 번호생성, 무료 온라인 도구">
+  <meta name="robots" content="index,follow">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="./index.html">
+  <meta property="og:title" content="로또번호 생성기">
+  <meta property="og:description" content="무료 로또번호 추천 도구">
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "로또번호 생성기",
+    "description": "로또번호 추천 도구",
+    "url": "./index.html",
+    "applicationCategory": "UtilityApplication"
+  }
+  </script>
+  
+  <link rel="canonical" href="./index.html">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <style>
+    .lottery-display {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+    
+    .lottery-ball {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #666);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 18px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      animation: pop 0.5s ease-out;
+    }
+    
+    @keyframes pop {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    .lottery-set {
+      padding: 15px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin: 10px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../../" title="홈으로">📊 도구 모음</a>
+      <nav class="main-nav">
+        <a href="../../" class="nav-link">홈</a>
+        <span class="nav-separator">|</span>
+        <a href="./" class="nav-link active">로또</a>
+        <span class="nav-separator">|</span>
+        <a href="../../cal/dday/" class="nav-link">D-Day</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========== 히어로 섹션 ========== -->
+    <section class="hero">
+      <div class="container">
+        <h1>로또번호 생성기</h1>
+        <p class="hero-copy">1부터 45까지의 숫자 중 6개를 무작위로 선택하여 로또번호를 추천합니다.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- ========== 계산기 섹션 ========== -->
+      <section class="calculator-section">
+        <div class="calculator-card">
+          <p>기운이 있는 로또번호를 추천해드립니다.</p>
+          
+          <div id="lotteryDisplay" class="lottery-display"></div>
+
+          <div class="button-group">
+            <button id="generateBtn" class="primary-btn">1개 생성</button>
+            <button id="generateMultipleBtn" class="primary-btn">5개 생성</button>
+            <button id="lotteryResetBtn" class="secondary-btn">초기화</button>
+          </div>
+
+          <div id="multipleNumbers" class="hidden"></div>
+        </div>
+      </section>
+
+      <!-- ========== FAQ ========== -->
+      <section class="faq-section">
+        <h2>❓ 자주 묻는 질문</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4>이 도구로 생성된 번호로 구매하면 당첨될까요?</h4>
+            <p>이 도구는 무작위로 번호를 생성할 뿐, 당첨을 보장하지 않습니다. 로또는 완전히 운의 게임입니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4>여러 번 생성할 수 있나요?</h4>
+            <p>네, 원하는 만큼 여러 번 생성할 수 있습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4>생성된 번호를 저장할 수 있나요?</h4>
+            <p>현재는 저장 기능이 없습니다. 필요시 직접 메모해주세요.</p>
+          </div>
+          <div class="faq-item">
+            <h4>파워볼도 생성할 수 있나요?</h4>
+            <p>현재는 로또(숫자 6개) 생성만 지원합니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 관련 도구 ========== -->
+      <section class="related-tools">
+        <h2>🔗 관련 도구</h2>
+        <div class="tools-grid">
+          <a href="../../cal/dday/" class="tool-card">
+            <h4>D-Day 계산기</h4>
+            <p>목표 날짜까지의 남은 날짜 계산</p>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-section">
+        <h4>도구</h4>
+        <ul>
+          <li><a href="../../">홈</a></li>
+          <li><a href="">로또</a></li>
+          <li><a href="../../cal/dday/">D-Day</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>정보</h4>
+        <ul>
+          <li><a href="../../README.md">사용법</a></li>
+          <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 무료 온라인 도구 모음. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/common.js"></script>
+  <script src="./lottery.js"></script>
+</body>
+</html>
