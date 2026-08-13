@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+  <title>미니게임 - 무료 온라인 게임 모음</title>
+  <meta name="description" content="반응속도 테스트, 스도쿠, 타자 속도 테스트, 블록 퍼즐을 무료로 즐길 수 있는 온라인 미니게임 모음입니다.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="./">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">무료 온라인 미니게임</p>
+        <h1>게임 모음</h1>
+        <p class="hero-copy">짧은 시간에 즐기면서 반응속도, 집중력, 타자 실력을 확인해 보세요.</p>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="tools-grid" data-category="game">
+        <a href="./reaction/" class="tool-card tool-link" data-name="반응속도">
+          <h3>반응속도 테스트</h3>
+          <p>화면이 바뀌는 순간을 눌러 내 반응 시간을 측정합니다.</p>
+          <span class="arrow">→</span>
+        </a>
+        <a href="./sudoku/" class="tool-card tool-link" data-name="스도쿠">
+          <h3>스도쿠</h3>
+          <p>난이도를 선택하고 새로운 9x9 숫자 퍼즐을 완성하세요.</p>
+          <span class="arrow">→</span>
+        </a>
+        <a href="./typing/" class="tool-card tool-link" data-name="타자 속도">
+          <h3>타자 속도 테스트</h3>
+          <p>문장을 입력하며 정확도와 분당 타자 속도를 확인합니다.</p>
+          <span class="arrow">→</span>
+        </a>
+        <a href="./block-puzzle/" class="tool-card tool-link" data-name="블록 퍼즐">
+          <h3>블록 퍼즐</h3>
+          <p>블록을 쌓고 줄을 완성해 최고 점수에 도전하세요.</p>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </section>
+  </main>
+  <div id="ads-slot" class="ads-slot"></div>
+  <div id="site-footer"></div>
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/common.js"></script>
+</body>
+</html>
