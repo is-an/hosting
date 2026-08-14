@@ -94,7 +94,14 @@
   function parseSony(info) { return explicitTag(info.makerTags, [0xB001]); }
   function parseFujifilm(info) { return explicitTag(info.makerTags, [0x1438]); }
   function parseCanon(info) { return explicitTag(info.makerTags, [0x00A9]); }
-  function parsePanasonic(info) { return explicitTag(info.makerTags, [0x002E]); }
+  // Panasonic/Lumix MakerNote has no publicly documented, verified shutter-count tag.
+  // Tag 0x002E is "SelfTimer" (per ExifTool's Panasonic.pm), not a counter, and was removed.
+  // Add a verified per-model parser here only when a confirmed tag/offset exists; never guess.
+  const panasonicModelParsers = {};
+  function parsePanasonic(info) {
+    const modelParser = panasonicModelParsers[cleanText(info.model)];
+    return modelParser ? modelParser(info) : null;
+  }
   function parseLeica(info) { return explicitTag(info.makerTags, [0x0300]); }
   function parseShutterCount(info) {
     const make = cleanText(info.make).toLowerCase();
