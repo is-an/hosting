@@ -78,6 +78,8 @@ const translations = {
     tool_unit_desc: "길이, 무게, 온도, 면적, 부피, 시간, 데이터 용량을 변환합니다.",
     tool_textconv_title: "텍스트 변환 도구",
     tool_textconv_desc: "텍스트를 다양한 방식으로 변환하고 처리합니다.",
+    tool_shutter_count_title: "카메라 셔터카운트 확인기",
+    tool_shutter_count_desc: "사진의 EXIF 정보를 브라우저에서 분석하여 카메라 정보와 확인 가능한 셔터카운트를 표시합니다.",
 
     tool_bmi_title: "BMI 계산기",
     tool_bmi_desc: "키와 체중을 입력하면 BMI와 건강 상태를 표시합니다.",
@@ -175,6 +177,8 @@ const translations = {
     tool_unit_desc: "Convert length, weight, temperature, area, volume, time, and data size.",
     tool_textconv_title: "Text Converter",
     tool_textconv_desc: "Convert and process text in various ways.",
+    tool_shutter_count_title: "Camera Shutter Count Checker",
+    tool_shutter_count_desc: "Analyze photo EXIF data in your browser to show camera details and a shutter count when available.",
 
     tool_bmi_title: "BMI Calculator",
     tool_bmi_desc: "Enter height and weight to see your BMI and health status.",
@@ -272,6 +276,8 @@ const translations = {
     tool_unit_desc: "换算长度、重量、温度、面积、体积、时间和数据容量。",
     tool_textconv_title: "文本转换工具",
     tool_textconv_desc: "以多种方式转换和处理文本。",
+    tool_shutter_count_title: "相机快门次数查询器",
+    tool_shutter_count_desc: "在浏览器中分析照片 EXIF 信息，显示相机信息和可确认的快门次数。",
 
     tool_bmi_title: "BMI 计算器",
     tool_bmi_desc: "输入身高体重即可显示 BMI 和健康状态。",
@@ -369,6 +375,8 @@ const translations = {
     tool_unit_desc: "長さ、重さ、温度、面積、体積、時間、データ容量を変換します。",
     tool_textconv_title: "テキスト変換ツール",
     tool_textconv_desc: "テキストをさまざまな方式で変換・処理します。",
+    tool_shutter_count_title: "カメラシャッター回数チェッカー",
+    tool_shutter_count_desc: "写真の EXIF 情報をブラウザーで解析し、カメラ情報と確認できるシャッター回数を表示します。",
 
     tool_bmi_title: "BMI計算機",
     tool_bmi_desc: "身長と体重を入力するとBMIと健康状態を表示します。",
