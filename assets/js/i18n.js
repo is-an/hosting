@@ -99,7 +99,7 @@ const translations = {
     tool_savings_desc: "예치금과 이율로부터 이자와 만기 수령액을 계산합니다.",
     tool_retirement_title: "퇴직금 계산기",
     tool_retirement_desc: "입사일과 퇴사일로부터 예상 퇴직금을 계산합니다.",
-    lotto_eyebrow: "무료 온라인 로또 생성",
+    lotto_eyebrow: "무료 온라인 로또 생성기",
     lotto_title: "로또번호 생성기",
     lotto_copy: "1부터 45까지의 숫자 중 6개를 무작위로 선택하여 로또번호를 추천합니다.",
     lotto_intro: "기운이 있는 로또번호를 추천해드립니다.",
@@ -520,6 +520,120 @@ const shutterTranslations = {
 
 Object.keys(shutterTranslations).forEach((lang) => Object.assign(translations[lang], shutterTranslations[lang]));
 
+const subpageTranslations = {
+  age: {
+    ko: { title: '나이 계산기 - 만 나이, 경과 일수 계산 | 무료 온라인 도구', description: '나이 계산기. 생년월일을 입력하면 만 나이, 경과 일수, 다음 생일까지 남은 날짜를 계산합니다.', h1: '나이 계산기', copy: '생년월일을 입력하면 만 나이와 경과 일수를 계산합니다.', birth: '생년월일', base: '기준 날짜', today: '오늘로 설정', calculate: '계산하기', copyButton: '복사', reset: '초기화', faq: '❓ 자주 묻는 질문', related: '🔗 관련 도구' },
+    en: { title: 'Age Calculator - Exact Age and Days Elapsed', description: 'Enter a birth date to calculate exact age, elapsed days, and days until the next birthday.', h1: 'Age Calculator', copy: 'Enter a birth date to calculate exact age and days elapsed.', birth: 'Birth date', base: 'Base date', today: 'Set today', calculate: 'Calculate', copyButton: 'Copy', reset: 'Reset', faq: '❓ Frequently asked questions', related: '🔗 Related tools' },
+    zh: { title: '年龄计算器 - 周岁与经过天数计算', description: '输入出生日期，计算周岁、经过天数以及距下次生日的天数。', h1: '年龄计算器', copy: '输入出生日期即可计算周岁和经过天数。', birth: '出生日期', base: '基准日期', today: '设为今天', calculate: '计算', copyButton: '复制', reset: '重置', faq: '❓ 常见问题', related: '🔗 相关工具' },
+    ja: { title: '年齢計算機 - 満年齢と経過日数を計算', description: '生年月日を入力すると、満年齢、経過日数、次の誕生日までの日数を計算します。', h1: '年齢計算機', copy: '生年月日を入力すると満年齢と経過日数を計算します。', birth: '生年月日', base: '基準日', today: '今日に設定', calculate: '計算する', copyButton: 'コピー', reset: 'リセット', faq: '❓ よくある質問', related: '🔗 関連ツール' }
+  },
+  dday: {
+    ko: { title: 'D-Day 계산기 - 남은 날짜 계산 | 무료 온라인 도구', h1: 'D-Day 계산기', calculate: '계산하기', reset: '초기화', copyButton: '결과 복사', faq: '❓ 자주 묻는 질문', related: '🔗 관련 도구' },
+    en: { title: 'D-Day Calculator - Days Remaining', h1: 'D-Day Calculator', calculate: 'Calculate', reset: 'Reset', copyButton: 'Copy result', faq: '❓ Frequently asked questions', related: '🔗 Related tools' },
+    zh: { title: 'D-Day 倒数计算器 - 剩余天数计算', h1: 'D-Day 倒数计算器', calculate: '计算', reset: '重置', copyButton: '复制结果', faq: '❓ 常见问题', related: '🔗 相关工具' },
+    ja: { title: 'D-Day計算機 - 残り日数を計算', h1: 'D-Day計算機', calculate: '計算する', reset: 'リセット', copyButton: '結果をコピー', faq: '❓ よくある質問', related: '🔗 関連ツール' }
+  },
+  discharge: {
+    ko: { title: '전역일 계산기 - 군 복무기간 계산 | 무료 온라인 도구', h1: '전역일 계산기', calculate: '계산하기', copyButton: '복사', reset: '초기화', faq: '❓ 자주 묻는 질문' },
+    en: { title: 'Discharge Date Calculator - Military Service Period', h1: 'Discharge Date Calculator', calculate: 'Calculate', copyButton: 'Copy', reset: 'Reset', faq: '❓ Frequently asked questions' },
+    zh: { title: '退伍日期计算器 - 服役期限计算', h1: '退伍日期计算器', calculate: '计算', copyButton: '复制', reset: '重置', faq: '❓ 常见问题' },
+    ja: { title: '除隊日計算機 - 服務期間を計算', h1: '除隊日計算機', calculate: '計算する', copyButton: 'コピー', reset: 'リセット', faq: '❓ よくある質問' }
+  },
+  percent: {
+    ko: { title: '퍼센트 계산기 - 할인, 증감 비율 계산 | 무료 온라인 도구', h1: '퍼센트 계산기', calculate: '계산하기', copyButton: '복사', reset: '초기화', faq: '❓ 자주 묻는 질문', related: '🔗 관련 도구' },
+    en: { title: 'Percentage Calculator - Discount and Change Rate', h1: 'Percentage Calculator', calculate: 'Calculate', copyButton: 'Copy', reset: 'Reset', faq: '❓ Frequently asked questions', related: '🔗 Related tools' },
+    zh: { title: '百分比计算器 - 折扣与增减比例计算', h1: '百分比计算器', calculate: '计算', copyButton: '复制', reset: '重置', faq: '❓ 常见问题', related: '🔗 相关工具' },
+    ja: { title: 'パーセント計算機 - 割引と増減率を計算', h1: 'パーセント計算機', calculate: '計算する', copyButton: 'コピー', reset: 'リセット', faq: '❓ よくある質問', related: '🔗 関連ツール' }
+  },
+  bmi: {
+    ko: { title: 'BMI 계산기 - 건강 체중 계산 | 무료 온라인 도구', h1: 'BMI 계산기', calculate: '계산하기', copyButton: '복사', reset: '초기화', faq: '❓ 자주 묻는 질문' },
+    en: { title: 'BMI Calculator - Healthy Weight Calculator', h1: 'BMI Calculator', calculate: 'Calculate', copyButton: 'Copy', reset: 'Reset', faq: '❓ Frequently asked questions' },
+    zh: { title: 'BMI 计算器 - 健康体重计算', h1: 'BMI 计算器', calculate: '计算', copyButton: '复制', reset: '重置', faq: '❓ 常见问题' },
+    ja: { title: 'BMI計算機 - 健康体重を計算', h1: 'BMI計算機', calculate: '計算する', copyButton: 'コピー', reset: 'リセット', faq: '❓ よくある質問' }
+  },
+  charcount: {
+    ko: { title: '글자수/바이트 계산기 - 텍스트 글자수 세기 | 무료 온라인 도구', h1: '글자수/바이트 계산기', copyButton: '복사', reset: '초기화', faq: '❓ 자주 묻는 질문' },
+    en: { title: 'Character/Byte Counter - Count Text Characters', h1: 'Character/Byte Counter', copyButton: 'Copy', reset: 'Reset', faq: '❓ Frequently asked questions' },
+    zh: { title: '字数/字节计算器 - 文本字数统计', h1: '字数/字节计算器', copyButton: '复制', reset: '重置', faq: '❓ 常见问题' },
+    ja: { title: '文字数/バイト計算機 - テキスト文字数カウント', h1: '文字数/バイト計算機', copyButton: 'コピー', reset: 'リセット', faq: '❓ よくある質問' }
+  },
+  unit: {
+    ko: { title: '단위 변환기 - 길이, 무게, 온도 변환 | 무료 온라인 도구', h1: '단위 변환기', copyButton: '복사', reset: '초기화', faq: '❓ 자주 묻는 질문' },
+    en: { title: 'Unit Converter - Length, Weight, and Temperature', h1: 'Unit Converter', copyButton: 'Copy', reset: 'Reset', faq: '❓ Frequently asked questions' },
+    zh: { title: '单位换算器 - 长度、重量和温度换算', h1: '单位换算器', copyButton: '复制', reset: '重置', faq: '❓ 常见问题' },
+    ja: { title: '単位変換機 - 長さ、重さ、温度を変換', h1: '単位変換機', copyButton: 'コピー', reset: 'リセット', faq: '❓ よくある質問' }
+  },
+  textconv: {
+    ko: { title: '텍스트 변환 도구 - 대소문자, 공백 제거 | 무료 온라인 도구', h1: '텍스트 변환 도구', copyButton: '복사', reset: '초기화', faq: '❓ 자주 묻는 질문' },
+    en: { title: 'Text Converter - Case and Space Tools', h1: 'Text Converter', copyButton: 'Copy', reset: 'Reset', faq: '❓ Frequently asked questions' },
+    zh: { title: '文本转换工具 - 大小写与空格处理', h1: '文本转换工具', copyButton: '复制', reset: '重置', faq: '❓ 常见问题' },
+    ja: { title: 'テキスト変換ツール - 大文字・空白を処理', h1: 'テキスト変換ツール', copyButton: 'コピー', reset: 'リセット', faq: '❓ よくある質問' }
+  },
+  loan: {
+    ko: { title: '대출 이자 계산기 - 월 상환액 계산 | 무료 온라인 도구', h1: '대출 이자 계산기', calculate: '계산하기', copyButton: '복사', reset: '초기화', faq: '❓ 자주 묻는 질문' },
+    en: { title: 'Loan Interest Calculator - Monthly Payment', h1: 'Loan Interest Calculator', calculate: 'Calculate', copyButton: 'Copy', reset: 'Reset', faq: '❓ Frequently asked questions' },
+    zh: { title: '贷款利息计算器 - 月供计算', h1: '贷款利息计算器', calculate: '计算', copyButton: '复制', reset: '重置', faq: '❓ 常见问题' },
+    ja: { title: 'ローン利息計算機 - 月々の返済額を計算', h1: 'ローン利息計算機', calculate: '計算する', copyButton: 'コピー', reset: 'リセット', faq: '❓ よくある質問' }
+  },
+  retirement: {
+    ko: { title: '퇴직금 계산기 - 예상 퇴직금 계산 | 무료 온라인 도구', h1: '퇴직금 계산기', calculate: '계산하기', copyButton: '복사', reset: '초기화', faq: '❓ 자주 묻는 질문' },
+    en: { title: 'Severance Pay Calculator - Estimate Severance', h1: 'Severance Pay Calculator', calculate: 'Calculate', copyButton: 'Copy', reset: 'Reset', faq: '❓ Frequently asked questions' },
+    zh: { title: '退休金计算器 - 预计退休金计算', h1: '退休金计算器', calculate: '计算', copyButton: '复制', reset: '重置', faq: '❓ 常见问题' },
+    ja: { title: '退職金計算機 - 予想退職金を計算', h1: '退職金計算機', calculate: '計算する', copyButton: 'コピー', reset: 'リセット', faq: '❓ よくある質問' }
+  },
+  salary: {
+    ko: { title: '연봉 계산기 - 세후 실수령액 계산 | 무료 온라인 도구', h1: '연봉 계산기', calculate: '계산하기', copyButton: '복사', reset: '초기화', faq: '❓ 자주 묻는 질문' },
+    en: { title: 'Salary Calculator - Estimate Take-Home Pay', h1: 'Salary Calculator', calculate: 'Calculate', copyButton: 'Copy', reset: 'Reset', faq: '❓ Frequently asked questions' },
+    zh: { title: '薪资计算器 - 税后收入计算', h1: '薪资计算器', calculate: '计算', copyButton: '复制', reset: '重置', faq: '❓ 常见问题' },
+    ja: { title: '年俸計算機 - 手取り額を計算', h1: '年俸計算機', calculate: '計算する', copyButton: 'コピー', reset: 'リセット', faq: '❓ よくある質問' }
+  },
+  savings: {
+    ko: { title: '예금/적금 이자 계산기 - 만기액 계산 | 무료 온라인 도구', h1: '예금/적금 이자 계산기', calculate: '계산하기', copyButton: '복사', reset: '초기화', faq: '❓ 자주 묻는 질문' },
+    en: { title: 'Savings Interest Calculator - Maturity Amount', h1: 'Savings Interest Calculator', calculate: 'Calculate', copyButton: 'Copy', reset: 'Reset', faq: '❓ Frequently asked questions' },
+    zh: { title: '存款利息计算器 - 到期金额计算', h1: '存款利息计算器', calculate: '计算', copyButton: '复制', reset: '重置', faq: '❓ 常见问题' },
+    ja: { title: '預金・積立金利計算機 - 満期額を計算', h1: '預金・積立金利計算機', calculate: '計算する', copyButton: 'コピー', reset: 'リセット', faq: '❓ よくある質問' }
+  },
+  vat: {
+    ko: { title: '부가세 계산기 - 공급가액, 부가세 계산 | 무료 온라인 도구', h1: '부가세 계산기', calculate: '계산하기', copyButton: '복사', reset: '초기화', faq: '❓ 자주 묻는 질문' },
+    en: { title: 'VAT Calculator - Supply Price and VAT', h1: 'VAT Calculator', calculate: 'Calculate', copyButton: 'Copy', reset: 'Reset', faq: '❓ Frequently asked questions' },
+    zh: { title: '增值税计算器 - 供货价与增值税计算', h1: '增值税计算器', calculate: '计算', copyButton: '复制', reset: '重置', faq: '❓ 常见问题' },
+    ja: { title: '付加価値税計算機 - 供給価額と税額を計算', h1: '付加価値税計算機', calculate: '計算する', copyButton: 'コピー', reset: 'リセット', faq: '❓ よくある質問' }
+  }
+};
+
+function getSubpageName() {
+  const path = window.location.pathname;
+  const match = path.match(/\/(?:cal|tools)\/([^/]+)\/(?:index\.html?)?$/);
+  return match ? match[1] : null;
+}
+
+function applySubpageLanguage(lang) {
+  const page = getSubpageName();
+  const dictionary = page && subpageTranslations[page] && subpageTranslations[page][lang];
+  if (!dictionary) return;
+  if (dictionary.title) document.title = dictionary.title;
+  const description = document.querySelector('meta[name="description"]');
+  if (description && dictionary.description) description.setAttribute('content', dictionary.description);
+  const h1 = document.querySelector('main h1');
+  if (h1 && dictionary.h1) h1.textContent = dictionary.h1;
+  const copy = document.querySelector('main .hero-copy');
+  if (copy && dictionary.copy) copy.textContent = dictionary.copy;
+  document.querySelectorAll('main h2').forEach((heading) => {
+    if (heading.textContent.includes('자주') || heading.textContent.includes('Frequently') || heading.textContent.includes('常见') || heading.textContent.includes('よく')) heading.textContent = dictionary.faq || heading.textContent;
+    if (heading.textContent.includes('관련') || heading.textContent.includes('Related') || heading.textContent.includes('相关') || heading.textContent.includes('関連')) heading.textContent = dictionary.related || heading.textContent;
+  });
+  document.querySelectorAll('.primary-btn').forEach((button) => { if (dictionary.calculate && button.textContent.trim() === '계산하기') button.textContent = dictionary.calculate; });
+  document.querySelectorAll('.secondary-btn').forEach((button) => { if (dictionary.copyButton && (button.textContent.trim() === '복사' || button.textContent.trim() === '결과 복사')) button.textContent = dictionary.copyButton; });
+  document.querySelectorAll('.text-button').forEach((button) => { if (dictionary.reset && button.textContent.trim() === '초기화') button.textContent = dictionary.reset; });
+  if (page === 'age') {
+    const labels = document.querySelectorAll('label');
+    if (labels[0] && dictionary.birth) labels[0].textContent = dictionary.birth;
+    if (labels[1] && dictionary.base) labels[1].textContent = dictionary.base;
+    const today = document.getElementById('setTodayBtn');
+    if (today && dictionary.today) today.textContent = dictionary.today;
+  }
+}
+
 function getStoredLanguage() {
   try {
     return localStorage.getItem(LANGUAGE_STORAGE_KEY);
@@ -596,6 +710,7 @@ function applyLanguage(lang) {
   if (typeof updateThemeToggleLabel === 'function') {
     updateThemeToggleLabel();
   }
+  applySubpageLanguage(activeLang);
 }
 
 function setLanguage(lang) {
