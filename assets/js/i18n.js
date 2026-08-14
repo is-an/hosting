@@ -8,7 +8,7 @@ const DEFAULT_LANGUAGE = 'ko';
 const LANGUAGE_STORAGE_KEY = 'language';
 const LANGUAGE_NAMES = { ko: '한국어', en: 'English', zh: '中文', ja: '日本語' };
 
-const translations = {
+const legacyTranslations = {
   ko: {
     nav_home: "홈",
     nav_calculator: "계산기",
@@ -147,6 +147,7 @@ const translations = {
     nav_tools: "Tools",
 
     footer_toolsTitle: "Tools",
+    footer_infoTitle: "Info",
     footer_socialTitle: "Social",
     footer_calculatorLink: "Calculators",
     footer_lottoLink: "Lotto",
@@ -565,7 +566,7 @@ const gameTranslations = {
   }
 };
 
-Object.keys(gameTranslations).forEach((lang) => Object.assign(translations[lang], gameTranslations[lang]));
+Object.keys(gameTranslations).forEach((lang) => Object.assign(legacyTranslations[lang], gameTranslations[lang]));
 
 const gamePageTranslations = {
   ko: { sudoku_copy: '난이도를 선택하고 새로운 9x9 퍼즐을 완성하세요.', sudoku_difficulty: '난이도', sudoku_mistakes: '실수', sudoku_check: '정답 확인', sudoku_how: '게임 방법', sudoku_info: '빈 칸을 선택한 뒤 아래 숫자 버튼 또는 키보드 숫자를 입력하세요. 같은 숫자는 강조되고, 틀린 답은 표시됩니다.', typing_copy: '문장을 정확하게 입력하고 타자 속도를 확인하세요.', typing_language: '언어', typing_duration: '시간', typing_placeholder: '시작 후 여기에 입력하세요.', typing_how: '게임 방법', typing_info: '시작을 누른 뒤 표시된 문장을 입력하세요. 선택한 시간이 끝나면 실제 입력을 기준으로 속도와 정확도를 계산합니다.', block_copy: '블록을 쌓고 줄을 완성해 최고 점수에 도전하세요.', block_how: '게임 방법', block_info: '왼쪽/오른쪽 화살표로 이동하고 위쪽 화살표로 회전합니다. 아래쪽 화살표는 빠르게 내리고, 스페이스바는 즉시 떨어뜨립니다.' },
@@ -574,7 +575,7 @@ const gamePageTranslations = {
   ja: { sudoku_copy: '難易度を選んで新しい 9x9 パズルを完成させましょう。', sudoku_difficulty: '難易度', sudoku_mistakes: 'ミス', sudoku_check: '答えを確認', sudoku_how: '遊び方', sudoku_info: '空のマスを選び、下の数字またはキーボードで入力します。同じ数字は強調され、間違いは表示されます。', typing_copy: '文章を正確に入力してタイピング速度を確認しましょう。', typing_language: '言語', typing_duration: '時間', typing_placeholder: '開始後にここへ入力します。', typing_how: '遊び方', typing_info: '開始後に表示された文章を入力します。選択した時間が終わると、実際の入力から速度と正確さを計算します。', block_copy: 'ブロックを積み、ラインを消してハイスコアを目指しましょう。', block_how: '遊び方', block_info: '左右矢印で移動、上矢印で回転、下矢印で高速落下、スペースで即時落下します。' }
 };
 
-Object.keys(gamePageTranslations).forEach((lang) => Object.assign(translations[lang], gamePageTranslations[lang]));
+Object.keys(gamePageTranslations).forEach((lang) => Object.assign(legacyTranslations[lang], gamePageTranslations[lang]));
 
 const shutterTranslations = {
   ko: { shutter_eyebrow: '브라우저에서 안전하게 분석', shutter_title: '카메라 셔터카운트 확인기', shutter_copy: '사진을 선택하면 EXIF 정보를 분석하여 카메라 모델과 확인 가능한 셔터카운트를 표시합니다.', shutter_upload: '사진 업로드', shutter_formats: 'JPG / JPEG / TIFF / RAW', shutter_choose: '사진 선택', shutter_ready: '사진은 이 기기에서만 분석되며 서버로 전송되지 않습니다.', shutter_reading: '사진 정보를 분석하는 중입니다...', shutter_complete: '분석이 완료되었습니다.', shutter_remove: '사진 제거', shutter_again: '다시 확인', shutter_share: '결과 공유', shutter_copyLink: '링크 복사', shutter_unknown: '확인할 수 없음', shutter_cameraInfo: '카메라 정보', shutter_count: '셔터카운트', shutter_confirmed: '🟢 사진 EXIF에서 확인된 값입니다.', shutter_missing: '🟡 카메라는 확인했지만 이 사진에 셔터카운트 정보가 없습니다.', shutter_missingShort: '셔터카운트: 확인할 수 없음', shutter_unsupported: '🔴 지원 제조사 여부를 확인할 수 없으며 셔터카운트 정보도 없습니다.', shutter_make: '제조사', shutter_model: '모델', shutter_date: '촬영일시', shutter_lens: '렌즈', shutter_speed: '셔터스피드', shutter_aperture: '조리개', shutter_focal: '초점거리', shutter_file: '파일 형식', shutter_size: '이미지 크기', shutter_noExif: '이 파일에서 읽을 수 있는 EXIF 정보를 찾지 못했습니다.', shutter_rafInvalid: 'RAF 파일 구조는 인식되었지만 내부 JPEG/EXIF 영역을 찾지 못했습니다.', shutter_error: 'EXIF 정보를 분석할 수 없습니다.', shutter_privacyTitle: '🔒 개인정보 보호', shutter_privacyCopy: '사진은 서버에 업로드되지 않습니다. 모든 파일 읽기와 EXIF 분석은 사용자의 브라우저에서만 처리됩니다.', shutter_aboutTitle: '셔터카운트와 EXIF', shutter_aboutCopy: '셔터카운트는 카메라가 촬영한 횟수를 나타내는 기록입니다. 일부 카메라는 이를 사진의 MakerNote에 저장하지만, 모든 파일과 모든 제조사에서 제공하는 것은 아닙니다. 이 도구는 파일에 명시적으로 저장된 값만 표시하며, 파일명이나 촬영일로 숫자를 추정하지 않습니다.', shutter_rawNote: 'RAW 파일은 카메라 및 브라우저에 따라 EXIF 정보를 읽지 못할 수 있습니다.', shutter_faqTitle: '자주 묻는 질문', shutter_faq1q: '셔터카운트란 무엇인가요?', shutter_faq1a: '카메라가 촬영한 횟수를 뜻하는 기록입니다.', shutter_faq2q: '사진만으로 항상 확인할 수 있나요?', shutter_faq2a: '아니요. 카메라와 파일에 따라 셔터카운트가 EXIF에 저장되지 않을 수 있습니다.', shutter_faq3q: '사진이 서버에 업로드되나요?', shutter_faq3a: '아니요. 이 페이지는 네트워크로 사진을 전송하지 않고 브라우저에서만 분석합니다.', shutter_related: '관련 도구', shutter_shareTitle: '카메라 셔터카운트 확인 결과' },
@@ -583,7 +584,7 @@ const shutterTranslations = {
   ja: { shutter_eyebrow: 'ブラウザー内で安全に解析', shutter_title: 'カメラシャッター回数チェッカー', shutter_copy: '写真を選択すると、EXIF 情報、カメラモデル、確認できるシャッター回数を表示します。', shutter_upload: '写真をアップロード', shutter_formats: 'JPG / JPEG / TIFF / RAW', shutter_choose: '写真を選択', shutter_ready: '写真はこの端末内でのみ解析され、サーバーにはアップロードされません。', shutter_reading: '写真情報を解析しています...', shutter_complete: '解析が完了しました。', shutter_remove: '写真を削除', shutter_again: 'もう一度確認', shutter_share: '結果を共有', shutter_copyLink: 'リンクをコピー', shutter_unknown: '確認できません', shutter_cameraInfo: 'カメラ情報', shutter_count: 'シャッター回数', shutter_confirmed: '🟢 写真の EXIF から明確に確認された値です。', shutter_missing: '🟡 カメラは確認できましたが、この写真にはシャッター回数情報がありません。', shutter_missingShort: 'シャッター回数：確認できません', shutter_unsupported: '🔴 対応するメーカー値または明確なシャッター回数が見つかりませんでした。', shutter_make: 'メーカー', shutter_model: 'モデル', shutter_date: '撮影日時', shutter_lens: 'レンズ', shutter_speed: 'シャッター速度', shutter_aperture: '絞り', shutter_focal: '焦点距離', shutter_file: 'ファイル形式', shutter_size: '画像サイズ', shutter_noExif: 'このファイルには読み取れる EXIF 情報がありません。', shutter_rafInvalid: 'RAF コンテナは認識されましたが、内部の JPEG/EXIF 領域が見つかりませんでした。', shutter_error: 'EXIF 情報を解析できません。', shutter_privacyTitle: '🔒 プライバシー', shutter_privacyCopy: '写真はサーバーにアップロードされません。ファイル読み取りと EXIF 解析はブラウザー内でのみ行われます。', shutter_aboutTitle: 'シャッター回数と EXIF', shutter_aboutCopy: 'シャッター回数はカメラの撮影回数を示す記録です。一部のカメラは写真の MakerNote に保存しますが、すべてのカメラやファイルに含まれるわけではありません。このツールはファイルに明示的に保存された値のみを表示し、ファイル名や日付から推測しません。', shutter_rawNote: 'RAW ファイルの EXIF はカメラやブラウザーによって読み取れない場合があります。', shutter_faqTitle: 'よくある質問', shutter_faq1q: 'シャッター回数とは何ですか？', shutter_faq1a: 'カメラが撮影した回数の記録です。', shutter_faq2q: 'すべての写真から確認できますか？', shutter_faq2a: 'いいえ。カメラや写真ファイルに EXIF として保存されていないことがあります。', shutter_faq3q: '写真はアップロードされますか？', shutter_faq3a: 'いいえ。このページはネットワークで写真を送信しません。', shutter_related: '関連ツール', shutter_shareTitle: 'カメラシャッター回数確認結果' }
 };
 
-Object.keys(shutterTranslations).forEach((lang) => Object.assign(translations[lang], shutterTranslations[lang]));
+Object.keys(shutterTranslations).forEach((lang) => Object.assign(legacyTranslations[lang], shutterTranslations[lang]));
 
 const subpageTranslations = {
   age: {
@@ -666,6 +667,111 @@ const subpageTranslations = {
   }
 };
 
+const translations = {};
+
+function pickTranslationKeys(source, keys) {
+  return keys.reduce((group, key) => {
+    if (source[key] !== undefined) group[key] = source[key];
+    return group;
+  }, {});
+}
+
+function buildTranslationCatalog(lang) {
+  const source = legacyTranslations[lang];
+  const gameCommon = pickTranslationKeys(source, [
+    'nav_games', 'filter_game', 'cat_games', 'game_start', 'game_new', 'game_restart', 'game_result',
+    'game_best', 'game_share', 'game_copyLink', 'game_other', 'game_linkCopied', 'game_copyManual',
+    'game_time', 'game_score', 'game_level', 'game_lines', 'game_easy', 'game_medium', 'game_hard',
+    'game_complete', 'game_gameOver', 'game_reaction_title', 'game_reaction_desc', 'game_sudoku_title',
+    'game_sudoku_desc', 'game_typing_title', 'game_typing_desc', 'game_block_title', 'game_block_desc',
+    'sudoku_copy', 'sudoku_difficulty', 'sudoku_mistakes', 'sudoku_check', 'sudoku_how', 'sudoku_info',
+    'typing_copy', 'typing_language', 'typing_duration', 'typing_placeholder', 'typing_how', 'typing_info',
+    'block_copy', 'block_how', 'block_info'
+  ]);
+  const games = {
+    common: gameCommon,
+    reaction: { title: source.game_reaction_title, desc: source.game_reaction_desc },
+    sudoku: { title: source.game_sudoku_title, desc: source.game_sudoku_desc, copy: source.sudoku_copy },
+    typing: { title: source.game_typing_title, desc: source.game_typing_desc, copy: source.typing_copy },
+    blockPuzzle: { title: source.game_block_title, desc: source.game_block_desc, copy: source.block_copy }
+  };
+  const cal = {
+    age: subpageTranslations.age[lang],
+    dday: subpageTranslations.dday[lang],
+    discharge: subpageTranslations.discharge[lang],
+    percent: Object.assign({}, subpageTranslations.percent[lang], {
+      sub_percent_copy: subpageTranslations.percent[lang].copy,
+      sub_percent_tabOf: subpageTranslations.percent[lang].tabOf,
+      sub_percent_tabIs: subpageTranslations.percent[lang].tabIs,
+      sub_percent_increase: subpageTranslations.percent[lang].increase,
+      sub_percent_decrease: subpageTranslations.percent[lang].decrease,
+      sub_percent_base: subpageTranslations.percent[lang].base,
+      sub_percent_percent: subpageTranslations.percent[lang].percent,
+      sub_percent_value: subpageTranslations.percent[lang].value,
+      sub_percent_previous: subpageTranslations.percent[lang].previous,
+      sub_percent_current: subpageTranslations.percent[lang].current,
+      sub_percent_faq1: subpageTranslations.percent[lang].faq1,
+      sub_percent_faq1a: subpageTranslations.percent[lang].faq1a,
+      sub_percent_faq2: subpageTranslations.percent[lang].faq2,
+      sub_percent_faq2a: subpageTranslations.percent[lang].faq2a,
+      sub_percent_faq3: subpageTranslations.percent[lang].faq3,
+      sub_percent_faq3a: subpageTranslations.percent[lang].faq3a,
+      sub_percent_vat: subpageTranslations.percent[lang].vat,
+      sub_percent_vatDesc: subpageTranslations.percent[lang].vatDesc,
+      sub_percent_salary: subpageTranslations.percent[lang].salary,
+      sub_percent_salaryDesc: subpageTranslations.percent[lang].salaryDesc
+    })
+  };
+  const tools = {
+    bmi: subpageTranslations.bmi[lang],
+    charcount: subpageTranslations.charcount[lang],
+    loan: subpageTranslations.loan[lang],
+    retirement: subpageTranslations.retirement[lang],
+    salary: subpageTranslations.salary[lang],
+    savings: subpageTranslations.savings[lang],
+    shutterCount: shutterTranslations[lang],
+    textconv: subpageTranslations.textconv[lang],
+    unit: subpageTranslations.unit[lang],
+    vat: subpageTranslations.vat[lang]
+  };
+  return {
+    common: pickTranslationKeys(source, [
+      'language', 'darkMode', 'lightMode', 'meta_title', 'meta_description', 'og_title', 'og_description',
+      'filter_all', 'filter_calculator', 'filter_converter', 'filter_generator', 'filter_game', 'cat_calculator',
+      'cat_converter', 'cat_finance', 'cat_generator', 'cat_popular', 'cat_faq', 'faq_q1', 'faq_a1',
+      'faq_q2', 'faq_a2', 'faq_q3', 'faq_a3', 'faq_q4', 'faq_a4'
+    ]),
+    nav: pickTranslationKeys(source, ['nav_home', 'nav_calculator', 'nav_lotto', 'nav_tools', 'nav_games', 'nav_blog']),
+    footer: pickTranslationKeys(source, ['footer_toolsTitle', 'footer_infoTitle', 'footer_socialTitle', 'footer_calculatorLink', 'footer_lottoLink', 'footer_toolsLink', 'footer_home', 'footer_contact']),
+    cal: cal,
+    games: games,
+    lotto: {
+      meta: pickTranslationKeys(source, ['lotto_meta_title', 'lotto_meta_description']),
+      eyebrow: source.lotto_eyebrow,
+      title: source.lotto_title,
+      copy: source.lotto_copy,
+      intro: source.lotto_intro,
+      fixedLabel: source.lotto_fixedLabel,
+      slot1: source.lotto_slot1, slot2: source.lotto_slot2, slot3: source.lotto_slot3,
+      slot4: source.lotto_slot4, slot5: source.lotto_slot5, slot6: source.lotto_slot6,
+      generateOne: source.lotto_generateOne, generateFive: source.lotto_generateFive, reset: source.lotto_reset,
+      toolTitle: source.tool_lotto_title, toolDesc: source.tool_lotto_desc
+    },
+    tools: Object.assign(tools, pickTranslationKeys(source, ['tools_meta_title', 'tools_meta_description', 'tools_eyebrow', 'tools_title', 'tools_copy', 'tool_charcount_title', 'tool_charcount_desc', 'tool_unit_title', 'tool_unit_desc', 'tool_textconv_title', 'tool_textconv_desc', 'tool_shutter_count_title', 'tool_shutter_count_desc', 'tool_bmi_title', 'tool_bmi_desc', 'tool_salary_title', 'tool_salary_desc', 'tool_vat_title', 'tool_vat_desc', 'tool_loan_title', 'tool_loan_desc', 'tool_savings_title', 'tool_savings_desc', 'tool_retirement_title', 'tool_retirement_desc'])),
+    blog: {
+      nav: source.nav_blog,
+      meta: { title: source.blog_meta_title, description: source.blog_meta_description },
+      eyebrow: source.blog_eyebrow, title: source.blog_title, copy: source.blog_copy, read: source.blog_read,
+      post: { title: source.blog_post_title, summary: source.blog_post_summary, date: source.blog_post_date, category: source.blog_post_category, heading: source.blog_post_heading, body: source.blog_post_body },
+      related: source.blog_related, back: source.blog_back
+    }
+  };
+}
+
+SUPPORTED_LANGUAGES.forEach((lang) => {
+  translations[lang] = buildTranslationCatalog(lang);
+});
+
 function getSubpageName() {
   const path = window.location.pathname;
   const match = path.match(/\/(?:cal|tools)\/([^/]+)\/(?:index\.html?)?$/);
@@ -736,12 +842,30 @@ function getCurrentLanguage() {
   return detectBrowserLanguage();
 }
 
-function translate(key, lang) {
-  const dict = translations[lang] || translations[DEFAULT_LANGUAGE];
-  if (dict && Object.prototype.hasOwnProperty.call(dict, key)) {
-    return dict[key];
+function findGroupedTranslation(group, key) {
+  if (!group || typeof group !== 'object') return undefined;
+  if (key.includes('.')) {
+    const value = key.split('.').reduce((current, segment) => {
+      return current && typeof current === 'object' ? current[segment] : undefined;
+    }, group);
+    if (value !== undefined) return value;
   }
-  const fallback = translations[DEFAULT_LANGUAGE];
+  if (Object.prototype.hasOwnProperty.call(group, key)) return group[key];
+  for (const child of Object.values(group)) {
+    const value = findGroupedTranslation(child, key);
+    if (value !== undefined) return value;
+  }
+  return undefined;
+}
+
+function translate(key, lang) {
+  const grouped = findGroupedTranslation(translations[lang], key);
+  if (grouped !== undefined) return grouped;
+  const dict = legacyTranslations[lang] || legacyTranslations[DEFAULT_LANGUAGE];
+  if (dict && Object.prototype.hasOwnProperty.call(dict, key)) return dict[key];
+  const fallbackGrouped = findGroupedTranslation(translations[DEFAULT_LANGUAGE], key);
+  if (fallbackGrouped !== undefined) return fallbackGrouped;
+  const fallback = legacyTranslations[DEFAULT_LANGUAGE];
   return (fallback && fallback[key] !== undefined) ? fallback[key] : key;
 }
 
