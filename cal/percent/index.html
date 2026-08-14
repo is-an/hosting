@@ -44,27 +44,27 @@
     <section class="hero">
       <div class="container">
         <h1>퍼센트 계산기</h1>
-        <p class="hero-copy">A의 B%, A는 B의 몇%, 증감 비율을 쉽고 빠르게 계산하세요.</p>
+        <p class="hero-copy" data-i18n="sub_percent_copy">A의 B%, A는 B의 몇%, 증감 비율을 쉽고 빠르게 계산하세요.</p>
       </div>
     </section>
 
     <div class="container">
       <section class="calculator-section">
         <div class="calc-tabs">
-          <button class="calc-tab-btn active" data-calc="percent-of">A의 B%</button>
-          <button class="calc-tab-btn" data-calc="percent-is">A는 B의 몇%</button>
-          <button class="calc-tab-btn" data-calc="percent-increase">증가 비율</button>
-          <button class="calc-tab-btn" data-calc="percent-decrease">감소 비율</button>
+          <button class="calc-tab-btn active" data-calc="percent-of" data-i18n="sub_percent_tabOf">A의 B%</button>
+          <button class="calc-tab-btn" data-calc="percent-is" data-i18n="sub_percent_tabIs">A는 B의 몇%</button>
+          <button class="calc-tab-btn" data-calc="percent-increase" data-i18n="sub_percent_increase">증가 비율</button>
+          <button class="calc-tab-btn" data-calc="percent-decrease" data-i18n="sub_percent_decrease">감소 비율</button>
         </div>
 
         <div id="percent-of" class="calc-tab-content active">
           <div class="calculator-card">
             <div class="form-group">
-              <label for="percentOf_a">A (기준값)</label>
+              <label for="percentOf_a" data-i18n="sub_percent_base">A (기준값)</label>
               <input type="number" id="percentOf_a" placeholder="예: 1000" step="0.01">
             </div>
             <div class="form-group">
-              <label for="percentOf_b">B (%)</label>
+              <label for="percentOf_b" data-i18n="sub_percent_percent">B (%)</label>
               <input type="number" id="percentOf_b" placeholder="예: 15" step="0.01">
             </div>
             <div id="percentOf_result" class="result-display"></div>
@@ -74,11 +74,11 @@
         <div id="percent-is" class="calc-tab-content">
           <div class="calculator-card">
             <div class="form-group">
-              <label for="percentIs_a">A (값)</label>
+              <label for="percentIs_a" data-i18n="sub_percent_value">A (값)</label>
               <input type="number" id="percentIs_a" placeholder="예: 150" step="0.01">
             </div>
             <div class="form-group">
-              <label for="percentIs_b">B (기준값)</label>
+              <label for="percentIs_b" data-i18n="sub_percent_base">B (기준값)</label>
               <input type="number" id="percentIs_b" placeholder="예: 1000" step="0.01">
             </div>
             <div id="percentIs_result" class="result-display"></div>
@@ -88,11 +88,11 @@
         <div id="percent-increase" class="calc-tab-content">
           <div class="calculator-card">
             <div class="form-group">
-              <label for="increase_from">이전 값</label>
+              <label for="increase_from" data-i18n="sub_percent_previous">이전 값</label>
               <input type="number" id="increase_from" placeholder="예: 100" step="0.01">
             </div>
             <div class="form-group">
-              <label for="increase_to">현재 값</label>
+              <label for="increase_to" data-i18n="sub_percent_current">현재 값</label>
               <input type="number" id="increase_to" placeholder="예: 120" step="0.01">
             </div>
             <div id="increase_result" class="result-display"></div>
@@ -102,11 +102,11 @@
         <div id="percent-decrease" class="calc-tab-content">
           <div class="calculator-card">
             <div class="form-group">
-              <label for="decrease_from">이전 값</label>
+              <label for="decrease_from" data-i18n="sub_percent_previous">이전 값</label>
               <input type="number" id="decrease_from" placeholder="예: 100" step="0.01">
             </div>
             <div class="form-group">
-              <label for="decrease_to">현재 값</label>
+              <label for="decrease_to" data-i18n="sub_percent_current">현재 값</label>
               <input type="number" id="decrease_to" placeholder="예: 80" step="0.01">
             </div>
             <div id="decrease_result" class="result-display"></div>
@@ -124,8 +124,8 @@
         <h2>❓ 자주 묻는 질문</h2>
         <div class="faq-list">
           <div class="faq-item">
-            <h4>1000의 15%는 얼마인가요?</h4>
-            <p>첫 번째 탭 "A의 B%"에서 A에 1000, B에 15를 입력하면 150이라는 답을 얻을 수 있습니다.</p>
+            <h4 data-i18n="sub_percent_faq1">1000의 15%는 얼마인가요?</h4>
+            <p data-i18n="sub_percent_faq1a">첫 번째 탭 "A의 B%"에서 A에 1000, B에 15를 입력하면 150이라는 답을 얻을 수 있습니다.</p>
           </div>
           <div class="faq-item">
             <h4>할인가를 계산하려면?</h4>
@@ -142,12 +142,12 @@
         <h2>🔗 관련 도구</h2>
         <div class="tools-grid">
           <a href="../../tools/vat/" class="tool-card">
-            <h4>부가세 계산기</h4>
-            <p>공급가액과 부가세 계산</p>
+            <h4 data-i18n="sub_percent_vat">부가세 계산기</h4>
+            <p data-i18n="sub_percent_vatDesc">공급가액과 부가세 계산</p>
           </a>
           <a href="../../tools/salary/" class="tool-card">
-            <h4>연봉 계산기</h4>
-            <p>연봉에서 세후 급여 계산</p>
+            <h4 data-i18n="sub_percent_salary">연봉 계산기</h4>
+            <p data-i18n="sub_percent_salaryDesc">연봉에서 세후 급여 계산</p>
           </a>
         </div>
       </section>

@@ -179,6 +179,8 @@ const translations = {
     cat_popular: "⭐ Popular Tools",
     cat_faq: "❓ Frequently Asked Questions",
 
+    tool_calculator_title: "Calculators Collection",
+    tool_calculator_desc: "A collection of formula-based tools to quickly check necessary calculations.",
     tool_percent_title: "Percentage Calculator",
     tool_percent_desc: "Quickly calculate B% of A, what percent A is of B, and rate of change.",
     tool_age_title: "Age Calculator",
@@ -292,6 +294,8 @@ const translations = {
     cat_popular: "⭐ 热门工具",
     cat_faq: "❓ 常见问题",
 
+    tool_calculator_title: "计算器集合",
+    tool_calculator_desc: "将基于公式的工具集中在一处，以便快速检查所需的计算。",
     tool_percent_title: "百分比计算器",
     tool_percent_desc: "快速计算 A 的 B%、A 是 B 的百分之多少，以及增减比率。",
     tool_age_title: "年龄计算器",
@@ -405,6 +409,8 @@ const translations = {
     cat_popular: "⭐ 人気ツール",
     cat_faq: "❓ よくある質問",
 
+    tool_calculator_title: "計算機集合",
+    tool_calculator_desc: "必要な計算を素早く確認できる公式ベースのツールを一箇所にまとめました。",
     tool_percent_title: "パーセント計算機",
     tool_percent_desc: "AのB%、AはBの何%か、増減率などを素早く計算します。",
     tool_age_title: "年齢計算機",
@@ -540,10 +546,10 @@ const subpageTranslations = {
     ja: { title: '除隊日計算機 - 服務期間を計算', h1: '除隊日計算機', calculate: '計算する', copyButton: 'コピー', reset: 'リセット', faq: '❓ よくある質問' }
   },
   percent: {
-    ko: { title: '퍼센트 계산기 - 할인, 증감 비율 계산 | 무료 온라인 도구', h1: '퍼센트 계산기', calculate: '계산하기', copyButton: '복사', reset: '초기화', faq: '❓ 자주 묻는 질문', related: '🔗 관련 도구' },
-    en: { title: 'Percentage Calculator - Discount and Change Rate', h1: 'Percentage Calculator', calculate: 'Calculate', copyButton: 'Copy', reset: 'Reset', faq: '❓ Frequently asked questions', related: '🔗 Related tools' },
-    zh: { title: '百分比计算器 - 折扣与增减比例计算', h1: '百分比计算器', calculate: '计算', copyButton: '复制', reset: '重置', faq: '❓ 常见问题', related: '🔗 相关工具' },
-    ja: { title: 'パーセント計算機 - 割引と増減率を計算', h1: 'パーセント計算機', calculate: '計算する', copyButton: 'コピー', reset: 'リセット', faq: '❓ よくある質問', related: '🔗 関連ツール' }
+    ko: { title: '퍼센트 계산기 - 할인, 증감 비율 계산 | 무료 온라인 도구', h1: '퍼센트 계산기', copy: 'A의 B%, A는 B의 몇%, 증감 비율을 쉽고 빠르게 계산하세요.', tabOf: 'A의 B%', tabIs: 'A는 B의 몇%', increase: '증가 비율', decrease: '감소 비율', base: 'A (기준값)', percent: 'B (%)', value: 'A (값)', previous: '이전 값', current: '현재 값', faq: '❓ 자주 묻는 질문', faq1: '1000의 15%는 얼마인가요?', faq1a: '첫 번째 탭 "A의 B%"에서 A에 1000, B에 15를 입력하면 150이라는 답을 얻을 수 있습니다.', vat: '부가세 계산기', vatDesc: '공급가액과 부가세 계산', salary: '연봉 계산기', salaryDesc: '연봉에서 세후 급여 계산' },
+    en: { title: 'Percentage Calculator - Discount and Change Rate', h1: 'Percentage Calculator', copy: 'Quickly calculate B% of A, what percentage A is of B, and the rate of change.', tabOf: 'B% of A', tabIs: 'What percent is A of B?', increase: 'Increase rate', decrease: 'Decrease rate', base: 'A (base value)', percent: 'B (%)', value: 'A (value)', previous: 'Previous value', current: 'Current value', faq: '❓ Frequently asked questions', faq1: 'What is 15% of 1000?', faq1a: 'Enter 1000 for A and 15 for B in the "B% of A" tab to get 150.', vat: 'VAT Calculator', vatDesc: 'Calculate supply price and VAT', salary: 'Salary Calculator', salaryDesc: 'Calculate take-home pay from salary' },
+    zh: { title: '百分比计算器 - 折扣与增减比例计算', h1: '百分比计算器', copy: '快速计算 A 的 B%、A 是 B 的百分之多少以及增减比例。', tabOf: 'A 的 B%', tabIs: 'A 是 B 的百分之多少', increase: '增加比例', decrease: '减少比例', base: 'A（基准值）', percent: 'B（%）', value: 'A（数值）', previous: '之前的值', current: '当前值', faq: '❓ 常见问题', faq1: '1000 的 15% 是多少？', faq1a: '在“A 的 B%”标签中输入 A=1000、B=15，即可得到 150。', vat: '增值税计算器', vatDesc: '计算供货价和增值税', salary: '薪资计算器', salaryDesc: '根据年薪计算税后工资' },
+    ja: { title: 'パーセント計算機 - 割引と増減率を計算', h1: 'パーセント計算機', copy: 'AのB%、AはBの何%か、増減率を簡単に計算します。', tabOf: 'AのB%', tabIs: 'AはBの何%', increase: '増加率', decrease: '減少率', base: 'A（基準値）', percent: 'B（%）', value: 'A（値）', previous: '以前の値', current: '現在の値', faq: '❓ よくある質問', faq1: '1000の15%はいくつですか？', faq1a: '「AのB%」タブでAに1000、Bに15を入力すると150になります。', vat: '付加価値税計算機', vatDesc: '供給価額と税額を計算', salary: '年俸計算機', salaryDesc: '年俸から手取り給与を計算' }
   },
   bmi: {
     ko: { title: 'BMI 계산기 - 건강 체중 계산 | 무료 온라인 도구', h1: 'BMI 계산기', calculate: '계산하기', copyButton: '복사', reset: '초기화', faq: '❓ 자주 묻는 질문' },
@@ -611,6 +617,18 @@ function applySubpageLanguage(lang) {
   const page = getSubpageName();
   const dictionary = page && subpageTranslations[page] && subpageTranslations[page][lang];
   if (!dictionary) return;
+  if (page === 'percent') {
+    const percentKeys = {
+      copy: 'copy', tabOf: 'tabOf', tabIs: 'tabIs', increase: 'increase', decrease: 'decrease',
+      base: 'base', percent: 'percent', value: 'value', previous: 'previous', current: 'current',
+      faq1: 'faq1', faq1a: 'faq1a', vat: 'vat', vatDesc: 'vatDesc', salary: 'salary', salaryDesc: 'salaryDesc'
+    };
+    document.querySelectorAll('[data-i18n^="sub_percent_"]').forEach((element) => {
+      const suffix = element.getAttribute('data-i18n').replace('sub_percent_', '');
+      const field = percentKeys[suffix];
+      if (field && dictionary[field]) element.textContent = dictionary[field];
+    });
+  }
   if (dictionary.title) document.title = dictionary.title;
   const description = document.querySelector('meta[name="description"]');
   if (description && dictionary.description) description.setAttribute('content', dictionary.description);
