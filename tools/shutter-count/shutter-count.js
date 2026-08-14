@@ -20,12 +20,9 @@
   function formatFraction(value) { if (!value) return unknown(); return value[0] === 1 ? '1/' + value[1] + ' s' : (value[0] / value[1]).toFixed(3).replace(/0+$/, '').replace(/\.$/, '') + ' s'; }
   function formatNumber(value) { return Number.isFinite(value) ? Math.round(value).toLocaleString() : unknown(); }
 
-  function findTiff(buffer) {
-    const view = new DataView(buffer);
-    if (view.byteLength < 8) return null;
-    if ((view.getUint8(0) === 0x49 && view.getUint8(1) === 0x49) || (view.getUint8(0) === 0x4D && view.getUint8(1) === 0x4D)) return { view: view, start: 0 };
-    if (view.getUint16(0) !== 0xFFD8) return null;
-    let offset = 2;
+  function scanJpegExif(view, soiOffset) {
+    if (soiOffset == null || soiOffset < 0 || soiOffset + 4 > view.byteLength || view.getUint16(soiOffset) !== 0xFFD8) return null;
+    let offset = soiOffset + 2;
     while (offset + 4 <= view.byteLength) {
       if (view.getUint8(offset) !== 0xFF) break;
       const marker = view.getUint8(offset + 1); const length = view.getUint16(offset + 2);
@@ -34,6 +31,27 @@
     }
     return null;
   }
+
+  // RAF directory: big-endian uint32 at 0x54 points to the embedded JPEG (with its own EXIF/APP1) - ref: libraw/exiftool RAF layout
+  function readRafJpegOffset(view) {
+    if (view.byteLength < 92) return null;
+    const offset = view.getUint32(84, false);
+    return (offset > 0 && offset < view.byteLength) ? offset : null;
+  }
+
+  function findTiff(buffer) {
+    const view = new DataView(buffer);
+    if (view.byteLength < 8) return null;
+    if ((view.getUint8(0) === 0x49 && view.getUint8(1) === 0x49) || (view.getUint8(0) === 0x4D && view.getUint8(1) === 0x4D)) return { view: view, start: 0 };
+    if (view.byteLength >= 16 && readAscii(view, 0, 16) === 'FUJIFILMCCD-RAW') {
+      const source = scanJpegExif(view, readRafJpegOffset(view));
+      if (!source) throw new Error('RAF_INVALID');
+      return source;
+    }
+    if (view.getUint16(0) !== 0xFFD8) return null;
+    return scanJpegExif(view, 0);
+  }
+
 
   function parseExif(buffer) {
     const source = findTiff(buffer); if (!source) throw new Error('NO_EXIF');
@@ -75,7 +93,8 @@
   function parseMakerNote(view, note, little, info) {
     const start = note.offset, signature = readAscii(view, start, Math.min(note.length, 12));
     let offset = start;
-    if (signature.indexOf('FUJIFILM') === 0) { offset += 12; little = false; }
+    // Fujifilm MakerNote IFD is always little-endian, regardless of the main TIFF byte order
+    if (signature.indexOf('FUJIFILM') === 0) { offset += 12; little = true; }
     else if (signature.indexOf('SONY') === 0) { offset += 12; }
     else if (signature.indexOf('Panasonic') === 0) { offset += 12; }
     if (offset + 2 > view.byteLength) return;
@@ -124,7 +143,12 @@
   async function handleFile(file) {
     if (!file) return; reset(false); status.textContent = t('shutter_reading', '사진 정보를 분석하는 중입니다...');
     if (file.type.indexOf('image/') === 0) { previewUrl = URL.createObjectURL(file); preview.src = previewUrl; previewWrap.classList.remove('hidden'); }
-    try { const info = parseExif(await file.arrayBuffer()); showResult(info, file); status.textContent = t('shutter_complete', '분석이 완료되었습니다.'); } catch (error) { showError(error.message === 'NO_EXIF' ? 'shutter_noExif' : 'shutter_error'); status.textContent = t('shutter_noExif', '이 파일에서 읽을 수 있는 EXIF 정보를 찾지 못했습니다.'); }
+    try {
+      const info = parseExif(await file.arrayBuffer()); showResult(info, file); status.textContent = t('shutter_complete', '분석이 완료되었습니다.');
+    } catch (error) {
+      const key = error.message === 'NO_EXIF' ? 'shutter_noExif' : (error.message === 'RAF_INVALID' ? 'shutter_rafInvalid' : 'shutter_error');
+      showError(key); status.textContent = t(key, '이 파일에서 읽을 수 있는 EXIF 정보를 찾지 못했습니다.');
+    }
   }
   function reset(clearInput) { if (previewUrl) URL.revokeObjectURL(previewUrl); previewUrl = null; preview.removeAttribute('src'); previewWrap.classList.add('hidden'); result.replaceChildren(); result.classList.add('hidden'); actions.classList.add('hidden'); latestInfo = null; if (clearInput) fileInput.value = ''; }
   fileInput.addEventListener('change', event => handleFile(event.target.files[0]));
