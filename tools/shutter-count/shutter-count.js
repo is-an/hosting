@@ -32,11 +32,13 @@
     return null;
   }
 
-  // RAF directory: big-endian uint32 at 0x54 points to the embedded JPEG (with its own EXIF/APP1) - ref: libraw/exiftool RAF layout
-  function readRafJpegOffset(view) {
+  // RAF directory: big-endian uint32 values at 0x54/0x58 locate the embedded JPEG.
+  function readRafJpegRange(view) {
     if (view.byteLength < 92) return null;
     const offset = view.getUint32(84, false);
-    return (offset > 0 && offset < view.byteLength) ? offset : null;
+    const length = view.getUint32(88, false);
+    if (offset <= 0 || length <= 0 || offset + length > view.byteLength) return null;
+    return { offset: offset, length: length };
   }
 
   function findTiff(buffer) {
@@ -44,7 +46,8 @@
     if (view.byteLength < 8) return null;
     if ((view.getUint8(0) === 0x49 && view.getUint8(1) === 0x49) || (view.getUint8(0) === 0x4D && view.getUint8(1) === 0x4D)) return { view: view, start: 0 };
     if (view.byteLength >= 16 && readAscii(view, 0, 16) === 'FUJIFILMCCD-RAW') {
-      const source = scanJpegExif(view, readRafJpegOffset(view));
+      const range = readRafJpegRange(view);
+      const source = range ? scanJpegExif(view, range.offset) : null;
       if (!source) throw new Error('RAF_INVALID');
       return source;
     }
@@ -140,11 +143,28 @@
     const grid = document.createElement('div'); grid.className = 'shutter-grid'; const exposure = Array.isArray(info.exposure) ? formatFraction(info.exposure) : unknown(); const aperture = fraction(info.aperture); const focal = fraction(info.focalLength); const width = info.pixelWidth || info.width; const height = info.pixelHeight || info.height; [[t('shutter_make', '제조사'), cleanText(info.make) || unknown()], [t('shutter_model', '모델'), cleanText(info.model) || unknown()], [t('shutter_date', '촬영일시'), cleanText(info.dateOriginal || info.date) || unknown()], [t('shutter_lens', '렌즈'), cleanText(info.lens) || unknown()], ['ISO', info.iso ? String(info.iso) : unknown()], [t('shutter_speed', '셔터스피드'), exposure], [t('shutter_aperture', '조리개'), aperture ? 'f/' + aperture.toFixed(1) : unknown()], [t('shutter_focal', '초점거리'), focal ? focal.toFixed(1).replace(/\.0$/, '') + ' mm' : unknown()], [t('shutter_file', '파일 형식'), (file.type || file.name.split('.').pop() || '').toUpperCase()], [t('shutter_size', '이미지 크기'), width && height ? width + ' × ' + height : unknown()]].forEach(item => grid.appendChild(line(item[0], item[1]))); result.appendChild(grid); result.classList.remove('hidden'); actions.classList.remove('hidden');
   }
   function showError(key) { result.textContent = t(key, 'EXIF 정보를 확인할 수 없습니다.'); result.classList.remove('hidden'); actions.classList.add('hidden'); }
+  function setPreview(file, buffer) {
+    const view = new DataView(buffer);
+    const isRaf = view.byteLength >= 16 && readAscii(view, 0, 16) === 'FUJIFILMCCD-RAW';
+    if (isRaf) {
+      const range = readRafJpegRange(view);
+      if (!range) return false;
+      previewUrl = URL.createObjectURL(new Blob([buffer.slice(range.offset, range.offset + range.length)], { type: 'image/jpeg' }));
+    } else if (file.type.indexOf('image/') === 0) {
+      previewUrl = URL.createObjectURL(file);
+    } else {
+      return false;
+    }
+    preview.src = previewUrl;
+    previewWrap.classList.remove('hidden');
+    return true;
+  }
   async function handleFile(file) {
     if (!file) return; reset(false); status.textContent = t('shutter_reading', '사진 정보를 분석하는 중입니다...');
-    if (file.type.indexOf('image/') === 0) { previewUrl = URL.createObjectURL(file); preview.src = previewUrl; previewWrap.classList.remove('hidden'); }
+    const buffer = await file.arrayBuffer();
+    setPreview(file, buffer);
     try {
-      const info = parseExif(await file.arrayBuffer()); showResult(info, file); status.textContent = t('shutter_complete', '분석이 완료되었습니다.');
+      const info = parseExif(buffer); showResult(info, file); status.textContent = t('shutter_complete', '분석이 완료되었습니다.');
     } catch (error) {
       const key = error.message === 'NO_EXIF' ? 'shutter_noExif' : (error.message === 'RAF_INVALID' ? 'shutter_rafInvalid' : 'shutter_error');
       showError(key); status.textContent = t(key, '이 파일에서 읽을 수 있는 EXIF 정보를 찾지 못했습니다.');
