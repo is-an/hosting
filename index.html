@@ -72,10 +72,8 @@
     <h1 data-i18n="home_title">필요한 기능을 빠르게 찾아보세요</h1>
     <p class="hero-copy" data-i18n="home_copy">계산기, 도구, 게임, 로또, 사주와 유용한 정보를 한곳에서 제공합니다.</p>
   </div></section>
-  <section class="container search-section home-search">
-
   <!-- ========== 검색/필터 섹션 ========== -->
-  <section class="container search-section">
+  <section class="container search-section home-search">
     <input type="text" id="toolSearch" class="search-input" data-i18n-placeholder="home_searchPlaceholder" placeholder="기능 검색... (예: BMI, 로또, 사주)">
   </section>
 
@@ -84,8 +82,6 @@
     <a href="./cal/dday/" class="tool-card home-feature-card" data-name="D-Day 디데이 날짜"><h3 data-i18n="tool_dday_title">D-Day 계산기</h3><p data-i18n="popular_dday_desc">목표 날짜까지 남은 날짜를 확인하세요.</p></a>
     <a href="./lotto/" class="tool-card home-feature-card" data-name="로또 번호 생성"><h3 data-i18n="tool_lotto_title">로또번호 생성기</h3><p data-i18n="tool_lotto_desc">간편하게 로또 번호를 생성하세요.</p></a>
     <a href="./tools/bmi/" class="tool-card home-feature-card" data-name="BMI 체질량지수 건강"><h3 data-i18n="tool_bmi_title">BMI 계산기</h3><p data-i18n="tool_bmi_desc">키와 체중으로 BMI를 계산하세요.</p></a>
-    <a href="./tools/shutter-count/" class="tool-card home-feature-card" data-name="카메라 셔터카운트 사진 EXIF"><h3 data-i18n="tool_shutter_count_title">셔터카운트 확인기</h3><p data-i18n="tool_shutter_count_desc">사진의 EXIF 정보를 확인하세요.</p></a>
-    <a href="./games/reaction/" class="tool-card home-feature-card" data-name="반응속도 게임 테스트"><h3 data-i18n="game_reaction_title">반응속도 테스트</h3><p data-i18n="game_reaction_desc">내 반응속도를 측정해보세요.</p></a>
   </div></section>
   <section class="container home-section"><h2 data-i18n="home_categories_title">📂 카테고리</h2><div class="home-category-grid">
     <a href="./cal/" class="tool-card home-category-card" data-name="계산기 퍼센트 나이 D-Day 전역일"><span class="home-category-icon">🧮</span><h3 data-i18n="home_category_cal">계산기</h3><p data-i18n="home_category_cal_desc">나이, D-Day, 퍼센트 등을 계산합니다.</p></a>
@@ -96,6 +92,9 @@
     <a href="./blog/" class="tool-card home-category-card" data-name="블로그 정보 사용법"><span class="home-category-icon">📝</span><h3 data-i18n="home_category_blog">블로그</h3><p data-i18n="home_category_blog_desc">도구 사용법과 유용한 정보를 확인하세요.</p></a>
   </div></section>
   
+  <details class="container home-more">
+    <summary>전체 기능 보기</summary>
+
   <!-- ========== 계산기 카테고리 ========== -->
   <section class="container">
     <h2 data-i18n="cat_calculator">📊 계산기</h2>
@@ -269,6 +268,7 @@
       </div>
     </div>
   </section>
+  </details>
 </main>
 
   <div id="ads-slot" class="ads-slot"></div>

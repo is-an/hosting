@@ -299,7 +299,7 @@ function initToolsFilter() {
     .filter(section => section.querySelector('.tools-grid') && !section.classList.contains('popular-tools') && !section.classList.contains('faq-section'));
   const extraSections = document.querySelectorAll('main section.container.popular-tools, main section.container.faq-section');
   
-  if (!searchInput || !filterBtns.length || !toolCards.length) {
+  if (!searchInput || !toolCards.length) {
     return; // 홈페이지가 아닐 경우 실행하지 않음
   }
   
