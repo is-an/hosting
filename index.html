@@ -65,201 +65,31 @@
 <body>
   <div id="site-header"></div>
 <main>
-    <!-- ========== 히어로 섹션 ========== -->
-    <section class="hero">
-      <div class="container">
-        <p class="eyebrow" data-i18n="home_eyebrow">무료 온라인 도구 모음</p>
-        <h1 data-i18n="home_title">유용한 도구를 한곳에서</h1>
-        <p class="hero-copy" data-i18n="home_copy">무료 온라인 계산기, 변환기, 생성기를 사용해보세요. 빠르고, 쉽고, 정확합니다.</p>
-      </div>
-    </section>
-
-    <!-- ========== 검색/필터 섹션 ========== -->
-    <section class="container search-section">
-      <input type="text" id="toolSearch" class="search-input" data-i18n-placeholder="home_searchPlaceholder" placeholder="도구 검색... (예: BMI, 연봉, 로또)">
-      <div class="category-filter">
-        <button class="filter-btn active" data-filter="all" data-i18n="filter_all">전체</button>
-        <button class="filter-btn" data-filter="calculator" data-i18n="filter_calculator">계산기</button>
-        <button class="filter-btn" data-filter="converter" data-i18n="filter_converter">변환기</button>
-        <button class="filter-btn" data-filter="generator" data-i18n="filter_generator">생성기</button>
-        <button class="filter-btn" data-filter="game" data-i18n="filter_game">게임</button>
-      </div>
-    </section>
-
-    <!-- ========== 계산기 카테고리 ========== -->
-    <section class="container">
-      <h2 data-i18n="cat_calculator">📊 계산기</h2>
-      <div class="tools-grid" data-category="calculator">
-        <a href="./cal/percent/" class="tool-card tool-link" data-name="퍼센트">
-          <h3 data-i18n="tool_percent_title">퍼센트 계산기</h3>
-          <p data-i18n="tool_percent_desc">A의 B%, A는 B의 몇 %, 증감 비율 등을 빠르게 계산합니다.</p>
-          <span class="arrow" aria-label="바로가기">➜</span>
-        </a>
-        <a href="./cal/age/" class="tool-card tool-link" data-name="나이">
-          <h3 data-i18n="tool_age_title">나이 계산기</h3>
-          <p data-i18n="tool_age_desc">생년월일을 입력하면 만 나이, 경과 일수, 다음 생일까지의 날짜를 계산합니다.</p>
-          <span class="arrow" aria-label="바로가기">➜</span>
-        </a>
-        <a href="./cal/dday/" class="tool-card tool-link" data-name="D-Day">
-          <h3 data-i18n="tool_dday_title">D-Day 계산기</h3>
-          <p data-i18n="tool_dday_desc">목표 날짜를 입력하면 오늘을 기준으로 D-Day까지 남은 날짜를 계산합니다.</p>
-          <span class="arrow" aria-label="바로가기">➜</span>
-        </a>
-        <a href="./cal/discharge/" class="tool-card tool-link" data-name="전역일">
-          <h3 data-i18n="tool_discharge_title">전역일 계산기</h3>
-          <p data-i18n="tool_discharge_desc">입대일과 복무기간으로부터 전역일을 계산합니다.</p>
-          <span class="arrow" aria-label="바로가기">➜</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- ========== 변환기 카테고리 ========== -->
-    <section class="container">
-      <h2 data-i18n="cat_converter">🔄 변환기</h2>
-      <div class="tools-grid" data-category="converter">
-        <a href="./tools/charcount/" class="tool-card tool-link" data-name="글자수">
-          <h3 data-i18n="tool_charcount_title">글자수/바이트 계산기</h3>
-          <p data-i18n="tool_charcount_desc">텍스트의 글자수, 공백 포함/제외 글자수, 바이트 수를 실시간으로 계산합니다.</p>
-          <span class="arrow" aria-label="바로가기">➜</span>
-        </a>
-        <a href="./tools/unit/" class="tool-card tool-link" data-name="단위변환">
-          <h3 data-i18n="tool_unit_title">단위 변환기</h3>
-          <p data-i18n="tool_unit_desc">길이, 무게, 온도, 면적, 부피, 시간, 데이터 용량을 변환합니다.</p>
-          <span class="arrow" aria-label="바로가기">➜</span>
-        </a>
-        <a href="./tools/textconv/" class="tool-card tool-link" data-name="텍스트">
-          <h3 data-i18n="tool_textconv_title">텍스트 변환 도구</h3>
-          <p data-i18n="tool_textconv_desc">텍스트를 다양한 방식으로 변환하고 처리합니다.</p>
-          <span class="arrow" aria-label="바로가기">➜</span>
-        </a>
-        <a href="./tools/shutter-count/" class="tool-card tool-link" data-name="카메라 셔터카운트 EXIF">
-          <h3 data-i18n="tool_shutter_count_title">카메라 셔터카운트 확인기</h3>
-          <p data-i18n="tool_shutter_count_desc">사진의 EXIF 정보를 브라우저에서 분석하여 카메라 정보와 확인 가능한 셔터카운트를 표시합니다.</p>
-          <span class="arrow" aria-label="바로가기">➜</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- ========== 금융 계산기 카테고리 ========== -->
-    <section class="container">
-      <h2 data-i18n="cat_finance">💰 금융 계산기</h2>
-      <div class="tools-grid" data-category="calculator">
-        <a href="./tools/bmi/" class="tool-card tool-link" data-name="BMI">
-          <h3 data-i18n="tool_bmi_title">BMI 계산기</h3>
-          <p data-i18n="tool_bmi_desc">키와 체중을 입력하면 BMI와 건강 상태를 표시합니다.</p>
-          <span class="arrow" aria-label="바로가기">➜</span>
-        </a>
-        <a href="./tools/salary/" class="tool-card tool-link" data-name="연봉">
-          <h3 data-i18n="tool_salary_title">연봉 계산기</h3>
-          <p data-i18n="tool_salary_desc">연봉으로부터 월급, 세전/세후 금액을 계산합니다.</p>
-          <span class="arrow" aria-label="바로가기">➜</span>
-        </a>
-        <a href="./tools/vat/" class="tool-card tool-link" data-name="부가세">
-          <h3 data-i18n="tool_vat_title">부가세 계산기</h3>
-          <p data-i18n="tool_vat_desc">공급가액, 부가세, 합계금액을 계산하고 역산합니다.</p>
-          <span class="arrow" aria-label="바로가기">➜</span>
-        </a>
-        <a href="./tools/loan/" class="tool-card tool-link" data-name="대출">
-          <h3 data-i18n="tool_loan_title">대출 이자 계산기</h3>
-          <p data-i18n="tool_loan_desc">대출금액, 이율, 기간으로부터 월 상환액과 총 이자를 계산합니다.</p>
-          <span class="arrow" aria-label="바로가기">➜</span>
-        </a>
-        <a href="./tools/savings/" class="tool-card tool-link" data-name="예금">
-          <h3 data-i18n="tool_savings_title">예금/적금 이자 계산기</h3>
-          <p data-i18n="tool_savings_desc">예치금과 이율로부터 이자와 만기 수령액을 계산합니다.</p>
-          <span class="arrow" aria-label="바로가기">➜</span>
-        </a>
-        <a href="./tools/retirement/" class="tool-card tool-link" data-name="퇴직금">
-          <h3 data-i18n="tool_retirement_title">퇴직금 계산기</h3>
-          <p data-i18n="tool_retirement_desc">입사일과 퇴사일로부터 예상 퇴직금을 계산합니다.</p>
-          <span class="arrow" aria-label="바로가기">➜</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- ========== 생성기 카테고리 ========== -->
-    <section class="container">
-      <h2 data-i18n="cat_generator">🎰 생성기</h2>
-      <div class="tools-grid" data-category="generator">
-        <a href="./lotto/" class="tool-card tool-link" data-name="로또">
-          <h3 data-i18n="tool_lotto_title">로또번호 생성기</h3>
-          <p data-i18n="tool_lotto_desc">1부터 45까지의 숫자 중 6개를 무작위로 선택하여 로또번호를 추천합니다.</p>
-          <span class="arrow" aria-label="바로가기">➜</span>
-        </a>
-      </div>
-    </section>
-
-    <section class="container">
-      <h2 data-i18n="cat_games">🎮 미니게임</h2>
-      <div class="tools-grid" data-category="game">
-        <a href="./games/reaction/" class="tool-card tool-link" data-name="반응속도 게임">
-          <h3 data-i18n="game_reaction_title">반응속도 테스트</h3>
-          <p data-i18n="game_reaction_desc">화면이 바뀌는 순간을 눌러 내 반응 시간을 확인하세요.</p>
-          <span class="tool-btn" data-i18n="game_start">게임 시작</span>
-        </a>
-        <a href="./games/sudoku/" class="tool-card tool-link" data-name="스도쿠 게임">
-          <h3 data-i18n="game_sudoku_title">스도쿠</h3>
-          <p data-i18n="game_sudoku_desc">난이도를 고르고 새로운 9x9 퍼즐에 도전하세요.</p>
-          <span class="tool-btn" data-i18n="game_start">게임 시작</span>
-        </a>
-        <a href="./games/typing/" class="tool-card tool-link" data-name="타자 속도 게임">
-          <h3 data-i18n="game_typing_title">타자 속도 테스트</h3>
-          <p data-i18n="game_typing_desc">정확도와 분당 속도를 측정해 보세요.</p>
-          <span class="tool-btn" data-i18n="game_start">게임 시작</span>
-        </a>
-        <a href="./games/block-puzzle/" class="tool-card tool-link" data-name="블록 퍼즐 게임">
-          <h3 data-i18n="game_block_title">블록 퍼즐</h3>
-          <p data-i18n="game_block_desc">블록을 쌓고 줄을 완성해 최고 점수에 도전하세요.</p>
-          <span class="tool-btn" data-i18n="game_start">게임 시작</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- ========== 인기 도구 ========== -->
-    <section class="container popular-tools">
-      <h2 data-i18n="cat_popular">⭐ 인기 도구</h2>
-      <div class="popular-list">
-        <a href="./tools/salary/" class="popular-item">
-          <span class="rank">1</span>
-          <h4 data-i18n="tool_salary_title">연봉 계산기</h4>
-          <p data-i18n="popular_salary_desc">연봉을 입력하고 실수령액을 확인하세요</p>
-        </a>
-        <a href="./tools/bmi/" class="popular-item">
-          <span class="rank">2</span>
-          <h4 data-i18n="tool_bmi_title">BMI 계산기</h4>
-          <p data-i18n="popular_bmi_desc">건강한 체중을 유지하세요</p>
-        </a>
-        <a href="./cal/dday/" class="popular-item">
-          <span class="rank">3</span>
-          <h4 data-i18n="tool_dday_title">D-Day 계산기</h4>
-          <p data-i18n="popular_dday_desc">목표 날짜까지 남은 날짜를 확인하세요</p>
-        </a>
-      </div>
-    </section>
-
-    <!-- ========== FAQ ========== -->
-    <section class="container faq-section">
-      <h2 data-i18n="cat_faq">❓ 자주 묻는 질문</h2>
-      <div class="faq-list">
-        <div class="faq-item">
-          <h4 data-i18n="faq_q1">이 도구들을 사용하려면 회원가입이 필요한가요?</h4>
-          <p data-i18n="faq_a1">아니요, 모든 도구는 완전히 무료이며 회원가입 없이 사용할 수 있습니다.</p>
-        </div>
-        <div class="faq-item">
-          <h4 data-i18n="faq_q2">계산 결과가 정확한가요?</h4>
-          <p data-i18n="faq_a2">네, 모든 계산은 정확한 알고리즘으로 계산되지만, 세금이나 복지혜택 등 개인의 상황에 따라 실제 금액과 다를 수 있습니다.</p>
-        </div>
-        <div class="faq-item">
-          <h4 data-i18n="faq_q3">결과를 저장하거나 내보낼 수 있나요?</h4>
-          <p data-i18n="faq_a3">각 도구의 복사 버튼으로 결과를 클립보드에 복사할 수 있습니다. 현재는 파일 저장 기능은 제공하지 않습니다.</p>
-        </div>
-        <div class="faq-item">
-          <h4 data-i18n="faq_q4">모바일에서도 사용할 수 있나요?</h4>
-          <p data-i18n="faq_a4">네, 모든 도구는 모바일 기기에 최적화되어 있습니다.</p>
-        </div>
-      </div>
-    </section>
-  </main>
+  <section class="hero home-hero"><div class="container">
+    <p class="eyebrow" data-i18n="home_eyebrow">무료 온라인 도구</p>
+    <h1 data-i18n="home_title">필요한 기능을 빠르게 찾아보세요</h1>
+    <p class="hero-copy" data-i18n="home_copy">계산기, 도구, 게임, 로또, 사주와 유용한 정보를 한곳에서 제공합니다.</p>
+  </div></section>
+  <section class="container search-section home-search">
+    <input type="text" id="toolSearch" class="search-input" data-i18n-placeholder="home_searchPlaceholder" placeholder="기능 검색... (예: BMI, 로또, 사주)">
+  </section>
+  <section class="container home-section"><h2 data-i18n="home_popular_title">🔥 인기 기능</h2><div class="home-popular-grid">
+    <a href="./tools/salary/" class="tool-card home-feature-card" data-name="연봉 월급 실수령액"><h3 data-i18n="tool_salary_title">연봉 계산기</h3><p data-i18n="popular_salary_desc">연봉을 입력하고 실수령액을 확인하세요.</p></a>
+    <a href="./cal/dday/" class="tool-card home-feature-card" data-name="D-Day 디데이 날짜"><h3 data-i18n="tool_dday_title">D-Day 계산기</h3><p data-i18n="popular_dday_desc">목표 날짜까지 남은 날짜를 확인하세요.</p></a>
+    <a href="./lotto/" class="tool-card home-feature-card" data-name="로또 번호 생성"><h3 data-i18n="tool_lotto_title">로또번호 생성기</h3><p data-i18n="tool_lotto_desc">간편하게 로또 번호를 생성하세요.</p></a>
+    <a href="./tools/bmi/" class="tool-card home-feature-card" data-name="BMI 체질량지수 건강"><h3 data-i18n="tool_bmi_title">BMI 계산기</h3><p data-i18n="tool_bmi_desc">키와 체중으로 BMI를 계산하세요.</p></a>
+    <a href="./tools/shutter-count/" class="tool-card home-feature-card" data-name="카메라 셔터카운트 사진 EXIF"><h3 data-i18n="tool_shutter_count_title">셔터카운트 확인기</h3><p data-i18n="tool_shutter_count_desc">사진의 EXIF 정보를 확인하세요.</p></a>
+    <a href="./games/reaction/" class="tool-card home-feature-card" data-name="반응속도 게임 테스트"><h3 data-i18n="game_reaction_title">반응속도 테스트</h3><p data-i18n="game_reaction_desc">내 반응속도를 측정해보세요.</p></a>
+  </div></section>
+  <section class="container home-section"><h2 data-i18n="home_categories_title">📂 카테고리</h2><div class="home-category-grid">
+    <a href="./cal/" class="tool-card home-category-card" data-name="계산기 퍼센트 나이 D-Day 전역일"><span class="home-category-icon">🧮</span><h3 data-i18n="home_category_cal">계산기</h3><p data-i18n="home_category_cal_desc">나이, D-Day, 퍼센트 등을 계산합니다.</p></a>
+    <a href="./tools/" class="tool-card home-category-card" data-name="도구 글자수 BMI 대출 단위 사진"><span class="home-category-icon">🛠️</span><h3 data-i18n="home_category_tools">도구</h3><p data-i18n="home_category_tools_desc">생활에 필요한 다양한 온라인 도구입니다.</p></a>
+    <a href="./games/" class="tool-card home-category-card" data-name="게임 반응속도 스도쿠 타자 퍼즐"><span class="home-category-icon">🎮</span><h3 data-i18n="home_category_games">게임</h3><p data-i18n="home_category_games_desc">짧게 즐길 수 있는 무료 미니게임입니다.</p></a>
+    <a href="./lotto/" class="tool-card home-category-card" data-name="로또 번호 생성기"><span class="home-category-icon">🎰</span><h3 data-i18n="home_category_lotto">로또</h3><p data-i18n="home_category_lotto_desc">로또 번호를 간편하게 생성합니다.</p></a>
+    <a href="./saju/" class="tool-card home-category-card" data-name="사주 사주팔자 운세 궁합"><span class="home-category-icon">🔮</span><h3 data-i18n="home_category_saju">사주·운세</h3><p data-i18n="home_category_saju_desc">생년월일을 바탕으로 사주 정보를 확인합니다.</p></a>
+    <a href="./blog/" class="tool-card home-category-card" data-name="블로그 정보 사용법"><span class="home-category-icon">📝</span><h3 data-i18n="home_category_blog">블로그</h3><p data-i18n="home_category_blog_desc">도구 사용법과 유용한 정보를 확인하세요.</p></a>
+  </div></section>
+</main>
 
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
