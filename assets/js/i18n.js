@@ -741,8 +741,24 @@ function buildTranslationCatalog(lang) {
       'cat_converter', 'cat_finance', 'cat_generator', 'cat_popular', 'cat_faq', 'faq_q1', 'faq_a1',
       'faq_q2', 'faq_a2', 'faq_q3', 'faq_a3', 'faq_q4', 'faq_a4'
     ]),
-    nav: pickTranslationKeys(source, ['nav_home', 'nav_calculator', 'nav_lotto', 'nav_tools', 'nav_games', 'nav_blog']),
-    footer: pickTranslationKeys(source, ['footer_toolsTitle', 'footer_infoTitle', 'footer_socialTitle', 'footer_calculatorLink', 'footer_lottoLink', 'footer_toolsLink', 'footer_home', 'footer_contact']),
+    nav: {
+      home: source.nav_home,
+      calculator: source.nav_calculator,
+      lotto: source.nav_lotto,
+      tools: source.nav_tools,
+      games: source.nav_games,
+      blog: source.nav_blog
+    },
+    footer: {
+      toolsTitle: source.footer_toolsTitle,
+      infoTitle: source.footer_infoTitle,
+      socialTitle: source.footer_socialTitle,
+      calculatorLink: source.footer_calculatorLink,
+      lottoLink: source.footer_lottoLink,
+      toolsLink: source.footer_toolsLink,
+      home: source.footer_home,
+      contact: source.footer_contact
+    },
     cal: cal,
     games: games,
     lotto: {
@@ -770,6 +786,7 @@ function buildTranslationCatalog(lang) {
 
 SUPPORTED_LANGUAGES.forEach((lang) => {
   translations[lang] = buildTranslationCatalog(lang);
+  Object.assign(translations[lang], legacyTranslations[lang]);
 });
 
 function getSubpageName() {
@@ -861,12 +878,8 @@ function findGroupedTranslation(group, key) {
 function translate(key, lang) {
   const grouped = findGroupedTranslation(translations[lang], key);
   if (grouped !== undefined) return grouped;
-  const dict = legacyTranslations[lang] || legacyTranslations[DEFAULT_LANGUAGE];
-  if (dict && Object.prototype.hasOwnProperty.call(dict, key)) return dict[key];
   const fallbackGrouped = findGroupedTranslation(translations[DEFAULT_LANGUAGE], key);
-  if (fallbackGrouped !== undefined) return fallbackGrouped;
-  const fallback = legacyTranslations[DEFAULT_LANGUAGE];
-  return (fallback && fallback[key] !== undefined) ? fallback[key] : key;
+  return fallbackGrouped !== undefined ? fallbackGrouped : key;
 }
 
 function applyLanguage(lang) {
