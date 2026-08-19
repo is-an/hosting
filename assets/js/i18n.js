@@ -25,8 +25,13 @@ const legacyTranslations = {
     footer_calculatorLink: "계산기",
     footer_lottoLink: "로또",
     footer_toolsLink: "도구",
+    footer_gamesLink: "게임",
+    footer_sajuLink: "사주·운세",
     footer_home: "홈",
     footer_contact: "문의",
+    footer_blog: "블로그",
+    footer_faq: "자주 묻는 질문",
+    footer_social_github: "GitHub",
 
     darkMode: "다크모드로 전환",
     lightMode: "라이트모드로 전환",
@@ -645,7 +650,7 @@ const legacyTranslations = {
     faq_q3: "結果を保存したりエクスポートしたりできますか?",
     faq_a3: "各ツールのコピーボタンで結果をクリップボードにコピーできます。現在ファイル保存機能は提供していません。",
     faq_q4: "モバイルでも利用できますか?",
-    
+
     saju_title: "四柱推命・運勢",
     saju_copy: "生年月日をもとに四柱推命の情報を確認します。",
 
@@ -900,7 +905,9 @@ function buildTranslationCatalog(lang) {
       lotto: source.nav_lotto,
       tools: source.nav_tools,
       games: source.nav_games,
-      blog: source.nav_blog
+      blog: source.nav_blog,
+      faq: source.nav_faq,
+      contact: source.nav_contact
     },
     footer: {
       toolsTitle: source.footer_toolsTitle,
@@ -911,7 +918,6 @@ function buildTranslationCatalog(lang) {
       toolsLink: source.footer_toolsLink,
       gamesLink: source.footer_gamesLink,
       sajuLink: source.footer_sajuLink,
-      toolsLink: source.footer_toolsLink,
       home: source.footer_home,
       blog: source.footer_blog,
       faq: source.footer_faq,
