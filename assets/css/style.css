@@ -1340,3 +1340,139 @@ textarea {
 /* Simplified home */
 .home-hero{padding-bottom:28px}.home-search{max-width:820px}.home-section{padding:30px 0}.home-section h2{margin-bottom:18px}.home-popular-grid,.home-category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.home-feature-card,.home-category-card{text-decoration:none}.home-feature-card h3,.home-category-card h3{margin:0 0 8px}.home-feature-card p,.home-category-card p{margin:0}.home-category-icon{display:block;font-size:30px;margin-bottom:12px}@media(max-width:760px){.home-popular-grid,.home-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:480px){.home-popular-grid,.home-category-grid{grid-template-columns:1fr}}
 .home-more{margin-top:24px}.home-more summary{padding:14px 16px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-weight:700;cursor:pointer}.home-more[open] summary{margin-bottom:28px}
+
+.saju-page {
+  padding-bottom: 40px;
+}
+
+.saju-input-card {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 28px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 6px 24px var(--shadow);
+}
+
+.saju-form-group {
+  margin-bottom: 18px;
+}
+
+.saju-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.saju-form-group input,
+.saju-form-group select {
+  margin-bottom: 0;
+}
+
+.saju-button {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.saju-result {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.saju-result-card {
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 6px 24px var(--shadow);
+}
+
+.saju-result-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.saju-summary-item {
+  padding: 16px;
+  background: var(--result-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.saju-summary-item span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.saju-summary-item strong {
+  display: block;
+  color: var(--accent);
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+
+.saju-result-message {
+  margin-top: 18px;
+  padding: 20px;
+  background: var(--result-bg);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.saju-result-message h3 {
+  margin: 0 0 8px;
+  color: var(--accent);
+}
+
+.saju-result-message p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.saju-about {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.saju-about p {
+  color: var(--muted);
+}
+
+.saju-faq {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+
+/* ========================================
+   사주 모바일
+======================================== */
+
+@media (max-width: 640px) {
+
+  .saju-input-card {
+    padding: 20px;
+  }
+
+  .saju-result-card {
+    padding: 18px;
+  }
+
+  .saju-result-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .saju-summary-item {
+    text-align: left;
+  }
+
+  .saju-summary-item strong {
+    font-size: 15px;
+  }
+
+}

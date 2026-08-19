@@ -14,6 +14,10 @@ const legacyTranslations = {
     nav_calculator: "계산기",
     nav_lotto: "로또",
     nav_tools: "도구",
+    nav_games: "게임",
+    nav_saju: "사주·운세",
+    nav_blog: "블로그",
+    nav_faq: "자주 묻는 질문",
 
     footer_toolsTitle: "도구 모음",
     footer_infoTitle: "정보",
@@ -139,7 +143,43 @@ const legacyTranslations = {
     faq_q3: "결과를 저장하거나 내보낼 수 있나요?",
     faq_a3: "각 도구의 복사 버튼으로 결과를 클립보드에 복사할 수 있습니다. 현재는 파일 저장 기능은 제공하지 않습니다.",
     faq_q4: "모바일에서도 사용할 수 있나요?",
-    faq_a4: "네, 모든 도구는 모바일 기기에 최적화되어 있습니다."
+    faq_a4: "네, 모든 도구는 모바일 기기에 최적화되어 있습니다.",
+
+    saju_title: "사주·운세",
+    saju_copy: "생년월일을 바탕으로 사주 정보를 확인합니다.",
+
+    saju_meta_title: "무료 사주풀이 | 사주팔자 확인",
+    saju_meta_description: "생년월일과 출생시간을 입력하여 사주 정보를 확인해보세요.",
+
+    saju_eyebrow: "무료 온라인 사주풀이",
+    saju_page_title: "무료 사주팔자 풀이",
+    saju_page_copy: "생년월일과 출생시간을 입력하여 나의 사주 정보를 확인해보세요.",
+
+    saju_input_title: "사주 정보 입력",
+    saju_birth_date: "생년월일",
+    saju_birth_time: "출생시간",
+    saju_birth_time_unknown: "모름",
+    saju_gender: "성별",
+    saju_male: "남성",
+    saju_female: "여성",
+    saju_calculate: "사주 보기",
+    saju_input_required: "생년월일을 입력해주세요.",
+
+    saju_result_title: "사주 결과",
+    saju_result_placeholder: "정보를 입력하면 결과가 표시됩니다.",
+    saju_result_ready: "입력 정보가 확인되었습니다.",
+    saju_result_demo: "현재는 사주 입력 및 결과 화면을 준비하는 단계입니다. 실제 만세력 계산 기능은 다음 단계에서 연결합니다.",
+
+    saju_about_title: "사주란?",
+    saju_about_copy: "사주는 태어난 연월일시를 기준으로 전통적인 명리학 관점에서 성향과 운세를 살펴보는 방법입니다.",
+
+    saju_faq_title: "❓ 자주 묻는 질문",
+    saju_faq1: "출생시간을 모르면 사주를 볼 수 있나요?",
+    saju_faq1_answer: "출생시간을 모르는 경우에도 일부 정보를 기준으로 확인할 수 있지만 결과에 차이가 있을 수 있습니다.",
+    saju_faq2: "사주 결과는 정확한가요?",
+    saju_faq2_answer: "사주는 전통적인 명리학을 바탕으로 한 참고용 해석이며 미래를 확정적으로 예측하는 결과가 아닙니다.",
+    saju_faq3: "입력한 정보가 저장되나요?",
+    saju_faq3_answer: "입력한 정보의 저장 여부는 서비스 설정에 따라 달라질 수 있습니다."
   },
 
   en: {
@@ -271,7 +311,43 @@ const legacyTranslations = {
     faq_q3: "Can I save or export the results?",
     faq_a3: "You can copy results to the clipboard using each tool's copy button. File export is not currently supported.",
     faq_q4: "Can I use this on mobile?",
-    faq_a4: "Yes, all tools are optimized for mobile devices."
+    faq_a4: "Yes, all tools are optimized for mobile devices.",
+
+    saju_title: "Saju & Fortune",
+    saju_copy: "Check Saju information based on your birth date.",
+
+    saju_meta_title: "Free Saju Reading | Four Pillars",
+    saju_meta_description: "Enter your birth date and time to check your Saju information.",
+
+    saju_eyebrow: "Free Online Saju Reading",
+    saju_page_title: "Free Saju Reading",
+    saju_page_copy: "Enter your birth date and time to check your Saju information.",
+
+    saju_input_title: "Birth Information",
+    saju_birth_date: "Birth date",
+    saju_birth_time: "Birth time",
+    saju_birth_time_unknown: "Unknown",
+    saju_gender: "Gender",
+    saju_male: "Male",
+    saju_female: "Female",
+    saju_calculate: "View Saju",
+    saju_input_required: "Please enter your birth date.",
+
+    saju_result_title: "Saju Result",
+    saju_result_placeholder: "Your result will appear after entering your information.",
+    saju_result_ready: "Your information has been confirmed.",
+    saju_result_demo: "The input and result interface is ready. The actual Four Pillars calculation will be connected in the next step.",
+
+    saju_about_title: "What is Saju?",
+    saju_about_copy: "Saju is a traditional East Asian method that interprets tendencies and fortune based on the year, month, day, and time of birth.",
+
+    saju_faq_title: "❓ Frequently Asked Questions",
+    saju_faq1: "Can I check Saju without knowing my birth time?",
+    saju_faq1_answer: "Yes, but the result may differ because the birth time is used for part of the Saju calculation.",
+    saju_faq2: "Are Saju results accurate?",
+    saju_faq2_answer: "Saju is a traditional interpretive practice and should be considered for reference rather than a definitive prediction of the future.",
+    saju_faq3: "Is my information stored?",
+    saju_faq3_answer: "Whether information is stored depends on the service configuration."
   },
 
   zh: {
@@ -403,8 +479,42 @@ const legacyTranslations = {
     faq_q3: "可以保存或导出结果吗?",
     faq_a3: "您可以使用各工具的复制按钮将结果复制到剪贴板。目前暂不支持文件保存功能。",
     faq_q4: "可以在手机上使用吗?",
-    faq_a4: "可以，所有工具均已针对移动设备进行优化。"
-  },
+
+    saju_title: "四柱八字·运势",
+    saju_copy: "根据出生日期查看四柱八字信息。",
+
+    saju_meta_title: "免费四柱八字解析 | 八字查询",
+    saju_meta_description: "输入出生日期和时间，查看四柱八字信息。",
+
+    saju_eyebrow: "免费在线四柱八字解析",
+    saju_page_title: "免费四柱八字解析",
+    saju_page_copy: "输入出生日期和时间，查看您的四柱八字信息。",
+
+    saju_input_title: "出生信息",
+    saju_birth_date: "出生日期",
+    saju_birth_time: "出生时间",
+    saju_birth_time_unknown: "未知",
+    saju_gender: "性别",
+    saju_male: "男性",
+    saju_female: "女性",
+    saju_calculate: "查看八字",
+    saju_input_required: "请输入出生日期。",
+
+    saju_result_title: "八字结果",
+    saju_result_placeholder: "输入信息后将显示结果。",
+    saju_result_ready: "出生信息已确认。",
+    saju_result_demo: "当前已完成输入和结果界面。实际四柱八字计算功能将在下一阶段连接。",
+
+    saju_about_title: "什么是四柱八字？",
+    saju_about_copy: "四柱八字是根据出生的年、月、日、时，从传统命理学角度分析个人倾向和运势的方法。",
+
+    saju_faq_title: "❓ 常见问题",
+    saju_faq1: "不知道出生时间也可以查询吗？",
+    saju_faq1_answer: "可以，但由于出生时间会影响部分八字计算，结果可能有所不同。",
+    saju_faq2: "八字结果准确吗？",
+    saju_faq2_answer: "四柱八字属于传统命理解释，应作为参考，而不是对未来的确定性预测。",
+    saju_faq3: "输入的信息会被保存吗？",
+    saju_faq3_answer: "是否保存输入信息取决于服务的具体配置。"  },
 
   ja: {
     nav_home: "ホーム",
@@ -535,8 +645,42 @@ const legacyTranslations = {
     faq_q3: "結果を保存したりエクスポートしたりできますか?",
     faq_a3: "各ツールのコピーボタンで結果をクリップボードにコピーできます。現在ファイル保存機能は提供していません。",
     faq_q4: "モバイルでも利用できますか?",
-    faq_a4: "はい、すべてのツールはモバイル端末に最適化されています。"
-  }
+    
+    saju_title: "四柱推命・運勢",
+    saju_copy: "生年月日をもとに四柱推命の情報を確認します。",
+
+    saju_meta_title: "無料四柱推命 | 四柱八字を確認",
+    saju_meta_description: "生年月日と出生時間を入力して四柱推命の情報を確認できます。",
+
+    saju_eyebrow: "無料オンライン四柱推命",
+    saju_page_title: "無料四柱推命",
+    saju_page_copy: "生年月日と出生時間を入力して四柱推命の情報を確認してください。",
+
+    saju_input_title: "出生情報",
+    saju_birth_date: "生年月日",
+    saju_birth_time: "出生時間",
+    saju_birth_time_unknown: "不明",
+    saju_gender: "性別",
+    saju_male: "男性",
+    saju_female: "女性",
+    saju_calculate: "四柱推命を見る",
+    saju_input_required: "生年月日を入力してください。",
+
+    saju_result_title: "四柱推命の結果",
+    saju_result_placeholder: "情報を入力すると結果が表示されます。",
+    saju_result_ready: "出生情報を確認しました。",
+    saju_result_demo: "現在は入力と結果画面を準備しています。実際の四柱推命計算機能は次の段階で接続します。",
+
+    saju_about_title: "四柱推命とは？",
+    saju_about_copy: "四柱推命は、生まれた年・月・日・時間をもとに、伝統的な命理学の観点から性質や運勢を読み解く方法です。",
+
+    saju_faq_title: "❓ よくある質問",
+    saju_faq1: "出生時間が分からなくても確認できますか？",
+    saju_faq1_answer: "確認できますが、出生時間は一部の計算に影響するため、結果が異なる場合があります。",
+    saju_faq2: "四柱推命の結果は正確ですか？",
+    saju_faq2_answer: "四柱推命は伝統的な解釈方法であり、未来を確定的に予測するものではありません。",
+    saju_faq3: "入力した情報は保存されますか？",
+    saju_faq3_answer: "入力情報を保存するかどうかはサービスの設定によって異なります。"  }
 };
 
 const gameTranslations = {
