@@ -224,7 +224,8 @@ function applyHeaderLinks() {
       lotto: `${siteRootPath}/lotto/`,
       tools: `${siteRootPath}/tools/`,
       games: `${siteRootPath}/games/`,
-      blog: `${siteRootPath}/blog/`
+      blog: `${siteRootPath}/blog/`,
+      saju: `${siteRootPath}/saju/`
     };
 
     const href = routeMap[route] || `${siteRootPath}/`;
