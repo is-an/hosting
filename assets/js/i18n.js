@@ -944,7 +944,46 @@ function buildTranslationCatalog(lang) {
       eyebrow: source.blog_eyebrow, title: source.blog_title, copy: source.blog_copy, read: source.blog_read,
       post: { title: source.blog_post_title, summary: source.blog_post_summary, date: source.blog_post_date, category: source.blog_post_category, heading: source.blog_post_heading, body: source.blog_post_body },
       related: source.blog_related, back: source.blog_back
-    }
+    },
+    saju: {
+    meta: pickTranslationKeys(source, [
+      'saju_meta_title',
+      'saju_meta_description'
+    ]),
+
+    eyebrow: source.saju_eyebrow,
+    title: source.saju_title,
+    copy: source.saju_copy,
+
+    inputTitle: source.saju_input_title,
+
+    birthDate: source.saju_birth_date,
+    birthTime: source.saju_birth_time,
+    birthTimeUnknown: source.saju_birth_time_unknown,
+
+    gender: source.saju_gender,
+    male: source.saju_male,
+    female: source.saju_female,
+
+    calculate: source.saju_calculate,
+
+    resultTitle: source.saju_result_title,
+    resultPlaceholder: source.saju_result_placeholder,
+
+    aboutTitle: source.saju_about_title,
+    aboutCopy: source.saju_about_copy,
+
+    faqTitle: source.saju_faq_title,
+
+    faq1: source.saju_faq1,
+    faq1Answer: source.saju_faq1_answer,
+
+    faq2: source.saju_faq2,
+    faq2Answer: source.saju_faq2_answer,
+
+    faq3: source.saju_faq3,
+    faq3Answer: source.saju_faq3_answer
+  },
   };
 }
 
