@@ -946,44 +946,31 @@ function buildTranslationCatalog(lang) {
       related: source.blog_related, back: source.blog_back
     },
     saju: {
-    meta: pickTranslationKeys(source, [
-      'saju_meta_title',
-      'saju_meta_description'
-    ]),
-
-    eyebrow: source.saju_eyebrow,
-    title: source.saju_title,
-    copy: source.saju_copy,
-
-    inputTitle: source.saju_input_title,
-
-    birthDate: source.saju_birth_date,
-    birthTime: source.saju_birth_time,
-    birthTimeUnknown: source.saju_birth_time_unknown,
-
-    gender: source.saju_gender,
-    male: source.saju_male,
-    female: source.saju_female,
-
-    calculate: source.saju_calculate,
-
-    resultTitle: source.saju_result_title,
-    resultPlaceholder: source.saju_result_placeholder,
-
-    aboutTitle: source.saju_about_title,
-    aboutCopy: source.saju_about_copy,
-
-    faqTitle: source.saju_faq_title,
-
-    faq1: source.saju_faq1,
-    faq1Answer: source.saju_faq1_answer,
-
-    faq2: source.saju_faq2,
-    faq2Answer: source.saju_faq2_answer,
-
-    faq3: source.saju_faq3,
-    faq3Answer: source.saju_faq3_answer
-  },
+      meta_title: source.saju_meta_title,
+      meta_description: source.saju_meta_description,
+      eyebrow: source.saju_eyebrow,
+      title: source.saju_page_title,
+      copy: source.saju_page_copy,
+      input_title: source.saju_input_title,
+      birth_date: source.saju_birth_date,
+      birth_time: source.saju_birth_time,
+      birth_time_unknown: source.saju_birth_time_unknown,
+      gender: source.saju_gender,
+      male: source.saju_male,
+      female: source.saju_female,
+      calculate: source.saju_calculate,
+      result_title: source.saju_result_title,
+      result_placeholder: source.saju_result_placeholder,
+      about_title: source.saju_about_title,
+      about_copy: source.saju_about_copy,
+      faq_title: source.saju_faq_title,
+      faq1: source.saju_faq1,
+      faq1_answer: source.saju_faq1_answer,
+      faq2: source.saju_faq2,
+      faq2_answer: source.saju_faq2_answer,
+      faq3: source.saju_faq3,
+      faq3_answer: source.saju_faq3_answer
+    },
   };
 }
 
