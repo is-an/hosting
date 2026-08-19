@@ -1,42 +1,95 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title data-i18n="saju.meta_title">무료 사주풀이 | 사주팔자 확인</title>
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light');
+
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+
+  <title data-i18n="saju.meta_title">
+    무료 사주풀이 | 사주팔자 확인
+  </title>
 
   <meta
     name="description"
     data-i18n-content="saju.meta_description"
-    content="생년월일과 출생시간을 입력하여 무료로 사주팔자를 확인하고 사주풀이를 받아보세요."
+    content="생년월일과 출생시간을 입력하여 무료로 사주팔자를 확인해보세요."
   >
 
-  <meta property="og:title" data-i18n-content="saju.meta_title" content="무료 사주풀이">
+  <meta
+    name="robots"
+    content="index,follow"
+  >
+
+  <link
+    rel="canonical"
+    href="https://is-an.github.io/saju/"
+  >
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+
+  <meta
+    property="og:title"
+    data-i18n-content="saju.meta_title"
+    content="무료 사주풀이 | 사주팔자 확인"
+  >
+
   <meta
     property="og:description"
     data-i18n-content="saju.meta_description"
     content="생년월일과 출생시간을 입력하여 무료로 사주팔자를 확인해보세요."
   >
 
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <meta
+    property="og:url"
+    content="https://is-an.github.io/saju/"
+  >
 
-  <script src="../assets/js/i18n.js" defer></script>
-  <script src="../assets/js/common.js" defer></script>
+  <meta
+    property="og:image"
+    content="https://is-an.github.io/logo.png"
+  >
+
+  <!-- CSS -->
+  <link
+    rel="stylesheet"
+    href="../assets/css/style.css"
+  >
 </head>
 
 <body>
 
   <!-- 공통 헤더 -->
-  <div id="header"></div>
+  <div id="site-header"></div>
+
 
   <main>
 
-    <!-- Hero -->
-    <section class="hero">
+    <!-- =========================
+         Hero
+    ========================== -->
+    <section class="home-hero">
       <div class="container">
 
-        <p class="hero-eyebrow" data-i18n="saju.eyebrow">
+        <p
+          class="eyebrow"
+          data-i18n="saju.eyebrow"
+        >
           무료 온라인 사주풀이
         </p>
 
@@ -44,7 +97,10 @@
           무료 사주팔자 풀이
         </h1>
 
-        <p class="hero-copy" data-i18n="saju.copy">
+        <p
+          class="hero-copy"
+          data-i18n="saju.copy"
+        >
           생년월일과 출생시간을 입력하여 나의 사주를 확인해보세요.
         </p>
 
@@ -52,152 +108,151 @@
     </section>
 
 
-    <!-- 입력 영역 -->
-    <section class="tool-section">
-      <div class="container">
+    <!-- =========================
+         입력
+    ========================== -->
+    <section class="container home-section">
 
-        <div class="tool-card">
+      <h2 data-i18n="saju.input_title">
+        사주 정보 입력
+      </h2>
 
-          <h2 data-i18n="saju.input_title">
-            사주 정보 입력
-          </h2>
+      <div class="tool-card">
 
-          <div class="form-group">
+        <!-- 생년월일 -->
+        <div class="form-group">
 
-            <label for="birthDate" data-i18n="saju.birth_date">
-              생년월일
-            </label>
-
-            <input
-              type="date"
-              id="birthDate"
-              name="birthDate"
-              required
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="birthTime" data-i18n="saju.birth_time">
-              출생시간
-            </label>
-
-            <select id="birthTime" name="birthTime">
-
-              <option value="" data-i18n="saju.birth_time_unknown">
-                모름
-              </option>
-
-              <option value="00" data-i18n="saju.time_00">00시</option>
-              <option value="01" data-i18n="saju.time_01">01시</option>
-              <option value="02" data-i18n="saju.time_02">02시</option>
-              <option value="03" data-i18n="saju.time_03">03시</option>
-              <option value="04" data-i18n="saju.time_04">04시</option>
-              <option value="05" data-i18n="saju.time_05">05시</option>
-              <option value="06" data-i18n="saju.time_06">06시</option>
-              <option value="07" data-i18n="saju.time_07">07시</option>
-              <option value="08" data-i18n="saju.time_08">08시</option>
-              <option value="09" data-i18n="saju.time_09">09시</option>
-              <option value="10" data-i18n="saju.time_10">10시</option>
-              <option value="11" data-i18n="saju.time_11">11시</option>
-              <option value="12" data-i18n="saju.time_12">12시</option>
-              <option value="13" data-i18n="saju.time_13">13시</option>
-              <option value="14" data-i18n="saju.time_14">14시</option>
-              <option value="15" data-i18n="saju.time_15">15시</option>
-              <option value="16" data-i18n="saju.time_16">16시</option>
-              <option value="17" data-i18n="saju.time_17">17시</option>
-              <option value="18" data-i18n="saju.time_18">18시</option>
-              <option value="19" data-i18n="saju.time_19">19시</option>
-              <option value="20" data-i18n="saju.time_20">20시</option>
-              <option value="21" data-i18n="saju.time_21">21시</option>
-              <option value="22" data-i18n="saju.time_22">22시</option>
-              <option value="23" data-i18n="saju.time_23">23시</option>
-
-            </select>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="gender" data-i18n="saju.gender">
-              성별
-            </label>
-
-            <select id="gender" name="gender">
-
-              <option value="male" data-i18n="saju.male">
-                남성
-              </option>
-
-              <option value="female" data-i18n="saju.female">
-                여성
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <button
-            type="button"
-            class="primary-btn"
-            id="sajuCalculateBtn"
-            data-i18n="saju.calculate"
+          <label
+            for="birthDate"
+            data-i18n="saju.birth_date"
           >
-            사주 보기
-          </button>
+            생년월일
+          </label>
+
+          <input
+            type="date"
+            id="birthDate"
+            required
+          >
 
         </div>
 
+
+        <!-- 출생시간 -->
+        <div class="form-group">
+
+          <label
+            for="birthTime"
+            data-i18n="saju.birth_time"
+          >
+            출생시간
+          </label>
+
+          <select id="birthTime">
+
+            <option
+              value=""
+              data-i18n="saju.birth_time_unknown"
+            >
+              모름
+            </option>
+
+            <option value="00">00:00</option>
+            <option value="01">01:00</option>
+            <option value="02">02:00</option>
+            <option value="03">03:00</option>
+            <option value="04">04:00</option>
+            <option value="05">05:00</option>
+            <option value="06">06:00</option>
+            <option value="07">07:00</option>
+            <option value="08">08:00</option>
+            <option value="09">09:00</option>
+            <option value="10">10:00</option>
+            <option value="11">11:00</option>
+            <option value="12">12:00</option>
+            <option value="13">13:00</option>
+            <option value="14">14:00</option>
+            <option value="15">15:00</option>
+            <option value="16">16:00</option>
+            <option value="17">17:00</option>
+            <option value="18">18:00</option>
+            <option value="19">19:00</option>
+            <option value="20">20:00</option>
+            <option value="21">21:00</option>
+            <option value="22">22:00</option>
+            <option value="23">23:00</option>
+
+          </select>
+
+        </div>
+
+
+        <!-- 성별 -->
+        <div class="form-group">
+
+          <label
+            for="gender"
+            data-i18n="saju.gender"
+          >
+            성별
+          </label>
+
+          <select id="gender">
+
+            <option
+              value="male"
+              data-i18n="saju.male"
+            >
+              남성
+            </option>
+
+            <option
+              value="female"
+              data-i18n="saju.female"
+            >
+              여성
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- 버튼 -->
+        <button
+          type="button"
+          class="tool-btn"
+          id="sajuCalculateBtn"
+          data-i18n="saju.calculate"
+        >
+          사주 보기
+        </button>
+
       </div>
+
     </section>
 
 
-    <!-- 결과 -->
+    <!-- =========================
+         결과
+    ========================== -->
     <section
-      class="tool-section"
+      class="container home-section"
       id="sajuResult"
       hidden
     >
 
-      <div class="container">
+      <h2 data-i18n="saju.result_title">
+        사주 결과
+      </h2>
 
-        <div class="tool-card">
+      <div
+        class="tool-card"
+        id="sajuResultContent"
+      >
 
-          <h2 data-i18n="saju.result_title">
-            사주 결과
-          </h2>
-
-          <div id="sajuResultContent">
-
-            <p data-i18n="saju.result_placeholder">
-              정보를 입력하면 사주 결과가 표시됩니다.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- 안내 -->
-    <section class="content-section">
-
-      <div class="container">
-
-        <h2 data-i18n="saju.about_title">
-          사주란?
-        </h2>
-
-        <p data-i18n="saju.about_copy">
-          사주는 태어난 연월일시를 기준으로 전통적인 명리학 관점에서
-          운세와 성향을 살펴보는 방법입니다.
+        <p data-i18n="saju.result_placeholder">
+          정보를 입력하면 사주 결과가 표시됩니다.
         </p>
 
       </div>
@@ -205,55 +260,71 @@
     </section>
 
 
-    <!-- FAQ -->
-    <section class="content-section">
+    <!-- =========================
+         사주 설명
+    ========================== -->
+    <section class="container home-section">
 
-      <div class="container">
+      <h2 data-i18n="saju.about_title">
+        사주란?
+      </h2>
 
-        <h2 data-i18n="saju.faq_title">
-          ❓ 자주 묻는 질문
-        </h2>
+      <p data-i18n="saju.about_copy">
+        사주는 태어난 연월일시를 기준으로 전통적인 명리학 관점에서
+        성향과 운세를 살펴보는 방법입니다.
+      </p>
+
+    </section>
 
 
-        <details>
+    <!-- =========================
+         FAQ
+    ========================== -->
+    <section class="container faq-section">
 
-          <summary data-i18n="saju.faq1">
+      <h2 data-i18n="saju.faq_title">
+        ❓ 자주 묻는 질문
+      </h2>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+
+          <h4 data-i18n="saju.faq1">
             출생시간을 모르면 사주를 볼 수 있나요?
-          </summary>
+          </h4>
 
           <p data-i18n="saju.faq1_answer">
-            네. 출생시간을 모르는 경우에도 일부 정보를 기준으로 확인할 수 있지만
-            결과에는 차이가 있을 수 있습니다.
+            네. 출생시간을 모르는 경우에도 일부 정보를 기준으로 확인할 수 있지만 결과에 차이가 있을 수 있습니다.
           </p>
 
-        </details>
+        </div>
 
 
-        <details>
+        <div class="faq-item">
 
-          <summary data-i18n="saju.faq2">
+          <h4 data-i18n="saju.faq2">
             사주 결과는 정확한가요?
-          </summary>
+          </h4>
 
           <p data-i18n="saju.faq2_answer">
-            사주는 전통적인 명리학을 바탕으로 한 참고용 해석이며
-            미래를 확정적으로 예측하는 결과가 아닙니다.
+            사주는 전통적인 명리학을 바탕으로 한 참고용 해석이며 미래를 확정적으로 예측하는 결과가 아닙니다.
           </p>
 
-        </details>
+        </div>
 
 
-        <details>
+        <div class="faq-item">
 
-          <summary data-i18n="saju.faq3">
+          <h4 data-i18n="saju.faq3">
             입력한 정보가 저장되나요?
-          </summary>
+          </h4>
 
           <p data-i18n="saju.faq3_answer">
-            현재 페이지에서는 입력한 정보를 서버에 저장하지 않습니다.
+            입력한 정보의 저장 여부는 서비스 설정에 따라 달라질 수 있습니다.
           </p>
 
-        </details>
+        </div>
 
       </div>
 
@@ -262,95 +333,17 @@
   </main>
 
 
+  <!-- 광고 -->
+  <div id="ads-slot" class="ads-slot"></div>
+
+
   <!-- 공통 푸터 -->
-  <div id="footer"></div>
+  <div id="site-footer"></div>
 
 
-  <!-- 사주 페이지 JavaScript -->
-  <script>
-
-    document.addEventListener('DOMContentLoaded', () => {
-
-      const button = document.getElementById('sajuCalculateBtn');
-      const result = document.getElementById('sajuResult');
-      const resultContent = document.getElementById('sajuResultContent');
-
-      if (!button) return;
-
-      button.addEventListener('click', () => {
-
-        const birthDate = document.getElementById('birthDate').value;
-        const birthTime = document.getElementById('birthTime').value;
-        const gender = document.getElementById('gender').value;
-
-        if (!birthDate) {
-          alert(
-            typeof translate === 'function'
-              ? translate('saju.input_required', getCurrentLanguage())
-              : '생년월일을 입력해주세요.'
-          );
-
-          return;
-        }
-
-        result.hidden = false;
-
-        resultContent.innerHTML = `
-          <div class="result-box">
-
-            <p>
-              <strong>
-                ${typeof translate === 'function'
-                  ? translate('saju.birth_date', getCurrentLanguage())
-                  : '생년월일'}
-              </strong>
-              : ${birthDate}
-            </p>
-
-            <p>
-              <strong>
-                ${typeof translate === 'function'
-                  ? translate('saju.birth_time', getCurrentLanguage())
-                  : '출생시간'}
-              </strong>
-              :
-              ${birthTime || (
-                typeof translate === 'function'
-                  ? translate('saju.birth_time_unknown', getCurrentLanguage())
-                  : '모름'
-              )}
-            </p>
-
-            <p>
-              <strong>
-                ${typeof translate === 'function'
-                  ? translate('saju.gender', getCurrentLanguage())
-                  : '성별'}
-              </strong>
-              : ${gender}
-            </p>
-
-            <p>
-              ${
-                typeof translate === 'function'
-                  ? translate('saju.result_demo', getCurrentLanguage())
-                  : '사주 계산 기능을 연결하면 결과가 표시됩니다.'
-              }
-            </p>
-
-          </div>
-        `;
-
-        result.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-
-      });
-
-    });
-
-  </script>
-
+  <!-- 공통 JS -->
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script src="../assets/js/saju.js"></script>
 </body>
 </html>
