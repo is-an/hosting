@@ -61,6 +61,8 @@ const legacyTranslations = {
     shutter_meta_title: "카메라 셔터카운트 확인기 - EXIF 사진 정보 분석",
     shutter_meta_description: "사진을 브라우저에서 분석하여 카메라 EXIF 정보와 확인 가능한 셔터카운트를 표시하는 무료 도구입니다.",
 
+    home_popular_title: "인기 도구",
+    home_categories_title: "카테고리",
     home_eyebrow_calc: "무료 온라인 계산기",
     home_eyebrow: "무료 온라인 도구 모음",
     home_title: "유용한 도구를 한곳에서",
@@ -192,6 +194,8 @@ const legacyTranslations = {
     og_title: "Free Online Tools",
     og_description: "15 tools including percentage, age, character count, unit conversion, BMI, salary, loan, and image processing",
 
+    home_popular_title: "Popular Tools",
+    home_categories_title: "Categories",
     home_eyebrow: "Free Online Tools",
     home_title: "Useful tools, all in one place",
     home_copy: "Try free online calculators, converters, and generators. Fast, simple, and accurate.",
@@ -322,6 +326,8 @@ const legacyTranslations = {
     og_title: "免费在线工具集合",
     og_description: "包含百分比、年龄、字数、单位换算、BMI、薪资、贷款、图片处理等15款工具",
 
+    home_popular_title: "热门工具",
+    home_categories_title: "工具分类",
     home_eyebrow: "免费在线工具集合",
     home_title: "实用工具，一站搞定",
     home_copy: "使用免费的在线计算器、转换器和生成器。快速、简单、准确。",
@@ -452,6 +458,8 @@ const legacyTranslations = {
     og_title: "無料オンラインツール集",
     og_description: "パーセント、年齢、文字数、単位変換、BMI、給与、ローン、画像処理な〩15のツール集",
 
+    home_categories_title: "カテゴリー",
+    home_popular_title: "人気ツール",
     home_eyebrow: "無料オンラインツール集",
     home_title: "便利なツールを一箇所に",
     home_copy: "無料のオンライン計算機、変換ツール、生成ツールをお試しください。速くて簡単、正確です。",
@@ -744,6 +752,7 @@ function buildTranslationCatalog(lang) {
     nav: {
       home: source.nav_home,
       calculator: source.nav_calculator,
+      saju: source.nav_saju,
       lotto: source.nav_lotto,
       tools: source.nav_tools,
       games: source.nav_games,
@@ -756,7 +765,12 @@ function buildTranslationCatalog(lang) {
       calculatorLink: source.footer_calculatorLink,
       lottoLink: source.footer_lottoLink,
       toolsLink: source.footer_toolsLink,
+      gamesLink: source.footer_gamesLink,
+      sajuLink: source.footer_sajuLink,
+      toolsLink: source.footer_toolsLink,
       home: source.footer_home,
+      blog: source.footer_blog,
+      faq: source.footer_faq,
       contact: source.footer_contact
     },
     cal: cal,
