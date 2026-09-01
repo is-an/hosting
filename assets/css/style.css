@@ -546,8 +546,40 @@ button:hover { opacity: .9; }
   border-radius: 16px;
 }
 
-.content-section ol {
+.content-section ol,
+.content-section ul {
   padding-left: 22px;
+}
+
+.content-section li {
+  margin: 6px 0;
+}
+
+.content-section > h2:first-child {
+  margin-top: 0;
+}
+
+.info-table-wrap {
+  overflow-x: auto;
+  margin: 14px 0 4px;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.info-table th,
+.info-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.info-table thead th {
+  color: var(--muted);
+  font-weight: 700;
 }
 
 details {
