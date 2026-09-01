@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+  <title data-i18n="stock_meta_title">주식·ETF 적립식 투자 수익 계산기 - 과거 수익률 백테스트 | 무료 온라인 도구</title>
+  <meta name="description" data-i18n-content="stock_meta_description" content="특정 시점부터 매달 일정 금액을 주식이나 ETF에 적립식으로 투자했다면 지금 얼마가 되었을지 계산합니다. SPY, QQQ, VOO 등 미국 상장 종목의 과거 수익률을 무료로 백테스트하세요.">
+  <meta name="keywords" content="적립식 투자 계산기, 주식 적금, ETF 적립식, DCA 계산기, 과거 수익률 백테스트, SPY QQQ 수익률, 미국 주식 적립식">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="./">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="is-an.github.io">
+  <meta property="og:url" content="https://is-an.github.io/stock/">
+  <meta property="og:title" data-i18n-content="stock_meta_title" content="주식·ETF 적립식 투자 수익 계산기">
+  <meta property="og:description" data-i18n-content="stock_meta_description" content="특정 시점부터 매달 적립식으로 투자했다면 지금 얼마가 되었을지 계산합니다.">
+  <meta property="og:image" content="https://is-an.github.io/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "주식·ETF 적립식 투자 수익 계산기",
+    "description": "특정 과거 시점부터 매달 일정 금액을 주식·ETF에 적립식으로 투자했을 때의 수익을 계산하는 무료 백테스트 도구",
+    "url": "https://is-an.github.io/stock/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+  }
+  </script>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .stock-form .form-group { margin-bottom: 4px; }
+    .stock-form input[type="month"] {
+      width: 100%; margin-bottom: 16px; padding: 12px;
+      border: 1px solid var(--border); border-radius: 8px;
+      background: var(--input-bg); color: var(--text);
+      font-size: 16px; font-family: inherit;
+    }
+    .stock-field-hint { margin: 0 0 16px; color: var(--muted); font-size: 13px; }
+    .stock-notice {
+      margin: 16px 0 0; padding: 12px 14px; border-radius: 10px;
+      background: var(--result-bg); color: var(--muted); font-size: 14px;
+    }
+    .stock-error {
+      margin-top: 20px; padding: 16px; border-radius: 10px;
+      border: 1px solid var(--border); background: var(--result-bg); color: var(--text);
+    }
+    .stock-summary { margin-top: 8px; }
+    .stock-summary .value.pos { color: #1a7f37; }
+    .stock-summary .value.neg { color: #cf222e; }
+    [data-theme="dark"] .stock-summary .value.pos { color: #3fb950; }
+    [data-theme="dark"] .stock-summary .value.neg { color: #ff7b72; }
+    .stock-chart-wrap { margin-top: 22px; }
+    .stock-chart { width: 100%; height: auto; display: block; }
+    .stock-legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 10px; color: var(--muted); font-size: 13px; }
+    .stock-legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .stock-legend i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+    .stock-table-wrap { margin-top: 18px; overflow-x: auto; }
+    table.stock-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 520px; }
+    table.stock-table th, table.stock-table td { padding: 8px 10px; text-align: right; border-bottom: 1px solid var(--border); }
+    table.stock-table th:first-child, table.stock-table td:first-child { text-align: left; }
+    table.stock-table thead th { color: var(--muted); font-weight: 700; }
+    .stock-source { margin-top: 14px; color: var(--muted); font-size: 12px; }
+    .stock-source a { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+<main>
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow" data-i18n="stock_eyebrow">과거 수익률 백테스트</p>
+      <h1 data-i18n="stock_title">주식·ETF 적립식 투자 수익 계산기</h1>
+      <p class="hero-copy" data-i18n="stock_copy">특정 시점부터 매달 일정 금액을 주식이나 ETF에 적립식으로 투자했다면 지금 얼마가 되었을지 계산합니다.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <section class="calculator-section">
+      <div class="calculator-card stock-form">
+        <div class="form-group">
+          <label for="stockTicker" data-i18n="stock_form_ticker">종목 티커</label>
+          <input type="text" id="stockTicker" list="stockTickerList" placeholder="예: SPY" autocomplete="off" autocapitalize="characters" spellcheck="false">
+          <datalist id="stockTickerList">
+            <option value="SPY">SPDR S&amp;P 500 ETF</option>
+            <option value="QQQ">Invesco QQQ (나스닥 100)</option>
+            <option value="VOO">Vanguard S&amp;P 500 ETF</option>
+            <option value="VTI">Vanguard Total Stock Market ETF</option>
+            <option value="SCHD">Schwab US Dividend Equity ETF</option>
+            <option value="JEPI">JPMorgan Equity Premium Income ETF</option>
+            <option value="DIA">SPDR Dow Jones ETF</option>
+            <option value="AAPL">Apple</option>
+            <option value="MSFT">Microsoft</option>
+            <option value="NVDA">NVIDIA</option>
+            <option value="GOOGL">Alphabet</option>
+            <option value="AMZN">Amazon</option>
+            <option value="TSLA">Tesla</option>
+            <option value="META">Meta Platforms</option>
+            <option value="BRK.B">Berkshire Hathaway</option>
+          </datalist>
+        </div>
+        <p class="stock-field-hint" data-i18n="stock_form_ticker_hint">미국 상장 주식·ETF의 티커를 입력하세요. (예: SPY, QQQ, VOO, AAPL)</p>
+
+        <div class="form-group">
+          <label for="stockAmount" data-i18n="stock_form_amount">매월 투자금액 (USD)</label>
+          <input type="number" id="stockAmount" value="100" min="1" step="10" inputmode="decimal">
+        </div>
+        <p class="stock-field-hint" data-i18n="stock_form_amount_hint">매달 같은 금액을 매수한다고 가정합니다. 금액은 미국 달러 기준이며 환율은 반영하지 않습니다.</p>
+
+        <div class="form-group">
+          <label for="stockStart" data-i18n="stock_form_start">투자 시작 월</label>
+          <input type="month" id="stockStart">
+        </div>
+
+        <div class="form-group">
+          <label for="stockEnd" data-i18n="stock_form_end">투자 종료 월 (선택)</label>
+          <input type="month" id="stockEnd">
+        </div>
+        <p class="stock-field-hint" data-i18n="stock_form_end_hint">비워 두면 가장 최근 월까지 계산합니다. 과거 데이터는 최대 약 10년까지 제공됩니다.</p>
+
+        <div class="form-group">
+          <label for="stockDividend" data-i18n="stock_form_dividend">배당금 처리</label>
+          <select id="stockDividend">
+            <option value="on" data-i18n="stock_form_dividend_on">배당 재투자 포함 (수정주가 기준)</option>
+            <option value="off" data-i18n="stock_form_dividend_off">배당 제외 (종가 기준)</option>
+          </select>
+        </div>
+
+        <div class="button-group">
+          <button id="stockCalcBtn" class="primary-btn" data-i18n="stock_calculate">계산하기</button>
+          <button id="stockCopyBtn" class="secondary-btn hidden" data-i18n="stock_copy_result">결과 복사</button>
+          <button id="stockResetBtn" class="text-button" data-i18n="stock_reset">초기화</button>
+        </div>
+
+        <p id="stockStatus" class="stock-notice hidden" role="status"></p>
+        <div id="stockError" class="stock-error hidden" role="alert"></div>
+
+        <div id="stockResult" class="result hidden">
+          <div class="stats-grid stock-summary" id="stockSummary"></div>
+
+          <div class="stock-chart-wrap" id="stockChartWrap">
+            <div id="stockChart"></div>
+            <div class="stock-legend">
+              <span><i style="background: var(--accent);"></i><span data-i18n="stock_chart_value">평가금액</span></span>
+              <span><i style="background: var(--muted);"></i><span data-i18n="stock_chart_principal">투자원금</span></span>
+            </div>
+          </div>
+
+          <details class="stock-table-details">
+            <summary data-i18n="stock_table_toggle">월별 상세 내역 보기</summary>
+            <div class="stock-table-wrap">
+              <table class="stock-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="stock_th_month">월</th>
+                    <th data-i18n="stock_th_price">주가</th>
+                    <th data-i18n="stock_th_bought">매수 수량</th>
+                    <th data-i18n="stock_th_shares">누적 수량</th>
+                    <th data-i18n="stock_th_invested">누적 원금</th>
+                    <th data-i18n="stock_th_value">평가금액</th>
+                  </tr>
+                </thead>
+                <tbody id="stockTableBody"></tbody>
+              </table>
+            </div>
+          </details>
+
+          <p class="stock-source" data-i18n="stock_data_source">시세 데이터: stockanalysis.com · 참고용이며 실제 투자 결과와 다를 수 있습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 data-i18n="stock_about_title">적립식 투자(적금식 투자)란?</h2>
+      <p data-i18n="stock_about_copy">적립식 투자는 매달 정해진 금액으로 같은 종목을 꾸준히 매수하는 방법입니다. 가격이 쌀 때는 더 많은 수량을, 비쌀 때는 더 적은 수량을 사게 되어 평균 매입 단가가 자연스럽게 분산됩니다. 영어로는 DCA(Dollar Cost Averaging)라고 합니다.</p>
+      <p data-i18n="stock_about_copy2">이 계산기는 선택한 시작 월부터 매달 첫 거래일에 입력한 금액만큼 매수했다고 가정하고, 누적 수량과 현재 평가금액, 투자원금 대비 수익률, 연평균 수익률(투자금 가중 수익률)을 계산합니다.</p>
+    </section>
+
+    <section class="content-section">
+      <h2 data-i18n="stock_disclaimer_title">계산 시 유의사항</h2>
+      <p data-i18n="stock_disclaimer_copy">매매 수수료, 세금, 환율, 슬리피지는 반영하지 않습니다. '배당 재투자 포함'은 수정주가(Adjusted Close)를 사용해 배당을 같은 종목에 재투자한 경우를 근사한 값입니다. 과거 수익률은 미래 수익을 보장하지 않으며, 이 도구는 투자 자문이 아닙니다.</p>
+    </section>
+
+    <section class="faq-section">
+      <h2 data-i18n="stock_faq_title">❓ 자주 묻는 질문</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h4 data-i18n="stock_faq1_q">어떤 종목을 조회할 수 있나요?</h4>
+          <p data-i18n="stock_faq1_a">미국 거래소에 상장된 주식과 ETF를 티커로 조회할 수 있습니다. 예를 들어 SPY, QQQ, VOO, SCHD, AAPL 등입니다. 한국 거래소 종목은 지원하지 않습니다.</p>
+        </div>
+        <div class="faq-item">
+          <h4 data-i18n="stock_faq2_q">얼마나 과거까지 계산할 수 있나요?</h4>
+          <p data-i18n="stock_faq2_a">시세 데이터 제공 범위에 따라 대략 최근 10년까지 계산할 수 있습니다. 그보다 이른 시작 월을 선택하면 데이터가 있는 가장 이른 월부터 계산합니다.</p>
+        </div>
+        <div class="faq-item">
+          <h4 data-i18n="stock_faq3_q">배당금은 어떻게 반영되나요?</h4>
+          <p data-i18n="stock_faq3_a">'배당 재투자 포함'을 선택하면 배당락을 반영한 수정주가로 계산해 배당을 같은 종목에 재투자한 결과를 근사합니다. '배당 제외'는 단순 종가로만 계산합니다.</p>
+        </div>
+        <div class="faq-item">
+          <h4 data-i18n="stock_faq4_q">연평균 수익률은 어떻게 계산하나요?</h4>
+          <p data-i18n="stock_faq4_a">매달 현금을 넣는 적립식 특성을 반영해 투자금 가중 수익률(내부수익률, IRR)을 구한 뒤 연 단위로 환산합니다. 단순히 최종 수익률을 기간으로 나눈 값과는 다릅니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="related-tools">
+      <h2 data-i18n="stock_related_title">🔗 관련 도구</h2>
+      <div class="tools-grid">
+        <a href="../tools/savings/" class="tool-card">
+          <h3 data-i18n="tool_savings_title">예금/적금 이자 계산기</h3>
+          <p data-i18n="tool_savings_desc">예치금과 이율로부터 이자와 만기 수령액을 계산합니다.</p>
+        </a>
+        <a href="../tools/salary/" class="tool-card">
+          <h3 data-i18n="tool_salary_title">연봉 계산기</h3>
+          <p data-i18n="tool_salary_desc">연봉으로부터 월급, 세전/세후 금액을 계산합니다.</p>
+        </a>
+        <a href="../cal/percent/" class="tool-card">
+          <h3 data-i18n="tool_percent_title">퍼센트 계산기</h3>
+          <p data-i18n="tool_percent_desc">A의 B%, A는 B의 몇 %, 증감 비율 등을 빠르게 계산합니다.</p>
+        </a>
+      </div>
+    </section>
+  </div>
+</main>
+  <div id="ads-slot" class="ads-slot"></div>
+  <div id="site-footer"></div>
+<script src="../assets/js/i18n.js"></script>
+<script src="../assets/js/common.js"></script>
+<script src="./stock.js"></script>
+</body>
+</html>
