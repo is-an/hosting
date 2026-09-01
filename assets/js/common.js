@@ -195,6 +195,17 @@ function getSiteBasePath() {
   return siteRoot === '/' ? '' : siteRoot;
 }
 
+function ensureFavicon() {
+  if (document.querySelector('link[rel~="icon"]')) {
+    return;
+  }
+  const link = document.createElement('link');
+  link.rel = 'icon';
+  link.type = 'image/svg+xml';
+  link.href = `${getSiteBasePath()}/green-circle-logo.svg`;
+  document.head.appendChild(link);
+}
+
 function applyHeaderLinks() {
   const header = document.querySelector('.site-header');
   if (!header) {
@@ -275,6 +286,7 @@ function loadComponent(targetId, componentPath) {
 }
 
 function initSharedComponents() {
+  ensureFavicon();
   const siteRootPath = getSiteBasePath();
   const headerUrl = `${siteRootPath}/components/header.html` || '/components/header.html';
   const footerUrl = `${siteRootPath}/components/footer.html` || '/components/footer.html';
