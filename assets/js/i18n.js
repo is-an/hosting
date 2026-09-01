@@ -8,6 +8,54 @@ const DEFAULT_LANGUAGE = 'ko';
 const LANGUAGE_STORAGE_KEY = 'language';
 const LANGUAGE_NAMES = { ko: '한국어', en: 'English', zh: '中文', ja: '日本語' };
 
+// ============ 언어 데이터 지연 로딩 ============
+// 기본 언어(ko)는 이 파일에 인라인으로 포함되어 첫 화면에서 즉시 적용된다.
+// en/zh/ja 는 사용자가 해당 언어를 선택할 때만 assets/i18n/<lang>.js 를 <script> 로 주입해 로드하고
+// window.I18N_DATA 에 캐싱한다. (빌드 단계 없음 / HTML 파일 수정 없음)
+window.I18N_DATA = window.I18N_DATA || {};
+
+// 이 스크립트(assets/js/i18n.js)의 경로에서 사이트 루트를 유도한다. common.js 의 getSiteBasePath() 와 동일한 방식.
+const I18N_BASE = (function () {
+  let src = (document.currentScript && document.currentScript.src) || '';
+  if (!src) {
+    const nodes = document.querySelectorAll('script[src*="/assets/js/i18n.js"]');
+    src = nodes.length ? nodes[nodes.length - 1].src : '';
+  }
+  return src.replace(/\/assets\/js\/i18n\.js.*$/, '');
+})();
+
+const languageLoadPromises = {};
+
+// 로드된 언어 데이터로 translate() 가 쓰는 카탈로그를 구성한다.
+function registerLanguage(lang) {
+  if (!window.I18N_DATA[lang] || translations[lang]) return;
+  translations[lang] = buildTranslationCatalog(lang);
+  Object.assign(translations[lang], window.I18N_DATA[lang]);
+}
+
+// 해당 언어 데이터가 준비되면 resolve. 이미 있으면 즉시 resolve(동기적으로 처리됨).
+function ensureLanguage(lang) {
+  if (window.I18N_DATA[lang]) {
+    registerLanguage(lang);
+    return Promise.resolve();
+  }
+  if (SUPPORTED_LANGUAGES.indexOf(lang) === -1) return Promise.resolve();
+  if (languageLoadPromises[lang]) return languageLoadPromises[lang];
+
+  languageLoadPromises[lang] = new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = I18N_BASE + '/assets/i18n/' + lang + '.js';
+    script.async = true;
+    script.onload = () => { registerLanguage(lang); resolve(); };
+    script.onerror = () => {
+      console.warn('[i18n] ' + lang + ' 번역을 불러오지 못했습니다. 기본 언어로 표시합니다.');
+      resolve();
+    };
+    document.head.appendChild(script);
+  });
+  return languageLoadPromises[lang];
+}
+
 const legacyTranslations = {
   ko: {
     nav_home: "홈",
@@ -669,715 +717,6 @@ const legacyTranslations = {
     stock_copied: "결과가 복사되었습니다.",
     tool_stock_title: "주식·ETF 적립식 투자 계산기",
     tool_stock_desc: "과거 특정 시점부터 매달 적립식으로 투자했을 때의 수익률을 계산합니다."
-  },
-
-  en: {
-    nav_home: "Home",
-    nav_calculator: "Calculators",
-    nav_lotto: "Lotto",
-    nav_tools: "Tools",
-    nav_saju: "Saju & Fortune",
-
-    footer_toolsTitle: "Tools",
-    footer_infoTitle: "Info",
-    footer_socialTitle: "Social",
-    footer_calculatorLink: "Calculators",
-    footer_lottoLink: "Lotto",
-    footer_toolsLink: "Tools",
-    footer_home: "Home",
-    footer_contact: "Contact",
-
-    darkMode: "Switch to dark mode",
-    lightMode: "Switch to light mode",
-    language: "Select language",
-
-    meta_title: "Free Online Tools | Calculators, Converters, Generators",
-    meta_description: "Free online tools: percentage calculator, age calculator, character counter, unit converter, BMI calculator, salary calculator, loan interest calculator, and more — 15 useful tools in one place.",
-    calculator_meta_title: "Calculator Category - Free Online Calculators",
-    calculator_meta_description: "Free online calculators in one place: percentage, age, D-Day, and discharge date, plus salary, loan, savings, severance, VAT, and BMI calculators.",
-    tools_meta_title: "Tools Category - Free Online Tools",
-    tools_meta_description: "A collection of free online utility tools including a character/byte counter, unit converter, text converter, and camera shutter count checker.",
-    lotto_meta_title: "Lotto Number Generator - Free Lotto Recommendations",
-    lotto_meta_description: "A free tool that randomly selects 6 lotto numbers from 1 to 45.",
-    games_meta_title: "Mini Games - Free Online Games",
-    games_meta_description: "Enjoy free online mini games including reaction tests, Sudoku, typing tests, and block puzzles.",
-    nav_blog: "Blog",
-    blog_meta_title: "Blog - Stories from is-an Tools",
-    blog_meta_description: "Updates about calculators, tools, mini games, and building the is-an website.",
-    blog_eyebrow: "Stories from is-an",
-    blog_title: "Blog",
-    blog_copy: "Notes and useful ideas from building online tools.",
-    blog_read: "Read",
-    blog_post_title: "How to Add Useful Tools to a Static Website",
-    blog_post_summary: "A practical look at the structure and workflow for growing a small online tools site.",
-    blog_post_date: "August 14, 2026",
-    blog_post_category: "Web Development",
-    blog_post_heading: "A small, fast tools site structure",
-    blog_post_body: "Static HTML, CSS, and JavaScript are enough to deliver calculators and useful tools quickly. Reusing shared headers and footers while keeping each feature in its own directory makes maintenance and deployment simpler.",
-    blog_related: "Related posts",
-    blog_back: "Back to posts",
-    games_eyebrow: "Free Online Mini Games",
-    games_title: "Game Collection",
-    games_copy: "Enjoy short games while testing your reaction time, focus, and typing skills.",
-    shutter_meta_title: "Camera Shutter Count Checker - EXIF Photo Analysis",
-    shutter_meta_description: "Analyze camera EXIF data in your browser and display a shutter count only when explicitly available.",
-    og_title: "Free Online Tools",
-    og_description: "15 tools including percentage, age, character count, unit conversion, BMI, salary, loan, and image processing",
-
-    home_popular_title: "Popular Tools",
-    home_categories_title: "Categories",
-    home_eyebrow: "Free Online Tools",
-    home_title: "Useful tools, all in one place",
-    home_copy: "Calculators, tools, games, lotto, and Saju — all free, all in one place.",
-    home_searchPlaceholder: "Search tools... (e.g. BMI, salary, lotto)",
-    home_about_title: "is-an Online Tools",
-    home_about_copy: "is-an.github.io is a collection of free online tools that need no sign-up. From percentage, age, and D-Day calculators to salary, loan, savings, and severance calculators, character and unit converters, mini games, a lotto number generator, and Saju readings, you can reach the tools people use most from one place. Every calculation runs in your browser and your input is never sent to a server.",
-    home_allTools: "Browse all categories",
-    cal_finance_title: "Finance & Life Calculators",
-    tools_calc_note: "Salary, loan, savings, severance, BMI and other calculators are available in the Calculators category.",
-
-    filter_all: "All",
-    filter_calculator: "Calculators",
-    filter_converter: "Converters",
-    filter_generator: "Generators",
-
-    cat_calculator: "📊 Calculators",
-    cat_converter: "🔄 Converters",
-    cat_finance: "💰 Finance Calculators",
-    cat_generator: "🎰 Generators",
-    cat_popular: "⭐ Popular Tools",
-    cat_faq: "❓ Frequently Asked Questions",
-
-    tool_calculator_title: "Calculators Collection",
-    tool_calculator_desc: "A collection of formula-based tools to quickly check necessary calculations.",
-    tool_percent_title: "Percentage Calculator",
-    tool_percent_desc: "Quickly calculate B% of A, what percent A is of B, and rate of change.",
-    tool_age_title: "Age Calculator",
-    tool_age_desc: "Enter a birth date to calculate exact age, days elapsed, and days until the next birthday.",
-    tool_dday_title: "D-Day Calculator",
-    tool_dday_desc: "Enter a target date to calculate the D-Day countdown from today.",
-    tool_discharge_title: "Discharge Date Calculator",
-    tool_discharge_desc: "Calculate your discharge date from enlistment date and service period.",
-    tools_eyebrow: "Free Online Tools",
-    tools_title: "Tools Collection",
-    tools_copy: "Handy utilities for everyday tasks: character counting, unit conversion, text transformation, and photo EXIF analysis.",
-
-    tool_charcount_title: "Character/Byte Counter",
-    tool_charcount_desc: "Count characters, characters excluding spaces, and bytes in real time.",
-    tool_unit_title: "Unit Converter",
-    tool_unit_desc: "Convert length, weight, temperature, area, volume, time, and data size.",
-    tool_textconv_title: "Text Converter",
-    tool_textconv_desc: "Convert and process text in various ways.",
-    tool_shutter_count_title: "Camera Shutter Count Checker",
-    tool_shutter_count_desc: "Analyze photo EXIF data in your browser to show camera details and a shutter count when available.",
-
-    tool_bmi_title: "BMI Calculator",
-    tool_bmi_desc: "Enter height and weight to see your BMI and health status.",
-    tool_salary_title: "Salary Calculator",
-    tool_salary_desc: "Calculate monthly pay and net/gross amounts from annual salary.",
-    tool_vat_title: "VAT Calculator",
-    tool_vat_desc: "Calculate and reverse-calculate supply price, VAT, and total amount.",
-    tool_loan_title: "Loan Interest Calculator",
-    tool_loan_desc: "Calculate monthly payments and total interest from loan amount, rate, and term.",
-    tool_savings_title: "Savings/Deposit Interest Calculator",
-    tool_savings_desc: "Calculate interest and maturity amount from deposit and rate.",
-    tool_retirement_title: "Severance Pay Calculator",
-    tool_retirement_desc: "Estimate severance pay from hire date and resignation date.",
-    lotto_eyebrow: "Free Online Lotto Generator",
-    lotto_title: "Lotto Number Generator",
-    lotto_copy: "Randomly picks 6 numbers from 1 to 45 to recommend lotto numbers.",
-    lotto_intro: "Randomly generates 6 distinct numbers from 1 to 45.",
-    lotto_fixedLabel: "Fix numbers by position (1-6)",
-    lotto_slot1: "1st", lotto_slot2: "2nd", lotto_slot3: "3rd",
-    lotto_slot4: "4th", lotto_slot5: "5th", lotto_slot6: "6th",
-    lotto_generateOne: "Generate 1", lotto_generateFive: "Generate 5", lotto_reset: "Reset",
-
-    tool_lotto_title: "Lotto Number Generator",
-    tool_lotto_desc: "Randomly picks 6 numbers from 1 to 45 to recommend lotto numbers.",
-
-    popular_salary_desc: "Enter your salary to check your take-home pay",
-    popular_bmi_desc: "Keep track of a healthy weight",
-    popular_dday_desc: "Check the days remaining until your target date",
-
-    faq_q1: "Do I need to sign up to use these tools?",
-    faq_a1: "No, all tools are completely free and require no sign-up.",
-    faq_q2: "Are the calculation results accurate?",
-    faq_a2: "Yes, all calculations use accurate formulas, but actual amounts may differ depending on taxes, benefits, and personal circumstances.",
-    faq_q3: "Can I save or export the results?",
-    faq_a3: "You can copy results to the clipboard using each tool's copy button. File export is not currently supported.",
-    faq_q4: "Can I use this on mobile?",
-    faq_a4: "Yes, all tools are optimized for mobile devices.",
-
-    saju_title: "Saju & Fortune",
-    saju_copy: "Check Saju information based on your birth date.",
-
-    saju_meta_title: "Free Saju Reading | Four Pillars",
-    saju_meta_description: "Enter your birth date and time to check your Saju information.",
-
-    saju_eyebrow: "Free Online Saju Reading",
-    saju_page_title: "Free Saju Reading",
-    saju_page_copy: "Enter your birth date and time to check your Saju information.",
-
-    saju_input_title: "Birth Information",
-    saju_birth_date: "Birth date",
-    saju_birth_time: "Birth time",
-    saju_birth_time_unknown: "Unknown",
-    saju_gender: "Gender",
-    saju_male: "Male",
-    saju_female: "Female",
-    saju_calculate: "View Saju",
-    saju_input_required: "Please enter your birth date.",
-
-    saju_result_title: "Saju Result",
-    saju_result_placeholder: "Your result will appear after entering your information.",
-    saju_result_ready: "Your information has been confirmed.",
-    saju_result_demo: "The input and result interface is ready. The actual Four Pillars calculation will be connected in the next step.",
-
-    saju_about_title: "What is Saju?",
-    saju_about_copy: "Saju is a traditional East Asian method that interprets tendencies and fortune based on the year, month, day, and time of birth.",
-
-    saju_faq_title: "❓ Frequently Asked Questions",
-    saju_faq1: "Can I check Saju without knowing my birth time?",
-    saju_faq1_answer: "Yes, but the result may differ because the birth time is used for part of the Saju calculation.",
-    saju_faq2: "Are Saju results accurate?",
-    saju_faq2_answer: "Saju is a traditional interpretive practice and should be considered for reference rather than a definitive prediction of the future.",
-    saju_faq3: "Is my information stored?",
-    saju_faq3_answer: "No. Your birth date and time are used only in your browser for the calculation and are not sent to or stored on any server.",
-
-    stock_meta_title: "Stock & ETF Dollar-Cost-Averaging Return Calculator - Historical Backtest",
-    stock_meta_description: "See what a fixed monthly investment into a stock or ETF from a past starting point would be worth today. Backtest the historical returns of US-listed tickers such as SPY, QQQ, and VOO for free.",
-    stock_eyebrow: "Historical return backtest",
-    stock_title: "Stock & ETF Recurring Investment Calculator",
-    stock_copy: "See what a fixed monthly investment into a stock or ETF, started at a past point in time, would be worth today.",
-    stock_form_ticker: "Ticker symbol",
-    stock_form_ticker_hint: "Enter the ticker of a US-listed stock or ETF (e.g. SPY, QQQ, VOO, AAPL).",
-    stock_form_amount: "Monthly investment (USD)",
-    stock_form_amount_hint: "Assumes you buy the same amount every month. Amounts are in US dollars; currency conversion is not included.",
-    stock_form_start: "Start month",
-    stock_form_end: "End month (optional)",
-    stock_form_end_hint: "Leave blank to calculate through the most recent month. Historical data goes back about 10 years.",
-    stock_form_dividend: "Dividend handling",
-    stock_form_dividend_on: "Reinvest dividends (adjusted close)",
-    stock_form_dividend_off: "Exclude dividends (raw close)",
-    stock_calculate: "Calculate",
-    stock_copy_result: "Copy result",
-    stock_reset: "Reset",
-    stock_chart_value: "Portfolio value",
-    stock_chart_principal: "Amount invested",
-    stock_table_toggle: "Show monthly breakdown",
-    stock_th_month: "Month",
-    stock_th_price: "Price",
-    stock_th_bought: "Shares bought",
-    stock_th_shares: "Total shares",
-    stock_th_invested: "Total invested",
-    stock_th_value: "Value",
-    stock_data_source: "Price data: stockanalysis.com. For reference only; actual results may differ.",
-    stock_about_title: "What is recurring (dollar-cost-averaging) investing?",
-    stock_about_copy: "Recurring investing means buying the same security with a fixed amount every month. You buy more shares when the price is low and fewer when it is high, so your average purchase price is naturally spread out. In English this is called DCA (Dollar Cost Averaging).",
-    stock_about_copy2: "This calculator assumes you buy the entered amount on the first trading day of each month from the chosen start month, and computes your accumulated shares, current value, return versus principal, and annualized (money-weighted) return.",
-    stock_disclaimer_title: "Things to keep in mind",
-    stock_disclaimer_copy: "Trading fees, taxes, currency conversion, and slippage are not included. \"Reinvest dividends\" uses the adjusted close to approximate reinvesting dividends into the same security. Past performance does not guarantee future returns, and this tool is not investment advice.",
-    stock_faq_title: "❓ Frequently asked questions",
-    stock_faq1_q: "Which tickers can I look up?",
-    stock_faq1_a: "Stocks and ETFs listed on US exchanges, by ticker — for example SPY, QQQ, VOO, SCHD, or AAPL. Korean-exchange tickers are not supported.",
-    stock_faq2_q: "How far back can I calculate?",
-    stock_faq2_a: "About 10 years, depending on data availability. If you choose an earlier start month, the calculation begins from the earliest month with data.",
-    stock_faq3_q: "How are dividends handled?",
-    stock_faq3_a: "\"Reinvest dividends\" uses the dividend-adjusted close to approximate reinvesting dividends into the same security. \"Exclude dividends\" uses the raw close only.",
-    stock_faq4_q: "How is the annualized return calculated?",
-    stock_faq4_a: "It uses the money-weighted return (internal rate of return, IRR) to reflect monthly contributions, then annualizes it. This differs from simply dividing the total return by the number of years.",
-    stock_related_title: "🔗 Related tools",
-    stock_loading: "Loading price data...",
-    stock_err_symbol: "No price data found for that ticker. Please check the symbol (US-listed tickers only).",
-    stock_err_network: "Could not load price data. Please try again later (network or data-provider issue).",
-    stock_err_range: "No price data is available for the selected period. Please check the start and end months.",
-    stock_err_input: "Please enter a valid ticker, monthly amount, and start month.",
-    stock_notice_clamped: "Data starts later than the start month you chose. Calculated from {month}.",
-    stock_res_principal: "Total invested",
-    stock_res_value: "Final value",
-    stock_res_profit: "Total gain/loss",
-    stock_res_return: "Total return",
-    stock_res_cagr: "Annualized return",
-    stock_res_months: "Purchases",
-    stock_res_shares: "Total shares",
-    stock_res_avgprice: "Avg. cost",
-    stock_months_unit: "",
-    stock_shares_unit: "sh",
-    stock_copied: "Result copied.",
-    tool_stock_title: "Stock & ETF DCA Calculator",
-    tool_stock_desc: "Calculate the return of investing a fixed amount every month from a past starting point."
-  },
-
-  zh: {
-    nav_home: "首页",
-    nav_calculator: "计算器",
-    nav_lotto: "乐透",
-    nav_tools: "工具",
-    nav_saju: "四柱推命",
-
-    footer_toolsTitle: "工具集合",
-    footer_infoTitle: "信息",
-    footer_socialTitle: "社交",
-    footer_calculatorLink: "计算器",
-    footer_lottoLink: "乐透",
-    footer_toolsLink: "工具",
-    footer_home: "首页",
-    footer_contact: "联系我们",
-
-    darkMode: "切换至深色模式",
-    lightMode: "切换至浅色模式",
-    language: "选择语言",
-
-    meta_title: "免费在线工具 | 计算器、转换器、生成器",
-    meta_description: "免费在线工具集合：百分比计算器、年龄计算器、字数统计、单位换算器、BMI计算器、薪资计算器、贷款利息计算器等15款实用工具，一站获取。",
-    calculator_meta_title: "计算器分类 - 免费在线计算器集合",
-    calculator_meta_description: "一站式免费在线计算器：百分比、年龄、D-Day、退伍日期，以及薪资、贷款、存款、退休金、增值税和 BMI 计算器。",
-    tools_meta_title: "工具分类 - 免费在线工具集合",
-    tools_meta_description: "免费在线实用工具集合，包括字数/字节统计、单位换算、文本转换和相机快门次数查询器。",
-    lotto_meta_title: "乐透号码生成器 - 免费乐透推荐",
-    lotto_meta_description: "从1到45中随机选择6个乐透号码的免费工具。",
-    games_meta_title: "迷你游戏 - 免费在线游戏集合",
-    games_meta_description: "免费体验反应速度测试、数独、打字速度测试和方块拼图等在线迷你游戏。",
-    nav_blog: "博客",
-    blog_meta_title: "博客 - is-an 在线工具故事",
-    blog_meta_description: "分享计算器、工具、迷你游戏和网站制作的最新内容。",
-    blog_eyebrow: "is-an 故事",
-    blog_title: "博客",
-    blog_copy: "分享制作在线工具时的记录和实用信息。",
-    blog_read: "阅读",
-    blog_post_title: "如何为静态网站添加实用工具",
-    blog_post_summary: "整理小型在线工具网站的扩展结构和运营方法。",
-    blog_post_date: "2026年8月14日",
-    blog_post_category: "网页开发",
-    blog_post_heading: "小而快速的工具网站结构",
-    blog_post_body: "只使用静态 HTML、CSS 和 JavaScript，也可以快速提供计算器和工具。复用通用页眉页脚，并将每项功能放在独立目录中，可以让维护和部署更加简单。",
-    blog_related: "相关文章",
-    blog_back: "返回文章列表",
-    games_eyebrow: "免费在线迷你游戏",
-    games_title: "游戏集合",
-    games_copy: "用短时间的游戏测试你的反应速度、专注力和打字能力。",
-    shutter_meta_title: "相机快门次数查询器 - EXIF照片分析",
-    shutter_meta_description: "在浏览器中分析相机EXIF信息，并仅在明确存在时显示快门次数。",
-    og_title: "免费在线工具集合",
-    og_description: "包含百分比、年龄、字数、单位换算、BMI、薪资、贷款、图片处理等15款工具",
-
-    home_popular_title: "热门工具",
-    home_categories_title: "工具分类",
-    home_eyebrow: "免费在线工具集合",
-    home_title: "实用工具，一站搞定",
-    home_copy: "计算器、工具、游戏、乐透、四柱推命，全部免费，一站搞定。",
-    home_searchPlaceholder: "搜索工具...(例如 BMI、薪资、乐透)",
-    home_about_title: "is-an 在线工具集",
-    home_about_copy: "is-an.github.io 是一个无需注册即可免费使用的在线工具集。从百分比、年龄、D-Day 计算器到薪资、贷款、存款、退休金等财务计算器，以及字数与单位换算工具、迷你游戏、乐透号码生成器和四柱推命，你都可以在同一个页面快速使用。所有计算都在浏览器中完成，输入内容不会发送到服务器。",
-    home_allTools: "浏览所有分类",
-    cal_finance_title: "财务与生活计算器",
-    tools_calc_note: "薪资、贷款、存款、退休金、BMI 等计算器可在“计算器”分类中使用。",
-
-    filter_all: "全部",
-    filter_calculator: "计算器",
-    filter_converter: "转换器",
-    filter_generator: "生成器",
-
-    cat_calculator: "📊 计算器",
-    cat_converter: "🔄 转换器",
-    cat_finance: "💰 财务计算器",
-    cat_generator: "🎰 生成器",
-    cat_popular: "⭐ 热门工具",
-    cat_faq: "❓ 常见问题",
-
-    tool_calculator_title: "计算器集合",
-    tool_calculator_desc: "将基于公式的工具集中在一处，以便快速检查所需的计算。",
-    tool_percent_title: "百分比计算器",
-    tool_percent_desc: "快速计算 A 的 B%、A 是 B 的百分之多少，以及增减比率。",
-    tool_age_title: "年龄计算器",
-    tool_age_desc: "输入出生日期即可计算周岁、经过天数以及距下次生日的天数。",
-    tool_dday_title: "D-Day 倒数计算器",
-    tool_dday_desc: "输入目标日期，计算从今天起的 D-Day 倒数天数。",
-    tool_discharge_title: "退伍日计算器",
-    tool_discharge_desc: "根据入伍日期和服役期限计算退伍日期。",
-    tools_eyebrow: "免费在线工具",
-    tools_title: "工具集合",
-    tools_copy: "日常实用工具：字数统计、单位换算、文本转换和照片 EXIF 分析。",
-
-    tool_charcount_title: "字数/字节计算器",
-    tool_charcount_desc: "实时计算文本的字数、含/不含空格的字数以及字节数。",
-    tool_unit_title: "单位换算器",
-    tool_unit_desc: "换算长度、重量、温度、面积、体积、时间和数据容量。",
-    tool_textconv_title: "文本转换工具",
-    tool_textconv_desc: "以多种方式转换和处理文本。",
-    tool_shutter_count_title: "相机快门次数查询器",
-    tool_shutter_count_desc: "在浏览器中分析照片 EXIF 信息，显示相机信息和可确认的快门次数。",
-
-    tool_bmi_title: "BMI 计算器",
-    tool_bmi_desc: "输入身高体重即可显示 BMI 和健康状态。",
-    tool_salary_title: "薪资计算器",
-    tool_salary_desc: "根据年薪计算月薪及税前/税后金额。",
-    tool_vat_title: "增值税计算器",
-    tool_vat_desc: "计算并反算供货价、增值税及总金额。",
-    tool_loan_title: "贷款利息计算器",
-    tool_loan_desc: "根据贷款金额、利率和期限计算月供及总利息。",
-    tool_savings_title: "存款/定期利息计算器",
-    tool_savings_desc: "根据存款金额和利率计算利息及到期领取金额。",
-    tool_retirement_title: "退休金计算器",
-    tool_retirement_desc: "根据入职日期和离职日期估算退休金。",
-    lotto_eyebrow: "免费在线乐透生成器",
-    lotto_title: "乐透号码生成器",
-    lotto_copy: "从1到45中随机选择6个号码推荐乐透号码。",
-    lotto_intro: "从1到45中随机生成6个不重复的号码。",
-    lotto_fixedLabel: "按位置固定号码（1~6位）",
-    lotto_slot1: "第1位", lotto_slot2: "第2位", lotto_slot3: "第3位",
-    lotto_slot4: "第4位", lotto_slot5: "第5位", lotto_slot6: "第6位",
-    lotto_generateOne: "生成1组", lotto_generateFive: "生成5组", lotto_reset: "重置",
-
-    tool_lotto_title: "乐透号码生成器",
-    tool_lotto_desc: "从 1 到 45 中随机选出 6 个号码推荐乐透号码。",
-
-    popular_salary_desc: "输入年薪查看实际到手金额",
-    popular_bmi_desc: "保持健康体重",
-    popular_dday_desc: "查看距离目标日期还剩多少天",
-
-    faq_q1: "使用这些工具需要注册吗?",
-    faq_a1: "不需要，所有工具完全免费且无需注册即可使用。",
-    faq_q2: "计算结果准确吗?",
-    faq_a2: "是的，所有计算均采用精确算法，但实际金额可能因税金、福利等个人情况而有所不同。",
-    faq_q3: "可以保存或导出结果吗?",
-    faq_a3: "您可以使用各工具的复制按钮将结果复制到剪贴板。目前暂不支持文件保存功能。",
-    faq_q4: "可以在手机上使用吗?",
-
-    saju_title: "四柱八字·运势",
-    saju_copy: "根据出生日期查看四柱八字信息。",
-
-    saju_meta_title: "免费四柱八字解析 | 八字查询",
-    saju_meta_description: "输入出生日期和时间，查看四柱八字信息。",
-
-    saju_eyebrow: "免费在线四柱八字解析",
-    saju_page_title: "免费四柱八字解析",
-    saju_page_copy: "输入出生日期和时间，查看您的四柱八字信息。",
-
-    saju_input_title: "出生信息",
-    saju_birth_date: "出生日期",
-    saju_birth_time: "出生时间",
-    saju_birth_time_unknown: "未知",
-    saju_gender: "性别",
-    saju_male: "男性",
-    saju_female: "女性",
-    saju_calculate: "查看八字",
-    saju_input_required: "请输入出生日期。",
-
-    saju_result_title: "八字结果",
-    saju_result_placeholder: "输入信息后将显示结果。",
-    saju_result_ready: "出生信息已确认。",
-    saju_result_demo: "当前已完成输入和结果界面。实际四柱八字计算功能将在下一阶段连接。",
-
-    saju_about_title: "什么是四柱八字？",
-    saju_about_copy: "四柱八字是根据出生的年、月、日、时，从传统命理学角度分析个人倾向和运势的方法。",
-
-    saju_faq_title: "❓ 常见问题",
-    saju_faq1: "不知道出生时间也可以查询吗？",
-    saju_faq1_answer: "可以，但由于出生时间会影响部分八字计算，结果可能有所不同。",
-    saju_faq2: "八字结果准确吗？",
-    saju_faq2_answer: "四柱八字属于传统命理解释，应作为参考，而不是对未来的确定性预测。",
-    saju_faq3: "输入的信息会被保存吗？",
-    saju_faq3_answer: "不会。出生日期和时间仅在您的浏览器中用于计算，不会发送到服务器或被保存。",
-
-    stock_meta_title: "股票·ETF 定投收益计算器 - 历史收益率回测",
-    stock_meta_description: "计算从过去某个时间点开始每月定额投资股票或 ETF，到现在会值多少钱。免费回测 SPY、QQQ、VOO 等美国上市标的的历史收益率。",
-    stock_eyebrow: "历史收益率回测",
-    stock_title: "股票·ETF 定投收益计算器",
-    stock_copy: "计算从过去某个时间点开始，每月定额定投股票或 ETF，到现在会值多少钱。",
-    stock_form_ticker: "股票代码",
-    stock_form_ticker_hint: "请输入美国上市股票或 ETF 的代码（例如 SPY、QQQ、VOO、AAPL）。",
-    stock_form_amount: "每月投资金额（美元）",
-    stock_form_amount_hint: "假设每月买入相同金额。金额以美元计，不含汇率换算。",
-    stock_form_start: "开始月份",
-    stock_form_end: "结束月份（可选）",
-    stock_form_end_hint: "留空则计算至最近月份。历史数据最多约 10 年。",
-    stock_form_dividend: "股息处理",
-    stock_form_dividend_on: "股息再投资（复权价）",
-    stock_form_dividend_off: "不含股息（收盘价）",
-    stock_calculate: "计算",
-    stock_copy_result: "复制结果",
-    stock_reset: "重置",
-    stock_chart_value: "持仓市值",
-    stock_chart_principal: "投入本金",
-    stock_table_toggle: "查看每月明细",
-    stock_th_month: "月份",
-    stock_th_price: "股价",
-    stock_th_bought: "买入数量",
-    stock_th_shares: "累计数量",
-    stock_th_invested: "累计本金",
-    stock_th_value: "市值",
-    stock_data_source: "行情数据：stockanalysis.com · 仅供参考，实际结果可能不同。",
-    stock_about_title: "什么是定投（定额定投）？",
-    stock_about_copy: "定投是指每月用固定金额持续买入同一标的。价格低时买得多，价格高时买得少，平均买入成本自然被分摊。英文称为 DCA（Dollar Cost Averaging）。",
-    stock_about_copy2: "本计算器假设从所选开始月份起，每月第一个交易日按输入金额买入，并计算累计数量、当前市值、相对本金的收益率以及年化（资金加权）收益率。",
-    stock_disclaimer_title: "计算注意事项",
-    stock_disclaimer_copy: "不含交易手续费、税费、汇率和滑点。“股息再投资”使用复权收盘价来近似将股息再投资于同一标的。过往收益不代表未来收益，本工具不构成投资建议。",
-    stock_faq_title: "❓ 常见问题",
-    stock_faq1_q: "可以查询哪些标的？",
-    stock_faq1_a: "可以按代码查询美国交易所上市的股票和 ETF，例如 SPY、QQQ、VOO、SCHD、AAPL 等。不支持韩国交易所标的。",
-    stock_faq2_q: "可以回测多久之前？",
-    stock_faq2_a: "视数据范围而定，大约最近 10 年。若选择更早的开始月份，将从有数据的最早月份开始计算。",
-    stock_faq3_q: "股息如何计入？",
-    stock_faq3_a: "选择“股息再投资”会使用反映除息的复权价，近似将股息再投资于同一标的；“不含股息”仅按收盘价计算。",
-    stock_faq4_q: "年化收益率如何计算？",
-    stock_faq4_a: "结合每月投入现金的特点，先求资金加权收益率（内部收益率 IRR），再换算为年化。这与将总收益率简单除以年数不同。",
-    stock_related_title: "🔗 相关工具",
-    stock_loading: "正在加载行情数据...",
-    stock_err_symbol: "找不到该代码的行情数据，请检查代码（仅支持美国上市标的）。",
-    stock_err_network: "无法加载行情数据，请稍后再试（网络或数据源问题）。",
-    stock_err_range: "所选期间没有可用的行情数据，请检查开始月份和结束月份。",
-    stock_err_input: "请正确输入股票代码、每月投资金额和开始月份。",
-    stock_notice_clamped: "数据的起始时间晚于您选择的开始月份，已从 {month} 开始计算。",
-    stock_res_principal: "累计投入本金",
-    stock_res_value: "最终市值",
-    stock_res_profit: "总盈亏",
-    stock_res_return: "累计收益率",
-    stock_res_cagr: "年化收益率",
-    stock_res_months: "买入次数",
-    stock_res_shares: "累计数量",
-    stock_res_avgprice: "平均买入价",
-    stock_months_unit: "次",
-    stock_shares_unit: "股",
-    stock_copied: "结果已复制。",
-    tool_stock_title: "股票·ETF 定投计算器",
-    tool_stock_desc: "计算从过去某个时间点开始每月定额定投的收益率。"
-  },
-
-  ja: {
-    nav_home: "ホーム",
-    nav_calculator: "計算機",
-    nav_lotto: "ロト",
-    nav_tools: "ツール",
-    nav_saju: "四柱推命",
-
-    footer_toolsTitle: "ツール一覧",
-    footer_infoTitle: "情報",
-    footer_socialTitle: "ソーシャル",
-    footer_calculatorLink: "計算機",
-    footer_lottoLink: "ロト",
-    footer_toolsLink: "ツール",
-    footer_home: "ホーム",
-    footer_contact: "お問い合わせ",
-
-    darkMode: "ダークモードに切り替え",
-    lightMode: "ライトモードに切り替え",
-    language: "言語を選択",
-
-    meta_title: "無料オンラインツール | 計算機、変換ツール、生成ツール",
-    meta_description: "無料オンラインツール集：パーセント計算機、年齢計算機、文字数カウント、単位変換機、BMI計算機、給与計算機、ローン利息計算機など15の便利なツールを一箇所で。",
-    calculator_meta_title: "計算機カテゴリ - 無料オンライン計算機集",
-    calculator_meta_description: "パーセント・年齢・D-Day・除隊日から、給与・ローン・預金・退職金・付加価値税・BMI まで、無料オンライン計算機を一箇所にまとめました。",
-    tools_meta_title: "ツールカテゴリ - 無料オンラインツール集",
-    tools_meta_description: "文字数・バイト計算、単位変換、テキスト変換、カメラのシャッター回数チェッカーなど、無料オンラインユーティリティツール集です。",
-    lotto_meta_title: "ロト番号生成機 - 無料ロト番号推薦",
-    lotto_meta_description: "1から45までの数字から6個をランダムに選ぶ無料ロト番号生成ツールです。",
-    games_meta_title: "ミニゲーム - 無料オンラインゲーム集",
-    games_meta_description: "反応速度テスト、数独、タイピングテスト、ブロックパズルを楽しめる無料オンラインゲーム集です。",
-    nav_blog: "ブログ",
-    blog_meta_title: "ブログ - is-an オンラインツールの話",
-    blog_meta_description: "計算機、ツール、ミニゲーム、ウェブサイト制作に関する情報をお届けします。",
-    blog_eyebrow: "is-an の記録",
-    blog_title: "ブログ",
-    blog_copy: "オンラインツールを作る中で得た記録と役立つ情報を共有します。",
-    blog_read: "読む",
-    blog_post_title: "静的ウェブサイトに便利なツールを追加する方法",
-    blog_post_summary: "小さなオンラインツールサイトを拡張する構成と運用方法をまとめました。",
-    blog_post_date: "2026年8月14日",
-    blog_post_category: "ウェブ開発",
-    blog_post_heading: "小さく速いツールサイトの構成",
-    blog_post_body: "静的な HTML、CSS、JavaScript だけでも、計算機や便利なツールを素早く提供できます。共通ヘッダーとフッターを再利用し、機能ごとにディレクトリを分けると、保守とデプロイが簡単になります。",
-    blog_related: "関連記事",
-    blog_back: "記事一覧に戻る",
-    games_eyebrow: "無料オンラインミニゲーム",
-    games_title: "ゲーム一覧",
-    games_copy: "短いゲームを楽しみながら、反応速度、集中力、タイピングスキルを試してみましょう。",
-    shutter_meta_title: "カメラシャッター回数チェッカー - EXIF写真解析",
-    shutter_meta_description: "ブラウザーでカメラのEXIF情報を解析し、明示的に確認できる場合のみシャッター回数を表示します。",
-    og_title: "無料オンラインツール集",
-    og_description: "パーセント、年齢、文字数、単位変換、BMI、給与、ローン、画像処理な〩15のツール集",
-
-    home_categories_title: "カテゴリー",
-    home_popular_title: "人気ツール",
-    home_eyebrow: "無料オンラインツール集",
-    home_title: "便利なツールを一箇所に",
-    home_copy: "計算機、ツール、ゲーム、ロト、四柱推命をまとめて無料で。",
-    home_searchPlaceholder: "ツールを検索...(例: BMI、給与、ロト)",
-    home_about_title: "is-an オンラインツール集",
-    home_about_copy: "is-an.github.io は登録不要で無料で使えるオンラインツール集です。パーセント・年齢・D-Day 計算機から、給与・ローン・預金・退職金などの金融計算機、文字数・単位変換ツール、ミニゲーム、ロト番号ジェネレーター、四柱推命まで、よく使う機能を一つのページからすぐに利用できます。すべての計算はブラウザー内で行われ、入力内容がサーバーに送信されることはありません。",
-    home_allTools: "すべてのカテゴリーを見る",
-    cal_finance_title: "金融・生活の計算機",
-    tools_calc_note: "給与・ローン・預金・退職金・BMI などの計算機は「計算機」カテゴリーでご利用いただけます。",
-
-    filter_all: "すべて",
-    filter_calculator: "計算機",
-    filter_converter: "変換ツール",
-    filter_generator: "生成ツール",
-
-    cat_calculator: "📊 計算機",
-    cat_converter: "🔄 変換ツール",
-    cat_finance: "💰 金融計算機",
-    cat_generator: "🎰 生成ツール",
-    cat_popular: "⭐ 人気ツール",
-    cat_faq: "❓ よくある質問",
-
-    tool_calculator_title: "計算機集合",
-    tool_calculator_desc: "必要な計算を素早く確認できる公式ベースのツールを一箇所にまとめました。",
-    tool_percent_title: "パーセント計算機",
-    tool_percent_desc: "AのB%、AはBの何%か、増減率などを素早く計算します。",
-    tool_age_title: "年齢計算機",
-    tool_age_desc: "生年月日を入力すると満年齢、経過日数、次の誕生日までの日数を計算します。",
-    tool_dday_title: "D-Day計算機",
-    tool_dday_desc: "目標日を入力すると今日を基準にD-Dayまでの残り日数を計算します。",
-    tool_discharge_title: "除隊日計算機",
-    tool_discharge_desc: "入隊日と服務期間から除隊日を計算します。",
-    tools_eyebrow: "無料オンラインツール",
-    tools_title: "ツール一覧",
-    tools_copy: "文字数カウント、単位変換、テキスト変換、写真の EXIF 解析など、日常に役立つユーティリティをまとめました。",
-
-    tool_charcount_title: "文字数/バイト計算機",
-    tool_charcount_desc: "テキストの文字数、空白を含む/除く文字数、バイト数をリアルタイムで計算します。",
-    tool_unit_title: "単位変換機",
-    tool_unit_desc: "長さ、重さ、温度、面積、体積、時間、データ容量を変換します。",
-    tool_textconv_title: "テキスト変換ツール",
-    tool_textconv_desc: "テキストをさまざまな方式で変換・処理します。",
-    tool_shutter_count_title: "カメラシャッター回数チェッカー",
-    tool_shutter_count_desc: "写真の EXIF 情報をブラウザーで解析し、カメラ情報と確認できるシャッター回数を表示します。",
-
-    tool_bmi_title: "BMI計算機",
-    tool_bmi_desc: "身長と体重を入力するとBMIと健康状態を表示します。",
-    tool_salary_title: "年俸計算機",
-    tool_salary_desc: "年俸から月給、税引前/税引後の金額を計算します。",
-    tool_vat_title: "付加価値税計算機",
-    tool_vat_desc: "供給価額、付加価値税、合計金額を計算・逆算します。",
-    tool_loan_title: "ローン利息計算機",
-    tool_loan_desc: "融資額、利率、期間から月々の返済額と総利息を計算します。",
-    tool_savings_title: "預金/積立金利計算機",
-    tool_savings_desc: "預入金額と利率から利息と満期受取額を計算します。",
-    tool_retirement_title: "退職金計算機",
-    tool_retirement_desc: "入社日と退社日から予想退職金を計算します。",
-    lotto_eyebrow: "無料オンラインロト生成機",
-    lotto_title: "ロト番号生成機",
-    lotto_copy: "1から45までの数字から6個をランダムに選び、ロト番号を推薦します。",
-    lotto_intro: "1から45までの中から重複しない6個の番号をランダムに生成します。",
-    lotto_fixedLabel: "位置ごとに番号を固定（1~6桁）",
-    lotto_slot1: "1番目", lotto_slot2: "2番目", lotto_slot3: "3番目",
-    lotto_slot4: "4番目", lotto_slot5: "5番目", lotto_slot6: "6番目",
-    lotto_generateOne: "1組生成", lotto_generateFive: "5組生成", lotto_reset: "リセット",
-
-    tool_lotto_title: "ロト番号生成機",
-    tool_lotto_desc: "1から45までの数字の中から6個をランダムに選んでロト番号を推薦します。",
-
-    popular_salary_desc: "年俸を入力して手取り額を確認しましょう",
-    popular_bmi_desc: "健康的な体重を維持しましょう",
-    popular_dday_desc: "目標日までの残り日数を確認しましょう",
-
-    faq_q1: "これらのツールを利用するには会員登録が必要ですか?",
-    faq_a1: "いいえ、すべてのツールは完全無料で、会員登録なしでご利用いただけます。",
-    faq_q2: "計算結果は正確ですか?",
-    faq_a2: "はい、すべての計算は正確なアルゴリズムで行われますが、税金や福祉手当など個人の状況により実際の金額と異なる場合があります。",
-    faq_q3: "結果を保存したりエクスポートしたりできますか?",
-    faq_a3: "各ツールのコピーボタンで結果をクリップボードにコピーできます。現在ファイル保存機能は提供していません。",
-    faq_q4: "モバイルでも利用できますか?",
-
-    saju_title: "四柱推命・運勢",
-    saju_copy: "生年月日をもとに四柱推命の情報を確認します。",
-
-    saju_meta_title: "無料四柱推命 | 四柱八字を確認",
-    saju_meta_description: "生年月日と出生時間を入力して四柱推命の情報を確認できます。",
-
-    saju_eyebrow: "無料オンライン四柱推命",
-    saju_page_title: "無料四柱推命",
-    saju_page_copy: "生年月日と出生時間を入力して四柱推命の情報を確認してください。",
-
-    saju_input_title: "出生情報",
-    saju_birth_date: "生年月日",
-    saju_birth_time: "出生時間",
-    saju_birth_time_unknown: "不明",
-    saju_gender: "性別",
-    saju_male: "男性",
-    saju_female: "女性",
-    saju_calculate: "四柱推命を見る",
-    saju_input_required: "生年月日を入力してください。",
-
-    saju_result_title: "四柱推命の結果",
-    saju_result_placeholder: "情報を入力すると結果が表示されます。",
-    saju_result_ready: "出生情報を確認しました。",
-    saju_result_demo: "現在は入力と結果画面を準備しています。実際の四柱推命計算機能は次の段階で接続します。",
-
-    saju_about_title: "四柱推命とは？",
-    saju_about_copy: "四柱推命は、生まれた年・月・日・時間をもとに、伝統的な命理学の観点から性質や運勢を読み解く方法です。",
-
-    saju_faq_title: "❓ よくある質問",
-    saju_faq1: "出生時間が分からなくても確認できますか？",
-    saju_faq1_answer: "確認できますが、出生時間は一部の計算に影響するため、結果が異なる場合があります。",
-    saju_faq2: "四柱推命の結果は正確ですか？",
-    saju_faq2_answer: "四柱推命は伝統的な解釈方法であり、未来を確定的に予測するものではありません。",
-    saju_faq3: "入力した情報は保存されますか？",
-    saju_faq3_answer: "いいえ。生年月日と出生時間はブラウザ内でのみ計算に使われ、サーバーに送信・保存されることはありません。",
-
-    stock_meta_title: "株式・ETF 積立投資リターン計算機 - 過去リターンのバックテスト",
-    stock_meta_description: "過去のある時点から毎月一定額を株式や ETF に積立投資していたら、今いくらになっているかを計算します。SPY、QQQ、VOO など米国上場銘柄の過去リターンを無料でバックテストできます。",
-    stock_eyebrow: "過去リターンのバックテスト",
-    stock_title: "株式・ETF 積立投資リターン計算機",
-    stock_copy: "過去のある時点から毎月一定額を株式や ETF に積立投資していたら、今いくらになっているかを計算します。",
-    stock_form_ticker: "ティッカーシンボル",
-    stock_form_ticker_hint: "米国上場の株式・ETF のティッカーを入力してください（例：SPY、QQQ、VOO、AAPL）。",
-    stock_form_amount: "毎月の投資額（USD）",
-    stock_form_amount_hint: "毎月同じ金額を買い付けると仮定します。金額は米ドル建てで、為替は反映しません。",
-    stock_form_start: "積立開始月",
-    stock_form_end: "積立終了月（任意）",
-    stock_form_end_hint: "空欄の場合は直近の月まで計算します。過去データは最大で約 10 年分です。",
-    stock_form_dividend: "配当の扱い",
-    stock_form_dividend_on: "配当を再投資（調整後終値）",
-    stock_form_dividend_off: "配当を除く（終値）",
-    stock_calculate: "計算する",
-    stock_copy_result: "結果をコピー",
-    stock_reset: "リセット",
-    stock_chart_value: "評価額",
-    stock_chart_principal: "投資元本",
-    stock_table_toggle: "月別の明細を表示",
-    stock_th_month: "月",
-    stock_th_price: "株価",
-    stock_th_bought: "購入数量",
-    stock_th_shares: "累計数量",
-    stock_th_invested: "累計元本",
-    stock_th_value: "評価額",
-    stock_data_source: "価格データ：stockanalysis.com ・ 参考値であり、実際の投資結果とは異なる場合があります。",
-    stock_about_title: "積立投資（ドルコスト平均法）とは？",
-    stock_about_copy: "積立投資は、毎月決まった金額で同じ銘柄を継続的に買い付ける方法です。価格が安いときは多く、高いときは少なく買うため、平均取得単価が自然と分散されます。英語では DCA（Dollar Cost Averaging）と呼ばれます。",
-    stock_about_copy2: "この計算機は、選択した開始月から毎月最初の取引日に入力金額分を買い付けたと仮定し、累計数量・現在の評価額・元本に対するリターン・年率（資金加重）リターンを計算します。",
-    stock_disclaimer_title: "計算にあたっての注意",
-    stock_disclaimer_copy: "売買手数料、税金、為替、スリッページは反映しません。「配当を再投資」は調整後終値を用いて、配当を同じ銘柄に再投資した場合を近似したものです。過去のリターンは将来の成果を保証するものではなく、本ツールは投資助言ではありません。",
-    stock_faq_title: "❓ よくある質問",
-    stock_faq1_q: "どの銘柄を照会できますか？",
-    stock_faq1_a: "米国取引所に上場する株式と ETF をティッカーで照会できます。例えば SPY、QQQ、VOO、SCHD、AAPL などです。韓国取引所の銘柄には対応していません。",
-    stock_faq2_q: "どのくらい過去まで計算できますか？",
-    stock_faq2_a: "データの提供範囲により、おおむね直近 10 年程度です。それより前の開始月を選んだ場合は、データがある最も古い月から計算します。",
-    stock_faq3_q: "配当はどう反映されますか？",
-    stock_faq3_a: "「配当を再投資」を選ぶと、権利落ちを反映した調整後終値で計算し、配当を同じ銘柄に再投資した結果を近似します。「配当を除く」は単純な終値のみで計算します。",
-    stock_faq4_q: "年率リターンはどう計算しますか？",
-    stock_faq4_a: "毎月現金を投じる積立の特性を反映して資金加重リターン（内部収益率、IRR）を求め、年率に換算します。最終リターンを年数で割った値とは異なります。",
-    stock_related_title: "🔗 関連ツール",
-    stock_loading: "価格データを読み込んでいます...",
-    stock_err_symbol: "そのティッカーの価格データが見つかりません。シンボルをご確認ください（米国上場銘柄のみ対応）。",
-    stock_err_network: "価格データを読み込めませんでした。しばらくしてから再度お試しください（ネットワークまたはデータ提供元の問題）。",
-    stock_err_range: "選択した期間に利用できる価格データがありません。開始月と終了月をご確認ください。",
-    stock_err_input: "ティッカー、毎月の投資額、開始月を正しく入力してください。",
-    stock_notice_clamped: "選択された開始月よりデータの開始が遅いため、{month} から計算しました。",
-    stock_res_principal: "投資元本の合計",
-    stock_res_value: "最終評価額",
-    stock_res_profit: "総損益",
-    stock_res_return: "累計リターン",
-    stock_res_cagr: "年率リターン",
-    stock_res_months: "買付回数",
-    stock_res_shares: "累計数量",
-    stock_res_avgprice: "平均取得単価",
-    stock_months_unit: "回",
-    stock_shares_unit: "株",
-    stock_copied: "結果をコピーしました。",
-    tool_stock_title: "株式・ETF 積立投資計算機",
-    tool_stock_desc: "過去のある時点から毎月一定額を積立投資した場合のリターンを計算します。"
   }
 };
 
@@ -1389,52 +728,25 @@ const gameTranslations = {
     game_sudoku_title: '스도쿠', game_sudoku_desc: '난이도를 고르고 새로운 9x9 퍼즐에 도전하세요.',
     game_typing_title: '타자 속도 테스트', game_typing_desc: '정확도와 분당 속도를 측정해 보세요.',
     game_block_title: '블록 퍼즐', game_block_desc: '블록을 쌓고 줄을 완성해 최고 점수에 도전하세요.'
-  },
-  en: {
-    nav_games: 'Games', filter_game: 'Games', cat_games: '🎮 Mini Games',
-    game_start: 'Start game', game_new: 'New game', game_restart: 'Play again', game_result: 'Game result', game_best: 'Best record', game_share: 'Share result', game_copyLink: 'Copy game link', game_other: 'Other games', game_linkCopied: 'Link copied.', game_copyManual: 'Copy the text above manually.', game_time: 'Time', game_score: 'Score', game_level: 'Level', game_lines: 'Lines', game_easy: 'Easy', game_medium: 'Medium', game_hard: 'Hard', game_complete: 'Congratulations!', game_gameOver: 'Game over',
-    game_reaction_title: 'Reaction Time Test', game_reaction_desc: 'Tap the moment the screen changes to measure your reaction time.',
-    game_sudoku_title: 'Sudoku', game_sudoku_desc: 'Choose a difficulty and solve a fresh 9x9 puzzle.',
-    game_typing_title: 'Typing Speed Test', game_typing_desc: 'Measure your accuracy and words per minute.',
-    game_block_title: 'Block Puzzle', game_block_desc: 'Stack blocks, clear lines, and chase a high score.'
-  },
-  zh: {
-    nav_games: '游戏', filter_game: '游戏', cat_games: '🎮 迷你游戏',
-    game_start: '开始游戏', game_new: '新游戏', game_restart: '再玩一次', game_result: '游戏结果', game_best: '最高纪录', game_share: '分享结果', game_copyLink: '复制游戏链接', game_other: '其他游戏', game_linkCopied: '链接已复制。', game_copyManual: '请手动复制上方文本。', game_time: '时间', game_score: '分数', game_level: '等级', game_lines: '行数', game_easy: '简单', game_medium: '中等', game_hard: '困难', game_complete: '恭喜！', game_gameOver: '游戏结束',
-    game_reaction_title: '反应速度测试', game_reaction_desc: '屏幕变化时立即点击，测量反应速度。',
-    game_sudoku_title: '数独', game_sudoku_desc: '选择难度，挑战新的 9x9 谜题。',
-    game_typing_title: '打字速度测试', game_typing_desc: '测量准确率和每分钟打字速度。',
-    game_block_title: '方块拼图', game_block_desc: '堆叠方块、消除行并挑战最高分。'
-  },
-  ja: {
-    nav_games: 'ゲーム', filter_game: 'ゲーム', cat_games: '🎮 ミニゲーム',
-    game_start: 'ゲームを始める', game_new: '新しいゲーム', game_restart: 'もう一度', game_result: 'ゲーム結果', game_best: 'ベスト記録', game_share: '結果を共有', game_copyLink: 'ゲームリンクをコピー', game_other: 'ほかのゲーム', game_linkCopied: 'リンクをコピーしました。', game_copyManual: '上のテキストを手動でコピーしてください。', game_time: '時間', game_score: 'スコア', game_level: 'レベル', game_lines: 'ライン', game_easy: 'かんたん', game_medium: 'ふつう', game_hard: 'むずかしい', game_complete: 'おめでとうございます！', game_gameOver: 'ゲームオーバー',
-    game_reaction_title: '反応速度テスト', game_reaction_desc: '画面が変わった瞬間にタップして反応時間を測ります。',
-    game_sudoku_title: '数独', game_sudoku_desc: '難易度を選んで新しい 9x9 パズルに挑戦しましょう。',
-    game_typing_title: 'タイピング速度テスト', game_typing_desc: '正確さと 1 分あたりの入力速度を測定します。',
-    game_block_title: 'ブロックパズル', game_block_desc: 'ブロックを積み、ラインを消してハイスコアを目指します。'
   }
 };
 
 Object.keys(gameTranslations).forEach((lang) => Object.assign(legacyTranslations[lang], gameTranslations[lang]));
 
 const gamePageTranslations = {
-  ko: { sudoku_copy: '난이도를 선택하고 새로운 9x9 퍼즐을 완성하세요.', sudoku_difficulty: '난이도', sudoku_mistakes: '실수', sudoku_check: '정답 확인', sudoku_how: '게임 방법', sudoku_info: '빈 칸을 선택한 뒤 아래 숫자 버튼 또는 키보드 숫자를 입력하세요. 같은 숫자는 강조되고, 틀린 답은 표시됩니다.', typing_copy: '문장을 정확하게 입력하고 타자 속도를 확인하세요.', typing_language: '언어', typing_duration: '시간', typing_placeholder: '시작 후 여기에 입력하세요.', typing_how: '게임 방법', typing_info: '시작을 누른 뒤 표시된 문장을 입력하세요. 선택한 시간이 끝나면 실제 입력을 기준으로 속도와 정확도를 계산합니다.', block_copy: '블록을 쌓고 줄을 완성해 최고 점수에 도전하세요.', block_how: '게임 방법', block_info: '왼쪽/오른쪽 화살표로 이동하고 위쪽 화살표로 회전합니다. 아래쪽 화살표는 빠르게 내리고, 스페이스바는 즉시 떨어뜨립니다.' },
-  en: { sudoku_copy: 'Choose a difficulty and complete a fresh 9x9 puzzle.', sudoku_difficulty: 'Difficulty', sudoku_mistakes: 'Mistakes', sudoku_check: 'Check answer', sudoku_how: 'How to play', sudoku_info: 'Select an empty cell, then use the number buttons or keyboard. Matching numbers are highlighted and incorrect entries are marked.', typing_copy: 'Type the sentence accurately and check your typing speed.', typing_language: 'Language', typing_duration: 'Duration', typing_placeholder: 'Type here after starting.', typing_how: 'How to play', typing_info: 'Press start and type the displayed sentence. At the end of your chosen time, speed and accuracy are calculated from your actual input.', block_copy: 'Stack blocks, clear lines, and aim for a high score.', block_how: 'How to play', block_info: 'Use left and right arrows to move, up to rotate, down to soft drop, and space to drop instantly.' },
-  zh: { sudoku_copy: '选择难度并完成新的 9x9 谜题。', sudoku_difficulty: '难度', sudoku_mistakes: '失误', sudoku_check: '检查答案', sudoku_how: '游戏方法', sudoku_info: '选择空格后使用下方数字或键盘输入。相同数字会突出显示，错误输入会标记。', typing_copy: '准确输入句子并查看打字速度。', typing_language: '语言', typing_duration: '时间', typing_placeholder: '开始后在这里输入。', typing_how: '游戏方法', typing_info: '点击开始后输入显示的句子。时间结束时会根据实际输入计算速度和准确率。', block_copy: '堆叠方块、消除行并挑战最高分。', block_how: '游戏方法', block_info: '使用左右方向键移动，上方向键旋转，下方向键快速下落，空格键立即落下。' },
-  ja: { sudoku_copy: '難易度を選んで新しい 9x9 パズルを完成させましょう。', sudoku_difficulty: '難易度', sudoku_mistakes: 'ミス', sudoku_check: '答えを確認', sudoku_how: '遊び方', sudoku_info: '空のマスを選び、下の数字またはキーボードで入力します。同じ数字は強調され、間違いは表示されます。', typing_copy: '文章を正確に入力してタイピング速度を確認しましょう。', typing_language: '言語', typing_duration: '時間', typing_placeholder: '開始後にここへ入力します。', typing_how: '遊び方', typing_info: '開始後に表示された文章を入力します。選択した時間が終わると、実際の入力から速度と正確さを計算します。', block_copy: 'ブロックを積み、ラインを消してハイスコアを目指しましょう。', block_how: '遊び方', block_info: '左右矢印で移動、上矢印で回転、下矢印で高速落下、スペースで即時落下します。' }
+  ko: { sudoku_copy: '난이도를 선택하고 새로운 9x9 퍼즐을 완성하세요.', sudoku_difficulty: '난이도', sudoku_mistakes: '실수', sudoku_check: '정답 확인', sudoku_how: '게임 방법', sudoku_info: '빈 칸을 선택한 뒤 아래 숫자 버튼 또는 키보드 숫자를 입력하세요. 같은 숫자는 강조되고, 틀린 답은 표시됩니다.', typing_copy: '문장을 정확하게 입력하고 타자 속도를 확인하세요.', typing_language: '언어', typing_duration: '시간', typing_placeholder: '시작 후 여기에 입력하세요.', typing_how: '게임 방법', typing_info: '시작을 누른 뒤 표시된 문장을 입력하세요. 선택한 시간이 끝나면 실제 입력을 기준으로 속도와 정확도를 계산합니다.', block_copy: '블록을 쌓고 줄을 완성해 최고 점수에 도전하세요.', block_how: '게임 방법', block_info: '왼쪽/오른쪽 화살표로 이동하고 위쪽 화살표로 회전합니다. 아래쪽 화살표는 빠르게 내리고, 스페이스바는 즉시 떨어뜨립니다.' }
 };
 
 Object.keys(gamePageTranslations).forEach((lang) => Object.assign(legacyTranslations[lang], gamePageTranslations[lang]));
 
 const shutterTranslations = {
-  ko: { shutter_eyebrow: '브라우저에서 안전하게 분석', shutter_title: '카메라 셔터카운트 확인기', shutter_copy: '사진을 선택하면 EXIF 정보를 분석하여 카메라 모델과 확인 가능한 셔터카운트를 표시합니다.', shutter_upload: '사진 업로드', shutter_formats: 'JPG / JPEG / TIFF / RAW', shutter_choose: '사진 선택', shutter_ready: '사진은 이 기기에서만 분석되며 서버로 전송되지 않습니다.', shutter_reading: '사진 정보를 분석하는 중입니다...', shutter_complete: '분석이 완료되었습니다.', shutter_remove: '사진 제거', shutter_again: '다시 확인', shutter_share: '결과 공유', shutter_copyLink: '링크 복사', shutter_unknown: '확인할 수 없음', shutter_cameraInfo: '카메라 정보', shutter_count: '셔터카운트', shutter_confirmed: '🟢 사진 EXIF에서 확인된 값입니다.', shutter_missing: '🟡 카메라는 확인했지만 이 사진에 셔터카운트 정보가 없습니다.', shutter_missingShort: '셔터카운트: 확인할 수 없음', shutter_unsupported: '🔴 지원 제조사 여부를 확인할 수 없으며 셔터카운트 정보도 없습니다.', shutter_make: '제조사', shutter_model: '모델', shutter_date: '촬영일시', shutter_lens: '렌즈', shutter_speed: '셔터스피드', shutter_aperture: '조리개', shutter_focal: '초점거리', shutter_file: '파일 형식', shutter_size: '이미지 크기', shutter_noExif: '이 파일에서 읽을 수 있는 EXIF 정보를 찾지 못했습니다.', shutter_rafInvalid: 'RAF 파일 구조는 인식되었지만 내부 JPEG/EXIF 영역을 찾지 못했습니다.', shutter_error: 'EXIF 정보를 분석할 수 없습니다.', shutter_privacyTitle: '🔒 개인정보 보호', shutter_privacyCopy: '사진은 서버에 업로드되지 않습니다. 모든 파일 읽기와 EXIF 분석은 사용자의 브라우저에서만 처리됩니다.', shutter_aboutTitle: '셔터카운트와 EXIF', shutter_aboutCopy: '셔터카운트는 카메라가 촬영한 횟수를 나타내는 기록입니다. 일부 카메라는 이를 사진의 MakerNote에 저장하지만, 모든 파일과 모든 제조사에서 제공하는 것은 아닙니다. 이 도구는 파일에 명시적으로 저장된 값만 표시하며, 파일명이나 촬영일로 숫자를 추정하지 않습니다.', shutter_rawNote: 'RAW 파일은 카메라 및 브라우저에 따라 EXIF 정보를 읽지 못할 수 있습니다.', shutter_faqTitle: '자주 묻는 질문', shutter_faq1q: '셔터카운트란 무엇인가요?', shutter_faq1a: '카메라가 촬영한 횟수를 뜻하는 기록입니다.', shutter_faq2q: '사진만으로 항상 확인할 수 있나요?', shutter_faq2a: '아니요. 카메라와 파일에 따라 셔터카운트가 EXIF에 저장되지 않을 수 있습니다.', shutter_faq3q: '사진이 서버에 업로드되나요?', shutter_faq3a: '아니요. 이 페이지는 네트워크로 사진을 전송하지 않고 브라우저에서만 분석합니다.', shutter_related: '관련 도구', shutter_shareTitle: '카메라 셔터카운트 확인 결과' },
-  en: { shutter_eyebrow: 'Safely analyzed in your browser', shutter_title: 'Camera Shutter Count Checker', shutter_copy: 'Select a photo to inspect EXIF data, camera details, and a shutter count when explicitly available.', shutter_upload: 'Upload a photo', shutter_formats: 'JPG / JPEG / TIFF / RAW', shutter_choose: 'Choose photo', shutter_ready: 'Your photo is analyzed only on this device and is never uploaded.', shutter_reading: 'Analyzing photo information...', shutter_complete: 'Analysis complete.', shutter_remove: 'Remove photo', shutter_again: 'Check another photo', shutter_share: 'Share result', shutter_copyLink: 'Copy link', shutter_unknown: 'Unavailable', shutter_cameraInfo: 'Camera information', shutter_count: 'Shutter count', shutter_confirmed: '🟢 Explicitly found in this photo EXIF data.', shutter_missing: '🟡 The camera was identified, but this photo has no shutter-count value.', shutter_missingShort: 'Shutter count: unavailable', shutter_unsupported: '🔴 No supported maker value or explicit shutter count was found.', shutter_make: 'Make', shutter_model: 'Model', shutter_date: 'Date taken', shutter_lens: 'Lens', shutter_speed: 'Shutter speed', shutter_aperture: 'Aperture', shutter_focal: 'Focal length', shutter_file: 'File type', shutter_size: 'Image size', shutter_noExif: 'No readable EXIF data was found in this file.', shutter_rafInvalid: 'The RAF container was recognized, but no embedded JPEG/EXIF section could be found.', shutter_error: 'EXIF data could not be analyzed.', shutter_privacyTitle: '🔒 Privacy', shutter_privacyCopy: 'Photos are not uploaded to a server. File reading and EXIF analysis happen only in your browser.', shutter_aboutTitle: 'Shutter Count and EXIF', shutter_aboutCopy: 'A shutter count records how many photos a camera has taken. Some cameras store it in a photo MakerNote, but not every camera or file includes it. This tool only displays values explicitly stored in the file and never estimates a number from filenames or dates.', shutter_rawNote: 'RAW EXIF data may not be readable depending on the camera and browser.', shutter_faqTitle: 'Frequently asked questions', shutter_faq1q: 'What is a shutter count?', shutter_faq1a: 'It is a record of how many photos a camera has taken.', shutter_faq2q: 'Can every photo reveal a shutter count?', shutter_faq2a: 'No. A camera or photo file may not store it in EXIF data.', shutter_faq3q: 'Is my photo uploaded?', shutter_faq3a: 'No. This page does not send photos over the network.', shutter_related: 'Related tools', shutter_shareTitle: 'Camera shutter count result' },
-  zh: { shutter_eyebrow: '在浏览器中安全分析', shutter_title: '相机快门次数查询器', shutter_copy: '选择照片以分析 EXIF 信息、相机型号和可确认的快门次数。', shutter_upload: '上传照片', shutter_formats: 'JPG / JPEG / TIFF / RAW', shutter_choose: '选择照片', shutter_ready: '照片仅在此设备上分析，不会上传到服务器。', shutter_reading: '正在分析照片信息...', shutter_complete: '分析完成。', shutter_remove: '移除照片', shutter_again: '重新检查', shutter_share: '分享结果', shutter_copyLink: '复制链接', shutter_unknown: '无法确认', shutter_cameraInfo: '相机信息', shutter_count: '快门次数', shutter_confirmed: '🟢 已在照片 EXIF 中明确确认。', shutter_missing: '🟡 已识别相机，但此照片没有快门次数信息。', shutter_missingShort: '快门次数：无法确认', shutter_unsupported: '🔴 未找到受支持的厂商值或明确的快门次数。', shutter_make: '制造商', shutter_model: '型号', shutter_date: '拍摄时间', shutter_lens: '镜头', shutter_speed: '快门速度', shutter_aperture: '光圈', shutter_focal: '焦距', shutter_file: '文件格式', shutter_size: '图像尺寸', shutter_noExif: '此文件中没有可读取的 EXIF 信息。', shutter_rafInvalid: '已识别出 RAF 容器，但未找到内嵌的 JPEG/EXIF 区域。', shutter_error: '无法分析 EXIF 信息。', shutter_privacyTitle: '🔒 隐私保护', shutter_privacyCopy: '照片不会上传到服务器。文件读取和 EXIF 分析仅在浏览器中进行。', shutter_aboutTitle: '快门次数与 EXIF', shutter_aboutCopy: '快门次数表示相机拍摄的次数。部分相机将其保存到照片的 MakerNote 中，但并非所有相机或文件都有该信息。本工具只显示文件中明确保存的值，不会根据文件名或日期进行推测。', shutter_rawNote: 'RAW 文件的 EXIF 信息可能因相机和浏览器而无法读取。', shutter_faqTitle: '常见问题', shutter_faq1q: '什么是快门次数？', shutter_faq1a: '它是相机拍摄次数的记录。', shutter_faq2q: '每张照片都能查询快门次数吗？', shutter_faq2a: '不能。相机或照片文件可能未在 EXIF 中保存该信息。', shutter_faq3q: '照片会被上传吗？', shutter_faq3a: '不会。本页面不会通过网络发送照片。', shutter_related: '相关工具', shutter_shareTitle: '相机快门次数查询结果' },
-  ja: { shutter_eyebrow: 'ブラウザー内で安全に解析', shutter_title: 'カメラシャッター回数チェッカー', shutter_copy: '写真を選択すると、EXIF 情報、カメラモデル、確認できるシャッター回数を表示します。', shutter_upload: '写真をアップロード', shutter_formats: 'JPG / JPEG / TIFF / RAW', shutter_choose: '写真を選択', shutter_ready: '写真はこの端末内でのみ解析され、サーバーにはアップロードされません。', shutter_reading: '写真情報を解析しています...', shutter_complete: '解析が完了しました。', shutter_remove: '写真を削除', shutter_again: 'もう一度確認', shutter_share: '結果を共有', shutter_copyLink: 'リンクをコピー', shutter_unknown: '確認できません', shutter_cameraInfo: 'カメラ情報', shutter_count: 'シャッター回数', shutter_confirmed: '🟢 写真の EXIF から明確に確認された値です。', shutter_missing: '🟡 カメラは確認できましたが、この写真にはシャッター回数情報がありません。', shutter_missingShort: 'シャッター回数：確認できません', shutter_unsupported: '🔴 対応するメーカー値または明確なシャッター回数が見つかりませんでした。', shutter_make: 'メーカー', shutter_model: 'モデル', shutter_date: '撮影日時', shutter_lens: 'レンズ', shutter_speed: 'シャッター速度', shutter_aperture: '絞り', shutter_focal: '焦点距離', shutter_file: 'ファイル形式', shutter_size: '画像サイズ', shutter_noExif: 'このファイルには読み取れる EXIF 情報がありません。', shutter_rafInvalid: 'RAF コンテナは認識されましたが、内部の JPEG/EXIF 領域が見つかりませんでした。', shutter_error: 'EXIF 情報を解析できません。', shutter_privacyTitle: '🔒 プライバシー', shutter_privacyCopy: '写真はサーバーにアップロードされません。ファイル読み取りと EXIF 解析はブラウザー内でのみ行われます。', shutter_aboutTitle: 'シャッター回数と EXIF', shutter_aboutCopy: 'シャッター回数はカメラの撮影回数を示す記録です。一部のカメラは写真の MakerNote に保存しますが、すべてのカメラやファイルに含まれるわけではありません。このツールはファイルに明示的に保存された値のみを表示し、ファイル名や日付から推測しません。', shutter_rawNote: 'RAW ファイルの EXIF はカメラやブラウザーによって読み取れない場合があります。', shutter_faqTitle: 'よくある質問', shutter_faq1q: 'シャッター回数とは何ですか？', shutter_faq1a: 'カメラが撮影した回数の記録です。', shutter_faq2q: 'すべての写真から確認できますか？', shutter_faq2a: 'いいえ。カメラや写真ファイルに EXIF として保存されていないことがあります。', shutter_faq3q: '写真はアップロードされますか？', shutter_faq3a: 'いいえ。このページはネットワークで写真を送信しません。', shutter_related: '関連ツール', shutter_shareTitle: 'カメラシャッター回数確認結果' }
+  ko: { shutter_eyebrow: '브라우저에서 안전하게 분석', shutter_title: '카메라 셔터카운트 확인기', shutter_copy: '사진을 선택하면 EXIF 정보를 분석하여 카메라 모델과 확인 가능한 셔터카운트를 표시합니다.', shutter_upload: '사진 업로드', shutter_formats: 'JPG / JPEG / TIFF / RAW', shutter_choose: '사진 선택', shutter_ready: '사진은 이 기기에서만 분석되며 서버로 전송되지 않습니다.', shutter_reading: '사진 정보를 분석하는 중입니다...', shutter_complete: '분석이 완료되었습니다.', shutter_remove: '사진 제거', shutter_again: '다시 확인', shutter_share: '결과 공유', shutter_copyLink: '링크 복사', shutter_unknown: '확인할 수 없음', shutter_cameraInfo: '카메라 정보', shutter_count: '셔터카운트', shutter_confirmed: '🟢 사진 EXIF에서 확인된 값입니다.', shutter_missing: '🟡 카메라는 확인했지만 이 사진에 셔터카운트 정보가 없습니다.', shutter_missingShort: '셔터카운트: 확인할 수 없음', shutter_unsupported: '🔴 지원 제조사 여부를 확인할 수 없으며 셔터카운트 정보도 없습니다.', shutter_make: '제조사', shutter_model: '모델', shutter_date: '촬영일시', shutter_lens: '렌즈', shutter_speed: '셔터스피드', shutter_aperture: '조리개', shutter_focal: '초점거리', shutter_file: '파일 형식', shutter_size: '이미지 크기', shutter_noExif: '이 파일에서 읽을 수 있는 EXIF 정보를 찾지 못했습니다.', shutter_rafInvalid: 'RAF 파일 구조는 인식되었지만 내부 JPEG/EXIF 영역을 찾지 못했습니다.', shutter_error: 'EXIF 정보를 분석할 수 없습니다.', shutter_privacyTitle: '🔒 개인정보 보호', shutter_privacyCopy: '사진은 서버에 업로드되지 않습니다. 모든 파일 읽기와 EXIF 분석은 사용자의 브라우저에서만 처리됩니다.', shutter_aboutTitle: '셔터카운트와 EXIF', shutter_aboutCopy: '셔터카운트는 카메라가 촬영한 횟수를 나타내는 기록입니다. 일부 카메라는 이를 사진의 MakerNote에 저장하지만, 모든 파일과 모든 제조사에서 제공하는 것은 아닙니다. 이 도구는 파일에 명시적으로 저장된 값만 표시하며, 파일명이나 촬영일로 숫자를 추정하지 않습니다.', shutter_rawNote: 'RAW 파일은 카메라 및 브라우저에 따라 EXIF 정보를 읽지 못할 수 있습니다.', shutter_faqTitle: '자주 묻는 질문', shutter_faq1q: '셔터카운트란 무엇인가요?', shutter_faq1a: '카메라가 촬영한 횟수를 뜻하는 기록입니다.', shutter_faq2q: '사진만으로 항상 확인할 수 있나요?', shutter_faq2a: '아니요. 카메라와 파일에 따라 셔터카운트가 EXIF에 저장되지 않을 수 있습니다.', shutter_faq3q: '사진이 서버에 업로드되나요?', shutter_faq3a: '아니요. 이 페이지는 네트워크로 사진을 전송하지 않고 브라우저에서만 분석합니다.', shutter_related: '관련 도구', shutter_shareTitle: '카메라 셔터카운트 확인 결과' }
 };
 
 Object.keys(shutterTranslations).forEach((lang) => Object.assign(legacyTranslations[lang], shutterTranslations[lang]));
+
+// 기본 언어 데이터를 지연 로딩 언어와 동일한 형태로 등록(항상 즉시 사용 가능 + translate() 폴백).
+window.I18N_DATA.ko = legacyTranslations.ko;
 
 const subpageTranslations = {
   age: {
@@ -1527,7 +839,7 @@ function pickTranslationKeys(source, keys) {
 }
 
 function buildTranslationCatalog(lang) {
-  const source = legacyTranslations[lang];
+  const source = window.I18N_DATA[lang];
   const gameCommon = pickTranslationKeys(source, [
     'nav_games', 'filter_game', 'cat_games', 'game_start', 'game_new', 'game_restart', 'game_result',
     'game_best', 'game_share', 'game_copyLink', 'game_other', 'game_linkCopied', 'game_copyManual',
@@ -1579,7 +891,7 @@ function buildTranslationCatalog(lang) {
     retirement: subpageTranslations.retirement[lang],
     salary: subpageTranslations.salary[lang],
     savings: subpageTranslations.savings[lang],
-    shutterCount: shutterTranslations[lang],
+    shutterCount: pickTranslationKeys(source, Object.keys(shutterTranslations.ko)),
     textconv: subpageTranslations.textconv[lang],
     unit: subpageTranslations.unit[lang],
     vat: subpageTranslations.vat[lang]
@@ -1667,10 +979,8 @@ function buildTranslationCatalog(lang) {
   };
 }
 
-SUPPORTED_LANGUAGES.forEach((lang) => {
-  translations[lang] = buildTranslationCatalog(lang);
-  Object.assign(translations[lang], legacyTranslations[lang]);
-});
+// 시작 시점에는 기본 언어(ko)만 카탈로그를 구성한다. 나머지는 ensureLanguage() 로 로드될 때 등록된다.
+registerLanguage(DEFAULT_LANGUAGE);
 
 function getSubpageName() {
   const path = window.location.pathname;
@@ -1768,6 +1078,15 @@ function translate(key, lang) {
 function applyLanguage(lang) {
   const activeLang = SUPPORTED_LANGUAGES.indexOf(lang) !== -1 ? lang : DEFAULT_LANGUAGE;
 
+  // 해당 언어 데이터가 아직 로드되지 않았으면 로드 후 다시 적용(중간 상태 렌더 없음).
+  // 로드에 실패하면 기본 언어로 폴백한다(무한 재시도 방지).
+  if (!translations[activeLang]) {
+    ensureLanguage(activeLang).then(() => {
+      applyLanguage(translations[activeLang] ? activeLang : DEFAULT_LANGUAGE);
+    });
+    return;
+  }
+
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const key = el.getAttribute('data-i18n');
     el.textContent = translate(key, activeLang);
@@ -1812,16 +1131,20 @@ function applyLanguage(lang) {
 
 function setLanguage(lang) {
   const activeLang = SUPPORTED_LANGUAGES.indexOf(lang) !== -1 ? lang : DEFAULT_LANGUAGE;
-  try {
-    localStorage.setItem(LANGUAGE_STORAGE_KEY, activeLang);
-  } catch (e) {
-    // localStorage 사용 불가 환경에서도 언어 전환은 동작하도록 유지
-  }
-  applyLanguage(activeLang);
+  // 데이터가 준비된 뒤 한 번만 적용 → 언어 전환 시 중간 깜빡임 없음.
+  ensureLanguage(activeLang).then(() => {
+    try {
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, activeLang);
+    } catch (e) {
+      // localStorage 사용 불가 환경에서도 언어 전환은 동작하도록 유지
+    }
+    applyLanguage(activeLang);
+  });
 }
 
 function initI18n() {
-  applyLanguage(getCurrentLanguage());
+  const lang = getCurrentLanguage();
+  ensureLanguage(lang).then(() => applyLanguage(lang));
 }
 
 function attachLanguageSwitcher() {

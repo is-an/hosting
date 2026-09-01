@@ -1,3 +1,7 @@
+/* Pretendard 는 assets/fonts/pretendard-dynamic-subset.css 로 로드 (font-display: optional → 폰트 스왑 CLS 없음).
+   woff2 글리프 파일은 jsDelivr CDN에서 필요한 서브셋만 내려받습니다. */
+@import url("../fonts/pretendard-dynamic-subset.css");
+
 * { box-sizing: border-box; }
 
 :root {
@@ -86,7 +90,7 @@ body {
   margin: 0;
   color: var(--text);
   background: var(--bg);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", Arial, sans-serif;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", "Malgun Gothic", "Noto Sans KR", Arial, sans-serif;
   line-height: 1.7;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
@@ -859,14 +863,13 @@ footer {
 
 .footer-inner {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: 24px;
 }
 
 .footer-section {
-  flex: 0 0 auto;
-  white-space: nowrap;
+  flex: 0 1 auto;
 }
 
 .footer-bottom {
@@ -1276,9 +1279,10 @@ textarea {
   }
 
   .header-inner {
-    align-items: flex-start;
+    align-items: center;
     padding: 14px 0;
-    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: 12px;
   }
 
   nav { width: 100%; justify-content: space-between; }
@@ -1290,8 +1294,7 @@ textarea {
   }
 
   .header-actions {
-    width: 100%;
-    justify-content: flex-end;
+    width: auto;
   }
 
   .lang-dropdown {
@@ -1371,6 +1374,77 @@ textarea {
   .calc-tab-btn.active {
     border-left: 3px solid var(--accent);
     border-bottom: none;
+  }
+
+  /* 푸터: 좁은 화면에서 세로로 쌓고 링크 줄바꿈 허용 */
+  .footer-inner {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer-section {
+    width: 100%;
+  }
+}
+
+/* ============ 태블릿 (641–1024px) ============ */
+@media (min-width: 641px) and (max-width: 1024px) {
+  :root {
+    --section-gap: 24px;
+  }
+
+  .hero {
+    padding: 38px 0 28px;
+  }
+
+  /* 헤더 내비게이션: 좁아져도 메뉴 글자가 세로로 접히지 않게 */
+  .header-inner {
+    gap: 12px;
+  }
+
+  .main-nav {
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+
+  .nav-separator {
+    display: none;
+  }
+
+  .nav-link {
+    white-space: nowrap;
+    padding: 8px 4px;
+    font-size: 13px;
+  }
+
+  /* 본문 카드 그리드: 모바일 1열 ↔ 데스크톱 3~4열 사이 = 2열 */
+  .tools-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .popular-list,
+  .faq-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* 홈 인기 도구: 중간 3열 */
+  .home-popular-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* 통계 그리드: 모바일 2열 ↔ 데스크톱 다열 사이 = 3열 */
+  .stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* 카테고리 필터: 모바일 2열 ↔ 데스크톱 flex-wrap 사이 = 고른 3열 */
+  .category-filter {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .filter-btn {
+    width: 100%;
   }
 }
 
@@ -1598,6 +1672,7 @@ textarea {
 
 @media (max-width: 640px) {
   .main-nav {
+    order: 1;
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
