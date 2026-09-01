@@ -101,43 +101,28 @@
         <p data-i18n="discharge_how_body">전역일은 입대일에 복무 개월수를 더한 날의 전날을 기준으로 합니다(현역병은 만기 전역 시 전역일이 그렇게 정해집니다). 이 계산기는 입대일에 개월수를 더한 날짜를 전역일로 표시하고, 오늘까지 지난 비율을 진행률로 보여 줍니다. 진행률은 한 달을 30일로 어림해 계산하므로 실제와 소폭 차이가 있을 수 있습니다.</p>
       </section>
 
-      <section class="faq-section">
+      <section class="faq-section" hidden>
         <h2 data-i18n="discharge_faq_title">❓ 자주 묻는 질문</h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <h4 data-i18n="discharge_faq1_q">복무기간은 얼마인가요?</h4>
-            <p data-i18n="discharge_faq1_a">현재 기준 육군·해병대 18개월, 해군 20개월, 공군 21개월입니다. 복무기간은 정책에 따라 조정될 수 있으니 최신 정보는 병무청 안내를 확인하세요.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="discharge_faq2_q">조기 전역이나 분할 복무도 계산되나요?</h4>
-            <p data-i18n="discharge_faq2_a">이 계산기는 입대일부터 연속 복무한다고 가정합니다. 휴가 미복귀, 조기 전역, 분할 복무 등은 반영되지 않습니다.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="discharge_faq3_q">입력한 입대일이 저장되나요?</h4>
-            <p data-i18n="discharge_faq3_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
-          </div>
-        </div>
+        <div class="faq-list" data-faq-category="discharge"></div>
+        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
       </section>
 
-      <section class="related-tools">
-        <h2 data-i18n="discharge_related_title">🔗 관련 도구</h2>
-        <div class="tools-grid">
-          <a href="../dday/" class="tool-card">
-            <h4 data-i18n="tool_dday_title">D-Day 계산기</h4>
-            <p data-i18n="tool_dday_desc">목표 날짜까지 남은 날짜 계산</p>
-          </a>
-          <a href="../age/" class="tool-card">
-            <h4 data-i18n="tool_age_title">나이 계산기</h4>
-            <p data-i18n="tool_age_desc">생년월일로 만 나이와 경과 일수 계산</p>
-          </a>
-        </div>
-      </section>
-    </div>
+</div>
   </main>
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./discharge.js"></script>
+<script src="../../assets/js/faq.js"></script>
+<script>
+  (function () {
+    function loadFaq() {
+      if (typeof loadCategoryFaq === 'function') loadCategoryFaq('discharge', '.faq-list[data-faq-category="discharge"]');
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadFaq);
+    else loadFaq();
+  })();
+</script>
 </body>
 </html>

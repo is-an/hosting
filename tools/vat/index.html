@@ -120,51 +120,28 @@
         </ul>
       </section>
 
-      <section class="faq-section">
+      <section class="faq-section" hidden>
         <h2 data-i18n="vat_faq_title">❓ 자주 묻는 질문</h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <h4 data-i18n="vat_faq1_q">한국의 부가세율은 몇 %인가요?</h4>
-            <p data-i18n="vat_faq1_a">표준 세율은 10%입니다. 수출 등 영세율이 적용되는 거래는 0%, 면세 거래는 부가세가 없습니다.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="vat_faq2_q">합계 금액에서 부가세만 빠르게 알고 싶어요.</h4>
-            <p data-i18n="vat_faq2_a">‘합계 → 공급가액’ 탭에 합계 금액을 넣으면 공급가액과 부가세가 분리되어 표시됩니다. 세율 10% 기준 부가세는 대략 합계의 1/11입니다.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="vat_faq3_q">세율을 10%가 아닌 값으로 바꿀 수 있나요?</h4>
-            <p data-i18n="vat_faq3_a">네, 세율 입력란의 값을 바꾸면 해당 세율로 계산됩니다. 다른 나라의 부가세(VAT/GST) 계산에도 사용할 수 있습니다.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="vat_faq4_q">입력한 금액이 저장되나요?</h4>
-            <p data-i18n="vat_faq4_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
-          </div>
-        </div>
+        <div class="faq-list" data-faq-category="vat"></div>
+        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
       </section>
 
-      <section class="related-tools">
-        <h2 data-i18n="vat_related_title">🔗 관련 도구</h2>
-        <div class="tools-grid">
-          <a href="../../cal/percent/" class="tool-card">
-            <h3 data-i18n="tool_percent_title">퍼센트 계산기</h3>
-            <p data-i18n="tool_percent_desc">A의 B%, 증감 비율 등을 빠르게 계산합니다.</p>
-          </a>
-          <a href="../salary/" class="tool-card">
-            <h3 data-i18n="tool_salary_title">연봉 계산기</h3>
-            <p data-i18n="tool_salary_desc">연봉으로부터 월급, 세전/세후 금액을 계산합니다.</p>
-          </a>
-          <a href="../charcount/" class="tool-card">
-            <h3 data-i18n="tool_charcount_title">글자수/바이트 계산기</h3>
-            <p data-i18n="tool_charcount_desc">텍스트의 글자수, 공백 포함/제외 글자수, 바이트 수를 계산합니다.</p>
-          </a>
-        </div>
-      </section>
-    </div>
+</div>
   </main>
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./vat.js"></script>
+<script src="../../assets/js/faq.js"></script>
+<script>
+  (function () {
+    function loadFaq() {
+      if (typeof loadCategoryFaq === 'function') loadCategoryFaq('vat', '.faq-list[data-faq-category="vat"]');
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadFaq);
+    else loadFaq();
+  })();
+</script>
 </body>
 </html>

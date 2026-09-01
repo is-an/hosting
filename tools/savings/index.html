@@ -106,51 +106,28 @@
         </ul>
       </section>
 
-      <section class="faq-section">
+      <section class="faq-section" hidden>
         <h2 data-i18n="savings_faq_title">❓ 자주 묻는 질문</h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <h4 data-i18n="savings_faq1_q">적금인데 왜 예치금 칸에 월 납입액을 넣나요?</h4>
-            <p data-i18n="savings_faq1_a">이 계산기의 적금 모드는 매달 같은 금액을 넣는다고 가정합니다. 예치금 칸에 매달 넣을 금액을, 기간 칸에 납입 개월수를 입력하세요.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="savings_faq2_q">이자소득세는 왜 15.4%인가요?</h4>
-            <p data-i18n="savings_faq2_a">이자·배당 소득에는 소득세 14%와 그에 대한 지방소득세 1.4%가 함께 부과되어 합계 15.4%가 원천징수됩니다.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="savings_faq3_q">표시 이율이 같은데 예금과 적금 이자가 왜 다른가요?</h4>
-            <p data-i18n="savings_faq3_a">적금은 나중에 넣은 돈일수록 이자가 붙는 기간이 짧기 때문입니다. 대략 같은 이율이라면 적금의 실효 이자는 예금의 절반 안팎입니다.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="savings_faq4_q">입력한 금액이 저장되나요?</h4>
-            <p data-i18n="savings_faq4_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
-          </div>
-        </div>
+        <div class="faq-list" data-faq-category="savings"></div>
+        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
       </section>
 
-      <section class="related-tools">
-        <h2 data-i18n="savings_related_title">🔗 관련 도구</h2>
-        <div class="tools-grid">
-          <a href="../loan/" class="tool-card">
-            <h3 data-i18n="tool_loan_title">대출 이자 계산기</h3>
-            <p data-i18n="tool_loan_desc">대출금액, 이율, 기간으로부터 월 상환액과 총 이자를 계산합니다.</p>
-          </a>
-          <a href="../../stock/" class="tool-card">
-            <h3 data-i18n="tool_stock_title">주식·ETF 적립식 투자 계산기</h3>
-            <p data-i18n="tool_stock_desc">과거 특정 시점부터 매달 적립식으로 투자했을 때의 수익률을 계산합니다.</p>
-          </a>
-          <a href="../salary/" class="tool-card">
-            <h3 data-i18n="tool_salary_title">연봉 계산기</h3>
-            <p data-i18n="tool_salary_desc">연봉으로부터 월급, 세전/세후 금액을 계산합니다.</p>
-          </a>
-        </div>
-      </section>
-    </div>
+</div>
   </main>
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./savings.js"></script>
+<script src="../../assets/js/faq.js"></script>
+<script>
+  (function () {
+    function loadFaq() {
+      if (typeof loadCategoryFaq === 'function') loadCategoryFaq('savings', '.faq-list[data-faq-category="savings"]');
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadFaq);
+    else loadFaq();
+  })();
+</script>
 </body>
 </html>

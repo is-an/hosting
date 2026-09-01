@@ -40,11 +40,24 @@
       </section>
       <section class="content-section shutter-privacy"><h2 data-i18n="shutter_privacyTitle">🔒 개인정보 보호</h2><p data-i18n="shutter_privacyCopy">사진은 서버에 업로드되지 않습니다. 모든 파일 읽기와 EXIF 분석은 사용자의 브라우저에서만 처리됩니다.</p></section>
       <section class="content-section"><h2 data-i18n="shutter_aboutTitle">셔터카운트와 EXIF</h2><p data-i18n="shutter_aboutCopy">셔터카운트는 카메라가 촬영한 횟수를 나타내는 기록입니다. 일부 카메라는 이를 사진의 MakerNote에 저장하지만, 모든 파일과 모든 제조사에서 제공하는 것은 아닙니다. 이 도구는 파일에 명시적으로 저장된 값만 표시하며, 파일명이나 촬영일로 숫자를 추정하지 않습니다.</p><p data-i18n="shutter_rawNote">RAW 파일은 카메라 및 브라우저에 따라 EXIF 정보를 읽지 못할 수 있습니다.</p></section>
-      <section class="faq-section"><h2 data-i18n="shutter_faqTitle">자주 묻는 질문</h2><div class="faq-list"><div class="faq-item"><h4 data-i18n="shutter_faq1q">셔터카운트란 무엇인가요?</h4><p data-i18n="shutter_faq1a">카메라가 촬영한 횟수를 뜻하는 기록입니다.</p></div><div class="faq-item"><h4 data-i18n="shutter_faq2q">사진만으로 항상 확인할 수 있나요?</h4><p data-i18n="shutter_faq2a">아니요. 카메라와 파일에 따라 셔터카운트가 EXIF에 저장되지 않을 수 있습니다.</p></div><div class="faq-item"><h4 data-i18n="shutter_faq3q">사진이 서버에 업로드되나요?</h4><p data-i18n="shutter_faq3a">아니요. 이 페이지는 네트워크로 사진을 전송하지 않고 브라우저에서만 분석합니다.</p></div></div></section>
-      <section class="related-tools"><h2 data-i18n="shutter_related">관련 도구</h2><div class="tools-grid"><a href="../../cal/dday/" class="tool-card"><h3>D-Day 계산기</h3><p>목표일까지 남은 날짜를 계산합니다.</p></a><a href="../../lotto/" class="tool-card"><h3>로또번호 생성기</h3><p>무작위 로또 번호를 생성합니다.</p></a><a href="../../games/" class="tool-card"><h3 data-i18n="nav_games">게임</h3><p>짧게 즐길 수 있는 미니게임을 만나보세요.</p></a></div></section>
-    </div>
+      <section class="faq-section" hidden>
+        <h2 data-i18n="shutter_faqTitle">자주 묻는 질문</h2>
+        <div class="faq-list" data-faq-category="shutter"></div>
+        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+      </section>
+</div>
   </main>
   <div id="ads-slot" class="ads-slot"></div><div id="site-footer"></div>
   <script src="../../assets/js/i18n.js"></script><script src="../../assets/js/common.js"></script><script src="../../assets/js/share.js"></script><script src="./shutter-count.js"></script>
+<script src="../../assets/js/faq.js"></script>
+<script>
+  (function () {
+    function loadFaq() {
+      if (typeof loadCategoryFaq === 'function') loadCategoryFaq('shutter', '.faq-list[data-faq-category="shutter"]');
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadFaq);
+    else loadFaq();
+  })();
+</script>
 </body>
 </html>

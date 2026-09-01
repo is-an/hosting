@@ -151,45 +151,51 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://is-an.github.io/blog/</loc>
+    <loc>https://is-an.github.io/guide/</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://is-an.github.io/blog/posts/example/</loc>
+    <loc>https://is-an.github.io/guide/posts/example/</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://is-an.github.io/blog/posts/dca-investing/</loc>
+    <loc>https://is-an.github.io/guide/posts/dca-investing/</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://is-an.github.io/blog/posts/legal-age/</loc>
+    <loc>https://is-an.github.io/guide/posts/legal-age/</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://is-an.github.io/blog/posts/resume-charcount/</loc>
+    <loc>https://is-an.github.io/guide/posts/resume-charcount/</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://is-an.github.io/blog/posts/salary-net-pay/</loc>
+    <loc>https://is-an.github.io/guide/posts/salary-net-pay/</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://is-an.github.io/blog/posts/savings-interest/</loc>
+    <loc>https://is-an.github.io/guide/posts/savings-interest/</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://is-an.github.io/privacy/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

@@ -89,51 +89,28 @@
         </ul>
       </section>
 
-      <section class="faq-section">
+      <section class="faq-section" hidden>
         <h2 data-i18n="charcount_faq_title">❓ 자주 묻는 질문</h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <h4 data-i18n="charcount_faq1_q">바이트와 글자수는 무엇이 다른가요?</h4>
-            <p data-i18n="charcount_faq1_a">글자수는 문자의 개수, 바이트는 저장 공간의 크기입니다. UTF-8에서 한글 한 글자는 3바이트, 영문은 1바이트입니다. EUC-KR 환경이라면 한글은 2바이트입니다.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="charcount_faq2_q">공백을 포함해서 세야 하나요?</h4>
-            <p data-i18n="charcount_faq2_a">공지에 별도 언급이 없으면 대개 공백 포함 기준입니다. ‘공백 제외’라고 명시된 경우에만 띄어쓰기를 뺀 수를 사용하세요.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="charcount_faq3_q">줄바꿈도 글자수에 포함되나요?</h4>
-            <p data-i18n="charcount_faq3_a">전체 글자수에는 포함됩니다. 문서에서 복사해 붙여넣을 때 줄바꿈이 많으면 예상보다 글자수가 늘어날 수 있습니다.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="charcount_faq4_q">입력한 텍스트가 저장되나요?</h4>
-            <p data-i18n="charcount_faq4_a">아니요. 글자수 계산은 모두 브라우저에서 처리되며 입력한 내용은 서버로 전송되지 않습니다.</p>
-          </div>
-        </div>
+        <div class="faq-list" data-faq-category="charcount"></div>
+        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
       </section>
 
-      <section class="related-tools">
-        <h2 data-i18n="charcount_related_title">🔗 관련 도구</h2>
-        <div class="tools-grid">
-          <a href="../textconv/" class="tool-card">
-            <h3 data-i18n="tool_textconv_title">텍스트 변환 도구</h3>
-            <p data-i18n="tool_textconv_desc">공백·줄바꿈 제거, 대소문자 변환 등을 처리합니다.</p>
-          </a>
-          <a href="../unit/" class="tool-card">
-            <h3 data-i18n="tool_unit_title">단위 변환기</h3>
-            <p data-i18n="tool_unit_desc">길이, 무게, 온도, 면적, 부피, 시간, 데이터 용량을 변환합니다.</p>
-          </a>
-          <a href="../../cal/percent/" class="tool-card">
-            <h3 data-i18n="tool_percent_title">퍼센트 계산기</h3>
-            <p data-i18n="tool_percent_desc">A의 B%, 증감 비율 등을 빠르게 계산합니다.</p>
-          </a>
-        </div>
-      </section>
-    </div>
+</div>
   </main>
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./charcount.js"></script>
+<script src="../../assets/js/faq.js"></script>
+<script>
+  (function () {
+    function loadFaq() {
+      if (typeof loadCategoryFaq === 'function') loadCategoryFaq('charcount', '.faq-list[data-faq-category="charcount"]');
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadFaq);
+    else loadFaq();
+  })();
+</script>
 </body>
 </html>

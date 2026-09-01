@@ -25,11 +25,25 @@
       <section class="game-info"><h2>게임 방법</h2><p>시작 후 잠시 기다리세요. 화면이 바뀐 뒤 패드를 누르면 밀리초 단위의 반응 시간을 확인할 수 있습니다. 5회 평균 모드는 여러 번의 기록을 한 번에 비교하기 좋습니다.</p></section>
       <section class="game-info"><h2 data-i18n="reaction_score_title">반응속도 기준</h2><p data-i18n="reaction_score_body">사람의 시각 반응속도는 보통 200~250밀리초(ms) 정도이며, 훈련된 사람은 180ms 안팎까지 나옵니다. 100ms보다 빠른 기록은 화면이 바뀌기 전에 누른 것으로 보고 무효 처리됩니다. 마우스·키보드·화면 주사율에 따라서도 수십 ms 차이가 날 수 있습니다.</p></section>
       <section class="game-info"><h2 data-i18n="reaction_tip_title">기록을 높이는 팁</h2><ul><li data-i18n="reaction_tip_1">화면 변화에 반응만 하고, 언제 바뀔지 예측해서 미리 누르지 마세요. 예측 클릭은 무효가 됩니다.</li><li data-i18n="reaction_tip_2">손가락을 버튼에 살짝 얹고 힘을 뺀 상태로 기다리세요.</li><li data-i18n="reaction_tip_3">5회 평균 모드로 재서 한두 번의 우연을 걸러 내세요.</li></ul></section>
-      <section class="faq-section"><h2 data-i18n="reaction_faq_title">❓ 자주 묻는 질문</h2><div class="faq-list"><div class="faq-item"><h4 data-i18n="reaction_faq1_q">기록이 너무 안 좋게 나와요.</h4><p data-i18n="reaction_faq1_a">무선 마우스, 블루투스 지연, 60Hz 모니터, 브라우저 백그라운드 작업 등이 영향을 줍니다. 여러 번 측정한 평균을 참고하세요.</p></div><div class="faq-item"><h4 data-i18n="reaction_faq2_q">모바일에서도 정확한가요?</h4><p data-i18n="reaction_faq2_a">터치 입력도 측정되지만 화면 터치 인식 지연이 있어 PC보다 느리게 나오는 경향이 있습니다.</p></div><div class="faq-item"><h4 data-i18n="reaction_faq3_q">기록이 저장되나요?</h4><p data-i18n="reaction_faq3_a">최고 기록은 이 브라우저에만 저장되며 서버로 전송되지 않습니다.</p></div></div></section>
+      <section class="faq-section" hidden>
+        <h2 data-i18n="reaction_faq_title">❓ 자주 묻는 질문</h2>
+        <div class="faq-list" data-faq-category="reaction"></div>
+        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+      </section>
       <nav class="game-links" aria-label="다른 게임"><a href="../sudoku/" data-i18n="game_sudoku_title">스도쿠</a><a href="../typing/" data-i18n="game_typing_title">타자 속도 테스트</a><a href="../block-puzzle/" data-i18n="game_block_title">블록 퍼즐</a><a href="../../">홈</a></nav>
     </section>
   </main>
   <div id="ads-slot" class="ads-slot"></div><div id="site-footer"></div>
   <script src="../../assets/js/i18n.js"></script><script src="../../assets/js/common.js"></script><script src="../../assets/js/share.js"></script><script src="./game.js"></script>
+<script src="../../assets/js/faq.js"></script>
+<script>
+  (function () {
+    function loadFaq() {
+      if (typeof loadCategoryFaq === 'function') loadCategoryFaq('reaction', '.faq-list[data-faq-category="reaction"]');
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadFaq);
+    else loadFaq();
+  })();
+</script>
 </body>
 </html>

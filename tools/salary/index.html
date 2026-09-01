@@ -88,51 +88,28 @@
         </ul>
       </section>
 
-      <section class="faq-section">
+      <section class="faq-section" hidden>
         <h2 data-i18n="salary_faq_title">❓ 자주 묻는 질문</h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <h4 data-i18n="salary_faq1_q">세전과 세후는 무엇이 다른가요?</h4>
-            <p data-i18n="salary_faq1_a">세전은 4대 보험료와 세금을 빼기 전 금액, 세후(실수령액)는 이 공제를 모두 뺀 뒤 실제로 받는 금액입니다.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="salary_faq2_q">왜 이 계산기 결과가 실제 월급과 다른가요?</h4>
-            <p data-i18n="salary_faq2_a">실제 공제액은 부양가족 수, 비과세 급여, 국민연금 상한, 건강보험료율 변동 등에 따라 달라집니다. 이 계산기는 고정 비율을 쓰는 단순 모델이라 근사값만 제공합니다.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="salary_faq3_q">연봉에 퇴직금이 포함되나요?</h4>
-            <p data-i18n="salary_faq3_a">회사마다 다릅니다. ‘연봉에 퇴직금 포함’인 경우 실제 매달 받는 급여는 연봉을 13으로 나눈 값에 가깝습니다. 근로계약서를 확인하세요.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="salary_faq4_q">입력한 연봉이 저장되나요?</h4>
-            <p data-i18n="salary_faq4_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
-          </div>
-        </div>
+        <div class="faq-list" data-faq-category="salary"></div>
+        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
       </section>
 
-      <section class="related-tools">
-        <h2 data-i18n="salary_related_title">🔗 관련 도구</h2>
-        <div class="tools-grid">
-          <a href="../retirement/" class="tool-card">
-            <h3 data-i18n="tool_retirement_title">퇴직금 계산기</h3>
-            <p data-i18n="tool_retirement_desc">입사일과 퇴사일로부터 예상 퇴직금을 계산합니다.</p>
-          </a>
-          <a href="../savings/" class="tool-card">
-            <h3 data-i18n="tool_savings_title">예금/적금 이자 계산기</h3>
-            <p data-i18n="tool_savings_desc">예치금과 이율로부터 이자와 만기 수령액을 계산합니다.</p>
-          </a>
-          <a href="../loan/" class="tool-card">
-            <h3 data-i18n="tool_loan_title">대출 이자 계산기</h3>
-            <p data-i18n="tool_loan_desc">대출금액, 이율, 기간으로부터 월 상환액과 총 이자를 계산합니다.</p>
-          </a>
-        </div>
-      </section>
-    </div>
+</div>
   </main>
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./salary.js"></script>
+<script src="../../assets/js/faq.js"></script>
+<script>
+  (function () {
+    function loadFaq() {
+      if (typeof loadCategoryFaq === 'function') loadCategoryFaq('salary', '.faq-list[data-faq-category="salary"]');
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadFaq);
+    else loadFaq();
+  })();
+</script>
 </body>
 </html>

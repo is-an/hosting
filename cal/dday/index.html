@@ -109,48 +109,28 @@
       </section>
 
       <!-- ========== FAQ ========== -->
-      <section class="faq-section">
+      <section class="faq-section" hidden>
         <h2 data-i18n="dday_faq_title">❓ 자주 묻는 질문</h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <h4 data-i18n="dday_faq1_q">D-Day는 무엇인가요?</h4>
-            <p data-i18n="dday_faq1_a">특정 목표일을 기준으로 남은 일수를 나타내는 형식입니다. 목표일까지 10일이 남으면 D-10, 당일은 D-Day, 지난 지 5일이면 D+5입니다.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="dday_faq2_q">과거 날짜를 입력할 수 있나요?</h4>
-            <p data-i18n="dday_faq2_a">네. 과거 날짜를 입력하면 그 날짜로부터 며칠이 지났는지 D+ 형식으로 표시합니다.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="dday_faq3_q">‘시험 D-100’과 계산이 다른 것 같아요.</h4>
-            <p data-i18n="dday_faq3_a">기관에 따라 시험 당일을 1일째로 세기도 합니다. 이 계산기는 당일을 0일째로 보므로, 필요하면 목표 날짜를 하루 앞당겨 입력하세요.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="dday_faq4_q">시간 단위로도 계산할 수 있나요?</h4>
-            <p data-i18n="dday_faq4_a">현재는 날짜(일) 단위로만 계산합니다.</p>
-          </div>
-        </div>
+        <div class="faq-list" data-faq-category="dday"></div>
+        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
       </section>
 
-      <!-- ========== 관련 도구 ========== -->
-      <section class="related-tools">
-        <h2 data-i18n="dday_related_title">🔗 관련 도구</h2>
-        <div class="tools-grid">
-          <a href="../age/" class="tool-card">
-            <h4 data-i18n="tool_age_title">나이 계산기</h4>
-            <p data-i18n="tool_age_desc">생년월일로 만 나이와 경과 일수 계산</p>
-          </a>
-          <a href="../discharge/" class="tool-card">
-            <h4 data-i18n="tool_discharge_title">전역일 계산기</h4>
-            <p data-i18n="tool_discharge_desc">입대일로부터 전역일 계산</p>
-          </a>
-        </div>
-      </section>
-    </div>
+</div>
   </main>
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./dday.js"></script>
+<script src="../../assets/js/faq.js"></script>
+<script>
+  (function () {
+    function loadFaq() {
+      if (typeof loadCategoryFaq === 'function') loadCategoryFaq('dday', '.faq-list[data-faq-category="dday"]');
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadFaq);
+    else loadFaq();
+  })();
+</script>
 </body>
 </html>

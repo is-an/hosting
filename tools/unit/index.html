@@ -104,47 +104,28 @@
         </ul>
       </section>
 
-      <section class="faq-section">
+      <section class="faq-section" hidden>
         <h2 data-i18n="unit_faq_title">❓ 자주 묻는 질문</h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <h4 data-i18n="unit_faq1_q">1평은 몇 제곱미터인가요?</h4>
-            <p data-i18n="unit_faq1_a">1평은 약 3.3058㎡입니다. 반대로 1㎡는 약 0.3025평입니다. 면적을 선택하고 평↔㎡로 변환하세요.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="unit_faq2_q">데이터 용량은 왜 1,000이 아니라 1,024로 계산되나요?</h4>
-            <p data-i18n="unit_faq2_a">이 도구는 2의 거듭제곱(1KB = 1,024B) 기준을 사용합니다. 저장장치 제조사는 1,000 단위를 쓰기도 해 표기 용량과 차이가 날 수 있습니다.</p>
-          </div>
-          <div class="faq-item">
-            <h4 data-i18n="unit_faq3_q">섭씨와 화씨는 어떻게 변환하나요?</h4>
-            <p data-i18n="unit_faq3_a">화씨 = 섭씨 × 9/5 + 32, 섭씨 = (화씨 − 32) × 5/9입니다. 온도를 선택하면 자동으로 계산됩니다.</p>
-          </div>
-        </div>
+        <div class="faq-list" data-faq-category="unit"></div>
+        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
       </section>
 
-      <section class="related-tools">
-        <h2 data-i18n="unit_related_title">🔗 관련 도구</h2>
-        <div class="tools-grid">
-          <a href="../charcount/" class="tool-card">
-            <h3 data-i18n="tool_charcount_title">글자수/바이트 계산기</h3>
-            <p data-i18n="tool_charcount_desc">텍스트의 글자수, 공백 포함/제외 글자수, 바이트 수를 계산합니다.</p>
-          </a>
-          <a href="../../cal/percent/" class="tool-card">
-            <h3 data-i18n="tool_percent_title">퍼센트 계산기</h3>
-            <p data-i18n="tool_percent_desc">A의 B%, 증감 비율 등을 빠르게 계산합니다.</p>
-          </a>
-          <a href="../bmi/" class="tool-card">
-            <h3 data-i18n="tool_bmi_title">BMI 계산기</h3>
-            <p data-i18n="tool_bmi_desc">키와 체중을 입력하면 BMI와 건강 상태를 표시합니다.</p>
-          </a>
-        </div>
-      </section>
-    </div>
+</div>
   </main>
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
   <script src="./unit.js"></script>
+<script src="../../assets/js/faq.js"></script>
+<script>
+  (function () {
+    function loadFaq() {
+      if (typeof loadCategoryFaq === 'function') loadCategoryFaq('unit', '.faq-list[data-faq-category="unit"]');
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadFaq);
+    else loadFaq();
+  })();
+</script>
 </body>
 </html>

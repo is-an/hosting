@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+  <title>적립식 투자(DCA)란 무엇인가 | is-an 설명서</title>
+  <meta name="description" content="매달 같은 금액을 투자하는 적립식 투자(DCA)의 원리, 장점과 한계, 백테스트로 확인하는 방법을 정리했습니다.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://is-an.github.io/guide/posts/dca-investing/">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"적립식 투자(DCA)란 무엇인가","description":"매달 같은 금액을 투자하는 적립식 투자(DCA)의 원리, 장점과 한계, 백테스트로 확인하는 방법을 정리했습니다.","datePublished":"2026-09-01","inLanguage":"ko","mainEntityOfPage":"https://is-an.github.io/guide/posts/dca-investing/","author":{"@type":"Organization","name":"is-an"},"publisher":{"@type":"Organization","name":"is-an"}}
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main>
+    <div class="container">
+      <article class="blog-article">
+        <div class="blog-meta">
+          <time datetime="2026-09-01">2026년 9월 1일</time>
+          <span>투자</span>
+        </div>
+        <h1>적립식 투자(DCA)란 무엇인가</h1>
+        <p>적립식 투자는 매달 정해진 금액으로 같은 자산을 꾸준히 사 모으는 방법입니다. 영어로는 Dollar Cost Averaging, 줄여서 DCA라고 합니다.</p>
+
+        <h2>매입 단가가 분산된다</h2>
+        <p>가격이 쌀 때는 같은 금액으로 더 많은 수량을, 비쌀 때는 더 적은 수량을 사게 됩니다. 그 결과 평균 매입 단가가 자연스럽게 여러 시점에 분산됩니다. 한 번에 목돈을 넣는 것보다 "지금이 고점인가"를 고민할 필요가 줄어듭니다.</p>
+
+        <h2>장점</h2>
+        <p>투자 시점을 매번 판단하지 않아도 되고, 급여처럼 매달 들어오는 현금흐름과 잘 맞습니다. 하락장에서 심리적으로 버티기 쉽고, 자동이체로 습관화하기 좋습니다.</p>
+
+        <h2>한계</h2>
+        <p>장기적으로 우상향한 자산이라면, 처음부터 목돈을 한 번에 넣는 편이 기대수익은 더 높습니다. 적립식은 초기에 투자되지 않은 현금이 남아 있기 때문입니다. 또한 적립식이라고 해서 손실을 막아 주지는 않습니다. 자산 자체가 장기간 하락하면 평균 단가도 함께 낮아질 뿐 원금 손실은 가능합니다.</p>
+
+        <h2>과거 데이터로 확인해 보기</h2>
+        <p>특정 시점부터 매달 얼마씩 넣었다면 지금 얼마가 되었을지는 과거 시세로 계산해 볼 수 있습니다. 이를 백테스트라고 합니다. 과거 수익률은 미래 수익을 보장하지 않으며, 세금·수수료·환율까지 반영하면 결과는 달라집니다.</p>
+
+        <p>미국 주식·ETF를 대상으로 적립식 투자 결과를 계산해 보려면 <a href="../../../stock/">주식·ETF 적립식 투자 계산기</a>를 이용하세요. 안전한 저축과 비교하고 싶다면 <a href="../../../tools/savings/">예금·적금 이자 계산기</a>도 함께 보면 좋습니다.</p>
+
+        <a class="blog-back-link" href="../../" data-i18n="guide.back">목록으로 돌아가기</a>
+      </article>
+    </div>
+  </main>
+  <div id="ads-slot" class="ads-slot"></div>
+  <div id="site-footer"></div>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/common.js"></script>
+</body>
+</html>

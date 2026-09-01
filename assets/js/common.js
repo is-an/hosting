@@ -235,7 +235,7 @@ function applyHeaderLinks() {
       lotto: `${siteRootPath}/lotto/`,
       tools: `${siteRootPath}/tools/`,
       games: `${siteRootPath}/games/`,
-      blog: `${siteRootPath}/blog/`,
+      blog: `${siteRootPath}/guide/`,
       saju: `${siteRootPath}/saju/`
     };
 

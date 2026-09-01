@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light');
+
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+
+  <title data-i18n="faq_meta_title">자주 묻는 질문 | is-an</title>
+
+  <meta
+    name="description"
+    data-i18n-content="faq_meta_description"
+    content="is-an.github.io 도구 이용에 관한 공통 질문과 각 서비스별 자주 묻는 질문을 한곳에 모았습니다."
+  >
+
+  <meta name="robots" content="index,follow">
+
+  <link rel="canonical" href="https://is-an.github.io/faq/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" data-i18n-content="faq_meta_title" content="자주 묻는 질문 | is-an">
+  <meta property="og:description" data-i18n-content="faq_meta_description" content="is-an.github.io 도구 이용에 관한 공통 질문과 각 서비스별 자주 묻는 질문을 한곳에 모았습니다.">
+  <meta property="og:url" content="https://is-an.github.io/faq/">
+  <meta property="og:image" content="https://is-an.github.io/logo.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "이 도구들을 사용하려면 회원가입이 필요한가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요, 모든 도구는 완전히 무료이며 회원가입 없이 사용할 수 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "계산 결과가 정확한가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "네, 모든 계산은 정확한 알고리즘으로 계산되지만, 세금이나 복지혜택 등 개인의 상황에 따라 실제 금액과 다를 수 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "결과를 저장하거나 내보낼 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "각 도구의 복사 버튼으로 결과를 클립보드에 복사할 수 있습니다. 현재는 파일 저장 기능은 제공하지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "모바일에서도 사용할 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "네, 모든 도구는 모바일 기기에 최적화되어 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "판매점 자동 번호와 무엇이 다른가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "차이가 없습니다. 판매점 자동도 무작위 추출이며, 이 도구도 같은 방식으로 서로 다른 6개 번호를 무작위로 고릅니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "여러 번 생성하면 같은 조합이 나올 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "한 조합 안에서는 번호가 중복되지 않습니다. 다만 여러 조합을 생성하면 조합끼리 겹칠 수는 있으며, 그 확률은 매우 낮습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "번호를 고정하면 당첨 확률이 올라가나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 어떤 번호를 고르든 6개 조합 하나의 1등 확률은 8,145,060분의 1로 동일합니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "생성한 번호가 서버에 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 번호 생성은 모두 사용자의 브라우저에서 처리되며 서버로 전송되거나 저장되지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "만 나이와 세는 나이의 차이는?",
+        "acceptedAnswer": { "@type": "Answer", "text": "만 나이는 출생 이후 실제로 지난 햇수이고, 세는 나이는 출생 시 1세로 시작해 새해마다 한 살을 더합니다. 그래서 세는 나이가 만 나이보다 한두 살 많습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "기준 날짜를 바꿀 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "네. 기준 날짜를 직접 입력하면 그 날짜를 기준으로 나이와 경과 일수를 계산합니다. 특정 시점의 만 나이를 확인할 때 유용합니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "2월 29일생은 어떻게 계산되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "평년에는 2월 28일 또는 3월 1일을 생일로 보는 견해가 있어 하루 차이가 날 수 있습니다. 이 계산기는 다음 생일을 표시할 때 3월 1일로 처리합니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "입력한 생년월일이 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "D-Day는 무엇인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "특정 목표일을 기준으로 남은 일수를 나타내는 형식입니다. 목표일까지 10일이 남으면 D-10, 당일은 D-Day, 지난 지 5일이면 D+5입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "과거 날짜를 입력할 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "네. 과거 날짜를 입력하면 그 날짜로부터 며칠이 지났는지 D+ 형식으로 표시합니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "‘시험 D-100’과 계산이 다른 것 같아요.",
+        "acceptedAnswer": { "@type": "Answer", "text": "기관에 따라 시험 당일을 1일째로 세기도 합니다. 이 계산기는 당일을 0일째로 보므로, 필요하면 목표 날짜를 하루 앞당겨 입력하세요." }
+      },
+      {
+        "@type": "Question",
+        "name": "시간 단위로도 계산할 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "현재는 날짜(일) 단위로만 계산합니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "복무기간은 얼마인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "현재 기준 육군·해병대 18개월, 해군 20개월, 공군 21개월입니다. 복무기간은 정책에 따라 조정될 수 있으니 최신 정보는 병무청 안내를 확인하세요." }
+      },
+      {
+        "@type": "Question",
+        "name": "조기 전역이나 분할 복무도 계산되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "이 계산기는 입대일부터 연속 복무한다고 가정합니다. 휴가 미복귀, 조기 전역, 분할 복무 등은 반영되지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "입력한 입대일이 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "1000의 15%는 얼마인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "첫 번째 탭 \"A의 B%\"에서 A에 1000, B에 15를 입력하면 150이라는 답을 얻을 수 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "할인가를 계산하려면?",
+        "acceptedAnswer": { "@type": "Answer", "text": "예를 들어 10,000원에서 20% 할인받으면, A의 B%에서 10000의 80%를 계산하면 됩니다. (원래 가격의 80%가 할인가)" }
+      },
+      {
+        "@type": "Question",
+        "name": "증감 비율을 어떻게 계산하나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "\"증가 비율\" 탭에서 이전 값과 현재 값을 입력하면 몇 %가 증가했는지 계산됩니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "설치나 회원가입이 필요한가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 모든 게임은 웹 브라우저에서 바로 실행되며 설치나 로그인이 필요 없습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "모바일에서도 할 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "네. 스도쿠·타자·블록 퍼즐은 터치 조작을 지원하며, 반응속도 테스트도 화면 터치로 측정할 수 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "기록이 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "최고 기록은 이 브라우저(로컬 저장소)에만 보관되며 서버로 전송되지 않습니다. 브라우저 데이터를 지우면 기록도 사라집니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "모바일에서도 할 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "네. 화면 아래 터치 버튼으로 이동·회전·낙하를 조작할 수 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "한 번에 몇 줄까지 지울 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "최대 네 줄을 동시에 지울 수 있으며, 이때 점수가 가장 많이 오릅니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "기록이 서버에 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 최고 점수는 이 브라우저에만 저장됩니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "기록이 너무 안 좋게 나와요.",
+        "acceptedAnswer": { "@type": "Answer", "text": "무선 마우스, 블루투스 지연, 60Hz 모니터, 브라우저 백그라운드 작업 등이 영향을 줍니다. 여러 번 측정한 평균을 참고하세요." }
+      },
+      {
+        "@type": "Question",
+        "name": "모바일에서도 정확한가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "터치 입력도 측정되지만 화면 터치 인식 지연이 있어 PC보다 느리게 나오는 경향이 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "기록이 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "최고 기록은 이 브라우저에만 저장되며 서버로 전송되지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "난이도별로 무엇이 다른가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "쉬움일수록 처음 채워진 숫자가 많아 논리만으로 빠르게 풀리고, 어려움은 주어진 숫자가 적어 여러 단계의 추론이 필요합니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "정답이 여러 개일 수도 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 생성되는 퍼즐은 항상 유일한 정답을 갖습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "진행 상황이 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "새 게임을 누르거나 페이지를 새로 고치면 초기화됩니다. 기록은 서버로 전송되지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "평균 타자 속도는 어느 정도인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "일반적으로 한글 200~300타/분, 영문 30~50WPM 정도를 평균으로 봅니다. 숙련자는 그 두 배 이상입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "한국어와 영어 점수를 비교할 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "입력 방식이 달라 직접 비교는 어렵습니다. 같은 언어에서 자신의 기록 변화를 보는 용도로 쓰세요." }
+      },
+      {
+        "@type": "Question",
+        "name": "입력한 내용이 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 입력과 채점은 브라우저에서만 이뤄지며 서버로 전송되지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "출생시간을 모르면 사주를 볼 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "네. 출생시간을 모르는 경우에도 일부 정보를 기준으로 확인할 수 있지만 결과에 차이가 있을 수 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "사주 결과는 정확한가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "사주는 전통적인 명리학을 바탕으로 한 참고용 해석이며 미래를 확정적으로 예측하는 결과가 아닙니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "입력한 정보가 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "입력한 정보의 저장 여부는 서비스 설정에 따라 달라질 수 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "어떤 종목을 조회할 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "미국 거래소에 상장된 주식과 ETF를 티커로 조회할 수 있습니다. 예를 들어 SPY, QQQ, VOO, SCHD, AAPL 등입니다. 한국 거래소 종목은 지원하지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "얼마나 과거까지 계산할 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "시세 데이터 제공 범위에 따라 대략 최근 10년까지 계산할 수 있습니다. 그보다 이른 시작 월을 선택하면 데이터가 있는 가장 이른 월부터 계산합니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "배당금은 어떻게 반영되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "'배당 재투자 포함'을 선택하면 배당락을 반영한 수정주가로 계산해 배당을 같은 종목에 재투자한 결과를 근사합니다. '배당 제외'는 단순 종가로만 계산합니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "연평균 수익률은 어떻게 계산하나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "매달 현금을 넣는 적립식 특성을 반영해 투자금 가중 수익률(내부수익률, IRR)을 구한 뒤 연 단위로 환산합니다. 단순히 최종 수익률을 기간으로 나눈 값과는 다릅니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "적정 체중은 어떻게 나오나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "정상 범위인 BMI 18.5~25에 해당하는 체중을 계산해 표시합니다. 키(m)의 제곱에 18.5와 25를 각각 곱한 값입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "한국 기준과 결과가 다른 것 같아요.",
+        "acceptedAnswer": { "@type": "Answer", "text": "이 계산기는 WHO 국제 기준(정상 18.5~24.9)을 씁니다. 대한비만학회 기준으로는 BMI 23부터 비만 전 단계로 보기 때문에 분류가 더 엄격합니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "BMI가 정상이면 건강한 건가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "BMI는 여러 지표 중 하나일 뿐입니다. 체지방률, 허리둘레, 혈압·혈당·콜레스테롤 등을 함께 봐야 건강 상태를 제대로 알 수 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "입력한 키·체중이 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "바이트와 글자수는 무엇이 다른가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "글자수는 문자의 개수, 바이트는 저장 공간의 크기입니다. UTF-8에서 한글 한 글자는 3바이트, 영문은 1바이트입니다. EUC-KR 환경이라면 한글은 2바이트입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "공백을 포함해서 세야 하나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "공지에 별도 언급이 없으면 대개 공백 포함 기준입니다. ‘공백 제외’라고 명시된 경우에만 띄어쓰기를 뺀 수를 사용하세요." }
+      },
+      {
+        "@type": "Question",
+        "name": "줄바꿈도 글자수에 포함되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "전체 글자수에는 포함됩니다. 문서에서 복사해 붙여넣을 때 줄바꿈이 많으면 예상보다 글자수가 늘어날 수 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "입력한 텍스트가 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 글자수 계산은 모두 브라우저에서 처리되며 입력한 내용은 서버로 전송되지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "원리금균등과 원금균등, 어떤 게 유리한가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "총 이자만 보면 원금균등이 대체로 적습니다. 다만 원금균등은 초기 상환액이 크기 때문에, 매달 나가는 돈을 일정하게 관리하고 싶다면 원리금균등이 편할 수 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "거치기간이 있으면 어떻게 되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "거치기간에는 이자만 납부하고 원금 상환은 이후에 시작됩니다. 이 계산기는 거치기간을 지원하지 않으므로, 거치 후 상환 개월수만 따로 입력해 대략적인 금액을 확인하세요." }
+      },
+      {
+        "@type": "Question",
+        "name": "중도상환하면 이자가 줄어드나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "네, 남은 원금이 줄어 이후 이자가 감소합니다. 다만 대출 실행 후 일정 기간 안에는 중도상환수수료가 붙을 수 있어 실제 이득은 상품 조건에 따라 다릅니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "입력한 값이 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "1년을 딱 채우면 퇴직금을 받나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "계속 근로기간이 1년 이상이면 지급 대상입니다. 1년에서 하루라도 모자라면 법정 퇴직금은 발생하지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "평균임금과 통상임금은 무엇이 다른가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "평균임금은 실제로 받은 임금(상여·수당 포함) 기준이고, 통상임금은 정기적·일률적으로 지급되는 기본 임금 기준입니다. 퇴직금은 원칙적으로 평균임금으로 계산하되, 평균임금이 통상임금보다 적으면 통상임금을 씁니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "아르바이트도 퇴직금을 받을 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "고용 형태와 상관없이 1년 이상 계속 근로하고 주 소정근로시간이 15시간 이상이면 퇴직금 지급 대상입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "입력한 정보가 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "세전과 세후는 무엇이 다른가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "세전은 4대 보험료와 세금을 빼기 전 금액, 세후(실수령액)는 이 공제를 모두 뺀 뒤 실제로 받는 금액입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "왜 이 계산기 결과가 실제 월급과 다른가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "실제 공제액은 부양가족 수, 비과세 급여, 국민연금 상한, 건강보험료율 변동 등에 따라 달라집니다. 이 계산기는 고정 비율을 쓰는 단순 모델이라 근사값만 제공합니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "연봉에 퇴직금이 포함되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "회사마다 다릅니다. ‘연봉에 퇴직금 포함’인 경우 실제 매달 받는 급여는 연봉을 13으로 나눈 값에 가깝습니다. 근로계약서를 확인하세요." }
+      },
+      {
+        "@type": "Question",
+        "name": "입력한 연봉이 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "적금인데 왜 예치금 칸에 월 납입액을 넣나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "이 계산기의 적금 모드는 매달 같은 금액을 넣는다고 가정합니다. 예치금 칸에 매달 넣을 금액을, 기간 칸에 납입 개월수를 입력하세요." }
+      },
+      {
+        "@type": "Question",
+        "name": "이자소득세는 왜 15.4%인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "이자·배당 소득에는 소득세 14%와 그에 대한 지방소득세 1.4%가 함께 부과되어 합계 15.4%가 원천징수됩니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "표시 이율이 같은데 예금과 적금 이자가 왜 다른가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "적금은 나중에 넣은 돈일수록 이자가 붙는 기간이 짧기 때문입니다. 대략 같은 이율이라면 적금의 실효 이자는 예금의 절반 안팎입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "입력한 금액이 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "셔터카운트란 무엇인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "카메라가 촬영한 횟수를 뜻하는 기록입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "사진만으로 항상 확인할 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 카메라와 파일에 따라 셔터카운트가 EXIF에 저장되지 않을 수 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "사진이 서버에 업로드되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 이 페이지는 네트워크로 사진을 전송하지 않고 브라우저에서만 분석합니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "변환이 즉시 적용되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 원하는 변환 버튼을 눌러야 결과가 갱신됩니다. 여러 변환을 이어서 적용하려면 결과를 다시 입력란에 붙여넣고 다음 버튼을 누르세요." }
+      },
+      {
+        "@type": "Question",
+        "name": "한글에도 대문자·소문자가 적용되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 대소문자는 영문 알파벳에만 적용되며 한글·숫자·기호는 그대로 유지됩니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "입력한 텍스트가 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 모든 변환은 브라우저에서 처리되며 입력한 내용은 서버로 전송되지 않습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "1평은 몇 제곱미터인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "1평은 약 3.3058㎡입니다. 반대로 1㎡는 약 0.3025평입니다. 면적을 선택하고 평↔㎡로 변환하세요." }
+      },
+      {
+        "@type": "Question",
+        "name": "데이터 용량은 왜 1,000이 아니라 1,024로 계산되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "이 도구는 2의 거듭제곱(1KB = 1,024B) 기준을 사용합니다. 저장장치 제조사는 1,000 단위를 쓰기도 해 표기 용량과 차이가 날 수 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "섭씨와 화씨는 어떻게 변환하나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "화씨 = 섭씨 × 9/5 + 32, 섭씨 = (화씨 − 32) × 5/9입니다. 온도를 선택하면 자동으로 계산됩니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "한국의 부가세율은 몇 %인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "표준 세율은 10%입니다. 수출 등 영세율이 적용되는 거래는 0%, 면세 거래는 부가세가 없습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "합계 금액에서 부가세만 빠르게 알고 싶어요.",
+        "acceptedAnswer": { "@type": "Answer", "text": "‘합계 → 공급가액’ 탭에 합계 금액을 넣으면 공급가액과 부가세가 분리되어 표시됩니다. 세율 10% 기준 부가세는 대략 합계의 1/11입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "세율을 10%가 아닌 값으로 바꿀 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "네, 세율 입력란의 값을 바꾸면 해당 세율로 계산됩니다. 다른 나라의 부가세(VAT/GST) 계산에도 사용할 수 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "입력한 금액이 저장되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다." }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow" data-i18n="faq_eyebrow">도움말</p>
+        <h1 data-i18n="faq_page_title">자주 묻는 질문</h1>
+        <p class="hero-copy" data-i18n="faq_page_copy">서비스 이용에 관한 공통 질문과 각 도구별 질문을 정리했습니다.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="faq-section faq-category" data-faq-category="general">
+        <h2 data-i18n="faq_cat_general">공통 질문</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4 data-i18n="faq_q1">이 도구들을 사용하려면 회원가입이 필요한가요?</h4>
+            <p data-i18n="faq_a1">아니요, 모든 도구는 완전히 무료이며 회원가입 없이 사용할 수 있습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="faq_q2">계산 결과가 정확한가요?</h4>
+            <p data-i18n="faq_a2">네, 모든 계산은 정확한 알고리즘으로 계산되지만, 세금이나 복지혜택 등 개인의 상황에 따라 실제 금액과 다를 수 있습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="faq_q3">결과를 저장하거나 내보낼 수 있나요?</h4>
+            <p data-i18n="faq_a3">각 도구의 복사 버튼으로 결과를 클립보드에 복사할 수 있습니다. 현재는 파일 저장 기능은 제공하지 않습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="faq_q4">모바일에서도 사용할 수 있나요?</h4>
+            <p data-i18n="faq_a4">네, 모든 도구는 모바일 기기에 최적화되어 있습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="lotto">
+        <h2 data-i18n="nav_lotto">로또</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4 data-i18n="lotto_faq1_q">판매점 자동 번호와 무엇이 다른가요?</h4>
+            <p data-i18n="lotto_faq1_a">차이가 없습니다. 판매점 자동도 무작위 추출이며, 이 도구도 같은 방식으로 서로 다른 6개 번호를 무작위로 고릅니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="lotto_faq2_q">여러 번 생성하면 같은 조합이 나올 수 있나요?</h4>
+            <p data-i18n="lotto_faq2_a">한 조합 안에서는 번호가 중복되지 않습니다. 다만 여러 조합을 생성하면 조합끼리 겹칠 수는 있으며, 그 확률은 매우 낮습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="lotto_faq3_q">번호를 고정하면 당첨 확률이 올라가나요?</h4>
+            <p data-i18n="lotto_faq3_a">아니요. 어떤 번호를 고르든 6개 조합 하나의 1등 확률은 8,145,060분의 1로 동일합니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="lotto_faq4_q">생성한 번호가 서버에 저장되나요?</h4>
+            <p data-i18n="lotto_faq4_a">아니요. 번호 생성은 모두 사용자의 브라우저에서 처리되며 서버로 전송되거나 저장되지 않습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="age">
+        <h2><a href="../cal/age/" data-i18n="tool_age_title">age</a></h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4 data-i18n="age_faq1_q">만 나이와 세는 나이의 차이는?</h4>
+            <p data-i18n="age_faq1_a">만 나이는 출생 이후 실제로 지난 햇수이고, 세는 나이는 출생 시 1세로 시작해 새해마다 한 살을 더합니다. 그래서 세는 나이가 만 나이보다 한두 살 많습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="age_faq2_q">기준 날짜를 바꿀 수 있나요?</h4>
+            <p data-i18n="age_faq2_a">네. 기준 날짜를 직접 입력하면 그 날짜를 기준으로 나이와 경과 일수를 계산합니다. 특정 시점의 만 나이를 확인할 때 유용합니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="age_faq3_q">2월 29일생은 어떻게 계산되나요?</h4>
+            <p data-i18n="age_faq3_a">평년에는 2월 28일 또는 3월 1일을 생일로 보는 견해가 있어 하루 차이가 날 수 있습니다. 이 계산기는 다음 생일을 표시할 때 3월 1일로 처리합니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="age_faq4_q">입력한 생년월일이 저장되나요?</h4>
+            <p data-i18n="age_faq4_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
+          </div>
+        
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="dday">
+        <h2><a href="../cal/dday/" data-i18n="tool_dday_title">dday</a></h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4 data-i18n="dday_faq1_q">D-Day는 무엇인가요?</h4>
+            <p data-i18n="dday_faq1_a">특정 목표일을 기준으로 남은 일수를 나타내는 형식입니다. 목표일까지 10일이 남으면 D-10, 당일은 D-Day, 지난 지 5일이면 D+5입니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="dday_faq2_q">과거 날짜를 입력할 수 있나요?</h4>
+            <p data-i18n="dday_faq2_a">네. 과거 날짜를 입력하면 그 날짜로부터 며칠이 지났는지 D+ 형식으로 표시합니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="dday_faq3_q">‘시험 D-100’과 계산이 다른 것 같아요.</h4>
+            <p data-i18n="dday_faq3_a">기관에 따라 시험 당일을 1일째로 세기도 합니다. 이 계산기는 당일을 0일째로 보므로, 필요하면 목표 날짜를 하루 앞당겨 입력하세요.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="dday_faq4_q">시간 단위로도 계산할 수 있나요?</h4>
+            <p data-i18n="dday_faq4_a">현재는 날짜(일) 단위로만 계산합니다.</p>
+          </div>
+        
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="discharge">
+        <h2><a href="../cal/discharge/" data-i18n="tool_discharge_title">discharge</a></h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4 data-i18n="discharge_faq1_q">복무기간은 얼마인가요?</h4>
+            <p data-i18n="discharge_faq1_a">현재 기준 육군·해병대 18개월, 해군 20개월, 공군 21개월입니다. 복무기간은 정책에 따라 조정될 수 있으니 최신 정보는 병무청 안내를 확인하세요.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="discharge_faq2_q">조기 전역이나 분할 복무도 계산되나요?</h4>
+            <p data-i18n="discharge_faq2_a">이 계산기는 입대일부터 연속 복무한다고 가정합니다. 휴가 미복귀, 조기 전역, 분할 복무 등은 반영되지 않습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="discharge_faq3_q">입력한 입대일이 저장되나요?</h4>
+            <p data-i18n="discharge_faq3_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
+          </div>
+        
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="percent">
+        <h2><a href="../cal/percent/" data-i18n="tool_percent_title">percent</a></h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4 data-i18n="sub_percent_faq1">1000의 15%는 얼마인가요?</h4>
+            <p data-i18n="sub_percent_faq1a">첫 번째 탭 "A의 B%"에서 A에 1000, B에 15를 입력하면 150이라는 답을 얻을 수 있습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="sub_percent_faq2">할인가를 계산하려면?</h4>
+            <p data-i18n="sub_percent_faq2a">예를 들어 10,000원에서 20% 할인받으면, A의 B%에서 10000의 80%를 계산하면 됩니다. (원래 가격의 80%가 할인가)</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="sub_percent_faq3">증감 비율을 어떻게 계산하나요?</h4>
+            <p data-i18n="sub_percent_faq3a">"증가 비율" 탭에서 이전 값과 현재 값을 입력하면 몇 %가 증가했는지 계산됩니다.</p>
+          </div>
+        
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="games">
+        <h2><a href="../games/" data-i18n="nav_games">games</a></h2>
+        <div class="faq-list">
+        <div class="faq-item">
+          <h4 data-i18n="games_faq1_q">설치나 회원가입이 필요한가요?</h4>
+          <p data-i18n="games_faq1_a">아니요. 모든 게임은 웹 브라우저에서 바로 실행되며 설치나 로그인이 필요 없습니다.</p>
+        </div>
+        <div class="faq-item">
+          <h4 data-i18n="games_faq2_q">모바일에서도 할 수 있나요?</h4>
+          <p data-i18n="games_faq2_a">네. 스도쿠·타자·블록 퍼즐은 터치 조작을 지원하며, 반응속도 테스트도 화면 터치로 측정할 수 있습니다.</p>
+        </div>
+        <div class="faq-item">
+          <h4 data-i18n="games_faq3_q">기록이 저장되나요?</h4>
+          <p data-i18n="games_faq3_a">최고 기록은 이 브라우저(로컬 저장소)에만 보관되며 서버로 전송되지 않습니다. 브라우저 데이터를 지우면 기록도 사라집니다.</p>
+        </div>
+      
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="block">
+        <h2><a href="../games/block-puzzle/" data-i18n="game_block_title">block</a></h2>
+        <div class="faq-list"><div class="faq-item"><h4 data-i18n="block_faq1_q">모바일에서도 할 수 있나요?</h4><p data-i18n="block_faq1_a">네. 화면 아래 터치 버튼으로 이동·회전·낙하를 조작할 수 있습니다.</p></div><div class="faq-item"><h4 data-i18n="block_faq2_q">한 번에 몇 줄까지 지울 수 있나요?</h4><p data-i18n="block_faq2_a">최대 네 줄을 동시에 지울 수 있으며, 이때 점수가 가장 많이 오릅니다.</p></div><div class="faq-item"><h4 data-i18n="block_faq3_q">기록이 서버에 저장되나요?</h4><p data-i18n="block_faq3_a">아니요. 최고 점수는 이 브라우저에만 저장됩니다.</p></div>
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="reaction">
+        <h2><a href="../games/reaction/" data-i18n="game_reaction_title">reaction</a></h2>
+        <div class="faq-list"><div class="faq-item"><h4 data-i18n="reaction_faq1_q">기록이 너무 안 좋게 나와요.</h4><p data-i18n="reaction_faq1_a">무선 마우스, 블루투스 지연, 60Hz 모니터, 브라우저 백그라운드 작업 등이 영향을 줍니다. 여러 번 측정한 평균을 참고하세요.</p></div><div class="faq-item"><h4 data-i18n="reaction_faq2_q">모바일에서도 정확한가요?</h4><p data-i18n="reaction_faq2_a">터치 입력도 측정되지만 화면 터치 인식 지연이 있어 PC보다 느리게 나오는 경향이 있습니다.</p></div><div class="faq-item"><h4 data-i18n="reaction_faq3_q">기록이 저장되나요?</h4><p data-i18n="reaction_faq3_a">최고 기록은 이 브라우저에만 저장되며 서버로 전송되지 않습니다.</p></div>
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="sudoku">
+        <h2><a href="../games/sudoku/" data-i18n="game_sudoku_title">sudoku</a></h2>
+        <div class="faq-list"><div class="faq-item"><h4 data-i18n="sudoku_faq1_q">난이도별로 무엇이 다른가요?</h4><p data-i18n="sudoku_faq1_a">쉬움일수록 처음 채워진 숫자가 많아 논리만으로 빠르게 풀리고, 어려움은 주어진 숫자가 적어 여러 단계의 추론이 필요합니다.</p></div><div class="faq-item"><h4 data-i18n="sudoku_faq2_q">정답이 여러 개일 수도 있나요?</h4><p data-i18n="sudoku_faq2_a">아니요. 생성되는 퍼즐은 항상 유일한 정답을 갖습니다.</p></div><div class="faq-item"><h4 data-i18n="sudoku_faq3_q">진행 상황이 저장되나요?</h4><p data-i18n="sudoku_faq3_a">새 게임을 누르거나 페이지를 새로 고치면 초기화됩니다. 기록은 서버로 전송되지 않습니다.</p></div>
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="typing">
+        <h2><a href="../games/typing/" data-i18n="game_typing_title">typing</a></h2>
+        <div class="faq-list"><div class="faq-item"><h4 data-i18n="typing_faq1_q">평균 타자 속도는 어느 정도인가요?</h4><p data-i18n="typing_faq1_a">일반적으로 한글 200~300타/분, 영문 30~50WPM 정도를 평균으로 봅니다. 숙련자는 그 두 배 이상입니다.</p></div><div class="faq-item"><h4 data-i18n="typing_faq2_q">한국어와 영어 점수를 비교할 수 있나요?</h4><p data-i18n="typing_faq2_a">입력 방식이 달라 직접 비교는 어렵습니다. 같은 언어에서 자신의 기록 변화를 보는 용도로 쓰세요.</p></div><div class="faq-item"><h4 data-i18n="typing_faq3_q">입력한 내용이 저장되나요?</h4><p data-i18n="typing_faq3_a">아니요. 입력과 채점은 브라우저에서만 이뤄지며 서버로 전송되지 않습니다.</p></div>
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="saju">
+        <h2><a href="../saju/" data-i18n="saju_title">saju</a></h2>
+        <div class="faq-list">
+
+        <div class="faq-item">
+
+          <h4 data-i18n="saju.faq1">
+            출생시간을 모르면 사주를 볼 수 있나요?
+          </h4>
+
+          <p data-i18n="saju.faq1_answer">
+            네. 출생시간을 모르는 경우에도 일부 정보를 기준으로 확인할 수 있지만 결과에 차이가 있을 수 있습니다.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h4 data-i18n="saju.faq2">
+            사주 결과는 정확한가요?
+          </h4>
+
+          <p data-i18n="saju.faq2_answer">
+            사주는 전통적인 명리학을 바탕으로 한 참고용 해석이며 미래를 확정적으로 예측하는 결과가 아닙니다.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h4 data-i18n="saju.faq3">
+            입력한 정보가 저장되나요?
+          </h4>
+
+          <p data-i18n="saju.faq3_answer">
+            입력한 정보의 저장 여부는 서비스 설정에 따라 달라질 수 있습니다.
+          </p>
+
+        </div>
+
+      
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="stock">
+        <h2><a href="../stock/" data-i18n="tool_stock_title">stock</a></h2>
+        <div class="faq-list">
+        <div class="faq-item">
+          <h4 data-i18n="stock_faq1_q">어떤 종목을 조회할 수 있나요?</h4>
+          <p data-i18n="stock_faq1_a">미국 거래소에 상장된 주식과 ETF를 티커로 조회할 수 있습니다. 예를 들어 SPY, QQQ, VOO, SCHD, AAPL 등입니다. 한국 거래소 종목은 지원하지 않습니다.</p>
+        </div>
+        <div class="faq-item">
+          <h4 data-i18n="stock_faq2_q">얼마나 과거까지 계산할 수 있나요?</h4>
+          <p data-i18n="stock_faq2_a">시세 데이터 제공 범위에 따라 대략 최근 10년까지 계산할 수 있습니다. 그보다 이른 시작 월을 선택하면 데이터가 있는 가장 이른 월부터 계산합니다.</p>
+        </div>
+        <div class="faq-item">
+          <h4 data-i18n="stock_faq3_q">배당금은 어떻게 반영되나요?</h4>
+          <p data-i18n="stock_faq3_a">'배당 재투자 포함'을 선택하면 배당락을 반영한 수정주가로 계산해 배당을 같은 종목에 재투자한 결과를 근사합니다. '배당 제외'는 단순 종가로만 계산합니다.</p>
+        </div>
+        <div class="faq-item">
+          <h4 data-i18n="stock_faq4_q">연평균 수익률은 어떻게 계산하나요?</h4>
+          <p data-i18n="stock_faq4_a">매달 현금을 넣는 적립식 특성을 반영해 투자금 가중 수익률(내부수익률, IRR)을 구한 뒤 연 단위로 환산합니다. 단순히 최종 수익률을 기간으로 나눈 값과는 다릅니다.</p>
+        </div>
+      
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="bmi">
+        <h2><a href="../tools/bmi/" data-i18n="tool_bmi_title">bmi</a></h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4 data-i18n="bmi_faq1_q">적정 체중은 어떻게 나오나요?</h4>
+            <p data-i18n="bmi_faq1_a">정상 범위인 BMI 18.5~25에 해당하는 체중을 계산해 표시합니다. 키(m)의 제곱에 18.5와 25를 각각 곱한 값입니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="bmi_faq2_q">한국 기준과 결과가 다른 것 같아요.</h4>
+            <p data-i18n="bmi_faq2_a">이 계산기는 WHO 국제 기준(정상 18.5~24.9)을 씁니다. 대한비만학회 기준으로는 BMI 23부터 비만 전 단계로 보기 때문에 분류가 더 엄격합니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="bmi_faq3_q">BMI가 정상이면 건강한 건가요?</h4>
+            <p data-i18n="bmi_faq3_a">BMI는 여러 지표 중 하나일 뿐입니다. 체지방률, 허리둘레, 혈압·혈당·콜레스테롤 등을 함께 봐야 건강 상태를 제대로 알 수 있습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="bmi_faq4_q">입력한 키·체중이 저장되나요?</h4>
+            <p data-i18n="bmi_faq4_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
+          </div>
+        
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="charcount">
+        <h2><a href="../tools/charcount/" data-i18n="tool_charcount_title">charcount</a></h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4 data-i18n="charcount_faq1_q">바이트와 글자수는 무엇이 다른가요?</h4>
+            <p data-i18n="charcount_faq1_a">글자수는 문자의 개수, 바이트는 저장 공간의 크기입니다. UTF-8에서 한글 한 글자는 3바이트, 영문은 1바이트입니다. EUC-KR 환경이라면 한글은 2바이트입니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="charcount_faq2_q">공백을 포함해서 세야 하나요?</h4>
+            <p data-i18n="charcount_faq2_a">공지에 별도 언급이 없으면 대개 공백 포함 기준입니다. ‘공백 제외’라고 명시된 경우에만 띄어쓰기를 뺀 수를 사용하세요.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="charcount_faq3_q">줄바꿈도 글자수에 포함되나요?</h4>
+            <p data-i18n="charcount_faq3_a">전체 글자수에는 포함됩니다. 문서에서 복사해 붙여넣을 때 줄바꿈이 많으면 예상보다 글자수가 늘어날 수 있습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="charcount_faq4_q">입력한 텍스트가 저장되나요?</h4>
+            <p data-i18n="charcount_faq4_a">아니요. 글자수 계산은 모두 브라우저에서 처리되며 입력한 내용은 서버로 전송되지 않습니다.</p>
+          </div>
+        
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="loan">
+        <h2><a href="../tools/loan/" data-i18n="tool_loan_title">loan</a></h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4 data-i18n="loan_faq1_q">원리금균등과 원금균등, 어떤 게 유리한가요?</h4>
+            <p data-i18n="loan_faq1_a">총 이자만 보면 원금균등이 대체로 적습니다. 다만 원금균등은 초기 상환액이 크기 때문에, 매달 나가는 돈을 일정하게 관리하고 싶다면 원리금균등이 편할 수 있습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="loan_faq2_q">거치기간이 있으면 어떻게 되나요?</h4>
+            <p data-i18n="loan_faq2_a">거치기간에는 이자만 납부하고 원금 상환은 이후에 시작됩니다. 이 계산기는 거치기간을 지원하지 않으므로, 거치 후 상환 개월수만 따로 입력해 대략적인 금액을 확인하세요.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="loan_faq3_q">중도상환하면 이자가 줄어드나요?</h4>
+            <p data-i18n="loan_faq3_a">네, 남은 원금이 줄어 이후 이자가 감소합니다. 다만 대출 실행 후 일정 기간 안에는 중도상환수수료가 붙을 수 있어 실제 이득은 상품 조건에 따라 다릅니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="loan_faq4_q">입력한 값이 저장되나요?</h4>
+            <p data-i18n="loan_faq4_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
+          </div>
+        
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="retirement">
+        <h2><a href="../tools/retirement/" data-i18n="tool_retirement_title">retirement</a></h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4 data-i18n="retirement_faq1_q">1년을 딱 채우면 퇴직금을 받나요?</h4>
+            <p data-i18n="retirement_faq1_a">계속 근로기간이 1년 이상이면 지급 대상입니다. 1년에서 하루라도 모자라면 법정 퇴직금은 발생하지 않습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="retirement_faq2_q">평균임금과 통상임금은 무엇이 다른가요?</h4>
+            <p data-i18n="retirement_faq2_a">평균임금은 실제로 받은 임금(상여·수당 포함) 기준이고, 통상임금은 정기적·일률적으로 지급되는 기본 임금 기준입니다. 퇴직금은 원칙적으로 평균임금으로 계산하되, 평균임금이 통상임금보다 적으면 통상임금을 씁니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="retirement_faq3_q">아르바이트도 퇴직금을 받을 수 있나요?</h4>
+            <p data-i18n="retirement_faq3_a">고용 형태와 상관없이 1년 이상 계속 근로하고 주 소정근로시간이 15시간 이상이면 퇴직금 지급 대상입니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="retirement_faq4_q">입력한 정보가 저장되나요?</h4>
+            <p data-i18n="retirement_faq4_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
+          </div>
+        
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="salary">
+        <h2><a href="../tools/salary/" data-i18n="tool_salary_title">salary</a></h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4 data-i18n="salary_faq1_q">세전과 세후는 무엇이 다른가요?</h4>
+            <p data-i18n="salary_faq1_a">세전은 4대 보험료와 세금을 빼기 전 금액, 세후(실수령액)는 이 공제를 모두 뺀 뒤 실제로 받는 금액입니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="salary_faq2_q">왜 이 계산기 결과가 실제 월급과 다른가요?</h4>
+            <p data-i18n="salary_faq2_a">실제 공제액은 부양가족 수, 비과세 급여, 국민연금 상한, 건강보험료율 변동 등에 따라 달라집니다. 이 계산기는 고정 비율을 쓰는 단순 모델이라 근사값만 제공합니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="salary_faq3_q">연봉에 퇴직금이 포함되나요?</h4>
+            <p data-i18n="salary_faq3_a">회사마다 다릅니다. ‘연봉에 퇴직금 포함’인 경우 실제 매달 받는 급여는 연봉을 13으로 나눈 값에 가깝습니다. 근로계약서를 확인하세요.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="salary_faq4_q">입력한 연봉이 저장되나요?</h4>
+            <p data-i18n="salary_faq4_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
+          </div>
+        
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="savings">
+        <h2><a href="../tools/savings/" data-i18n="tool_savings_title">savings</a></h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4 data-i18n="savings_faq1_q">적금인데 왜 예치금 칸에 월 납입액을 넣나요?</h4>
+            <p data-i18n="savings_faq1_a">이 계산기의 적금 모드는 매달 같은 금액을 넣는다고 가정합니다. 예치금 칸에 매달 넣을 금액을, 기간 칸에 납입 개월수를 입력하세요.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="savings_faq2_q">이자소득세는 왜 15.4%인가요?</h4>
+            <p data-i18n="savings_faq2_a">이자·배당 소득에는 소득세 14%와 그에 대한 지방소득세 1.4%가 함께 부과되어 합계 15.4%가 원천징수됩니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="savings_faq3_q">표시 이율이 같은데 예금과 적금 이자가 왜 다른가요?</h4>
+            <p data-i18n="savings_faq3_a">적금은 나중에 넣은 돈일수록 이자가 붙는 기간이 짧기 때문입니다. 대략 같은 이율이라면 적금의 실효 이자는 예금의 절반 안팎입니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="savings_faq4_q">입력한 금액이 저장되나요?</h4>
+            <p data-i18n="savings_faq4_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
+          </div>
+        
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="shutter">
+        <h2><a href="../tools/shutter-count/" data-i18n="tool_shutter_count_title">shutter</a></h2>
+        <div class="faq-list"><div class="faq-item"><h4 data-i18n="shutter_faq1q">셔터카운트란 무엇인가요?</h4><p data-i18n="shutter_faq1a">카메라가 촬영한 횟수를 뜻하는 기록입니다.</p></div><div class="faq-item"><h4 data-i18n="shutter_faq2q">사진만으로 항상 확인할 수 있나요?</h4><p data-i18n="shutter_faq2a">아니요. 카메라와 파일에 따라 셔터카운트가 EXIF에 저장되지 않을 수 있습니다.</p></div><div class="faq-item"><h4 data-i18n="shutter_faq3q">사진이 서버에 업로드되나요?</h4><p data-i18n="shutter_faq3a">아니요. 이 페이지는 네트워크로 사진을 전송하지 않고 브라우저에서만 분석합니다.</p></div>
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="textconv">
+        <h2><a href="../tools/textconv/" data-i18n="tool_textconv_title">textconv</a></h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4 data-i18n="textconv_faq1_q">변환이 즉시 적용되나요?</h4>
+            <p data-i18n="textconv_faq1_a">아니요. 원하는 변환 버튼을 눌러야 결과가 갱신됩니다. 여러 변환을 이어서 적용하려면 결과를 다시 입력란에 붙여넣고 다음 버튼을 누르세요.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="textconv_faq2_q">한글에도 대문자·소문자가 적용되나요?</h4>
+            <p data-i18n="textconv_faq2_a">아니요. 대소문자는 영문 알파벳에만 적용되며 한글·숫자·기호는 그대로 유지됩니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="textconv_faq3_q">입력한 텍스트가 저장되나요?</h4>
+            <p data-i18n="textconv_faq3_a">아니요. 모든 변환은 브라우저에서 처리되며 입력한 내용은 서버로 전송되지 않습니다.</p>
+          </div>
+        
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="unit">
+        <h2><a href="../tools/unit/" data-i18n="tool_unit_title">unit</a></h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4 data-i18n="unit_faq1_q">1평은 몇 제곱미터인가요?</h4>
+            <p data-i18n="unit_faq1_a">1평은 약 3.3058㎡입니다. 반대로 1㎡는 약 0.3025평입니다. 면적을 선택하고 평↔㎡로 변환하세요.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="unit_faq2_q">데이터 용량은 왜 1,000이 아니라 1,024로 계산되나요?</h4>
+            <p data-i18n="unit_faq2_a">이 도구는 2의 거듭제곱(1KB = 1,024B) 기준을 사용합니다. 저장장치 제조사는 1,000 단위를 쓰기도 해 표기 용량과 차이가 날 수 있습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="unit_faq3_q">섭씨와 화씨는 어떻게 변환하나요?</h4>
+            <p data-i18n="unit_faq3_a">화씨 = 섭씨 × 9/5 + 32, 섭씨 = (화씨 − 32) × 5/9입니다. 온도를 선택하면 자동으로 계산됩니다.</p>
+          </div>
+        
+        </div>
+      </section>
+
+      <section class="faq-section faq-category" data-faq-category="vat">
+        <h2><a href="../tools/vat/" data-i18n="tool_vat_title">vat</a></h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4 data-i18n="vat_faq1_q">한국의 부가세율은 몇 %인가요?</h4>
+            <p data-i18n="vat_faq1_a">표준 세율은 10%입니다. 수출 등 영세율이 적용되는 거래는 0%, 면세 거래는 부가세가 없습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="vat_faq2_q">합계 금액에서 부가세만 빠르게 알고 싶어요.</h4>
+            <p data-i18n="vat_faq2_a">‘합계 → 공급가액’ 탭에 합계 금액을 넣으면 공급가액과 부가세가 분리되어 표시됩니다. 세율 10% 기준 부가세는 대략 합계의 1/11입니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="vat_faq3_q">세율을 10%가 아닌 값으로 바꿀 수 있나요?</h4>
+            <p data-i18n="vat_faq3_a">네, 세율 입력란의 값을 바꾸면 해당 세율로 계산됩니다. 다른 나라의 부가세(VAT/GST) 계산에도 사용할 수 있습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="vat_faq4_q">입력한 금액이 저장되나요?</h4>
+            <p data-i18n="vat_faq4_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
+          </div>
+        
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="ads-slot" class="ads-slot"></div>
+  <div id="site-footer"></div>
+
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/common.js"></script>
+</body>
+</html>
