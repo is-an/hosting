@@ -79,13 +79,57 @@
         </div>
       </section>
 
+      <section class="content-section">
+        <h2 data-i18n="discharge_term_title">군별 복무기간</h2>
+        <div class="info-table-wrap">
+          <table class="info-table">
+            <thead>
+              <tr><th data-i18n="discharge_term_th_branch">군 종류</th><th data-i18n="discharge_term_th_months">복무기간</th></tr>
+            </thead>
+            <tbody>
+              <tr><td data-i18n="discharge_term_army">육군·해병대</td><td data-i18n="discharge_term_army_m">18개월</td></tr>
+              <tr><td data-i18n="discharge_term_navy">해군</td><td data-i18n="discharge_term_navy_m">20개월</td></tr>
+              <tr><td data-i18n="discharge_term_air">공군</td><td data-i18n="discharge_term_air_m">21개월</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p data-i18n="discharge_term_note">사회복무요원, 산업기능요원 등은 복무기간이 다릅니다. ‘기타(직접입력)’를 선택해 개월수를 입력하세요.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 data-i18n="discharge_how_title">전역일과 진행률 계산 방식</h2>
+        <p data-i18n="discharge_how_body">전역일은 입대일에 복무 개월수를 더한 날의 전날을 기준으로 합니다(현역병은 만기 전역 시 전역일이 그렇게 정해집니다). 이 계산기는 입대일에 개월수를 더한 날짜를 전역일로 표시하고, 오늘까지 지난 비율을 진행률로 보여 줍니다. 진행률은 한 달을 30일로 어림해 계산하므로 실제와 소폭 차이가 있을 수 있습니다.</p>
+      </section>
+
       <section class="faq-section">
-        <h2>❓ 자주 묻는 질문</h2>
+        <h2 data-i18n="discharge_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list">
           <div class="faq-item">
-            <h4>정확한 복무기간은 얼마인가요?</h4>
-            <p>기본 복무기간은 육군 18개월, 해군 20개월, 공군 21개월, 해병대 18개월입니다. 단, 실제 복무기간은 입대 및 전역 일자에 따라 다를 수 있습니다.</p>
+            <h4 data-i18n="discharge_faq1_q">복무기간은 얼마인가요?</h4>
+            <p data-i18n="discharge_faq1_a">현재 기준 육군·해병대 18개월, 해군 20개월, 공군 21개월입니다. 복무기간은 정책에 따라 조정될 수 있으니 최신 정보는 병무청 안내를 확인하세요.</p>
           </div>
+          <div class="faq-item">
+            <h4 data-i18n="discharge_faq2_q">조기 전역이나 분할 복무도 계산되나요?</h4>
+            <p data-i18n="discharge_faq2_a">이 계산기는 입대일부터 연속 복무한다고 가정합니다. 휴가 미복귀, 조기 전역, 분할 복무 등은 반영되지 않습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="discharge_faq3_q">입력한 입대일이 저장되나요?</h4>
+            <p data-i18n="discharge_faq3_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="related-tools">
+        <h2 data-i18n="discharge_related_title">🔗 관련 도구</h2>
+        <div class="tools-grid">
+          <a href="../dday/" class="tool-card">
+            <h4 data-i18n="tool_dday_title">D-Day 계산기</h4>
+            <p data-i18n="tool_dday_desc">목표 날짜까지 남은 날짜 계산</p>
+          </a>
+          <a href="../age/" class="tool-card">
+            <h4 data-i18n="tool_age_title">나이 계산기</h4>
+            <p data-i18n="tool_age_desc">생년월일로 만 나이와 경과 일수 계산</p>
+          </a>
         </div>
       </section>
     </div>
