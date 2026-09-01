@@ -67,13 +67,77 @@
         </div>
       </section>
 
+      <section class="content-section">
+        <h2 data-i18n="bmi_about_title">BMI란 무엇인가</h2>
+        <p data-i18n="bmi_about_intro">BMI(체질량지수, Body Mass Index)는 체중(kg)을 키(m)의 제곱으로 나눈 값입니다. 키 170cm, 체중 68kg이면 68 ÷ (1.7 × 1.7) ≈ 23.5입니다. 키 대비 체중이 어느 정도인지 간단히 가늠하는 지표로, 세계보건기구(WHO)와 여러 보건기관이 비만 정도를 분류할 때 사용합니다.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 data-i18n="bmi_table_title">BMI 판정 기준</h2>
+        <p data-i18n="bmi_table_intro">이 계산기는 WHO 국제 기준을 사용합니다.</p>
+        <div class="info-table-wrap">
+          <table class="info-table">
+            <thead>
+              <tr><th data-i18n="bmi_table_th_range">BMI 범위</th><th data-i18n="bmi_table_th_status">분류</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>18.5 미만</td><td data-i18n="bmi_status_under">저체중</td></tr>
+              <tr><td>18.5 ~ 24.9</td><td data-i18n="bmi_status_normal">정상체중</td></tr>
+              <tr><td>25.0 ~ 29.9</td><td data-i18n="bmi_status_over">과체중</td></tr>
+              <tr><td>30.0 이상</td><td data-i18n="bmi_status_obese">비만</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p data-i18n="bmi_table_note">대한비만학회 등 아시아·태평양 기준에서는 BMI 23 이상을 과체중(비만 전 단계), 25 이상을 비만으로 봅니다. 같은 체중이라도 적용 기준에 따라 분류가 달라질 수 있습니다.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 data-i18n="bmi_limit_title">결과 해석 시 주의할 점</h2>
+        <ul>
+          <li data-i18n="bmi_limit_1">BMI는 근육량과 체지방을 구분하지 못합니다. 근육량이 많은 사람은 실제 체지방이 적어도 BMI가 높게 나올 수 있습니다.</li>
+          <li data-i18n="bmi_limit_2">성장기 어린이·청소년, 임산부, 고령자에게는 그대로 적용하기 어렵습니다.</li>
+          <li data-i18n="bmi_limit_3">같은 BMI라도 복부 지방(허리둘레)에 따라 건강 위험도가 다릅니다.</li>
+          <li data-i18n="bmi_limit_4">BMI는 참고 지표이며 의학적 진단이 아닙니다. 체중 관리나 건강 상태가 걱정된다면 의료진과 상담하세요.</li>
+        </ul>
+      </section>
+
       <section class="faq-section">
-        <h2>❓ 자주 묻는 질문</h2>
+        <h2 data-i18n="bmi_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list">
           <div class="faq-item">
-            <h4>BMI는 무엇인가요?</h4>
-            <p>BMI(체질량지수)는 체중을 키의 제곱으로 나눈 값으로, 18.5~24.9가 정상 범위입니다.</p>
+            <h4 data-i18n="bmi_faq1_q">적정 체중은 어떻게 나오나요?</h4>
+            <p data-i18n="bmi_faq1_a">정상 범위인 BMI 18.5~25에 해당하는 체중을 계산해 표시합니다. 키(m)의 제곱에 18.5와 25를 각각 곱한 값입니다.</p>
           </div>
+          <div class="faq-item">
+            <h4 data-i18n="bmi_faq2_q">한국 기준과 결과가 다른 것 같아요.</h4>
+            <p data-i18n="bmi_faq2_a">이 계산기는 WHO 국제 기준(정상 18.5~24.9)을 씁니다. 대한비만학회 기준으로는 BMI 23부터 비만 전 단계로 보기 때문에 분류가 더 엄격합니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="bmi_faq3_q">BMI가 정상이면 건강한 건가요?</h4>
+            <p data-i18n="bmi_faq3_a">BMI는 여러 지표 중 하나일 뿐입니다. 체지방률, 허리둘레, 혈압·혈당·콜레스테롤 등을 함께 봐야 건강 상태를 제대로 알 수 있습니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="bmi_faq4_q">입력한 키·체중이 저장되나요?</h4>
+            <p data-i18n="bmi_faq4_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="related-tools">
+        <h2 data-i18n="bmi_related_title">🔗 관련 도구</h2>
+        <div class="tools-grid">
+          <a href="../../cal/percent/" class="tool-card">
+            <h3 data-i18n="tool_percent_title">퍼센트 계산기</h3>
+            <p data-i18n="tool_percent_desc">A의 B%, 증감 비율 등을 빠르게 계산합니다.</p>
+          </a>
+          <a href="../unit/" class="tool-card">
+            <h3 data-i18n="tool_unit_title">단위 변환기</h3>
+            <p data-i18n="tool_unit_desc">길이, 무게, 온도, 면적, 부피, 시간, 데이터 용량을 변환합니다.</p>
+          </a>
+          <a href="../../cal/age/" class="tool-card">
+            <h3 data-i18n="tool_age_title">나이 계산기</h3>
+            <p data-i18n="tool_age_desc">생년월일을 입력하면 만 나이, 경과 일수를 계산합니다.</p>
+          </a>
         </div>
       </section>
     </div>
