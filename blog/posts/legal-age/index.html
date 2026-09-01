@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+  <title>만 나이 통일, 내 나이는 어떻게 계산되나 | is-an 블로그</title>
+  <meta name="description" content="2023년 만 나이 통일 이후 만 나이·연 나이·세는 나이의 차이와 계산 방법을 예시로 정리했습니다.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://is-an.github.io/blog/posts/legal-age/">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"만 나이 통일, 내 나이는 어떻게 계산되나","description":"2023년 만 나이 통일 이후 만 나이·연 나이·세는 나이의 차이와 계산 방법을 예시로 정리했습니다.","datePublished":"2026-09-01","inLanguage":"ko","mainEntityOfPage":"https://is-an.github.io/blog/posts/legal-age/","author":{"@type":"Organization","name":"is-an"},"publisher":{"@type":"Organization","name":"is-an"}}
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main>
+    <div class="container">
+      <article class="blog-article">
+        <div class="blog-meta">
+          <time datetime="2026-09-01">2026년 9월 1일</time>
+          <span>생활</span>
+        </div>
+        <h1>만 나이 통일, 내 나이는 어떻게 계산되나</h1>
+        <p>2023년 6월부터 법령과 행정에서 나이는 특별한 규정이 없으면 만 나이를 기준으로 합니다. 그동안 함께 쓰이던 세 가지 나이 개념을 정리합니다.</p>
+
+        <h2>만 나이</h2>
+        <p>태어난 날을 0세로 시작해, 생일이 지날 때마다 한 살씩 더합니다. 올해 생일이 지났으면 "올해 연도 − 태어난 연도", 아직 안 지났으면 거기서 한 살을 뺍니다. 예를 들어 1990년 5월 10일생은 2026년 5월 10일부터 만 36세입니다.</p>
+
+        <h2>연 나이</h2>
+        <p>생일과 관계없이 "올해 연도 − 태어난 연도"로만 계산합니다. 병역법, 청소년 보호법 등 일부 법률과 "몇 년생"을 기준으로 하는 행정에서 여전히 사용합니다. 1990년생은 2026년에 연 나이로 36세입니다.</p>
+
+        <h2>세는 나이</h2>
+        <p>태어나면 1세, 이후 매년 1월 1일에 한 살씩 더하는 전통적 계산법입니다. 만 나이보다 한두 살 많습니다. 일상 대화에서는 아직 쓰이지만 공식 문서에서는 사라지고 있습니다.</p>
+
+        <h2>왜 헷갈릴까</h2>
+        <p>생일을 기준으로 하는 만 나이, 연도를 기준으로 하는 연 나이, 새해를 기준으로 하는 세는 나이가 섞여 있었기 때문입니다. 만 나이 통일로 계약·의료·복지 등에서 기준이 하나로 정리됐습니다.</p>
+
+        <p>생년월일을 넣어 만 나이와 다음 생일까지 남은 날짜를 확인하려면 <a href="../../../cal/age/">나이 계산기</a>를 이용해 보세요. 특정 날짜까지 남은 기간이 궁금하다면 <a href="../../../cal/dday/">D-Day 계산기</a>도 있습니다.</p>
+
+        <a class="blog-back-link" href="../../" data-i18n="blog.back">목록으로 돌아가기</a>
+      </article>
+    </div>
+  </main>
+  <div id="ads-slot" class="ads-slot"></div>
+  <div id="site-footer"></div>
+  <script src="../../../assets/js/i18n.js"></script>
+  <script src="../../../assets/js/common.js"></script>
+</body>
+</html>
