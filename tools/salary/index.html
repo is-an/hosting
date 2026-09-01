@@ -63,17 +63,73 @@
         </div>
       </section>
 
+      <section class="content-section">
+        <h2 data-i18n="salary_about_title">실수령액은 어떻게 정해지나요</h2>
+        <p data-i18n="salary_about_intro">세전 월급에서 아래 항목이 빠진 금액이 실제로 통장에 들어오는 실수령액입니다.</p>
+        <ul>
+          <li data-i18n="salary_about_1">국민연금·건강보험·장기요양보험·고용보험 등 4대 보험료(근로자 부담분)</li>
+          <li data-i18n="salary_about_2">근로소득세와 지방소득세(소득세의 10%)</li>
+        </ul>
+        <p data-i18n="salary_about_note">소득세는 부양가족 수와 공제 항목에 따라 간이세액표로 정해지고, 국민연금은 기준소득월액 상한이 있으며 건강보험료율은 해마다 조정됩니다. 이 계산기는 이해를 돕기 위한 단순화된 비율을 사용하므로, 실제 급여명세서 금액과는 차이가 있을 수 있습니다.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 data-i18n="salary_example_title">계산 예시</h2>
+        <p data-i18n="salary_example_body">연봉 3,600만 원을 입력하면 세전 월급은 300만 원이고, 이 계산기의 단순 모델 기준 공제액은 약 50만 원, 월 실수령액은 약 250만 원으로 표시됩니다. 실제 금액은 공제 조건에 따라 달라집니다.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 data-i18n="salary_notice_title">이용 시 유의사항</h2>
+        <ul>
+          <li data-i18n="salary_notice_1">비과세 항목(식대, 자가운전보조금 등), 부양가족, 연장근로수당, 성과급은 반영하지 않습니다.</li>
+          <li data-i18n="salary_notice_2">연말정산 결과에 따라 실제 부담하는 세액은 매달 원천징수액과 달라질 수 있습니다.</li>
+          <li data-i18n="salary_notice_3">4대 보험료율과 소득세 간이세액표는 매년 바뀌므로 정확한 금액은 급여명세서나 국세청·건강보험공단 자료로 확인하세요.</li>
+          <li data-i18n="salary_notice_4">계산 결과는 참고용입니다.</li>
+        </ul>
+      </section>
+
       <section class="faq-section">
-        <h2>❓ 자주 묻는 질문</h2>
+        <h2 data-i18n="salary_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list">
           <div class="faq-item">
-            <h4>세금은 어떻게 계산되나요?</h4>
-            <p>이 도구는 근본적인 세금 모델을 사용합니다. 실제 세금은 개인 상황에 따라 달라질 수 있습니다.</p>
+            <h4 data-i18n="salary_faq1_q">세전과 세후는 무엇이 다른가요?</h4>
+            <p data-i18n="salary_faq1_a">세전은 4대 보험료와 세금을 빼기 전 금액, 세후(실수령액)는 이 공제를 모두 뺀 뒤 실제로 받는 금액입니다.</p>
           </div>
+          <div class="faq-item">
+            <h4 data-i18n="salary_faq2_q">왜 이 계산기 결과가 실제 월급과 다른가요?</h4>
+            <p data-i18n="salary_faq2_a">실제 공제액은 부양가족 수, 비과세 급여, 국민연금 상한, 건강보험료율 변동 등에 따라 달라집니다. 이 계산기는 고정 비율을 쓰는 단순 모델이라 근사값만 제공합니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="salary_faq3_q">연봉에 퇴직금이 포함되나요?</h4>
+            <p data-i18n="salary_faq3_a">회사마다 다릅니다. ‘연봉에 퇴직금 포함’인 경우 실제 매달 받는 급여는 연봉을 13으로 나눈 값에 가깝습니다. 근로계약서를 확인하세요.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="salary_faq4_q">입력한 연봉이 저장되나요?</h4>
+            <p data-i18n="salary_faq4_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="related-tools">
+        <h2 data-i18n="salary_related_title">🔗 관련 도구</h2>
+        <div class="tools-grid">
+          <a href="../retirement/" class="tool-card">
+            <h3 data-i18n="tool_retirement_title">퇴직금 계산기</h3>
+            <p data-i18n="tool_retirement_desc">입사일과 퇴사일로부터 예상 퇴직금을 계산합니다.</p>
+          </a>
+          <a href="../savings/" class="tool-card">
+            <h3 data-i18n="tool_savings_title">예금/적금 이자 계산기</h3>
+            <p data-i18n="tool_savings_desc">예치금과 이율로부터 이자와 만기 수령액을 계산합니다.</p>
+          </a>
+          <a href="../loan/" class="tool-card">
+            <h3 data-i18n="tool_loan_title">대출 이자 계산기</h3>
+            <p data-i18n="tool_loan_desc">대출금액, 이율, 기간으로부터 월 상환액과 총 이자를 계산합니다.</p>
+          </a>
         </div>
       </section>
     </div>
   </main>
+  <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>

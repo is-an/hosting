@@ -81,17 +81,73 @@
         </div>
       </section>
 
+      <section class="content-section">
+        <h2 data-i18n="savings_about_title">예금과 적금, 단리와 복리</h2>
+        <ul>
+          <li data-i18n="savings_about_deposit">정기예금: 목돈을 한 번에 맡기고 만기에 원금과 이자를 받습니다. 이 계산기의 ‘정기예금(단리)’은 예치금 칸에 맡기는 금액을 입력합니다.</li>
+          <li data-i18n="savings_about_savings">적금: 매달 일정액을 나눠 넣습니다. 이 계산기의 ‘적금(월복리)’은 예치금 칸에 매달 넣는 금액을 입력합니다.</li>
+          <li data-i18n="savings_about_simple">단리는 원금에만 이자가 붙고, 복리는 이자에 다시 이자가 붙습니다.</li>
+        </ul>
+        <p data-i18n="savings_about_tax">이자에는 이자소득세 15.4%(소득세 14% + 지방소득세 1.4%)가 원천징수됩니다. 이 계산기는 세전 이자와 세후 이자를 함께 보여 줍니다.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 data-i18n="savings_example_title">계산 예시</h2>
+        <p data-i18n="savings_example_body">정기예금에 1,000만 원을 연 3.5%로 12개월 맡기면, 세전 이자는 35만 원, 세금 15.4%를 뺀 세후 이자는 약 29만 6천 원, 만기액은 약 1,029만 6천 원입니다.</p>
+        <p data-i18n="savings_example_note">적금은 매달 나눠 넣기 때문에 먼저 넣은 돈만 전체 기간 이자가 붙고, 나중에 넣은 돈은 짧게 붙습니다. 그래서 표시 이율이 같아도 적금의 실제 수령 이자는 같은 금액의 예금보다 적습니다.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 data-i18n="savings_notice_title">이용 시 유의사항</h2>
+        <ul>
+          <li data-i18n="savings_notice_1">실제 은행 적금은 대부분 단리로, 월별 예치 개월수에 따라 이자를 계산합니다. 이 계산기의 ‘적금(월복리)’ 결과는 실제 상품보다 이자가 다소 높게 나올 수 있습니다.</li>
+          <li data-i18n="savings_notice_2">우대금리 조건, 중도해지 시 약정이율 미적용, 비과세·세금우대 상품 여부는 반영하지 않습니다.</li>
+          <li data-i18n="savings_notice_3">계산 결과는 참고용이며, 정확한 금액은 가입하려는 상품의 약관과 은행 안내로 확인하세요.</li>
+        </ul>
+      </section>
+
       <section class="faq-section">
-        <h2>❓ 자주 묻는 질문</h2>
+        <h2 data-i18n="savings_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list">
           <div class="faq-item">
-            <h4>단리와 복리는 무엇이 다른가요?</h4>
-            <p>단리는 원금에만 이자가 붙고, 복리는 이자에도 이자가 붙습니다.</p>
+            <h4 data-i18n="savings_faq1_q">적금인데 왜 예치금 칸에 월 납입액을 넣나요?</h4>
+            <p data-i18n="savings_faq1_a">이 계산기의 적금 모드는 매달 같은 금액을 넣는다고 가정합니다. 예치금 칸에 매달 넣을 금액을, 기간 칸에 납입 개월수를 입력하세요.</p>
           </div>
+          <div class="faq-item">
+            <h4 data-i18n="savings_faq2_q">이자소득세는 왜 15.4%인가요?</h4>
+            <p data-i18n="savings_faq2_a">이자·배당 소득에는 소득세 14%와 그에 대한 지방소득세 1.4%가 함께 부과되어 합계 15.4%가 원천징수됩니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="savings_faq3_q">표시 이율이 같은데 예금과 적금 이자가 왜 다른가요?</h4>
+            <p data-i18n="savings_faq3_a">적금은 나중에 넣은 돈일수록 이자가 붙는 기간이 짧기 때문입니다. 대략 같은 이율이라면 적금의 실효 이자는 예금의 절반 안팎입니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="savings_faq4_q">입력한 금액이 저장되나요?</h4>
+            <p data-i18n="savings_faq4_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="related-tools">
+        <h2 data-i18n="savings_related_title">🔗 관련 도구</h2>
+        <div class="tools-grid">
+          <a href="../loan/" class="tool-card">
+            <h3 data-i18n="tool_loan_title">대출 이자 계산기</h3>
+            <p data-i18n="tool_loan_desc">대출금액, 이율, 기간으로부터 월 상환액과 총 이자를 계산합니다.</p>
+          </a>
+          <a href="../../stock/" class="tool-card">
+            <h3 data-i18n="tool_stock_title">주식·ETF 적립식 투자 계산기</h3>
+            <p data-i18n="tool_stock_desc">과거 특정 시점부터 매달 적립식으로 투자했을 때의 수익률을 계산합니다.</p>
+          </a>
+          <a href="../salary/" class="tool-card">
+            <h3 data-i18n="tool_salary_title">연봉 계산기</h3>
+            <p data-i18n="tool_salary_desc">연봉으로부터 월급, 세전/세후 금액을 계산합니다.</p>
+          </a>
         </div>
       </section>
     </div>
   </main>
+  <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
