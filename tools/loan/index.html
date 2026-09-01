@@ -81,13 +81,92 @@
         </div>
       </section>
 
+      <section class="content-section">
+        <h2 data-i18n="loan_method_title">상환 방식 이해하기</h2>
+        <p data-i18n="loan_method_intro">대출 상환 방식에 따라 매달 내는 금액과 총 이자가 달라집니다. 이 계산기는 두 가지 방식을 지원합니다.</p>
+        <ul>
+          <li data-i18n="loan_method_equal_payment">원리금균등상환: 매달 갚는 금액(원금+이자)이 일정합니다. 초반에는 이자 비중이 크고 갈수록 원금 비중이 커집니다. 매달 나가는 돈이 일정해 계획을 세우기 쉽습니다.</li>
+          <li data-i18n="loan_method_equal_principal">원금균등상환: 매달 갚는 원금이 일정하고, 남은 원금에 대한 이자가 줄어들어 매달 상환액이 조금씩 감소합니다. 총 이자는 원리금균등보다 대체로 적습니다.</li>
+        </ul>
+        <p data-i18n="loan_method_formula">원리금균등의 월 상환액은 ‘원금 × 월이율 × (1+월이율)^개월수 ÷ ((1+월이율)^개월수 − 1)’ 공식으로 계산하며, 월이율은 연이율을 12로 나눈 값입니다.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 data-i18n="loan_example_title">계산 예시</h2>
+        <p data-i18n="loan_example_intro">대출금액 3,000만 원, 연이율 4.5%, 기간 60개월(5년)로 이 계산기에서 계산하면 다음과 같습니다.</p>
+        <div class="info-table-wrap">
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th data-i18n="loan_example_th_type">상환 방식</th>
+                <th data-i18n="loan_example_th_monthly">월 상환액</th>
+                <th data-i18n="loan_example_th_interest">총 이자</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-i18n="loan_example_r1_type">원리금균등</td>
+                <td data-i18n="loan_example_r1_monthly">약 559,000원 (매달 동일)</td>
+                <td data-i18n="loan_example_r1_interest">약 356만 원</td>
+              </tr>
+              <tr>
+                <td data-i18n="loan_example_r2_type">원금균등</td>
+                <td data-i18n="loan_example_r2_monthly">첫 달 약 612,500원 → 마지막 달 약 501,900원</td>
+                <td data-i18n="loan_example_r2_interest">약 343만 원</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p data-i18n="loan_example_note">같은 조건이라도 원금균등이 총 이자는 적지만 초기 상환 부담은 더 큽니다.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 data-i18n="loan_notice_title">이용 시 유의사항</h2>
+        <ul>
+          <li data-i18n="loan_notice_1">이 계산기는 입력한 이율이 만기까지 고정된다고 가정합니다. 변동금리 대출은 시장금리에 따라 상환액이 달라집니다.</li>
+          <li data-i18n="loan_notice_2">중도상환수수료, 인지세, 근저당 설정비 등 부대비용과 거치기간(원금 없이 이자만 내는 기간)은 반영하지 않습니다.</li>
+          <li data-i18n="loan_notice_3">실제 대출 한도와 금리는 소득, 신용점수, DSR·LTV 규제 등에 따라 결정되므로 금융회사 상담이 필요합니다.</li>
+          <li data-i18n="loan_notice_4">계산 결과는 참고용이며 실제 대출 상품의 상환 일정과 다를 수 있습니다.</li>
+        </ul>
+      </section>
+
       <section class="faq-section">
-        <h2>❓ 자주 묻는 질문</h2>
+        <h2 data-i18n="loan_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list">
           <div class="faq-item">
-            <h4>원리금균등과 원금균등의 차이는?</h4>
-            <p>원리금균등은 매월 같은 금액을 상환하고, 원금균등은 원금을 균등하게 나누어 상환합니다.</p>
+            <h4 data-i18n="loan_faq1_q">원리금균등과 원금균등, 어떤 게 유리한가요?</h4>
+            <p data-i18n="loan_faq1_a">총 이자만 보면 원금균등이 대체로 적습니다. 다만 원금균등은 초기 상환액이 크기 때문에, 매달 나가는 돈을 일정하게 관리하고 싶다면 원리금균등이 편할 수 있습니다.</p>
           </div>
+          <div class="faq-item">
+            <h4 data-i18n="loan_faq2_q">거치기간이 있으면 어떻게 되나요?</h4>
+            <p data-i18n="loan_faq2_a">거치기간에는 이자만 납부하고 원금 상환은 이후에 시작됩니다. 이 계산기는 거치기간을 지원하지 않으므로, 거치 후 상환 개월수만 따로 입력해 대략적인 금액을 확인하세요.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="loan_faq3_q">중도상환하면 이자가 줄어드나요?</h4>
+            <p data-i18n="loan_faq3_a">네, 남은 원금이 줄어 이후 이자가 감소합니다. 다만 대출 실행 후 일정 기간 안에는 중도상환수수료가 붙을 수 있어 실제 이득은 상품 조건에 따라 다릅니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="loan_faq4_q">입력한 값이 저장되나요?</h4>
+            <p data-i18n="loan_faq4_a">아니요. 계산은 모두 브라우저에서 처리되며 입력값은 서버로 전송되지 않습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="related-tools">
+        <h2 data-i18n="loan_related_title">🔗 관련 도구</h2>
+        <div class="tools-grid">
+          <a href="../savings/" class="tool-card">
+            <h3 data-i18n="tool_savings_title">예금/적금 이자 계산기</h3>
+            <p data-i18n="tool_savings_desc">예치금과 이율로부터 이자와 만기 수령액을 계산합니다.</p>
+          </a>
+          <a href="../salary/" class="tool-card">
+            <h3 data-i18n="tool_salary_title">연봉 계산기</h3>
+            <p data-i18n="tool_salary_desc">연봉으로부터 월급, 세전/세후 금액을 계산합니다.</p>
+          </a>
+          <a href="../../cal/percent/" class="tool-card">
+            <h3 data-i18n="tool_percent_title">퍼센트 계산기</h3>
+            <p data-i18n="tool_percent_desc">A의 B%, 증감 비율 등을 빠르게 계산합니다.</p>
+          </a>
         </div>
       </section>
     </div>
