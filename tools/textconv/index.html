@@ -61,17 +61,65 @@
         </div>
       </section>
 
+      <section class="content-section">
+        <h2 data-i18n="textconv_about_title">각 버튼이 하는 일</h2>
+        <ul>
+          <li data-i18n="textconv_about_1">공백 제거: 스페이스·탭·줄바꿈 등 모든 공백 문자를 없앱니다.</li>
+          <li data-i18n="textconv_about_2">줄바꿈 제거: 줄바꿈을 공백 한 칸으로 바꿔 여러 줄을 한 줄로 만듭니다.</li>
+          <li data-i18n="textconv_about_3">대문자 / 소문자: 영문 알파벳의 대소문자를 일괄 변환합니다.</li>
+          <li data-i18n="textconv_about_4">정렬: 각 줄의 앞뒤 공백을 제거합니다(줄 순서는 그대로).</li>
+          <li data-i18n="textconv_about_5">역순: 전체 글자 순서를 거꾸로 뒤집습니다.</li>
+        </ul>
+        <p data-i18n="textconv_about_note">변환 결과는 위 입력을 바꾸지 않고 아래 결과 칸에 표시되며, 복사 버튼으로 가져갈 수 있습니다.</p>
+      </section>
+
+      <section class="content-section">
+        <h2 data-i18n="textconv_use_title">이런 데 쓸 수 있어요</h2>
+        <ul>
+          <li data-i18n="textconv_use_1">엑셀·표에서 복사한 텍스트의 불필요한 줄바꿈·공백 정리</li>
+          <li data-i18n="textconv_use_2">코드·상수 이름을 대문자 또는 소문자로 통일</li>
+          <li data-i18n="textconv_use_3">문장 부호나 공백이 섞인 목록을 한 줄로 합치기</li>
+        </ul>
+      </section>
+
       <section class="faq-section">
-        <h2>❓ 자주 묻는 질문</h2>
+        <h2 data-i18n="textconv_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list">
           <div class="faq-item">
-            <h4>모든 변환이 즉시 적용되나요?</h4>
-            <p>아니요, 각 변환 버튼을 클릭해야 변환됩니다.</p>
+            <h4 data-i18n="textconv_faq1_q">변환이 즉시 적용되나요?</h4>
+            <p data-i18n="textconv_faq1_a">아니요. 원하는 변환 버튼을 눌러야 결과가 갱신됩니다. 여러 변환을 이어서 적용하려면 결과를 다시 입력란에 붙여넣고 다음 버튼을 누르세요.</p>
           </div>
+          <div class="faq-item">
+            <h4 data-i18n="textconv_faq2_q">한글에도 대문자·소문자가 적용되나요?</h4>
+            <p data-i18n="textconv_faq2_a">아니요. 대소문자는 영문 알파벳에만 적용되며 한글·숫자·기호는 그대로 유지됩니다.</p>
+          </div>
+          <div class="faq-item">
+            <h4 data-i18n="textconv_faq3_q">입력한 텍스트가 저장되나요?</h4>
+            <p data-i18n="textconv_faq3_a">아니요. 모든 변환은 브라우저에서 처리되며 입력한 내용은 서버로 전송되지 않습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="related-tools">
+        <h2 data-i18n="textconv_related_title">🔗 관련 도구</h2>
+        <div class="tools-grid">
+          <a href="../charcount/" class="tool-card">
+            <h3 data-i18n="tool_charcount_title">글자수/바이트 계산기</h3>
+            <p data-i18n="tool_charcount_desc">텍스트의 글자수, 공백 포함/제외 글자수, 바이트 수를 계산합니다.</p>
+          </a>
+          <a href="../unit/" class="tool-card">
+            <h3 data-i18n="tool_unit_title">단위 변환기</h3>
+            <p data-i18n="tool_unit_desc">길이, 무게, 온도, 면적, 부피, 시간, 데이터 용량을 변환합니다.</p>
+          </a>
+          <a href="../shutter-count/" class="tool-card">
+            <h3 data-i18n="tool_shutter_count_title">카메라 셔터카운트 확인기</h3>
+            <p data-i18n="tool_shutter_count_desc">사진의 EXIF 정보를 브라우저에서 분석합니다.</p>
+          </a>
         </div>
       </section>
     </div>
   </main>
+  <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
