@@ -140,7 +140,6 @@ const legacyTranslations = {
     shutter_meta_title: "카메라 셔터카운트 확인기 - EXIF 사진 정보 분석",
     shutter_meta_description: "사진을 브라우저에서 분석하여 카메라 EXIF 정보와 확인 가능한 셔터카운트를 표시하는 무료 도구입니다.",
 
-    home_popular_title: "인기 도구",
     home_categories_title: "카테고리",
     home_eyebrow_calc: "무료 온라인 계산기",
     home_eyebrow: "무료 온라인 도구",
@@ -774,6 +773,24 @@ const shutterTranslations = {
 };
 
 Object.keys(shutterTranslations).forEach((lang) => Object.assign(legacyTranslations[lang], shutterTranslations[lang]));
+
+// 홈 리디자인(1a Index) + 공용 헤더/푸터 리디자인 전용 문구.
+// legacyTranslations 에는 ko 객체만 존재하므로 ko 만 병합한다.
+// en/zh/ja 는 assets/i18n/<lang>.js 의 window.I18N_DATA.<lang> 에 같은 키를 추가했다.
+const homeIndexTranslations = {
+  ko: {
+    home_searchLabel: '도구 검색', home_searchButton: '검색',
+    home_index_title: '전체 도구', home_search_results: '검색 결과',
+    home_view_all: '전체 보기 →', home_recent_title: '최근 사용', home_recent_clear: '기록 지우기',
+    home_favorites_title: '즐겨찾기', home_empty_title: '검색 결과가 없습니다',
+    home_empty_copy: '다른 검색어를 입력하거나 전체 도구를 살펴보세요.', home_empty_action: '전체 도구 보기',
+    home_guides_title: '계산 가이드',
+    header_tagline: '도구 모음', header_menuLabel: '메뉴 열기',
+    footer_privacy_note: '모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.'
+  }
+};
+
+Object.keys(homeIndexTranslations).forEach((lang) => Object.assign(legacyTranslations[lang], homeIndexTranslations[lang]));
 
 // 기본 언어 데이터를 지연 로딩 언어와 동일한 형태로 등록(항상 즉시 사용 가능 + translate() 폴백).
 window.I18N_DATA.ko = legacyTranslations.ko;

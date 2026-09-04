@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/svg+xml" href="../../green-circle-logo.svg">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var theme = (storedTheme === 'light' || storedTheme === 'dark')
+          ? storedTheme
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- ⚠ 이 <head> 블록(title/description/canonical/OG/JSON-LD)은
+       저장소의 기존 cal/dday/index.html 값을 그대로 유지하세요. -->
+  <title>D-Day 계산기 | 무료 온라인 도구 모음</title>
+  <meta name="description" content="목표 날짜까지 남은 날짜를 계산합니다. 시험, 기념일, 마감일까지 며칠 남았는지 바로 확인하세요.">
+  <meta name="keywords" content="디데이, D-Day, 디데이 계산기, 날짜 계산, 남은 날짜, 기념일 계산">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://is-an.github.io/cal/dday/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="is-an.github.io">
+  <meta property="og:url" content="https://is-an.github.io/cal/dday/">
+  <meta property="og:title" content="D-Day 계산기">
+  <meta property="og:description" content="목표 날짜까지 남은 날짜를 계산합니다.">
+  <meta property="og:image" content="https://is-an.github.io/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "D-Day 계산기",
+    "description": "목표 날짜까지 남은 날짜를 계산하는 무료 온라인 도구",
+    "url": "https://is-an.github.io/cal/dday/",
+    "applicationCategory": "UtilityApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+  }
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8605989057986820"
+     crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/v2-tokens.css">
+  <link rel="stylesheet" href="../../assets/css/chrome.css">
+  <link rel="stylesheet" href="../../assets/css/tool.css">
+</head>
+<body class="v2-page">
+  <div id="site-header"></div>
+
+<main>
+  <div class="v2-tool-layout">
+    <div>
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="../" data-i18n="nav.calculator">계산기</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current" data-i18n="tool_dday_title">D-Day 계산기</span>
+      </nav>
+
+      <h1 class="v2-page-title" data-i18n="tool_dday_title">D-Day 계산기</h1>
+      <p class="v2-page-lede">목표 날짜를 입력하면 오늘을 기준으로 남은 날짜를 계산합니다.</p>
+
+      <!-- ========== 계산 ========== -->
+      <section class="v2-card" aria-label="계산">
+        <div class="v2-field-grid">
+          <div>
+            <label class="v2-label" for="targetDate">목표 날짜</label>
+            <input type="date" id="targetDate" class="v2-input">
+          </div>
+          <div>
+            <span class="v2-label">오늘 날짜</span>
+            <p class="v2-readonly" id="todayText">—</p>
+          </div>
+        </div>
+
+        <div class="v2-preset-row" id="presetRow"></div>
+
+        <div class="v2-action-row">
+          <button type="button" class="v2-btn-primary" id="calcBtn">계산하기</button>
+          <button type="button" class="v2-btn-ghost" id="resetBtn">초기화</button>
+        </div>
+
+        <div class="v2-result" id="result" role="status" aria-live="polite" hidden>
+          <p class="v2-result-label" id="resultLabel"></p>
+          <div class="v2-result-number" id="resultNumber"></div>
+          <p class="v2-result-detail" id="resultDetail"></p>
+          <div class="v2-share-row">
+            <button type="button" class="v2-share-btn" id="copyBtn">결과 복사</button>
+            <button type="button" class="v2-share-btn" id="shareBtn">링크 공유</button>
+            <button type="button" class="v2-share-btn" id="favBtn" aria-pressed="false">☆ 즐겨찾기</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline" id="ads-slot"></div>
+
+      <!-- ========== 설명 ========== -->
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title">D-Day 계산 기준</h2>
+        <p class="v2-card-copy">이 계산기는 ‘목표 날짜 − 오늘 날짜’를 계산합니다. 오늘은 0일째로 보며, 목표일이 내일이면 D-1, 오늘이면 D-Day, 어제였으면 D+1로 표시합니다.</p>
+        <p class="v2-card-copy">‘시험 100일 전’처럼 당일을 1일째로 세는 방식과는 하루 차이가 날 수 있습니다. 그럴 때는 목표 날짜를 하루 조정해 맞추세요.</p>
+      </section>
+
+      <section class="v2-card">
+        <h2 class="v2-card-title">이런 데 쓸 수 있어요</h2>
+        <ul class="v2-card-list">
+          <li>시험, 자격증 접수 마감, 원서 접수일까지 남은 날짜</li>
+          <li>기념일, 결혼식, 여행 출발일 카운트다운</li>
+          <li>출산 예정일, 프로젝트 마감일 등 지난 날짜 확인(D+)</li>
+        </ul>
+        <p class="v2-card-more"><a href="../../faq/" data-i18n="footer.faq">자주 묻는 질문 →</a></p>
+      </section>
+    </div>
+
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2>관련 도구</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../">계산기 전체 보기 →</a>
+      </div>
+
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <div class="v2-side-panel">
+        <h2 data-i18n="home_guides_title">계산 가이드</h2>
+        <div id="guideList"></div>
+      </div>
+
+      <p class="v2-side-note">모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
+  <div id="site-footer"></div>
+<script src="../../assets/js/i18n.js"></script>
+<script src="../../assets/js/common.js"></script>
+<script src="../../assets/js/header-nav.js"></script>
+<script src="../../assets/js/tools-data.js"></script>
+<script src="../../assets/js/tool-sidebar.js"></script>
+<script src="../../assets/js/dday.js"></script>
+</body>
+</html>

@@ -349,16 +349,14 @@ nav {
 }
 
 /* 히어로: 모든 페이지 공통 (가운데 정렬 + 알약형 eyebrow) */
-.hero,
-.home-hero {
+.hero {
   padding: 52px 0 44px;
   background: var(--header-bg);
   border-bottom: 1px solid var(--border);
   text-align: center;
 }
 
-.hero .container,
-.home-hero .container { max-width: 760px; }
+.hero .container { max-width: 760px; }
 
 .eyebrow {
   margin: 0 0 8px;
@@ -366,8 +364,7 @@ nav {
   font-size: 14px;
 }
 
-.hero .eyebrow,
-.home-hero .eyebrow {
+.hero .eyebrow {
   display: inline-block;
   margin: 0 0 14px;
   padding: 5px 13px;
@@ -379,14 +376,12 @@ nav {
   letter-spacing: 0;
 }
 
-.hero h1,
-.home-hero h1 {
+.hero h1 {
   margin: 0 0 14px;
   font-size: clamp(28px, 4.5vw, 42px);
 }
 
-.hero .hero-copy,
-.home-hero .hero-copy {
+.hero .hero-copy {
   margin: 0 auto;
   max-width: 620px;
   font-size: clamp(15px, 2.2vw, 18px);
@@ -1334,8 +1329,7 @@ textarea {
     left: auto;
   }
 
-  .hero,
-  .home-hero { padding: 32px 0 24px; }
+  .hero { padding: 32px 0 24px; }
 
   .search-section {
     margin-top: 20px;
@@ -1426,8 +1420,7 @@ textarea {
     --section-gap: 24px;
   }
 
-  .hero,
-  .home-hero {
+  .hero {
     padding: 38px 0 28px;
   }
 
@@ -1568,123 +1561,8 @@ textarea {
   .shutter-grid { grid-template-columns: 1fr; }
 }
 
-/* ============ 홈(메인 페이지) ============ */
-/* 히어로 공통 스타일은 위 ".hero, .home-hero" 참조 */
-
-.home-search {
-  margin: 30px auto 12px;
-  max-width: 520px;
-}
-
-.home-search .search-input {
-  margin: 0;
-  padding: 15px 20px;
-  border-radius: 999px;
-  text-align: center;
-  box-shadow: 0 6px 20px var(--shadow);
-}
-
-.home-search .search-input:focus {
-  box-shadow: 0 6px 20px var(--shadow-hover);
-}
-
-.home-trust {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.home-section > h2 {
-  margin: 0 0 16px;
-  padding-left: 4px;
-  font-size: 20px;
-}
-
-/* 인기 기능 / 카테고리 그리드 */
-.home-popular-grid,
-.home-category-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-/* 마지막 홀수 타일이 혼자 남을 때 한 행을 채움 */
-.home-category-grid > a:last-child:nth-child(odd) {
-  grid-column: 1 / -1;
-}
-
-@media (min-width: 620px) {
-  .home-popular-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .home-category-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .home-category-grid > a:last-child:nth-child(odd) { grid-column: auto; }
-}
-
-.home-feature-card,
-.home-category-card {
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 8px;
-  min-height: 128px;
-  padding: 20px 18px;
-  text-align: left;
-  transition: border-color var(--transition), background-color var(--transition), transform var(--transition);
-}
-
-.home-feature-card:hover,
-.home-category-card:hover {
-  transform: translateY(-2px);
-}
-
-.home-feature-card h3,
-.home-category-card h3 {
-  margin: 0;
-  font-size: 16px;
-}
-
-.home-feature-card p,
-.home-category-card p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.55;
-}
-
-.home-category-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  margin-bottom: 2px;
-  border-radius: 12px;
-  background: var(--result-bg);
-  font-size: 20px;
-  line-height: 1;
-}
-
-/* 사이트 소개 */
-.home-about {
-  padding: 26px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--card);
-}
-
-.home-about h2 {
-  margin: 0 0 10px;
-  font-size: 18px;
-}
-
-.home-about p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 15px;
-}
-
-@media (max-width: 640px) {
-  .home-feature-card,
-  .home-category-card { min-height: 116px; }
-}
+/* ============ 홈 · /cal/ · /tools/ 안내 링크 ============ */
+/* 홈 메인은 v2.css + home.css 로 이동했습니다. (구 .home-hero/.home-*-grid/.home-about 제거) */
 
 .tools-calc-note { margin: 0; }
 .tools-calc-note a { color: var(--accent); font-weight: 600; }

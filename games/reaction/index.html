@@ -10,40 +10,115 @@
   <link rel="canonical" href="https://is-an.github.io/games/reaction/">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"반응속도 테스트","description":"클릭 반응 시간을 측정하는 무료 웹 게임","applicationCategory":"GameApplication","operatingSystem":"Any"}</script>
   <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/v2.css">
+  <link rel="stylesheet" href="../../assets/css/game.css">
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
-  <main>
-    <section class="hero"><div class="container"><p class="eyebrow">MINI GAME</p><h1 data-i18n="game_reaction_title">반응속도 테스트</h1><p class="hero-copy">화면이 초록색으로 바뀌는 순간 빠르게 눌러 반응 시간을 확인하세요.</p></div></section>
-    <section class="container game-page">
-      <div class="game-card reaction-card">
-        <div class="game-toolbar"><div><strong data-i18n="game_best">최고 기록</strong><span id="reactionBest">-</span></div><label class="game-mode"><input id="averageMode" type="checkbox"> <span>5회 평균</span></label></div>
-        <button id="reactionPad" class="reaction-pad" type="button" aria-live="polite"><span id="reactionMessage">시작 버튼을 눌러 준비하세요.</span></button>
-        <div class="game-actions"><button id="reactionStart" type="button" class="primary-btn" data-i18n="game_start">게임 시작</button><button id="reactionShare" type="button" class="secondary-btn" data-i18n="game_share">결과 공유</button><button id="reactionCopy" type="button" class="secondary-btn" data-i18n="game_copyLink">게임 링크 복사</button></div>
-        <div id="reactionResult" class="game-result hidden" aria-live="polite"></div>
-      </div>
-      <section class="game-info"><h2>게임 방법</h2><p>시작 후 잠시 기다리세요. 화면이 바뀐 뒤 패드를 누르면 밀리초 단위의 반응 시간을 확인할 수 있습니다. 5회 평균 모드는 여러 번의 기록을 한 번에 비교하기 좋습니다.</p></section>
-      <section class="game-info"><h2 data-i18n="reaction_score_title">반응속도 기준</h2><p data-i18n="reaction_score_body">사람의 시각 반응속도는 보통 200~250밀리초(ms) 정도이며, 훈련된 사람은 180ms 안팎까지 나옵니다. 100ms보다 빠른 기록은 화면이 바뀌기 전에 누른 것으로 보고 무효 처리됩니다. 마우스·키보드·화면 주사율에 따라서도 수십 ms 차이가 날 수 있습니다.</p></section>
-      <section class="game-info"><h2 data-i18n="reaction_tip_title">기록을 높이는 팁</h2><ul><li data-i18n="reaction_tip_1">화면 변화에 반응만 하고, 언제 바뀔지 예측해서 미리 누르지 마세요. 예측 클릭은 무효가 됩니다.</li><li data-i18n="reaction_tip_2">손가락을 버튼에 살짝 얹고 힘을 뺀 상태로 기다리세요.</li><li data-i18n="reaction_tip_3">5회 평균 모드로 재서 한두 번의 우연을 걸러 내세요.</li></ul></section>
-      <section class="faq-section" hidden>
-        <h2 data-i18n="reaction_faq_title">❓ 자주 묻는 질문</h2>
-        <div class="faq-list" data-faq-category="reaction"></div>
-        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+
+<main>
+  <div class="v2-tool-layout">
+    <div>
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="../" data-i18n="nav.games">게임</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current" data-i18n="game_reaction_title">반응속도 테스트</span>
+      </nav>
+
+      <p class="v2-eyebrow v2-game-eyebrow">MINI GAME</p>
+      <h1 class="v2-page-title" data-i18n="game_reaction_title">반응속도 테스트</h1>
+      <p class="v2-page-lede">화면이 초록색으로 바뀌는 순간 빠르게 눌러 반응 시간을 확인하세요.</p>
+
+      <!-- ========== 게임 ========== -->
+      <section class="v2-game-card" aria-label="게임">
+        <div class="v2-scorebar">
+          <div class="v2-score">
+            <span class="v2-score-label">최고 기록</span>
+            <span class="v2-score-value" id="bestScore">—</span>
+          </div>
+          <div class="v2-score">
+            <span class="v2-score-label">이번 회차</span>
+            <span class="v2-score-value is-muted" id="roundScore">—</span>
+          </div>
+          <div class="v2-scorebar-spacer"></div>
+          <button type="button" class="v2-mode-btn" id="modeBtn" aria-pressed="false">
+            <span class="v2-mode-dot" aria-hidden="true"></span>5회 평균
+          </button>
+        </div>
+
+        <button type="button" class="v2-pad" id="pad" data-phase="idle" aria-live="polite">
+          <span class="v2-pad-big" id="padBig">준비</span>
+          <span class="v2-pad-msg" id="padMsg">시작 버튼을 눌러 준비하세요.</span>
+        </button>
+
+        <div class="v2-action-row">
+          <button type="button" class="v2-btn-primary" id="startBtn">게임 시작</button>
+          <button type="button" class="v2-btn-ghost" id="shareBtn">결과 공유</button>
+          <button type="button" class="v2-btn-ghost" id="linkBtn">게임 링크 복사</button>
+        </div>
+
+        <div class="v2-record" id="record" hidden>
+          <div class="v2-record-head">
+            <p class="v2-record-label" id="recordLabel">이번 기록</p>
+            <button type="button" class="v2-record-clear" id="clearBtn">기록 지우기</button>
+          </div>
+          <p class="v2-record-value" id="recordValue"></p>
+          <div class="v2-attempts" id="attempts"></div>
+        </div>
       </section>
-      <nav class="game-links" aria-label="다른 게임"><a href="../sudoku/" data-i18n="game_sudoku_title">스도쿠</a><a href="../typing/" data-i18n="game_typing_title">타자 속도 테스트</a><a href="../block-puzzle/" data-i18n="game_block_title">블록 퍼즐</a><a href="../../">홈</a></nav>
-    </section>
-  </main>
-  <div id="ads-slot" class="ads-slot"></div><div id="site-footer"></div>
-  <script src="../../assets/js/i18n.js"></script><script src="../../assets/js/common.js"></script><script src="../../assets/js/share.js"></script><script src="./game.js"></script>
-<script src="../../assets/js/faq.js"></script>
-<script>
-  (function () {
-    function loadFaq() {
-      if (typeof loadCategoryFaq === 'function') loadCategoryFaq('reaction', '.faq-list[data-faq-category="reaction"]');
-    }
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadFaq);
-    else loadFaq();
-  })();
-</script>
+
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline v2-ad-game" id="ads-slot"></div>
+
+      <!-- ========== 설명 ========== -->
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title">게임 방법</h2>
+        <p class="v2-card-copy">시작 후 잠시 기다리세요. 화면이 바뀐 뒤 패드를 누르면 밀리초 단위의 반응 시간을 확인할 수 있습니다. 5회 평균 모드는 여러 번의 기록을 한 번에 비교하기 좋습니다.</p>
+      </section>
+
+      <section class="v2-card">
+        <h2 class="v2-card-title">반응속도 기준</h2>
+        <p class="v2-card-copy">사람의 시각 반응속도는 보통 200~250밀리초(ms) 정도이며, 훈련된 사람은 180ms 안팎까지 나옵니다. 100ms보다 빠른 기록은 화면이 바뀌기 전에 누른 것으로 보고 무효 처리됩니다. 마우스·키보드·화면 주사율에 따라서도 수십 ms 차이가 날 수 있습니다.</p>
+      </section>
+
+      <section class="v2-card">
+        <h2 class="v2-card-title">기록을 높이는 팁</h2>
+        <ul class="v2-card-list">
+          <li>화면 변화에 반응만 하고, 언제 바뀔지 예측해서 미리 누르지 마세요. 예측 클릭은 무효가 됩니다.</li>
+          <li>손가락을 버튼에 살짝 얹고 힘을 뺀 상태로 기다리세요.</li>
+          <li>5회 평균 모드로 재서 한두 번의 우연을 걸러 내세요.</li>
+        </ul>
+        <p class="v2-card-more v2-game-more"><a href="../../faq/" data-i18n="footer.faq">자주 묻는 질문 →</a></p>
+      </section>
+    </div>
+
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot v2-game-side-dot" aria-hidden="true"></span>
+          <h2>다른 게임</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../">게임 전체 보기 →</a>
+      </div>
+
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <p class="v2-side-note">모든 기록은 이 브라우저에만 저장되며 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
+  <div id="site-footer"></div>
+<script src="../../assets/js/i18n.js"></script>
+<script src="../../assets/js/common.js"></script>
+<script src="../../assets/js/header-nav.js"></script>
+<script src="../../assets/js/share.js"></script>
+<script src="../../assets/js/tools-data.js"></script>
+<script src="../../assets/js/tool-sidebar.js"></script>
+<script src="../../assets/js/reaction.js"></script>
 </body>
 </html>

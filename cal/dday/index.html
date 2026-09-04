@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -18,13 +18,13 @@
   <meta name="description" content="D-Day 계산기. 목표 날짜를 입력하면 오늘을 기준으로 남은 날짜 또는 지난 날짜를 D-Day 형식으로 계산합니다.">
   <meta name="keywords" content="D-Day 계산, 남은 날짜, 기념일, 계산기, 무료 온라인 도구">
   <meta name="robots" content="index,follow">
-  
+
   <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://is-an.github.io/cal/dday/">
   <meta property="og:title" content="D-Day 계산기">
   <meta property="og:description" content="목표 날짜까지 남은 날짜를 D-Day 형식으로 계산">
-  
+
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
@@ -36,101 +36,110 @@
     "applicationCategory": "UtilityApplication"
   }
   </script>
-  
+
   <link rel="canonical" href="https://is-an.github.io/cal/dday/">
   <link rel="stylesheet" href="../../assets/css/style.css">
-  <style>
-    .result-number {
-      font-size: 3em;
-      font-weight: bold;
-      color: var(--accent);
-      margin: 20px 0;
-    }
-    .result-detail {
-      color: var(--muted);
-      font-size: 0.95em;
-    }
-  </style>
+  <link rel="stylesheet" href="../../assets/css/v2.css">
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
+
 <main>
-    <!-- ========== 히어로 섹션 ========== -->
-    <section class="hero">
-      <div class="container">
-        <h1>D-Day 계산기</h1>
-        <p class="hero-copy">목표 날짜를 입력하면 오늘을 기준으로 남은 날짜를 계산합니다.</p>
-      </div>
-    </section>
+  <div class="v2-tool-layout">
+    <div>
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="../" data-i18n="nav.calculator">계산기</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current" data-i18n="tool_dday_title">D-Day 계산기</span>
+      </nav>
 
-    <div class="container">
-      <!-- ========== 계산기 섹션 ========== -->
-      <section class="calculator-section">
-        <div class="calculator-card">
-          <div class="form-group">
-            <label for="targetDate">목표 날짜</label>
-            <input type="date" id="targetDate" value="">
-          </div>
-          
-          <div class="form-group">
-            <label>오늘 날짜</label>
-            <p id="todayText"></p>
-          </div>
+      <h1 class="v2-page-title" data-i18n="tool_dday_title">D-Day 계산기</h1>
+      <p class="v2-page-lede">목표 날짜를 입력하면 오늘을 기준으로 남은 날짜를 계산합니다.</p>
 
-          <div class="button-group">
-            <button id="calculateBtn" class="primary-btn">계산하기</button>
-            <button id="resetBtn" class="secondary-btn">초기화</button>
+      <!-- ========== 계산 ========== -->
+      <section class="v2-card" aria-label="계산">
+        <div class="v2-field-grid">
+          <div>
+            <label class="v2-label" for="targetDate">목표 날짜</label>
+            <input type="date" id="targetDate" class="v2-input">
           </div>
+          <div>
+            <span class="v2-label">오늘 날짜</span>
+            <p class="v2-readonly" id="todayText">—</p>
+          </div>
+        </div>
 
-          <div id="result" class="result hidden">
-            <p id="resultLabel" class="result-label"></p>
-            <div id="resultNumber" class="result-number"></div>
-            <p id="resultDetail" class="result-detail"></p>
-            <button id="resultCopyBtn" class="secondary-btn" style="width: 100%; margin-top: 10px;">결과 복사</button>
+        <div class="v2-preset-row" id="presetRow"></div>
+
+        <div class="v2-action-row">
+          <button type="button" class="v2-btn-primary" id="calcBtn">계산하기</button>
+          <button type="button" class="v2-btn-ghost" id="resetBtn">초기화</button>
+        </div>
+
+        <div class="v2-result" id="result" role="status" aria-live="polite" hidden>
+          <p class="v2-result-label" id="resultLabel"></p>
+          <div class="v2-result-number" id="resultNumber"></div>
+          <p class="v2-result-detail" id="resultDetail"></p>
+          <div class="v2-share-row">
+            <button type="button" class="v2-share-btn" id="copyBtn">결과 복사</button>
+            <button type="button" class="v2-share-btn" id="shareBtn">링크 공유</button>
+            <button type="button" class="v2-share-btn" id="favBtn" aria-pressed="false">☆ 즐겨찾기</button>
           </div>
         </div>
       </section>
 
-      <!-- ========== 계산 기준 ========== -->
-      <section class="content-section">
-        <h2 data-i18n="dday_basis_title">D-Day 계산 기준</h2>
-        <p data-i18n="dday_basis_body">이 계산기는 ‘목표 날짜 − 오늘 날짜’를 계산합니다. 오늘은 0일째로 보며, 목표일이 내일이면 D-1, 오늘이면 D-Day, 어제였으면 D+1로 표시합니다.</p>
-        <p data-i18n="dday_basis_note">‘시험 100일 전’처럼 당일을 1일째로 세는 방식과는 하루 차이가 날 수 있습니다. 그럴 때는 목표 날짜를 하루 조정해 맞추세요.</p>
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline" id="ads-slot"></div>
+
+      <!-- ========== 설명 ========== -->
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title">D-Day 계산 기준</h2>
+        <p class="v2-card-copy">이 계산기는 ‘목표 날짜 − 오늘 날짜’를 계산합니다. 오늘은 0일째로 보며, 목표일이 내일이면 D-1, 오늘이면 D-Day, 어제였으면 D+1로 표시합니다.</p>
+        <p class="v2-card-copy">‘시험 100일 전’처럼 당일을 1일째로 세는 방식과는 하루 차이가 날 수 있습니다. 그럴 때는 목표 날짜를 하루 조정해 맞추세요.</p>
       </section>
 
-      <!-- ========== 활용 예시 ========== -->
-      <section class="content-section">
-        <h2 data-i18n="dday_use_title">이런 데 쓸 수 있어요</h2>
-        <ul>
-          <li data-i18n="dday_use_1">시험, 자격증 접수 마감, 원서 접수일까지 남은 날짜</li>
-          <li data-i18n="dday_use_2">기념일, 결혼식, 여행 출발일 카운트다운</li>
-          <li data-i18n="dday_use_3">출산 예정일, 프로젝트 마감일 등 지난 날짜 확인(D+)</li>
+      <section class="v2-card">
+        <h2 class="v2-card-title">이런 데 쓸 수 있어요</h2>
+        <ul class="v2-card-list">
+          <li>시험, 자격증 접수 마감, 원서 접수일까지 남은 날짜</li>
+          <li>기념일, 결혼식, 여행 출발일 카운트다운</li>
+          <li>출산 예정일, 프로젝트 마감일 등 지난 날짜 확인(D+)</li>
         </ul>
+        <p class="v2-card-more"><a href="../../faq/" data-i18n="footer.faq">자주 묻는 질문 →</a></p>
       </section>
+    </div>
 
-      <!-- ========== FAQ ========== -->
-      <section class="faq-section" hidden>
-        <h2 data-i18n="dday_faq_title">❓ 자주 묻는 질문</h2>
-        <div class="faq-list" data-faq-category="dday"></div>
-        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
-      </section>
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2>관련 도구</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../">계산기 전체 보기 →</a>
+      </div>
 
-</div>
-  </main>
-  <div id="ads-slot" class="ads-slot"></div>
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <div class="v2-side-panel">
+        <h2 data-i18n="home_guides_title">계산 가이드</h2>
+        <div id="guideList"></div>
+      </div>
+
+      <p class="v2-side-note">모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
-  <script src="./dday.js"></script>
-<script src="../../assets/js/faq.js"></script>
-<script>
-  (function () {
-    function loadFaq() {
-      if (typeof loadCategoryFaq === 'function') loadCategoryFaq('dday', '.faq-list[data-faq-category="dday"]');
-    }
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadFaq);
-    else loadFaq();
-  })();
-</script>
+<script src="../../assets/js/header-nav.js"></script>
+<script src="../../assets/js/tools-data.js"></script>
+<script src="../../assets/js/tool-sidebar.js"></script>
+<script src="../../assets/js/dday.js"></script>
 </body>
 </html>

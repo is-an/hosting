@@ -63,57 +63,93 @@
      crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/v2.css">
+  <link rel="stylesheet" href="./assets/css/home.css">
 </head>
-<body>
+<body class="v2-page home-v2">
   <div id="site-header"></div>
 
 <main>
   <!-- ========== 히어로 + 검색 ========== -->
-  <section class="home-hero">
-    <div class="container">
-      <p class="eyebrow" data-i18n="home_eyebrow">무료 온라인 도구</p>
-      <h1 data-i18n="home_title">필요한 계산, 여기서 바로</h1>
-      <p class="hero-copy" data-i18n="home_copy">계산기·변환기·게임·로또·사주까지, 자주 쓰는 도구를 한곳에 모았습니다.</p>
-      <div class="home-search">
-        <input type="text" id="toolSearch" class="search-input" data-i18n-placeholder="home_searchPlaceholder" placeholder="도구 검색... (예: BMI, 연봉, 로또)">
+  <section class="v2-hero">
+    <div class="v2-container">
+      <p class="v2-eyebrow" data-i18n="home_eyebrow">무료 온라인 도구</p>
+      <h1 class="v2-h1" data-i18n="home_title">필요한 계산, 여기서 바로</h1>
+      <p class="v2-lede" data-i18n="home_copy">계산기·변환기·게임·로또·사주까지, 자주 쓰는 도구를 한곳에 모았습니다.</p>
+
+      <form class="v2-search" role="search" onsubmit="return false;">
+        <label class="v2-visually-hidden" for="toolSearch" data-i18n="home_searchLabel">도구 검색</label>
+        <input type="text" id="toolSearch" class="v2-search-input" autocomplete="off"
+               data-i18n-placeholder="home_searchPlaceholder" placeholder="도구 검색... (예: BMI, 연봉, 로또)">
+        <button type="button" class="v2-search-btn" id="toolSearchBtn" data-i18n="home_searchButton">검색</button>
+      </form>
+
+      <p class="v2-trust" data-i18n="home_trust">회원가입 없이 · 브라우저에서 계산 · 완전 무료</p>
+    </div>
+  </section>
+
+  <div class="v2-home-body">
+    <div>
+
+      <!-- ========== 전체 도구 ========== -->
+      <section class="v2-section">
+        <div class="v2-section-head">
+          <h2 class="v2-h2" id="indexTitle" data-i18n="home_index_title">전체 도구</h2>
+          <span class="v2-note" id="indexCount"></span>
+        </div>
+        <div class="v2-empty" id="emptyState" hidden>
+          <p class="v2-empty-title" data-i18n="home_empty_title">검색 결과가 없습니다</p>
+          <p class="v2-empty-copy" data-i18n="home_empty_copy">다른 검색어를 입력하거나 전체 도구를 살펴보세요.</p>
+          <button type="button" class="v2-primary-btn" id="clearSearchBtn" data-i18n="home_empty_action">전체 도구 보기</button>
+        </div>
+        <div class="v2-index-grid" id="toolIndex"></div>
+      </section>
+
+      <!-- ========== 사이트 소개 + 가이드 ========== -->
+      <section class="v2-section v2-two-col">
+        <div class="v2-panel">
+          <h2 class="v2-h2-sm" data-i18n="home_about_title">is-an 도구 모음이란</h2>
+          <p class="v2-body-copy" data-i18n="home_about_copy">is-an은 회원가입 없이 바로 쓰는 무료 온라인 도구 모음입니다. 연봉·대출·나이 계산부터 단위 변환, 미니게임, 로또번호 생성까지 자주 찾는 기능을 모았습니다. 모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+        </div>
+        <div class="v2-panel">
+          <h2 class="v2-h2-sm" data-i18n="home_guides_title">계산 가이드</h2>
+          <div class="v2-guide-list" id="guideList"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ========== 사이드바: 최근 사용 / 즐겨찾기 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card" id="recentSection" hidden>
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2 data-i18n="home_recent_title">최근 사용</h2>
+          <button type="button" class="v2-side-clear" id="clearRecentBtn" data-i18n="home_recent_clear">기록 지우기</button>
+        </div>
+        <div class="v2-side-list" id="recentList"></div>
       </div>
-      <p class="home-trust" data-i18n="home_trust">회원가입 없이 · 브라우저에서 계산 · 완전 무료</p>
-    </div>
-  </section>
 
-  <!-- ========== 인기 기능 ========== -->
-  <section class="container home-section">
-    <h2 data-i18n="home_popular_title">🔥 인기 기능</h2>
-    <div class="home-popular-grid">
-      <a href="./tools/salary/" class="tool-card home-feature-card" data-name="연봉 월급 실수령액"><h3 data-i18n="tool_salary_title">연봉 계산기</h3><p data-i18n="popular_salary_desc">연봉을 입력하고 실수령액을 확인하세요.</p></a>
-      <a href="./cal/dday/" class="tool-card home-feature-card" data-name="D-Day 디데이 날짜"><h3 data-i18n="tool_dday_title">D-Day 계산기</h3><p data-i18n="popular_dday_desc">목표 날짜까지 남은 날짜를 확인하세요.</p></a>
-      <a href="./lotto/" class="tool-card home-feature-card" data-name="로또 번호 생성"><h3 data-i18n="tool_lotto_title">로또번호 생성기</h3><p data-i18n="tool_lotto_desc">간편하게 로또 번호를 생성하세요.</p></a>
-      <a href="./tools/bmi/" class="tool-card home-feature-card" data-name="BMI 체질량지수 건강"><h3 data-i18n="tool_bmi_title">BMI 계산기</h3><p data-i18n="tool_bmi_desc">키와 체중으로 BMI를 계산하세요.</p></a>
-    </div>
-  </section>
+      <div class="v2-side-card" id="favoriteSection" hidden>
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2 data-i18n="home_favorites_title">즐겨찾기</h2>
+        </div>
+        <div class="v2-side-list" id="favoriteList"></div>
+      </div>
+      
+      <div class="v2-ad-side" aria-hidden="true"></div>
 
-  <!-- ========== 카테고리 ========== -->
-  <section class="container home-section">
-    <h2 data-i18n="home_categories_title">📂 카테고리</h2>
-    <div class="home-category-grid">
-      <a href="./cal/" class="tool-card home-category-card" data-name="계산기 퍼센트 나이 디데이 D-Day 전역일 연봉 월급 실수령액 대출 이자 BMI 예금 적금 퇴직금 부가세 주식 ETF"><span class="home-category-icon" aria-hidden="true">🧮</span><h3 data-i18n="tool_calculator_title">계산기</h3><p data-i18n="tool_calculator_desc">날짜, 비율, 금융, 건강 계산을 한곳에서 처리합니다.</p></a>
-      <a href="./tools/" class="tool-card home-category-card" data-name="도구 글자수 바이트 단위 변환 텍스트 변환 카메라 셔터카운트 EXIF"><span class="home-category-icon" aria-hidden="true">🛠️</span><h3 data-i18n="tools_title">도구</h3><p data-i18n="tools_copy">글자수, 단위 변환 등 실생활 유틸리티입니다.</p></a>
-      <a href="./games/" class="tool-card home-category-card" data-name="게임 반응속도 스도쿠 타자 속도 블록 퍼즐"><span class="home-category-icon" aria-hidden="true">🎮</span><h3 data-i18n="games_title">게임</h3><p data-i18n="games_copy">짧게 즐길 수 있는 무료 미니게임입니다.</p></a>
-      <a href="./lotto/" class="tool-card home-category-card" data-name="로또 번호 생성기 추천"><span class="home-category-icon" aria-hidden="true">🎰</span><h3 data-i18n="lotto_title">로또</h3><p data-i18n="lotto_copy">로또 번호를 간편하게 생성합니다.</p></a>
-      <a href="./saju/" class="tool-card home-category-card" data-name="사주 사주팔자 운세 궁합"><span class="home-category-icon" aria-hidden="true">🔮</span><h3 data-i18n="saju_title">사주·운세</h3><p data-i18n="saju_copy">생년월일을 바탕으로 사주 정보를 확인합니다.</p></a>
-    </div>
-  </section>
-
-  <!-- ========== 사이트 소개 ========== -->
-  <section class="container home-about">
-    <h2 data-i18n="home_about_title">is-an 도구 모음이란</h2>
-    <p data-i18n="home_about_copy">is-an은 회원가입 없이 바로 쓰는 무료 온라인 도구 모음입니다. 연봉·대출·나이 계산부터 단위 변환, 미니게임, 로또번호 생성까지 자주 찾는 기능을 모았습니다. 모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
-  </section>
+      <p class="v2-side-note">모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
 </main>
 
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
 <script src="./assets/js/i18n.js"></script>
 <script src="./assets/js/common.js"></script>
+<script src="./assets/js/header-nav.js"></script>
+<script src="./assets/js/tools-data.js"></script>
+<script src="./assets/js/home.js"></script>
 </body>
 </html>

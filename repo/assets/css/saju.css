@@ -1,0 +1,204 @@
+/* =========================================================
+   saju.css — 사주·운세 페이지 전용
+   ---------------------------------------------------------
+   ▸ style.css → v2-tokens.css → chrome.css → tool.css → saju.css
+   ========================================================= */
+
+/* ---------- 히어로(먹색) ---------- */
+.v2-page .v2-saju-hero {
+  background: var(--v2-ink);
+  color: var(--v2-ink-text);
+}
+.v2-page .v2-saju-hero-inner {
+  max-width: var(--v2-max);
+  margin: 0 auto;
+  padding: 20px 24px 46px;
+}
+.v2-page .v2-saju-hero .v2-crumb,
+.v2-page .v2-saju-hero .v2-crumb a { color: var(--v2-ink-muted); }
+.v2-page .v2-saju-hero .v2-crumb { margin-bottom: 26px; }
+.v2-page .v2-saju-hero .v2-crumb-current { color: var(--v2-ink-text); }
+.v2-page .v2-saju-hero .v2-eyebrow { color: var(--v2-plum); }
+.v2-page .v2-saju-title {
+  margin: 0 0 10px;
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(30px, 4.4vw, 44px);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -.02em;
+}
+.v2-page .v2-saju-lede {
+  margin: 0;
+  max-width: 560px;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--v2-ink-muted);
+  text-wrap: pretty;
+}
+
+/* 히어로에 겹쳐 올라오는 입력 카드 */
+.v2-page .v2-saju-layout { margin-top: -26px; }
+.v2-page .v2-saju-form { box-shadow: 0 6px 24px rgba(20, 18, 26, .07); border-radius: 16px; }
+.v2-page .v2-saju-form .v2-btn-primary {
+  width: 100%;
+  flex: none;
+  background: var(--v2-plum-deep);
+  color: #fff;
+  border-radius: 12px;
+}
+.v2-page .v2-saju-form .v2-btn-primary:hover { opacity: .92; }
+.v2-page .v2-saju-side-dot { background: var(--v2-plum-deep); }
+.v2-page .v2-saju-more a { color: var(--v2-plum-deep); }
+
+/* ---------- 결과 패널 ---------- */
+.v2-page .v2-saju-result {
+  margin-top: 16px;
+  padding: 26px 24px;
+  background: var(--v2-ink);
+  border-radius: 16px;
+  color: var(--v2-ink-text);
+}
+.v2-page .v2-saju-result[hidden] { display: none; }
+.v2-page .v2-saju-result-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.v2-page .v2-saju-result-head h2 {
+  margin: 0;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+.v2-page .v2-saju-meta { font-family: var(--v2-mono); font-size: 12px; color: var(--v2-ink-muted); }
+
+/* 사주팔자 네 기둥 */
+.v2-page .v2-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.v2-page .v2-pillar {
+  background: var(--v2-ink-2);
+  border: 1px solid var(--v2-ink-border);
+  border-radius: 13px;
+  padding: 16px 12px;
+  text-align: center;
+}
+.v2-page .v2-pillar-label {
+  margin: 0 0 12px;
+  font-family: var(--v2-mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: var(--v2-ink-muted);
+}
+.v2-page .v2-pillar-char {
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(26px, 3.4vw, 34px);
+  font-weight: 500;
+  line-height: 1.25;
+}
+.v2-page .v2-pillar-reading { margin: 10px 0 0; font-size: 11.5px; color: var(--v2-ink-muted); }
+
+/* 오행 분포 */
+.v2-page .v2-elements {
+  margin-top: 18px;
+  padding: 18px 20px;
+  background: var(--v2-ink-2);
+  border: 1px solid var(--v2-ink-border);
+  border-radius: 13px;
+}
+.v2-page .v2-elements-label {
+  margin: 0 0 14px;
+  font-family: var(--v2-mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: var(--v2-ink-muted);
+}
+.v2-page .v2-element-row { display: flex; align-items: center; gap: 12px; }
+.v2-page .v2-element-row + .v2-element-row { margin-top: 9px; }
+.v2-page .v2-element-name {
+  width: 56px; flex: none;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 13.5px;
+}
+.v2-page .v2-element-track {
+  flex: 1;
+  height: 8px;
+  background: var(--v2-ink-track);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.v2-page .v2-element-bar { display: block; height: 8px; border-radius: 5px; }
+.v2-page .v2-element-count {
+  width: 24px; flex: none; text-align: right;
+  font-family: var(--v2-mono); font-size: 12px; color: var(--v2-ink-muted);
+}
+.v2-page .v2-element-trait { width: 116px; flex: none; font-size: 12px; color: var(--v2-ink-muted); }
+
+/* 일간 해석 */
+.v2-page .v2-daystem {
+  margin-top: 18px;
+  padding: 2px 0 2px 16px;
+  border-left: 2px solid var(--v2-plum-deep);
+}
+.v2-page .v2-daystem-label {
+  margin: 0 0 6px;
+  font-family: var(--v2-mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: var(--v2-plum);
+}
+.v2-page .v2-daystem-copy {
+  margin: 0;
+  max-width: 620px;
+  font-size: 14.5px;
+  line-height: 1.8;
+  text-wrap: pretty;
+}
+
+/* 결과 패널 안의 공유 버튼 / 면책 */
+.v2-page .v2-saju-result .v2-share-btn {
+  background: var(--v2-ink-2);
+  border-color: var(--v2-ink-border);
+  color: var(--v2-ink-text);
+}
+.v2-page .v2-saju-result .v2-share-btn:hover { border-color: var(--v2-plum-deep); }
+.v2-page .v2-saju-disclaimer {
+  margin: 16px 0 0;
+  max-width: 640px;
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: var(--v2-ink-muted);
+}
+
+/* 오행 표 */
+.v2-page .v2-el-table {
+  margin-top: 16px;
+  border: 1px solid var(--v2-border);
+  border-radius: 11px;
+  overflow: hidden;
+}
+.v2-page .v2-el-table-head,
+.v2-page .v2-el-table-row { display: grid; grid-template-columns: 120px 1fr; }
+.v2-page .v2-el-table-head {
+  background: var(--v2-surface-2);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--v2-muted);
+}
+.v2-page .v2-el-table-row { border-top: 1px solid var(--v2-border-soft); font-size: 14px; color: var(--v2-text-2); }
+.v2-page .v2-el-table span { padding: 11px 16px; }
+.v2-page .v2-el-table-row span:first-child { font-family: 'Noto Serif KR', serif; }
+
+/* ---------- 반응형 ---------- */
+@media (max-width: 640px) {
+  .v2-page .v2-saju-hero-inner { padding: 16px 16px 40px; }
+  .v2-page .v2-pillars { grid-template-columns: 1fr 1fr; }
+  .v2-page .v2-element-trait { display: none; }
+  .v2-page .v2-el-table-head,
+  .v2-page .v2-el-table-row { grid-template-columns: 92px 1fr; }
+}
