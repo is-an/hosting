@@ -295,10 +295,15 @@ body.v2-page *:focus-visible { outline: 2px solid var(--v2-accent); outline-offs
   color: var(--v2-text-2);
   cursor: pointer;
 }
-.v2-header .v2-lang-dropdown li:hover,
-.v2-header .v2-lang-dropdown li[aria-selected="true"] {
+.v2-header .v2-lang-dropdown li:hover {
   background: var(--v2-surface-2);
   color: var(--v2-text);
+}
+/* 현재 선택된 언어 = 모바일 메뉴의 활성 탭과 동일한 초록 강조 */
+.v2-header .v2-lang-dropdown li[aria-selected="true"] {
+  background: var(--v2-accent-bg);
+  color: var(--v2-accent);
+  font-weight: 600;
 }
 
 /* 모바일 메뉴 버튼 (≤760px 에서 표시, 내비를 팝업으로 연다) */

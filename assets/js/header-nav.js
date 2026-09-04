@@ -75,12 +75,18 @@
 
   function openSearch(trigger) {
     if (!overlay) { buildOverlay(); }
+    // 헤더 팝업은 한 번에 하나만: 다른 팝업(메뉴/언어)을 닫는다.
+    document.dispatchEvent(new CustomEvent('v2:popup', { detail: 'search' }));
     overlay.hidden = false;
     document.body.style.overflow = 'hidden';
     overlay._trigger = trigger || null;
     loadTools(renderResults);
     setTimeout(function () { input.focus(); }, 0);
   }
+
+  document.addEventListener('v2:popup', function (e) {
+    if (e.detail !== 'search') { closeSearch(); }
+  });
 
   function closeSearch() {
     if (!overlay || overlay.hidden) { return; }
@@ -172,10 +178,18 @@
     toggle.dataset.navBound = 'true';
 
     function setOpen(open) {
+      // 헤더 팝업은 한 번에 하나만: 열 때 다른 팝업(언어/검색)을 닫는다.
+      if (open) {
+        document.dispatchEvent(new CustomEvent('v2:popup', { detail: 'menu' }));
+      }
       nav.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       toggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
     }
+
+    document.addEventListener('v2:popup', function (e) {
+      if (e.detail !== 'menu' && nav.classList.contains('is-open')) { setOpen(false); }
+    });
 
     toggle.addEventListener('click', function () {
       setOpen(!nav.classList.contains('is-open'));

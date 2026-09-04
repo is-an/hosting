@@ -1208,9 +1208,15 @@ function attachLanguageSwitcher() {
   }
 
   function openDropdown() {
+    // 헤더 팝업은 한 번에 하나만: 다른 팝업(메뉴/검색)을 닫는다.
+    document.dispatchEvent(new CustomEvent('v2:popup', { detail: 'lang' }));
     dropdown.classList.add('open');
     toggle.setAttribute('aria-expanded', 'true');
   }
+
+  document.addEventListener('v2:popup', (e) => {
+    if (e.detail !== 'lang') { closeDropdown(); }
+  });
 
   toggle.addEventListener('click', (e) => {
     e.stopPropagation();
