@@ -89,8 +89,8 @@
         <span class="v2-crumb-current" data-i18n="nav.saju">사주·운세</span>
       </nav>
       <p class="v2-eyebrow">무료 온라인 사주풀이</p>
-      <h1 class="v2-saju-title">무료 사주팔자 풀이</h1>
-      <p class="v2-saju-lede">생년월일과 출생시간을 입력하여 나의 사주를 확인해보세요.</p>
+      <h1 class="v2-saju-title">무료 사주팔자 풀이 · 오늘의 운세</h1>
+      <p class="v2-saju-lede">생년월일과 출생시간을 입력하면 사주팔자 분석과 함께, 오늘 하루만 유지되는 나만의 오늘의 운세를 확인할 수 있습니다.</p>
     </div>
   </section>
 
@@ -99,10 +99,23 @@
       <!-- ========== 입력 ========== -->
       <section class="v2-card v2-saju-form" aria-label="사주 정보 입력">
         <h2 class="v2-card-title">사주 정보 입력</h2>
+
+        <div class="v2-saju-calendar-type" role="radiogroup" aria-label="양력/음력 선택">
+          <label class="v2-saju-radio">
+            <input type="radio" name="calendarType" id="calendarSolar" value="solar" checked>
+            <span>양력</span>
+          </label>
+          <label class="v2-saju-radio v2-saju-radio-disabled">
+            <input type="radio" name="calendarType" id="calendarLunar" value="lunar" disabled>
+            <span>음력 (준비 중)</span>
+          </label>
+        </div>
+        <p class="v2-saju-lunar-note">음력 생년월일은 정확한 변환 데이터가 검증될 때까지 지원하지 않습니다. 음력이신 경우 양력으로 변환한 날짜를 입력해주세요.</p>
+
         <div class="v2-field-grid">
           <div>
-            <label class="v2-label" for="birthDate">생년월일</label>
-            <input type="date" id="birthDate" class="v2-input" value="1994-05-17">
+            <label class="v2-label" for="birthDate">생년월일 (양력)</label>
+            <input type="date" id="birthDate" class="v2-input" value="1994-05-17" min="1940-01-01" max="2040-12-31">
           </div>
           <div>
             <label class="v2-label" for="birthTime">출생시간</label>
@@ -119,7 +132,8 @@
         <div class="v2-action-row">
           <button type="button" class="v2-btn-primary" id="sajuBtn">사주 보기</button>
         </div>
-        <p class="v2-form-note">출생시간을 모르면 시주(時柱)를 뺀 정보로만 계산되어 결과에 차이가 있을 수 있습니다.</p>
+        <p class="v2-form-note">출생시간을 모르면 시주(時柱)를 뺀 정보로만 계산되어 결과에 차이가 있을 수 있습니다. 1940년~2040년생만 계산할 수 있습니다.</p>
+        <p class="v2-form-error" id="sajuError" hidden></p>
       </section>
 
       <!-- ========== 결과 ========== -->
@@ -129,16 +143,50 @@
           <span class="v2-saju-meta" id="sajuMeta"></span>
         </div>
 
+        <!-- 1. 사주팔자 -->
         <div class="v2-pillars" id="pillars"></div>
+        <p class="v2-saju-hour-notice" id="hourNotice" hidden>출생시간을 입력하지 않아 시주(時柱)는 제외하고 계산했습니다. 나머지 분석은 그대로 진행됩니다.</p>
 
+        <!-- 2. 오행 분석 -->
         <div class="v2-elements">
           <p class="v2-elements-label">오행 분포</p>
           <div id="elements"></div>
         </div>
 
+        <!-- 3. 음양 분석 -->
+        <div class="v2-yinyang">
+          <p class="v2-elements-label">음양 균형</p>
+          <div class="v2-yinyang-bar"><span id="yinYangBar"></span></div>
+          <p class="v2-yinyang-copy" id="yinYangCopy"></p>
+        </div>
+
+        <!-- 4. 일간 / 기본 성향 -->
         <div class="v2-daystem">
           <p class="v2-daystem-label" id="dayStemLabel"></p>
           <p class="v2-daystem-copy" id="dayStemCopy"></p>
+        </div>
+
+        <!-- 5. 십신 -->
+        <div class="v2-tengods">
+          <p class="v2-elements-label">십신(十神)</p>
+          <div id="tenGods"></div>
+        </div>
+
+        <!-- 합·충·형·파·해 / 삼합·육합 -->
+        <div class="v2-relations" id="relationsBlock" hidden>
+          <p class="v2-elements-label">합·충·형·파·해</p>
+          <div id="relations"></div>
+        </div>
+
+        <!-- 6~11. 오늘의 운세 + 행운 정보 -->
+        <div class="v2-fortune">
+          <div class="v2-fortune-head">
+            <p class="v2-elements-label">오늘의 운세</p>
+            <span class="v2-fortune-date" id="fortuneDate"></span>
+          </div>
+          <div id="fortuneList"></div>
+          <div class="v2-lucky" id="luckyInfo"></div>
+          <p class="v2-fortune-note">오늘의 운세는 이 브라우저에 저장되며, 같은 날에는 새로고침해도 결과가 바뀌지 않습니다. 자정이 지나 날짜가 바뀌면 새로운 운세가 만들어집니다.</p>
         </div>
 
         <div class="v2-share-row">
@@ -146,7 +194,7 @@
           <button type="button" class="v2-share-btn" id="shareBtn">링크 공유</button>
         </div>
 
-        <p class="v2-saju-disclaimer">사주 해석은 전통 명리학에 근거한 참고용 콘텐츠이며, 미래를 확정적으로 예측하거나 객관적 사실을 보장하지 않습니다. 중요한 결정은 스스로 판단하세요.</p>
+        <p class="v2-saju-disclaimer">사주·운세 해석은 전통 명리학에 근거한 참고용 콘텐츠이며, 미래를 확정적으로 예측하거나 객관적 사실을 보장하지 않습니다. 건강운 항목은 의학적 진단이 아닌 일반적인 생활 조언입니다. 중요한 결정은 스스로 판단하세요.</p>
       </section>
 
       <!-- ========== 광고 ========== -->
@@ -182,11 +230,18 @@
       </section>
 
       <section class="v2-card">
+        <h2 class="v2-card-title">십신(十神)이란?</h2>
+        <p class="v2-card-copy">십신은 일간(태어난 날의 천간)을 기준으로 나머지 천간과의 오행·음양 관계를 10가지로 분류한 것입니다. 비견·겁재는 자기 자신과 경쟁의 기운을, 식신·상관은 표현과 재능을, 편재·정재는 재물을, 편관·정관은 책임과 통제를, 편인·정인은 학습과 후원의 기운을 나타냅니다.</p>
+      </section>
+
+      <section class="v2-card">
         <h2 class="v2-card-title">결과를 어떻게 이해하면 되나요</h2>
         <ul class="v2-card-list">
           <li>이 페이지는 일간의 오행을 중심으로 성향, 관계, 재물, 직업 방향에 대한 일반적인 해석을 보여 줍니다.</li>
           <li>같은 오행이라도 나머지 일곱 글자의 조합에 따라 실제 해석은 달라집니다. 여기서 보여 주는 것은 큰 방향의 참고입니다.</li>
           <li>출생시간을 모르면 시주(時柱)를 뺀 정보로만 계산되어 결과에 차이가 있을 수 있습니다.</li>
+          <li>월주는 달력의 월이 아니라 태양의 절기(입춘·경칩 등) 경계를 기준으로 계산합니다.</li>
+          <li>음력 생년월일은 정확한 변환 데이터가 검증되기 전까지 지원하지 않습니다.</li>
           <li>사주 해석은 전통 명리학에 근거한 참고용 콘텐츠이며, 미래를 확정적으로 예측하거나 객관적 사실을 보장하지 않습니다. 중요한 결정은 스스로 판단하세요.</li>
         </ul>
         <p class="v2-card-more v2-saju-more"><a href="../faq/" data-i18n="footer.faq">자주 묻는 질문 →</a></p>
@@ -206,7 +261,7 @@
 
       <div class="v2-ad-side" aria-hidden="true"></div>
 
-      <p class="v2-side-note">모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+      <p class="v2-side-note">입력 정보는 사주 계산을 위해 이 브라우저에서만 처리되며, 서버로 전송되지 않습니다. 오늘의 운세 결과는 같은 브라우저에 저장될 수 있습니다.</p>
     </aside>
   </div>
 </main>
@@ -217,6 +272,10 @@
 <script src="../assets/js/header-nav.js"></script>
 <script src="../assets/js/tools-data.js"></script>
 <script src="../assets/js/tool-sidebar.js"></script>
+<script src="../assets/js/saju/saju-data.js"></script>
+<script src="../assets/js/saju/saju-calculator.js"></script>
+<script src="../assets/js/saju/saju-interpretation.js"></script>
+<script src="../assets/js/saju/saju-fortune.js"></script>
 <script src="../assets/js/saju-view.js"></script>
 </body>
 </html>
