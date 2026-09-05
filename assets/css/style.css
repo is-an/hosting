@@ -1376,6 +1376,11 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  .popular-list,
+  .faq-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .button-group {
     flex-direction: column;
   }
