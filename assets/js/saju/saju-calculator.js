@@ -9,7 +9,10 @@
      연주: 절기 "입춘"(태양황경 315°) 이전 출생은 전년도로 계산
      월주: 월지는 절기 "절"(입춘·경칩·청명 …) 경계로 결정,
            월간은 오호둔(五虎遁) 공식 적용
-     일주: 1984-02-02(갑자일)을 기준으로 한 날짜 차이의 60진법
+     일주: 1984-01-31(갑자일)을 기준으로 한 날짜 차이의 60진법.
+           외부 만세력(gunghap.com)의 1994-09-23(임자)·2000-01-01(무오)·
+           2026-09-06(계미) 결과와 대조해 검증했고, 1900-01-01(갑술)
+           기준 별도 앵커로도 동일하게 재검증된 기준일이다.
      시주: 오자둔(五子遁). 23:00~23:59 출생은 다음날 자시로 보아
            일주를 하루 진행시킨다(통용되는 "정자시" 기준)
      절기 계산: 태양 겉보기 황경을 Jean Meeus의 저정밀도 태양좌표
@@ -156,7 +159,7 @@
   function calculateDayPillar(year, month, day, hour) {
     var offset = dayPillarOffset(hour);
     var days = Math.round(
-      (Date.UTC(year, month - 1, day + offset) - Date.UTC(1984, 1, 2)) / 86400000
+      (Date.UTC(year, month - 1, day + offset) - Date.UTC(1984, 0, 31)) / 86400000
     );
     return { stem: mod(days, 10), branch: mod(days, 12) };
   }
