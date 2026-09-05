@@ -50,7 +50,7 @@ window.I18N_DATA.zh = {
   "lightMode": "切换至浅色模式",
   "language": "选择语言",
   "meta_title": "免费在线工具 | 计算器、转换器、生成器",
-  "meta_description": "免费在线工具集合：百分比计算器、年龄计算器、字数统计、单位换算器、BMI计算器、薪资计算器、贷款利息计算器等15款实用工具，一站获取。",
+  "meta_description": "计算器、换算器、生成器、游戏等 15 款免费在线工具，一站获取。",
   "calculator_meta_title": "计算器分类 - 免费在线计算器集合",
   "calculator_meta_description": "一站式免费在线计算器：百分比、年龄、D-Day、退伍日期，以及薪资、贷款、存款、退休金、增值税和 BMI 计算器。",
   "tools_meta_title": "工具分类 - 免费在线工具集合",

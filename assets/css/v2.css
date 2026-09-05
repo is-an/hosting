@@ -44,6 +44,10 @@
   --v2-play-border: #ecdcbd;
   --v2-plum: #c58aa4;          /* 사주 */
   --v2-plum-deep: #8d4e68;
+  --v2-lotto: #856200;         /* 로또 (시그니처: 노랑) */
+  --v2-lotto-deep: #664b00;
+  --v2-lotto-bg: #fdf6dd;
+  --v2-lotto-border: #efe0a6;
 
   /* 사주 결과 패널(먹색) */
   --v2-ink: #1b1a20;
@@ -92,6 +96,10 @@
   --v2-play-border: #4d3f24;
   --v2-plum: #c58aa4;
   --v2-plum-deep: #c58aa4;
+  --v2-lotto: #e9c85a;
+  --v2-lotto-deep: #e9c85a;
+  --v2-lotto-bg: #38321c;
+  --v2-lotto-border: #4b4225;
 
   --v2-ink: #191820;
   --v2-ink-2: #232129;

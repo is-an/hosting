@@ -114,7 +114,7 @@ const legacyTranslations = {
     language: "언어 선택",
 
     meta_title: "무료 온라인 도구 모음 | 계산기, 변환기, 생성기",
-    meta_description: "무료 온라인 도구 모음: 퍼센트 계산기, 나이 계산기, 글자수 세기, 단위 변환기, BMI 계산기, 연봉 계산기, 대출 이자 계산기 등 15개의 유용한 도구들을 한곳에서 만나보세요.",
+    meta_description: "계산기, 변환기, 생성기, 게임 등 15가지 무료 온라인 도구를 한곳에서 만나보세요.",
     og_title: "무료 온라인 도구 모음",
     og_description: "퍼센트, 나이, 글자수, 단위 변환, BMI, 연봉, 대출, 이미지 처리 등 15개 도구 모음",
     calculator_meta_title: "계산기 카테고리 - 무료 온라인 계산기 모음",

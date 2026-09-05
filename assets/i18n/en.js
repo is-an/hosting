@@ -50,7 +50,7 @@ window.I18N_DATA.en = {
   "lightMode": "Switch to light mode",
   "language": "Select language",
   "meta_title": "Free Online Tools | Calculators, Converters, Generators",
-  "meta_description": "Free online tools: percentage calculator, age calculator, character counter, unit converter, BMI calculator, salary calculator, loan interest calculator, and more — 15 useful tools in one place.",
+  "meta_description": "Calculators, converters, generators, and games — 15 free online tools in one place.",
   "calculator_meta_title": "Calculator Category - Free Online Calculators",
   "calculator_meta_description": "Free online calculators in one place: percentage, age, D-Day, and discharge date, plus salary, loan, savings, severance, VAT, and BMI calculators.",
   "tools_meta_title": "Tools Category - Free Online Tools",

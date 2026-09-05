@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -18,281 +18,118 @@
   <meta name="description" data-i18n-content="lotto_meta_description" content="로또번호 생성기. 1부터 45까지의 숫자 중 6개를 무작위로 선택하여 로또번호를 추천합니다. 무료로 사용하세요.">
   <meta name="keywords" content="로또, 로또번호, 로또번호생성, 번호생성, 무료 온라인 도구">
   <meta name="robots" content="index,follow">
-  
+
   <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://is-an.github.io/lotto/">
   <meta property="og:title" content="로또번호 생성기">
   <meta property="og:description" content="무료 로또번호 추천 도구">
-  
+
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "로또번호 생성기",
-    "description": "로또번호 추천 도구",
-    "url": "./index.html",
-    "applicationCategory": "UtilityApplication"
+    "description": "1부터 45까지의 숫자 중 6개를 무작위로 선택하여 로또번호를 추천하는 도구",
+    "url": "https://is-an.github.io/lotto/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
   }
   </script>
-  
+
   <link rel="canonical" href="https://is-an.github.io/lotto/">
-  <link rel="stylesheet" href="../../assets/css/style.css">
-  <link rel="stylesheet" href="../../assets/css/v2.css">
-  <style>
-    .lottery-display {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin: 30px 0;
-      flex-wrap: wrap;
-    }
-    
-    .lottery-ball {
-      position: relative;
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 18px;
-      border: 2px solid rgba(255,255,255,0.65);
-      box-shadow:
-        inset 0 4px 10px rgba(255,255,255,0.45),
-        inset 0 -8px 12px rgba(0,0,0,0.22),
-        0 8px 16px rgba(0,0,0,0.18);
-      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-      animation: pop 0.5s ease-out;
-    }
-
-    .lottery-ball::before {
-      content: "";
-      position: absolute;
-      top: 7px;
-      left: 9px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.38);
-      filter: blur(1px);
-    }
-    
-    @keyframes pop {
-      0% {
-        transform: scale(0);
-      }
-      50% {
-        transform: scale(1.2);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    .lottery-options {
-      margin: 20px 0 24px;
-      padding: 18px;
-      background: #fafafa;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-    }
-
-    .lottery-options label {
-      display: block;
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-
-    .fixed-slots {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .fixed-slot {
-      width: 100%;
-      min-height: 42px;
-      padding: 8px 10px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 15px;
-      background: #fff;
-      color: var(--text);
-    }
-
-    .lottery-mini-list {
-      display: inline-flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .lottery-mini-ball {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      border: 1px solid rgba(255,255,255,0.7);
-      box-shadow:
-        inset 0 3px 6px rgba(255,255,255,0.32),
-        inset 0 -4px 7px rgba(0,0,0,0.15),
-        0 4px 8px rgba(0,0,0,0.12);
-    }
-
-    .lottery-mini-ball::before {
-      content: "";
-      position: absolute;
-      top: 4px;
-      left: 5px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-    }
-    
-    .lottery-set {
-      padding: 15px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      margin: 10px 0;
-      text-align: center;
-    }
-  </style>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/v2.css">
+  <link rel="stylesheet" href="../assets/css/lotto.css">
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
+
 <main>
-    <!-- ========== 히어로 섹션 ========== -->
-    <section class="hero">
-      <div class="container">
-        <p class="eyebrow" data-i18n="lotto_eyebrow">무료 온라인 로또 생성기</p>
-        <h1 data-i18n="lotto_title">로또번호 생성기</h1>
-        <p class="hero-copy" data-i18n="lotto_copy">1부터 45까지의 숫자 중 6개를 무작위로 선택하여 로또번호를 추천합니다.</p>
-      </div>
-    </section>
+  <!-- ========== 히어로 ========== -->
+  <section class="v2-lotto-hero">
+    <div class="v2-lotto-hero-inner">
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current" data-i18n="nav.lotto">로또</span>
+      </nav>
+      <p class="v2-eyebrow" data-i18n="lotto_eyebrow">무료 온라인 로또 생성기</p>
+      <h1 class="v2-lotto-title" data-i18n="lotto_title">로또번호 생성기</h1>
+      <p class="v2-lotto-lede" data-i18n="lotto_copy">1부터 45까지의 숫자 중 6개를 무작위로 선택하여 로또번호를 추천합니다.</p>
+    </div>
+  </section>
 
-    <div class="container">
-      <!-- ========== 계산기 섹션 ========== -->
-      <section class="calculator-section">
-        <div class="calculator-card">
-          <p data-i18n="lotto_intro">1부터 45까지 중 서로 다른 6개 번호를 무작위로 생성합니다.</p>
+  <div class="v2-tool-layout v2-lotto-layout">
+    <div>
+      <!-- ========== 생성기 ========== -->
+      <section class="v2-card v2-lotto-card" aria-label="로또번호 생성">
+        <p class="v2-card-copy" data-i18n="lotto_intro">1부터 45까지 중 서로 다른 6개 번호를 무작위로 생성합니다.</p>
 
-          <div class="lottery-options">
-            <label for="fixedSlot1" data-i18n="lotto_fixedLabel">번호 고정 설정 (1~6자리)</label>
-            <div class="fixed-slots">
-              <select class="fixed-slot" data-index="0" aria-label="1번째 번호 고정">
-                <option value="" data-i18n="lotto_slot1">1번째</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-                <option value="25">25</option>
-                <option value="26">26</option>
-                <option value="27">27</option>
-                <option value="28">28</option>
-                <option value="29">29</option>
-                <option value="30">30</option>
-                <option value="31">31</option>
-                <option value="32">32</option>
-                <option value="33">33</option>
-                <option value="34">34</option>
-                <option value="35">35</option>
-                <option value="36">36</option>
-                <option value="37">37</option>
-                <option value="38">38</option>
-                <option value="39">39</option>
-                <option value="40">40</option>
-                <option value="41">41</option>
-                <option value="42">42</option>
-                <option value="43">43</option>
-                <option value="44">44</option>
-                <option value="45">45</option>
-              </select>
-              <select class="fixed-slot" data-index="1" aria-label="2번째 번호 고정">
-                <option value="" data-i18n="lotto_slot2">2번째</option>
-                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
-              </select>
-              <select class="fixed-slot" data-index="2" aria-label="3번째 번호 고정">
-                <option value="" data-i18n="lotto_slot3">3번째</option>
-                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
-              </select>
-              <select class="fixed-slot" data-index="3" aria-label="4번째 번호 고정">
-                <option value="" data-i18n="lotto_slot4">4번째</option>
-                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
-              </select>
-              <select class="fixed-slot" data-index="4" aria-label="5번째 번호 고정">
-                <option value="" data-i18n="lotto_slot5">5번째</option>
-                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
-              </select>
-              <select class="fixed-slot" data-index="5" aria-label="6번째 번호 고정">
-                <option value="" data-i18n="lotto_slot6">6번째</option>
-                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
-              </select>
-            </div>
-          </div>
-          
+        <label class="v2-lotto-fixed-label" for="fixedSlot1" data-i18n="lotto_fixedLabel">번호 고정 설정 (1~6자리)</label>
+        <div class="v2-lotto-fixed">
+          <select id="fixedSlot1" class="fixed-slot" data-index="0" aria-label="1번째 번호 고정">
+            <option value="" data-i18n="lotto_slot1">1번째</option>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+          </select>
+          <select class="fixed-slot" data-index="1" aria-label="2번째 번호 고정">
+            <option value="" data-i18n="lotto_slot2">2번째</option>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+          </select>
+          <select class="fixed-slot" data-index="2" aria-label="3번째 번호 고정">
+            <option value="" data-i18n="lotto_slot3">3번째</option>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+          </select>
+          <select class="fixed-slot" data-index="3" aria-label="4번째 번호 고정">
+            <option value="" data-i18n="lotto_slot4">4번째</option>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+          </select>
+          <select class="fixed-slot" data-index="4" aria-label="5번째 번호 고정">
+            <option value="" data-i18n="lotto_slot5">5번째</option>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+          </select>
+          <select class="fixed-slot" data-index="5" aria-label="6번째 번호 고정">
+            <option value="" data-i18n="lotto_slot6">6번째</option>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+          </select>
+        </div>
+
+        <div class="v2-action-row">
+          <button type="button" id="generateBtn" class="v2-btn-primary" data-i18n="lotto_generateOne">1개 생성</button>
+          <button type="button" id="generateMultipleBtn" class="v2-btn-ghost" data-i18n="lotto_generateFive">5개 생성</button>
+          <button type="button" id="lotteryResetBtn" class="v2-btn-ghost" data-i18n="lotto_reset">초기화</button>
+        </div>
+
+        <div class="v2-lotto-result">
+          <p class="v2-lotto-result-label">생성 결과</p>
           <div id="lotteryDisplay" class="lottery-display"></div>
-
-          <div class="button-group">
-            <button id="generateBtn" class="primary-btn" data-i18n="lotto_generateOne">1개 생성</button>
-            <button id="generateMultipleBtn" class="primary-btn" data-i18n="lotto_generateFive">5개 생성</button>
-            <button id="lotteryResetBtn" class="secondary-btn" data-i18n="lotto_reset">초기화</button>
-          </div>
-
           <div id="multipleNumbers" class="hidden"></div>
         </div>
       </section>
 
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline" id="ads-slot"></div>
+
       <!-- ========== 사용 방법 ========== -->
-      <section class="content-section">
-        <h2 data-i18n="lotto_how_title">로또번호 생성기 사용 방법</h2>
-        <ol>
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title" data-i18n="lotto_how_title">로또번호 생성기 사용 방법</h2>
+        <ol class="v2-card-list">
           <li data-i18n="lotto_how_1">‘1개 생성’을 누르면 1~45 중 서로 다른 6개 번호가 무작위로 나옵니다.</li>
           <li data-i18n="lotto_how_2">‘5개 생성’은 서로 다른 6개 번호 조합을 한 번에 5줄 만들어 줍니다.</li>
           <li data-i18n="lotto_how_3">‘번호 고정’에서 1~6칸에 숫자를 지정하면 그 번호는 항상 포함되고 나머지 칸만 무작위로 채워집니다.</li>
           <li data-i18n="lotto_how_4">‘초기화’는 고정한 번호와 생성 결과를 모두 지웁니다.</li>
         </ol>
-        <p data-i18n="lotto_how_note">생성된 번호는 저장되지 않으며, 새로 생성하면 이전 결과는 사라집니다.</p>
+        <p class="v2-card-copy" data-i18n="lotto_how_note">생성된 번호는 저장되지 않으며, 새로 생성하면 이전 결과는 사라집니다.</p>
       </section>
 
       <!-- ========== 당첨 확률 ========== -->
-      <section class="content-section">
-        <h2 data-i18n="lotto_odds_title">로또 6/45 당첨 확률</h2>
-        <p data-i18n="lotto_odds_intro">대한민국 로또 6/45는 1~45의 숫자 중 6개를 맞히는 방식입니다. 나올 수 있는 조합은 모두 8,145,060가지이며, 1등(6개 일치) 확률은 8,145,060분의 1입니다.</p>
-        <div class="info-table-wrap">
-          <table class="info-table">
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="lotto_odds_title">로또 6/45 당첨 확률</h2>
+        <p class="v2-card-copy" data-i18n="lotto_odds_intro">대한민국 로또 6/45는 1~45의 숫자 중 6개를 맞히는 방식입니다. 나올 수 있는 조합은 모두 8,145,060가지이며, 1등(6개 일치) 확률은 8,145,060분의 1입니다.</p>
+        <div class="v2-lotto-table-wrap">
+          <table class="v2-lotto-table">
             <thead>
               <tr>
                 <th data-i18n="lotto_odds_th_rank">등수</th>
@@ -309,20 +146,20 @@
             </tbody>
           </table>
         </div>
-        <p data-i18n="lotto_odds_note">확률은 매 회차 동일하며, 자동·수동 또는 과거 당첨 이력과 관계없이 모든 조합의 당첨 가능성은 같습니다.</p>
+        <p class="v2-card-copy" data-i18n="lotto_odds_note">확률은 매 회차 동일하며, 자동·수동 또는 과거 당첨 이력과 관계없이 모든 조합의 당첨 가능성은 같습니다.</p>
       </section>
 
       <!-- ========== 무작위 생성의 의미 ========== -->
-      <section class="content-section">
-        <h2 data-i18n="lotto_random_title">무작위 번호 생성의 의미</h2>
-        <p data-i18n="lotto_random_p1">이 도구는 브라우저의 난수 생성기로 매번 새로운 조합을 만듭니다. 특정 번호가 '잘 나오는 번호'이거나 '나올 때가 된 번호'라는 통계적 근거는 없습니다. 로또 추첨은 매 회차 독립적이어서, 과거에 자주 나온 번호와 적게 나온 번호 모두 다음 회차에 나올 확률은 같습니다.</p>
-        <p data-i18n="lotto_random_p2">번호 고정 기능은 생일·기념일처럼 의미 있는 숫자를 포함하고 싶을 때 쓰는 편의 기능이며, 당첨 확률을 높이지는 않습니다.</p>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="lotto_random_title">무작위 번호 생성의 의미</h2>
+        <p class="v2-card-copy" data-i18n="lotto_random_p1">이 도구는 브라우저의 난수 생성기로 매번 새로운 조합을 만듭니다. 특정 번호가 '잘 나오는 번호'이거나 '나올 때가 된 번호'라는 통계적 근거는 없습니다. 로또 추첨은 매 회차 독립적이어서, 과거에 자주 나온 번호와 적게 나온 번호 모두 다음 회차에 나올 확률은 같습니다.</p>
+        <p class="v2-card-copy" data-i18n="lotto_random_p2">번호 고정 기능은 생일·기념일처럼 의미 있는 숫자를 포함하고 싶을 때 쓰는 편의 기능이며, 당첨 확률을 높이지는 않습니다.</p>
       </section>
 
       <!-- ========== 유의사항 ========== -->
-      <section class="content-section">
-        <h2 data-i18n="lotto_notice_title">이용 시 유의사항</h2>
-        <ul>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="lotto_notice_title">이용 시 유의사항</h2>
+        <ul class="v2-card-list">
           <li data-i18n="lotto_notice_1">이 생성기는 재미와 편의를 위한 도구이며, 당첨이나 수익을 보장하지 않습니다.</li>
           <li data-i18n="lotto_notice_2">복권은 만 19세 이상만 구매할 수 있습니다.</li>
           <li data-i18n="lotto_notice_3">구매는 여윳돈 범위에서 하고 과도한 몰입에 주의하세요. 도박 문제 상담은 한국도박문제예방치유원(국번 없이 1336)에서 받을 수 있습니다.</li>
@@ -331,29 +168,47 @@
       </section>
 
       <!-- ========== FAQ (중앙 FAQ 페이지 /faq/ 의 lotto 카테고리에서 로드) ========== -->
-      <section class="faq-section" hidden>
-        <h2 data-i18n="lotto_faq_title">❓ 자주 묻는 질문</h2>
+      <section class="v2-card faq-section" hidden>
+        <h2 class="v2-card-title" data-i18n="lotto_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list" data-faq-category="lotto"></div>
-        <p><a href="../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+        <p class="v2-card-more v2-lotto-more"><a href="../faq/" data-i18n="faq_page_title">자주 묻는 질문 →</a></p>
       </section>
+    </div>
 
-</div>
-  </main>
-  <div id="ads-slot" class="ads-slot"></div>
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot v2-lotto-side-dot" aria-hidden="true"></span>
+          <h2>관련 도구</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../">전체 도구 보기 →</a>
+      </div>
+
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <p class="v2-side-note">번호 생성은 모두 브라우저에서 처리되며 서버로 전송되거나 저장되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
   <div id="site-footer"></div>
-<script src="../../assets/js/i18n.js"></script>
-<script src="../../assets/js/common.js"></script>
-<script src="../../assets/js/header-nav.js"></script>
-<script src="../../assets/js/faq.js"></script>
-  <script src="./lottery.js"></script>
-  <script>
-    (function () {
-      function loadFaq() {
-        if (typeof loadCategoryFaq === 'function') loadCategoryFaq('lotto', '.faq-list[data-faq-category="lotto"]');
-      }
-      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadFaq);
-      else loadFaq();
-    })();
-  </script>
+<script src="../assets/js/i18n.js"></script>
+<script src="../assets/js/common.js"></script>
+<script src="../assets/js/header-nav.js"></script>
+<script src="../assets/js/tools-data.js"></script>
+<script src="../assets/js/tool-sidebar.js"></script>
+<script src="../assets/js/faq.js"></script>
+<script src="./lottery.js"></script>
+<script>
+  (function () {
+    function loadFaq() {
+      if (typeof loadCategoryFaq === 'function') loadCategoryFaq('lotto', '.faq-list[data-faq-category="lotto"]');
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadFaq);
+    else loadFaq();
+  })();
+</script>
 </body>
 </html>

@@ -122,3 +122,8 @@ lotteryResetBtn.addEventListener("click", resetLottery);
 
 // 초기 한 번 생성
 generateSingle();
+
+// 사이드바 관련 도구 (tools-data.js → tool-sidebar.js)
+if (typeof renderRelatedTools === "function") {
+  renderRelatedTools("relatedList", ["age", "dday", "saju", "discharge"]);
+}
