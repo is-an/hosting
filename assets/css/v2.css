@@ -645,6 +645,23 @@ body.v2-page *:focus-visible { outline: 2px solid var(--v2-accent); outline-offs
 .v2-page .v2-input:focus,
 .v2-page .v2-select:focus { border-color: var(--v2-accent); }
 
+/* iOS Safari의 input[type=date]는 내부 값 렌더러가 자체 줄 높이/가운데
+   정렬을 가지고 있어, 다른 v2-input/select와 달리 min-height+세로 padding
+   조합만으로는 높이가 맞지 않는다. 고정 height + flex 정렬로 맞춘다. */
+.v2-page input[type="date"].v2-input {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 48px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  line-height: normal;
+}
+.v2-page input[type="date"].v2-input::-webkit-date-and-time-value {
+  text-align: left;
+  margin: 0;
+}
+
 .v2-page .v2-preset-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .v2-page .v2-preset {
   min-height: 36px;
