@@ -13,8 +13,11 @@
            외부 만세력(gunghap.com)의 1994-09-23(임자)·2000-01-01(무오)·
            2026-09-06(계미) 결과와 대조해 검증했고, 1900-01-01(갑술)
            기준 별도 앵커로도 동일하게 재검증된 기준일이다.
-     시주: 오자둔(五子遁). 23:00~23:59 출생은 다음날 자시로 보아
-           일주를 하루 진행시킨다(통용되는 "정자시" 기준)
+     시주: 오자둔(五子遁) + 한국 진태양시 고정 -30분 보정(대한민국 중앙경도
+           127.5°와 표준시 기준경도 135°의 차이). 보정 후 23:00~23:59에
+           해당하면 다음날 자시로 보아 일주를 하루 진행시킨다(통용되는
+           "정자시" 기준). 이 보정 때문에 원래 시각으로는 23:00 입력도
+           보정 후에는 해시(亥時, 22:30)가 되어 다음날로 넘어가지 않는다.
      절기 계산: 태양 겉보기 황경을 Jean Meeus의 저정밀도 태양좌표
            공식(각행성 섭동항 제외)으로 구하고, 목표 각도(15° 간격)에
            도달하는 시각을 수치적으로 역산한다. 이 저정밀도 공식 자체의
@@ -151,9 +154,30 @@
     return { stem: stem, branch: resolved.branch };
   }
 
-  /** 자시(23:00~23:59) 보정을 반영한 "일주 계산용" 날짜 문자열 대신 일수 오프셋을 반환 */
+  /* 한국 진태양시 보정: 표준시 기준경도(135°E)와 대한민국 중앙경도(127.5°E)의
+     차이(7.5°)만큼 태양이 늦게 남중하므로, 시각을 고정 -30분 당겨서 시주를
+     계산한다(출생지 경도를 따로 입력받지 않는 전국 공통 기본값). 다수의
+     만세력 서비스가 쓰는 방식과 동일하며, 연·월·일주에는 영향을 주지 않는다. */
+  var TRUE_SOLAR_TIME_OFFSET_MIN = -30;
+
+  /**
+   * 입력 시각(정시, 0~23)에 진태양시 보정을 적용해 "그 날짜 안에서의 보정된
+   * 분(0~1439)"과 "원래 날짜 대비 며칠 이동했는지(dayOffset, -1 또는 0)"를 구한다.
+   */
+  function trueSolarAdjustedTime(hour) {
+    var raw = hour * 60 + TRUE_SOLAR_TIME_OFFSET_MIN;
+    return {
+      dayOffset: Math.floor(raw / 1440),
+      minuteOfDay: mod(raw, 1440)
+    };
+  }
+
+  /** 자시(23:00~23:59, 보정 후 기준) 출생은 다음날 일진으로 본다 ("정자시" 기준) */
   function dayPillarOffset(hour) {
-    return (hour !== null && hour >= 23) ? 1 : 0;
+    if (hour === null) { return 0; }
+    var adjusted = trueSolarAdjustedTime(hour);
+    var jaSiRollover = adjusted.minuteOfDay >= 1380 ? 1 : 0; // 23:00 이후
+    return adjusted.dayOffset + jaSiRollover;
   }
 
   function calculateDayPillar(year, month, day, hour) {
@@ -168,7 +192,8 @@
     if (hour === null || hour === undefined) {
       return { stem: null, branch: null };
     }
-    var branch = Math.floor(mod(hour + 1, 24) / 2);
+    var adjusted = trueSolarAdjustedTime(hour);
+    var branch = Math.floor(mod(adjusted.minuteOfDay + 60, 1440) / 120);
     var stem = mod((dayStem % 5) * 2 + branch, 10);
     return { stem: stem, branch: branch };
   }
@@ -357,6 +382,7 @@
       input: { birthDate: input.birthDate, birthTime: input.birthTime, gender: input.gender },
       effectiveYear: yearPillar.year,
       hour: hour,
+      solarTimeCorrectionMin: hour === null ? null : TRUE_SOLAR_TIME_OFFSET_MIN,
       pillars: pillars,
       elements: analyzeElements(pillars),
       yinYang: analyzeYinYang(pillars),
@@ -378,6 +404,7 @@
     calculateTenGods: calculateTenGods,
     analyzeRelations: analyzeRelations,
     calculateSaju: calculateSaju,
+    TRUE_SOLAR_TIME_OFFSET_MIN: TRUE_SOLAR_TIME_OFFSET_MIN,
     /* 절기 계산은 saju-fortune.js 등에서 재사용할 수 있도록 노출 */
     sunApparentLongitude: sunApparentLongitude,
     toJulianDay: toJulianDay

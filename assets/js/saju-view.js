@@ -30,6 +30,7 @@
     meta: document.getElementById('sajuMeta'),
     pillars: document.getElementById('pillars'),
     hourNotice: document.getElementById('hourNotice'),
+    timeCorrectionNote: document.getElementById('timeCorrectionNote'),
     elements: document.getElementById('elements'),
     yinYangBar: document.getElementById('yinYangBar'),
     yinYangCopy: document.getElementById('yinYangCopy'),
@@ -72,6 +73,7 @@
       '</div>';
     }).join('');
     el.hourNotice.hidden = saju.hour !== null;
+    el.timeCorrectionNote.hidden = saju.solarTimeCorrectionMin === null;
   }
 
   function renderElements(elements) {

@@ -224,6 +224,15 @@
 }
 .v2-page .v2-saju-hour-notice[hidden] { display: none; }
 
+.v2-page .v2-saju-time-note {
+  margin: 6px 0 0;
+  font-family: var(--v2-mono);
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: var(--v2-ink-muted);
+}
+.v2-page .v2-saju-time-note[hidden] { display: none; }
+
 /* ---------- 음양 균형 ---------- */
 .v2-page .v2-yinyang {
   margin-top: 18px;
