@@ -19,54 +19,53 @@
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://is-an.github.io/games/">
   <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/v2.css">
+  <link rel="stylesheet" href="../assets/css/v2.css">
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
-  <main>
-    <section class="hero">
-      <div class="container">
-        <p class="eyebrow" data-i18n="games_eyebrow">무료 온라인 미니게임</p>
-        <h1 data-i18n="games_title">게임 모음</h1>
-        <p class="hero-copy" data-i18n="games_copy">짧은 시간에 즐기면서 반응속도, 집중력, 타자 실력을 확인해 보세요.</p>
-      </div>
-    </section>
+<main>
+  <div class="v2-simple-layout">
+    <nav class="v2-crumb" aria-label="현재 위치">
+      <a href="../" data-i18n="nav.home">홈</a>
+      <span aria-hidden="true">›</span>
+      <span class="v2-crumb-current" data-i18n="nav.games">게임</span>
+    </nav>
 
-    <section class="container">
-      <p class="hero-copy" data-i18n="games_intro">설치 없이 브라우저에서 바로 즐기는 무료 미니게임입니다. 반응속도, 집중력, 타자 실력을 짧게 확인해 보세요. 모든 기록은 이 브라우저에만 저장되며 서버로 전송되지 않습니다.</p>
-    </section>
+    <p class="v2-eyebrow" data-i18n="games_eyebrow">무료 온라인 미니게임</p>
+    <h1 class="v2-page-title" data-i18n="games_title">게임 모음</h1>
+    <p class="v2-page-lede" data-i18n="games_copy">짧은 시간에 즐기면서 반응속도, 집중력, 타자 실력을 확인해 보세요.</p>
+    <p class="v2-page-lede" data-i18n="games_intro">설치 없이 브라우저에서 바로 즐기는 무료 미니게임입니다. 반응속도, 집중력, 타자 실력을 짧게 확인해 보세요. 모든 기록은 이 브라우저에만 저장되며 서버로 전송되지 않습니다.</p>
 
-    <section class="container">
-      <div class="tools-grid" data-category="game">
-        <a href="./reaction/" class="tool-card tool-link" data-name="반응속도">
-          <h3 data-i18n="game_reaction_title">반응속도 테스트</h3>
-          <p data-i18n="game_reaction_desc">화면이 바뀌는 순간을 눌러 내 반응 시간을 측정합니다.</p>
-          <span class="arrow">→</span>
-        </a>
-        <a href="./sudoku/" class="tool-card tool-link" data-name="스도쿠">
-          <h3 data-i18n="game_sudoku_title">스도쿠</h3>
-          <p data-i18n="game_sudoku_desc">난이도를 선택하고 새로운 9x9 숫자 퍼즐을 완성하세요.</p>
-          <span class="arrow">→</span>
-        </a>
-        <a href="./typing/" class="tool-card tool-link" data-name="타자 속도">
-          <h3 data-i18n="game_typing_title">타자 속도 테스트</h3>
-          <p data-i18n="game_typing_desc">문장을 입력하며 정확도와 분당 타자 속도를 확인합니다.</p>
-          <span class="arrow">→</span>
-        </a>
-        <a href="./block-puzzle/" class="tool-card tool-link" data-name="블록 퍼즐">
-          <h3 data-i18n="game_block_title">블록 퍼즐</h3>
-          <p data-i18n="game_block_desc">블록을 쌓고 줄을 완성해 최고 점수에 도전하세요.</p>
-          <span class="arrow">→</span>
-        </a>
-      </div>
-    </section>
+    <div class="tools-grid" data-category="game">
+      <a href="./reaction/" class="tool-card tool-link" data-name="반응속도">
+        <h3 data-i18n="game_reaction_title">반응속도 테스트</h3>
+        <p data-i18n="game_reaction_desc">화면이 바뀌는 순간을 눌러 내 반응 시간을 측정합니다.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a href="./sudoku/" class="tool-card tool-link" data-name="스도쿠">
+        <h3 data-i18n="game_sudoku_title">스도쿠</h3>
+        <p data-i18n="game_sudoku_desc">난이도를 선택하고 새로운 9x9 숫자 퍼즐을 완성하세요.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a href="./typing/" class="tool-card tool-link" data-name="타자 속도">
+        <h3 data-i18n="game_typing_title">타자 속도 테스트</h3>
+        <p data-i18n="game_typing_desc">문장을 입력하며 정확도와 분당 타자 속도를 확인합니다.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a href="./block-puzzle/" class="tool-card tool-link" data-name="블록 퍼즐">
+        <h3 data-i18n="game_block_title">블록 퍼즐</h3>
+        <p data-i18n="game_block_desc">블록을 쌓고 줄을 완성해 최고 점수에 도전하세요.</p>
+        <span class="arrow">→</span>
+      </a>
+    </div>
 
-    <section class="container faq-section" hidden>
-      <h2 data-i18n="games_faq_title">❓ 자주 묻는 질문</h2>
+    <section class="v2-card faq-section v2-section-gap" hidden>
+      <h2 class="v2-card-title" data-i18n="games_faq_title">❓ 자주 묻는 질문</h2>
       <div class="faq-list" data-faq-category="games"></div>
-      <p><a href="../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+      <p class="v2-card-more"><a href="../faq/" data-i18n="faq_page_title">자주 묻는 질문 →</a></p>
     </section>
-  </main>
+  </div>
+</main>
   <div id="ads-slot" class="ads-slot"></div>
   <div id="site-footer"></div>
   <script src="../assets/js/i18n.js"></script>

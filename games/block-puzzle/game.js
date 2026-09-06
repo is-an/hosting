@@ -22,4 +22,8 @@
   function start() { board.forEach(row => row.fill(0)); score = lines = 0; level = 1; resultEl.classList.add('hidden'); running = true; spawn(); updateStats(); resetTimer(); draw(); }
   document.addEventListener('keydown', event => { if (!running) return; if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown',' '].includes(event.key)) event.preventDefault(); if (event.key === 'ArrowLeft') move(-1); if (event.key === 'ArrowRight') move(1); if (event.key === 'ArrowUp') rotate(); if (event.key === 'ArrowDown') drop(); if (event.key === ' ') hardDrop(); });
   [['blockLeft', () => move(-1)], ['blockRight', () => move(1)], ['blockRotate', rotate], ['blockDown', drop], ['blockDrop', hardDrop]].forEach(([id, fn]) => document.getElementById(id).addEventListener('click', fn)); document.getElementById('blockStart').addEventListener('click', start); document.getElementById('blockCopy').addEventListener('click', () => copyGameLink(window.location.href, { container: resultEl })); document.getElementById('blockShare').addEventListener('click', () => { if (!running && score) shareGameResult({ title: document.title, text: '🎮 블록 퍼즐\n\nScore: ' + score + '\nLines: ' + lines + '\nLevel: ' + level, container: resultEl }); }); updateStats(); draw();
+
+if (typeof renderRelatedByCategory === 'function') {
+  renderRelatedByCategory('relatedList', 'games', 'block-puzzle', 5);
+}
 })();

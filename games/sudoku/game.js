@@ -17,4 +17,8 @@
   numbersEl.innerHTML = [1,2,3,4,5,6,7,8,9].map(number => '<button type="button" data-number="' + number + '">' + number + '</button>').join(''); numbersEl.querySelectorAll('button').forEach(button => button.addEventListener('click', () => enter(Number(button.dataset.number))));
   document.addEventListener('keydown', event => { if (/^[1-9]$/.test(event.key)) enter(Number(event.key)); if (event.key === 'Backspace' || event.key === 'Delete') enter(0); });
   document.getElementById('sudokuNew').addEventListener('click', newGame); document.getElementById('sudokuCheck').addEventListener('click', () => { if (!complete) resultEl.innerHTML = '<p>실수: ' + mistakes + ' · 빈 칸을 모두 채워 보세요.</p>', resultEl.classList.remove('hidden'); }); document.getElementById('sudokuCopy').addEventListener('click', () => copyGameLink(window.location.href, { container: resultEl })); document.getElementById('sudokuShare').addEventListener('click', () => { if (complete) shareGameResult({ title: document.title, text: '🧩 스도쿠 ' + difficultyEl.options[difficultyEl.selectedIndex].text + ' 완료 시간: ' + formatTime(seconds), container: resultEl }); }); newGame();
+
+if (typeof renderRelatedByCategory === 'function') {
+  renderRelatedByCategory('relatedList', 'games', 'sudoku', 5);
+}
 })();
