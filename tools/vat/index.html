@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -18,102 +18,99 @@
   <meta name="description" content="부가세 계산기. 공급가액, 부가세, 합계금액을 계산하고 역산합니다.">
   <meta name="keywords" content="부가세계산, 부가세, 공급가액, 세금계산, 무료 온라인 도구">
   <meta name="robots" content="index,follow">
-  
+
   <link rel="canonical" href="https://is-an.github.io/tools/vat/">
   <link rel="stylesheet" href="../../assets/css/style.css">
-  <link rel="stylesheet" href="../../assets/css/v2.css">
+  <link rel="stylesheet" href="../../assets/css/v2.css">
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
-<main>
-    <section class="hero">
-      <div class="container">
-        <h1>부가세 계산기</h1>
-        <p class="hero-copy">공급가액과 부가세를 계산합니다.</p>
-      </div>
-    </section>
 
-    <div class="container">
-      <section class="calculator-section">
+<main>
+  <div class="v2-tool-layout">
+    <div>
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="../../cal/" data-i18n="nav.calculator">계산기</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current">부가세 계산기</span>
+      </nav>
+
+      <h1 class="v2-page-title">부가세 계산기</h1>
+      <p class="v2-page-lede">공급가액과 부가세를 계산합니다.</p>
+
+      <!-- ========== 계산 ========== -->
+      <section class="v2-card" aria-label="계산">
         <div class="calc-tabs">
           <button class="calc-tab-btn active" data-calc="vat-forward">공급가액 → 합계</button>
           <button class="calc-tab-btn" data-calc="vat-reverse">합계 → 공급가액</button>
         </div>
 
         <div id="vat-forward" class="calc-tab-content active">
-          <div class="calculator-card">
-            <div class="form-group">
-              <label for="vatSupply">공급가액</label>
-              <input type="number" id="vatSupply" placeholder="예: 100000" step="100">
+          <div class="v2-field-grid">
+            <div>
+              <label class="v2-label" for="vatSupply">공급가액</label>
+              <input type="number" id="vatSupply" class="v2-input" placeholder="예: 100000" step="100">
             </div>
-            
-            <div class="form-group">
-              <label for="vatRate">세율 (%)</label>
-              <input type="number" id="vatRate" value="10" placeholder="예: 10" step="0.1">
+            <div>
+              <label class="v2-label" for="vatRate">세율 (%)</label>
+              <input type="number" id="vatRate" class="v2-input" value="10" placeholder="예: 10" step="0.1">
             </div>
-
-            <div class="result-row">
-              <span>공급가액:</span>
-              <span id="vatSupplyResult"></span>
-            </div>
-            <div class="result-row">
-              <span>부가세:</span>
-              <span id="vatAmountResult"></span>
-            </div>
-            <div class="result-row">
-              <span>합계:</span>
-              <span id="vatTotalResult"></span>
+          </div>
+          <div class="v2-result">
+            <div class="v2-result-detail">
+              <div>공급가액: <span id="vatSupplyResult"></span></div>
+              <div>부가세: <span id="vatAmountResult"></span></div>
+              <div>합계: <span id="vatTotalResult"></span></div>
             </div>
           </div>
         </div>
 
         <div id="vat-reverse" class="calc-tab-content">
-          <div class="calculator-card">
-            <div class="form-group">
-              <label for="vatTotal">합계 금액</label>
-              <input type="number" id="vatTotal" placeholder="예: 110000" step="100">
+          <div class="v2-field-grid">
+            <div>
+              <label class="v2-label" for="vatTotal">합계 금액</label>
+              <input type="number" id="vatTotal" class="v2-input" placeholder="예: 110000" step="100">
             </div>
-            
-            <div class="form-group">
-              <label for="vatRateReverse">세율 (%)</label>
-              <input type="number" id="vatRateReverse" value="10" placeholder="예: 10" step="0.1">
+            <div>
+              <label class="v2-label" for="vatRateReverse">세율 (%)</label>
+              <input type="number" id="vatRateReverse" class="v2-input" value="10" placeholder="예: 10" step="0.1">
             </div>
-
-            <div class="result-row">
-              <span>합계:</span>
-              <span id="vatTotalReverseResult"></span>
-            </div>
-            <div class="result-row">
-              <span>공급가액:</span>
-              <span id="vatSupplyReverseResult"></span>
-            </div>
-            <div class="result-row">
-              <span>부가세:</span>
-              <span id="vatAmountReverseResult"></span>
+          </div>
+          <div class="v2-result">
+            <div class="v2-result-detail">
+              <div>합계: <span id="vatTotalReverseResult"></span></div>
+              <div>공급가액: <span id="vatSupplyReverseResult"></span></div>
+              <div>부가세: <span id="vatAmountReverseResult"></span></div>
             </div>
           </div>
         </div>
 
-        <div class="button-group">
-          <button id="vatCalcBtn" class="primary-btn">계산하기</button>
-          <button id="vatCopyBtn" class="secondary-btn">복사</button>
-          <button id="vatResetBtn" class="text-button">초기화</button>
+        <div class="v2-action-row">
+          <button type="button" id="vatCalcBtn" class="v2-btn-primary">계산하기</button>
+          <button type="button" id="vatCopyBtn" class="v2-btn-ghost">복사</button>
+          <button type="button" id="vatResetBtn" class="v2-btn-ghost">초기화</button>
         </div>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="vat_method_title">부가세 계산 방법</h2>
-        <p data-i18n="vat_method_intro">부가세(부가가치세)는 재화나 서비스의 공급가액에 매기는 세금입니다. 한국의 표준 세율은 10%입니다.</p>
-        <ul>
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline" id="ads-slot"></div>
+
+      <!-- ========== 설명 ========== -->
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title" data-i18n="vat_method_title">부가세 계산 방법</h2>
+        <p class="v2-card-copy" data-i18n="vat_method_intro">부가세(부가가치세)는 재화나 서비스의 공급가액에 매기는 세금입니다. 한국의 표준 세율은 10%입니다.</p>
+        <ul class="v2-card-list">
           <li data-i18n="vat_method_forward">공급가액에서 합계 구하기: 부가세 = 공급가액 × 10%, 합계 = 공급가액 + 부가세. 예를 들어 공급가액이 100,000원이면 부가세는 10,000원, 합계는 110,000원입니다.</li>
           <li data-i18n="vat_method_reverse">합계에서 공급가액 구하기: 공급가액 = 합계 ÷ 1.1, 부가세 = 합계 − 공급가액. 예를 들어 합계가 110,000원이면 공급가액은 100,000원, 부가세는 10,000원입니다.</li>
         </ul>
-        <p data-i18n="vat_method_note">카드 영수증이나 간이영수증에 표시된 금액은 보통 부가세가 포함된 합계 금액입니다. 이때는 ‘합계 → 공급가액’ 탭을 사용하세요.</p>
+        <p class="v2-card-copy" data-i18n="vat_method_note">카드 영수증이나 간이영수증에 표시된 금액은 보통 부가세가 포함된 합계 금액입니다. 이때는 ‘합계 → 공급가액’ 탭을 사용하세요.</p>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="vat_notice_title">이용 시 유의사항</h2>
-        <ul>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="vat_notice_title">이용 시 유의사항</h2>
+        <ul class="v2-card-list">
           <li data-i18n="vat_notice_1">면세 사업자나 면세 품목(기초 생필품, 도서, 일부 농수산물 등)에는 부가세가 붙지 않습니다.</li>
           <li data-i18n="vat_notice_2">간이과세자는 업종별 부가가치율이 적용되어 실제 납부세액이 이 계산과 다릅니다.</li>
           <li data-i18n="vat_notice_3">매입세액 공제, 의제매입세액 등은 반영하지 않습니다. 실제 신고세액은 매출세액에서 매입세액을 뺀 금액입니다.</li>
@@ -121,20 +118,38 @@
         </ul>
       </section>
 
-      <section class="faq-section" hidden>
-        <h2 data-i18n="vat_faq_title">❓ 자주 묻는 질문</h2>
+      <section class="v2-card faq-section" hidden>
+        <h2 class="v2-card-title" data-i18n="vat_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list" data-faq-category="vat"></div>
-        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+        <p class="v2-card-more"><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문 →</a></p>
       </section>
+    </div>
 
-</div>
-  </main>
-  <div id="ads-slot" class="ads-slot"></div>
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2>관련 도구</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../../cal/">계산기 전체 보기 →</a>
+      </div>
+
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <p class="v2-side-note">모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
 <script src="../../assets/js/header-nav.js"></script>
-  <script src="./vat.js"></script>
+<script src="../../assets/js/tools-data.js"></script>
+<script src="../../assets/js/tool-sidebar.js"></script>
+<script src="./vat.js"></script>
 <script src="../../assets/js/faq.js"></script>
 <script>
   (function () {

@@ -17,15 +17,29 @@
   <link rel="canonical" href="https://is-an.github.io/tools/shutter-count/">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"카메라 셔터카운트 확인기","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"}}</script>
   <link rel="stylesheet" href="../../assets/css/style.css">
-  <link rel="stylesheet" href="../../assets/css/v2.css">
+  <link rel="stylesheet" href="../../assets/css/v2.css">
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
-  <main>
-    <section class="hero"><div class="container"><p class="eyebrow" data-i18n="shutter_eyebrow">브라우저에서 안전하게 분석</p><h1 data-i18n="shutter_title">카메라 셔터카운트 확인기</h1><p class="hero-copy" data-i18n="shutter_copy">사진을 선택하면 EXIF 정보를 분석하여 카메라 모델과 확인 가능한 셔터카운트를 표시합니다.</p></div></section>
-    <div class="container">
-      <section class="calculator-section">
-        <div class="calculator-card shutter-card">
+
+<main>
+  <div class="v2-tool-layout">
+    <div>
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="../" data-i18n="nav.tools">도구</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current" data-i18n="shutter_title">카메라 셔터카운트 확인기</span>
+      </nav>
+
+      <p class="v2-eyebrow" data-i18n="shutter_eyebrow">브라우저에서 안전하게 분석</p>
+      <h1 class="v2-page-title" data-i18n="shutter_title">카메라 셔터카운트 확인기</h1>
+      <p class="v2-page-lede" data-i18n="shutter_copy">사진을 선택하면 EXIF 정보를 분석하여 카메라 모델과 확인 가능한 셔터카운트를 표시합니다.</p>
+
+      <!-- ========== 분석 ========== -->
+      <section class="v2-card" aria-label="사진 분석">
+        <div class="shutter-card">
           <input id="shutterFile" class="visually-hidden" type="file" accept="image/jpeg,image/tiff,.jpg,.jpeg,.tif,.tiff,.arw,.raf,.cr2,.rw2,.dng">
           <label id="shutterDropZone" class="shutter-dropzone" for="shutterFile" tabindex="0">
             <span class="shutter-icon" aria-hidden="true">📷</span>
@@ -34,22 +48,65 @@
             <span class="tool-btn" data-i18n="shutter_choose">사진 선택</span>
           </label>
           <p id="shutterStatus" class="helper-text" role="status" data-i18n="shutter_ready">사진은 이 기기에서만 분석되며 서버로 전송되지 않습니다.</p>
-          <div id="shutterPreviewWrap" class="shutter-preview hidden"><img id="shutterPreview" alt="선택한 사진 미리보기"><button id="shutterRemove" type="button" class="text-button" data-i18n="shutter_remove">사진 제거</button></div>
+          <div id="shutterPreviewWrap" class="shutter-preview hidden">
+            <img id="shutterPreview" alt="선택한 사진 미리보기">
+            <button id="shutterRemove" type="button" class="v2-btn-ghost" data-i18n="shutter_remove">사진 제거</button>
+          </div>
           <div id="shutterResult" class="shutter-result hidden" aria-live="polite"></div>
-          <div id="shutterActions" class="game-actions hidden"><button id="shutterShare" type="button" class="secondary-btn" data-i18n="shutter_share">결과 공유</button><button id="shutterCopy" type="button" class="secondary-btn" data-i18n="shutter_copyLink">링크 복사</button><button id="shutterAgain" type="button" class="primary-btn" data-i18n="shutter_again">다시 확인</button></div>
+          <div id="shutterActions" class="hidden">
+            <div class="v2-action-row">
+              <button id="shutterShare" type="button" class="v2-btn-ghost" data-i18n="shutter_share">결과 공유</button>
+              <button id="shutterCopy" type="button" class="v2-btn-ghost" data-i18n="shutter_copyLink">링크 복사</button>
+              <button id="shutterAgain" type="button" class="v2-btn-primary" data-i18n="shutter_again">다시 확인</button>
+            </div>
+          </div>
         </div>
       </section>
-      <section class="content-section shutter-privacy"><h2 data-i18n="shutter_privacyTitle">🔒 개인정보 보호</h2><p data-i18n="shutter_privacyCopy">사진은 서버에 업로드되지 않습니다. 모든 파일 읽기와 EXIF 분석은 사용자의 브라우저에서만 처리됩니다.</p></section>
-      <section class="content-section"><h2 data-i18n="shutter_aboutTitle">셔터카운트와 EXIF</h2><p data-i18n="shutter_aboutCopy">셔터카운트는 카메라가 촬영한 횟수를 나타내는 기록입니다. 일부 카메라는 이를 사진의 MakerNote에 저장하지만, 모든 파일과 모든 제조사에서 제공하는 것은 아닙니다. 이 도구는 파일에 명시적으로 저장된 값만 표시하며, 파일명이나 촬영일로 숫자를 추정하지 않습니다.</p><p data-i18n="shutter_rawNote">RAW 파일은 카메라 및 브라우저에 따라 EXIF 정보를 읽지 못할 수 있습니다.</p></section>
-      <section class="faq-section" hidden>
-        <h2 data-i18n="shutter_faqTitle">자주 묻는 질문</h2>
-        <div class="faq-list" data-faq-category="shutter"></div>
-        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline" id="ads-slot"></div>
+
+      <!-- ========== 설명 ========== -->
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title" data-i18n="shutter_privacyTitle">🔒 개인정보 보호</h2>
+        <p class="v2-card-copy" data-i18n="shutter_privacyCopy">사진은 서버에 업로드되지 않습니다. 모든 파일 읽기와 EXIF 분석은 사용자의 브라우저에서만 처리됩니다.</p>
       </section>
-</div>
-  </main>
-  <div id="ads-slot" class="ads-slot"></div><div id="site-footer"></div>
-  <script src="../../assets/js/i18n.js"></script><script src="../../assets/js/common.js"></script><script src="../../assets/js/header-nav.js"></script><script src="../../assets/js/share.js"></script><script src="./shutter-count.js"></script>
+
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="shutter_aboutTitle">셔터카운트와 EXIF</h2>
+        <p class="v2-card-copy" data-i18n="shutter_aboutCopy">셔터카운트는 카메라가 촬영한 횟수를 나타내는 기록입니다. 일부 카메라는 이를 사진의 MakerNote에 저장하지만, 모든 파일과 모든 제조사에서 제공하는 것은 아닙니다. 이 도구는 파일에 명시적으로 저장된 값만 표시하며, 파일명이나 촬영일로 숫자를 추정하지 않습니다.</p>
+        <p class="v2-card-copy" data-i18n="shutter_rawNote">RAW 파일은 카메라 및 브라우저에 따라 EXIF 정보를 읽지 못할 수 있습니다.</p>
+      </section>
+
+      <section class="v2-card faq-section" hidden>
+        <h2 class="v2-card-title" data-i18n="shutter_faqTitle">❓ 자주 묻는 질문</h2>
+        <div class="faq-list" data-faq-category="shutter"></div>
+        <p class="v2-card-more"><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문 →</a></p>
+      </section>
+    </div>
+
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2>관련 도구</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../">도구 전체 보기 →</a>
+      </div>
+
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <p class="v2-side-note">사진은 이 브라우저에서만 처리되며 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
+  <div id="site-footer"></div>
+  <script src="../../assets/js/i18n.js"></script><script src="../../assets/js/common.js"></script><script src="../../assets/js/header-nav.js"></script><script src="../../assets/js/share.js"></script>
+  <script src="../../assets/js/tools-data.js"></script><script src="../../assets/js/tool-sidebar.js"></script>
+  <script src="./shutter-count.js"></script>
 <script src="../../assets/js/faq.js"></script>
 <script>
   (function () {

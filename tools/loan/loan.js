@@ -57,4 +57,8 @@ loanResetBtn.addEventListener("click", () => {
 loanAmount.addEventListener("input", calculateLoan);
 loanRate.addEventListener("input", calculateLoan);
 loanTerm.addEventListener("input", calculateLoan);
+
+if (typeof renderRelatedByCategory === "function") {
+  renderRelatedByCategory("relatedList", "cal", "loan", 5);
+}
 loanType.addEventListener("change", calculateLoan);

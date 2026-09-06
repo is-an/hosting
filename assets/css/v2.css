@@ -910,3 +910,23 @@ body.v2-page *:focus-visible { outline: 2px solid var(--v2-accent); outline-offs
   font-weight: 500;
 }
 .v2-page .home-more-list a:hover { border-color: var(--v2-accent); background: var(--v2-surface-2); }
+
+.v2-page .stat-item {
+  background: var(--v2-surface-2);
+  border: 1px solid var(--v2-border);
+  border-radius: var(--v2-radius);
+}
+.v2-page .stat-label {
+  display: block;
+  color: var(--v2-muted);
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.v2-page .stat-value {
+  display: block;
+  font-family: var(--v2-mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--v2-accent);
+}

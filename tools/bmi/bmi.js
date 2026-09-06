@@ -53,3 +53,7 @@ bmiResetBtn.addEventListener("click", () => {
 
 bmiHeight.addEventListener("input", calculateBmi);
 bmiWeight.addEventListener("input", calculateBmi);
+
+if (typeof renderRelatedByCategory === "function") {
+  renderRelatedByCategory("relatedList", "cal", "bmi", 5);
+}

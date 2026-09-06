@@ -57,3 +57,7 @@ document.getElementById("vatTotal").addEventListener("input", calculateVat);
 document.getElementById("vatRateReverse").addEventListener("input", calculateVat);
 
 calculateVat();
+
+if (typeof renderRelatedByCategory === "function") {
+  renderRelatedByCategory("relatedList", "cal", "vat", 5);
+}

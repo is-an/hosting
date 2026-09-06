@@ -176,4 +176,8 @@
   ['dragleave', 'drop'].forEach(eventName => dropZone.addEventListener(eventName, event => { event.preventDefault(); dropZone.classList.remove('dragging'); }));
   dropZone.addEventListener('drop', event => handleFile(event.dataTransfer.files[0])); dropZone.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') fileInput.click(); });
   document.getElementById('shutterRemove').addEventListener('click', () => { reset(true); status.textContent = t('shutter_ready', '사진은 이 기기에서만 분석되며 서버로 전송되지 않습니다.'); }); document.getElementById('shutterAgain').addEventListener('click', () => fileInput.click()); document.getElementById('shutterCopy').addEventListener('click', () => copyGameLink(window.location.href, { container: result })); document.getElementById('shutterShare').addEventListener('click', () => { if (!latestInfo) return; const shutter = parseShutterCount(latestInfo); const camera = cleanText(latestInfo.make) + ' ' + cleanText(latestInfo.model); const detail = shutter.count ? t('shutter_count', '셔터카운트') + ': ' + formatNumber(shutter.count) : t('shutter_missingShort', '셔터카운트: 확인할 수 없음'); shareGameResult({ title: document.title, text: '📷 ' + t('shutter_shareTitle', '카메라 셔터카운트 확인 결과') + '\n\n' + camera.trim() + '\n' + detail, container: result }); });
+
+  if (typeof renderRelatedByCategory === 'function') {
+    renderRelatedByCategory('relatedList', 'tools', 'shutter-count', 5);
+  }
 })();

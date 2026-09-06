@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -18,83 +18,84 @@
   <meta name="description" content="대출 이자 계산기. 대출금액, 이율, 기간으로부터 월 상환액과 총 이자를 계산합니다.">
   <meta name="keywords" content="대출계산, 이자계산, 상환금, 대출이자, 무료 온라인 도구">
   <meta name="robots" content="index,follow">
-  
+
   <link rel="canonical" href="https://is-an.github.io/tools/loan/">
   <link rel="stylesheet" href="../../assets/css/style.css">
-  <link rel="stylesheet" href="../../assets/css/v2.css">
+  <link rel="stylesheet" href="../../assets/css/v2.css">
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
-<main>
-    <section class="hero">
-      <div class="container">
-        <h1>대출 이자 계산기</h1>
-        <p class="hero-copy">대출금액, 이율, 기간으로부터 월 상환액과 총 이자를 계산합니다.</p>
-      </div>
-    </section>
 
-    <div class="container">
-      <section class="calculator-section">
-        <div class="calculator-card">
-          <div class="form-group">
-            <label for="loanAmount">대출금액 (원)</label>
-            <input type="number" id="loanAmount" placeholder="예: 10000000" step="100000">
+<main>
+  <div class="v2-tool-layout">
+    <div>
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="../../cal/" data-i18n="nav.calculator">계산기</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current">대출 이자 계산기</span>
+      </nav>
+
+      <h1 class="v2-page-title">대출 이자 계산기</h1>
+      <p class="v2-page-lede">대출금액, 이율, 기간으로부터 월 상환액과 총 이자를 계산합니다.</p>
+
+      <!-- ========== 계산 ========== -->
+      <section class="v2-card" aria-label="계산">
+        <div class="v2-field-grid">
+          <div>
+            <label class="v2-label" for="loanAmount">대출금액 (원)</label>
+            <input type="number" id="loanAmount" class="v2-input" placeholder="예: 10000000" step="100000">
           </div>
-          
-          <div class="form-group">
-            <label for="loanRate">연 이율 (%)</label>
-            <input type="number" id="loanRate" placeholder="예: 4.5" step="0.1">
+          <div>
+            <label class="v2-label" for="loanRate">연 이율 (%)</label>
+            <input type="number" id="loanRate" class="v2-input" placeholder="예: 4.5" step="0.1">
           </div>
-          
-          <div class="form-group">
-            <label for="loanTerm">대출기간 (개월)</label>
-            <input type="number" id="loanTerm" placeholder="예: 60" step="1">
+          <div>
+            <label class="v2-label" for="loanTerm">대출기간 (개월)</label>
+            <input type="number" id="loanTerm" class="v2-input" placeholder="예: 60" step="1">
           </div>
-          
-          <div class="form-group">
-            <label for="loanType">상환 방식</label>
-            <select id="loanType">
+          <div>
+            <label class="v2-label" for="loanType">상환 방식</label>
+            <select id="loanType" class="v2-select">
               <option value="equal-payment">원리금균등</option>
               <option value="equal-principal">원금균등</option>
             </select>
           </div>
+        </div>
 
-          <div class="button-group">
-            <button id="loanCalcBtn" class="primary-btn">계산하기</button>
-            <button id="loanCopyBtn" class="secondary-btn">복사</button>
-            <button id="loanResetBtn" class="text-button">초기화</button>
-          </div>
+        <div class="v2-action-row">
+          <button type="button" id="loanCalcBtn" class="v2-btn-primary">계산하기</button>
+          <button type="button" id="loanCopyBtn" class="v2-btn-ghost">복사</button>
+          <button type="button" id="loanResetBtn" class="v2-btn-ghost">초기화</button>
+        </div>
 
-          <div id="loanResult" class="result hidden">
-            <div class="result-row">
-              <span>월 상환액:</span>
-              <span id="monthlyPayment"></span>
-            </div>
-            <div class="result-row">
-              <span>총 이자:</span>
-              <span id="totalInterest"></span>
-            </div>
-            <div class="result-row">
-              <span>총 상환액:</span>
-              <span id="totalPayment"></span>
-            </div>
+        <div id="loanResult" class="v2-result hidden">
+          <div class="v2-result-detail">
+            <div>월 상환액: <span id="monthlyPayment"></span></div>
+            <div>총 이자: <span id="totalInterest"></span></div>
+            <div>총 상환액: <span id="totalPayment"></span></div>
           </div>
         </div>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="loan_method_title">상환 방식 이해하기</h2>
-        <p data-i18n="loan_method_intro">대출 상환 방식에 따라 매달 내는 금액과 총 이자가 달라집니다. 이 계산기는 두 가지 방식을 지원합니다.</p>
-        <ul>
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline" id="ads-slot"></div>
+
+      <!-- ========== 설명 ========== -->
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title" data-i18n="loan_method_title">상환 방식 이해하기</h2>
+        <p class="v2-card-copy" data-i18n="loan_method_intro">대출 상환 방식에 따라 매달 내는 금액과 총 이자가 달라집니다. 이 계산기는 두 가지 방식을 지원합니다.</p>
+        <ul class="v2-card-list">
           <li data-i18n="loan_method_equal_payment">원리금균등상환: 매달 갚는 금액(원금+이자)이 일정합니다. 초반에는 이자 비중이 크고 갈수록 원금 비중이 커집니다. 매달 나가는 돈이 일정해 계획을 세우기 쉽습니다.</li>
           <li data-i18n="loan_method_equal_principal">원금균등상환: 매달 갚는 원금이 일정하고, 남은 원금에 대한 이자가 줄어들어 매달 상환액이 조금씩 감소합니다. 총 이자는 원리금균등보다 대체로 적습니다.</li>
         </ul>
-        <p data-i18n="loan_method_formula">원리금균등의 월 상환액은 ‘원금 × 월이율 × (1+월이율)^개월수 ÷ ((1+월이율)^개월수 − 1)’ 공식으로 계산하며, 월이율은 연이율을 12로 나눈 값입니다.</p>
+        <p class="v2-card-copy" data-i18n="loan_method_formula">원리금균등의 월 상환액은 ‘원금 × 월이율 × (1+월이율)^개월수 ÷ ((1+월이율)^개월수 − 1)’ 공식으로 계산하며, 월이율은 연이율을 12로 나눈 값입니다.</p>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="loan_example_title">계산 예시</h2>
-        <p data-i18n="loan_example_intro">대출금액 3,000만 원, 연이율 4.5%, 기간 60개월(5년)로 이 계산기에서 계산하면 다음과 같습니다.</p>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="loan_example_title">계산 예시</h2>
+        <p class="v2-card-copy" data-i18n="loan_example_intro">대출금액 3,000만 원, 연이율 4.5%, 기간 60개월(5년)로 이 계산기에서 계산하면 다음과 같습니다.</p>
         <div class="info-table-wrap">
           <table class="info-table">
             <thead>
@@ -118,12 +119,12 @@
             </tbody>
           </table>
         </div>
-        <p data-i18n="loan_example_note">같은 조건이라도 원금균등이 총 이자는 적지만 초기 상환 부담은 더 큽니다.</p>
+        <p class="v2-card-copy" data-i18n="loan_example_note">같은 조건이라도 원금균등이 총 이자는 적지만 초기 상환 부담은 더 큽니다.</p>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="loan_notice_title">이용 시 유의사항</h2>
-        <ul>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="loan_notice_title">이용 시 유의사항</h2>
+        <ul class="v2-card-list">
           <li data-i18n="loan_notice_1">이 계산기는 입력한 이율이 만기까지 고정된다고 가정합니다. 변동금리 대출은 시장금리에 따라 상환액이 달라집니다.</li>
           <li data-i18n="loan_notice_2">중도상환수수료, 인지세, 근저당 설정비 등 부대비용과 거치기간(원금 없이 이자만 내는 기간)은 반영하지 않습니다.</li>
           <li data-i18n="loan_notice_3">실제 대출 한도와 금리는 소득, 신용점수, DSR·LTV 규제 등에 따라 결정되므로 금융회사 상담이 필요합니다.</li>
@@ -131,20 +132,38 @@
         </ul>
       </section>
 
-      <section class="faq-section" hidden>
-        <h2 data-i18n="loan_faq_title">❓ 자주 묻는 질문</h2>
+      <section class="v2-card faq-section" hidden>
+        <h2 class="v2-card-title" data-i18n="loan_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list" data-faq-category="loan"></div>
-        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+        <p class="v2-card-more"><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문 →</a></p>
       </section>
+    </div>
 
-</div>
-  </main>
-  <div id="ads-slot" class="ads-slot"></div>
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2>관련 도구</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../../cal/">계산기 전체 보기 →</a>
+      </div>
+
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <p class="v2-side-note">모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
 <script src="../../assets/js/header-nav.js"></script>
-  <script src="./loan.js"></script>
+<script src="../../assets/js/tools-data.js"></script>
+<script src="../../assets/js/tool-sidebar.js"></script>
+<script src="./loan.js"></script>
 <script src="../../assets/js/faq.js"></script>
 <script>
   (function () {

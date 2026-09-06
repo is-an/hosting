@@ -55,3 +55,7 @@ textConvResetBtn.addEventListener("click", () => {
   textConvInput.value = "";
   textConvOutput.value = "";
 });
+
+if (typeof renderRelatedByCategory === "function") {
+  renderRelatedByCategory("relatedList", "tools", "textconv", 5);
+}

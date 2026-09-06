@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -18,109 +18,128 @@
   <meta name="description" content="예금/적금 이자 계산기. 예치금과 이율로부터 이자와 만기 수령액을 계산합니다.">
   <meta name="keywords" content="예금계산, 적금계산, 이자계산, 만기액, 무료 온라인 도구">
   <meta name="robots" content="index,follow">
-  
+
   <link rel="canonical" href="https://is-an.github.io/tools/savings/">
   <link rel="stylesheet" href="../../assets/css/style.css">
-  <link rel="stylesheet" href="../../assets/css/v2.css">
+  <link rel="stylesheet" href="../../assets/css/v2.css">
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
-<main>
-    <section class="hero">
-      <div class="container">
-        <h1>예금/적금 이자 계산기</h1>
-        <p class="hero-copy">예치금과 이율로부터 이자와 만기 수령액을 계산합니다.</p>
-      </div>
-    </section>
 
-    <div class="container">
-      <section class="calculator-section">
-        <div class="calculator-card">
-          <div class="form-group">
-            <label for="savingsAmount">예치금 (원)</label>
-            <input type="number" id="savingsAmount" placeholder="예: 1000000" step="100000">
+<main>
+  <div class="v2-tool-layout">
+    <div>
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="../../cal/" data-i18n="nav.calculator">계산기</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current">예금/적금 이자 계산기</span>
+      </nav>
+
+      <h1 class="v2-page-title">예금/적금 이자 계산기</h1>
+      <p class="v2-page-lede">예치금과 이율로부터 이자와 만기 수령액을 계산합니다.</p>
+
+      <!-- ========== 계산 ========== -->
+      <section class="v2-card" aria-label="계산">
+        <div class="v2-field-grid">
+          <div>
+            <label class="v2-label" for="savingsAmount">예치금 (원)</label>
+            <input type="number" id="savingsAmount" class="v2-input" placeholder="예: 1000000" step="100000">
           </div>
-          
-          <div class="form-group">
-            <label for="savingsTerm">기간 (개월)</label>
-            <input type="number" id="savingsTerm" placeholder="예: 12" step="1">
+          <div>
+            <label class="v2-label" for="savingsTerm">기간 (개월)</label>
+            <input type="number" id="savingsTerm" class="v2-input" placeholder="예: 12" step="1">
           </div>
-          
-          <div class="form-group">
-            <label for="savingsRate">연 이율 (%)</label>
-            <input type="number" id="savingsRate" placeholder="예: 4.5" step="0.1">
+          <div>
+            <label class="v2-label" for="savingsRate">연 이율 (%)</label>
+            <input type="number" id="savingsRate" class="v2-input" placeholder="예: 4.5" step="0.1">
           </div>
-          
-          <div class="form-group">
-            <label for="savingsType">상품 종류</label>
-            <select id="savingsType">
+          <div>
+            <label class="v2-label" for="savingsType">상품 종류</label>
+            <select id="savingsType" class="v2-select">
               <option value="deposit">정기예금 (단리)</option>
               <option value="savings">적금 (월복리)</option>
             </select>
           </div>
+        </div>
 
-          <div class="button-group">
-            <button id="savingsCalcBtn" class="primary-btn">계산하기</button>
-            <button id="savingsCopyBtn" class="secondary-btn">복사</button>
-            <button id="savingsResetBtn" class="text-button">초기화</button>
-          </div>
+        <div class="v2-action-row">
+          <button type="button" id="savingsCalcBtn" class="v2-btn-primary">계산하기</button>
+          <button type="button" id="savingsCopyBtn" class="v2-btn-ghost">복사</button>
+          <button type="button" id="savingsResetBtn" class="v2-btn-ghost">초기화</button>
+        </div>
 
-          <div id="savingsResult" class="result hidden">
-            <div class="result-row">
-              <span>예상이자 (세후):</span>
-              <span id="savingsInterest"></span>
-            </div>
-            <div class="result-row">
-              <span>세전이자:</span>
-              <span id="savingsInterestBeforeTax"></span>
-            </div>
-            <div class="result-row">
-              <span>만기액:</span>
-              <span id="savingsMaturityAmount"></span>
-            </div>
+        <div id="savingsResult" class="v2-result hidden">
+          <div class="v2-result-detail">
+            <div>예상이자 (세후): <span id="savingsInterest"></span></div>
+            <div>세전이자: <span id="savingsInterestBeforeTax"></span></div>
+            <div>만기액: <span id="savingsMaturityAmount"></span></div>
           </div>
         </div>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="savings_about_title">예금과 적금, 단리와 복리</h2>
-        <ul>
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline" id="ads-slot"></div>
+
+      <!-- ========== 설명 ========== -->
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title" data-i18n="savings_about_title">예금과 적금, 단리와 복리</h2>
+        <ul class="v2-card-list">
           <li data-i18n="savings_about_deposit">정기예금: 목돈을 한 번에 맡기고 만기에 원금과 이자를 받습니다. 이 계산기의 ‘정기예금(단리)’은 예치금 칸에 맡기는 금액을 입력합니다.</li>
           <li data-i18n="savings_about_savings">적금: 매달 일정액을 나눠 넣습니다. 이 계산기의 ‘적금(월복리)’은 예치금 칸에 매달 넣는 금액을 입력합니다.</li>
           <li data-i18n="savings_about_simple">단리는 원금에만 이자가 붙고, 복리는 이자에 다시 이자가 붙습니다.</li>
         </ul>
-        <p data-i18n="savings_about_tax">이자에는 이자소득세 15.4%(소득세 14% + 지방소득세 1.4%)가 원천징수됩니다. 이 계산기는 세전 이자와 세후 이자를 함께 보여 줍니다.</p>
+        <p class="v2-card-copy" data-i18n="savings_about_tax">이자에는 이자소득세 15.4%(소득세 14% + 지방소득세 1.4%)가 원천징수됩니다. 이 계산기는 세전 이자와 세후 이자를 함께 보여 줍니다.</p>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="savings_example_title">계산 예시</h2>
-        <p data-i18n="savings_example_body">정기예금에 1,000만 원을 연 3.5%로 12개월 맡기면, 세전 이자는 35만 원, 세금 15.4%를 뺀 세후 이자는 약 29만 6천 원, 만기액은 약 1,029만 6천 원입니다.</p>
-        <p data-i18n="savings_example_note">적금은 매달 나눠 넣기 때문에 먼저 넣은 돈만 전체 기간 이자가 붙고, 나중에 넣은 돈은 짧게 붙습니다. 그래서 표시 이율이 같아도 적금의 실제 수령 이자는 같은 금액의 예금보다 적습니다.</p>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="savings_example_title">계산 예시</h2>
+        <p class="v2-card-copy" data-i18n="savings_example_body">정기예금에 1,000만 원을 연 3.5%로 12개월 맡기면, 세전 이자는 35만 원, 세금 15.4%를 뺀 세후 이자는 약 29만 6천 원, 만기액은 약 1,029만 6천 원입니다.</p>
+        <p class="v2-card-copy" data-i18n="savings_example_note">적금은 매달 나눠 넣기 때문에 먼저 넣은 돈만 전체 기간 이자가 붙고, 나중에 넣은 돈은 짧게 붙습니다. 그래서 표시 이율이 같아도 적금의 실제 수령 이자는 같은 금액의 예금보다 적습니다.</p>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="savings_notice_title">이용 시 유의사항</h2>
-        <ul>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="savings_notice_title">이용 시 유의사항</h2>
+        <ul class="v2-card-list">
           <li data-i18n="savings_notice_1">실제 은행 적금은 대부분 단리로, 월별 예치 개월수에 따라 이자를 계산합니다. 이 계산기의 ‘적금(월복리)’ 결과는 실제 상품보다 이자가 다소 높게 나올 수 있습니다.</li>
           <li data-i18n="savings_notice_2">우대금리 조건, 중도해지 시 약정이율 미적용, 비과세·세금우대 상품 여부는 반영하지 않습니다.</li>
           <li data-i18n="savings_notice_3">계산 결과는 참고용이며, 정확한 금액은 가입하려는 상품의 약관과 은행 안내로 확인하세요.</li>
         </ul>
       </section>
 
-      <section class="faq-section" hidden>
-        <h2 data-i18n="savings_faq_title">❓ 자주 묻는 질문</h2>
+      <section class="v2-card faq-section" hidden>
+        <h2 class="v2-card-title" data-i18n="savings_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list" data-faq-category="savings"></div>
-        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+        <p class="v2-card-more"><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문 →</a></p>
       </section>
+    </div>
 
-</div>
-  </main>
-  <div id="ads-slot" class="ads-slot"></div>
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2>관련 도구</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../../cal/">계산기 전체 보기 →</a>
+      </div>
+
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <p class="v2-side-note">모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
 <script src="../../assets/js/header-nav.js"></script>
-  <script src="./savings.js"></script>
+<script src="../../assets/js/tools-data.js"></script>
+<script src="../../assets/js/tool-sidebar.js"></script>
+<script src="./savings.js"></script>
 <script src="../../assets/js/faq.js"></script>
 <script>
   (function () {

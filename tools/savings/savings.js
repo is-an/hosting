@@ -54,3 +54,7 @@ savingsAmount.addEventListener("input", calculateSavings);
 savingsTerm.addEventListener("input", calculateSavings);
 savingsRate.addEventListener("input", calculateSavings);
 savingsType.addEventListener("change", calculateSavings);
+
+if (typeof renderRelatedByCategory === "function") {
+  renderRelatedByCategory("relatedList", "cal", "savings", 5);
+}

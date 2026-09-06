@@ -36,3 +36,7 @@ salaryResetBtn.addEventListener("click", () => {
 });
 
 annualSalary.addEventListener("input", calculateSalary);
+
+if (typeof renderRelatedByCategory === "function") {
+  renderRelatedByCategory("relatedList", "cal", "salary", 5);
+}

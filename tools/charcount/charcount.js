@@ -33,3 +33,7 @@ charCountResetBtn.addEventListener("click", () => {
 
 // 초기화
 updateCharCount();
+
+if (typeof renderRelatedByCategory === "function") {
+  renderRelatedByCategory("relatedList", "tools", "charcount", 5);
+}

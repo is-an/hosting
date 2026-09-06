@@ -48,3 +48,7 @@ joinDate.addEventListener("change", calculateRetirement);
 leaveDate.addEventListener("change", calculateRetirement);
 lastSalary.addEventListener("input", calculateRetirement);
 bonus.addEventListener("input", calculateRetirement);
+
+if (typeof renderRelatedByCategory === "function") {
+  renderRelatedByCategory("relatedList", "cal", "retirement", 5);
+}

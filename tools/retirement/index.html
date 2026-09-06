@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -18,86 +18,87 @@
   <meta name="description" content="퇴직금 계산기. 입사일과 퇴사일로부터 예상 퇴직금을 계산합니다.">
   <meta name="keywords" content="퇴직금계산, 퇴직, 근무기간, 평균임금, 무료 온라인 도구">
   <meta name="robots" content="index,follow">
-  
+
   <link rel="canonical" href="https://is-an.github.io/tools/retirement/">
   <link rel="stylesheet" href="../../assets/css/style.css">
-  <link rel="stylesheet" href="../../assets/css/v2.css">
+  <link rel="stylesheet" href="../../assets/css/v2.css">
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
+
 <main>
-    <section class="hero">
-      <div class="container">
-        <h1>퇴직금 계산기</h1>
-        <p class="hero-copy">입사일과 퇴사일로부터 예상 퇴직금을 계산합니다.</p>
-      </div>
-    </section>
+  <div class="v2-tool-layout">
+    <div>
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="../../cal/" data-i18n="nav.calculator">계산기</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current">퇴직금 계산기</span>
+      </nav>
 
-    <div class="container">
-      <section class="calculator-section">
-        <div class="calculator-card">
-          <div class="form-group">
-            <label for="joinDate">입사일</label>
-            <input type="date" id="joinDate">
-          </div>
-          
-          <div class="form-group">
-            <label for="leaveDate">퇴사일</label>
-            <input type="date" id="leaveDate">
-          </div>
-          
-          <div class="form-group">
-            <label for="lastSalary">마지막 월급 (원)</label>
-            <input type="number" id="lastSalary" placeholder="예: 3000000" step="100000">
-          </div>
-          
-          <div class="form-group">
-            <label for="bonus">보너스/상여금 (원)</label>
-            <input type="number" id="bonus" placeholder="0" value="0" step="100000">
-          </div>
+      <h1 class="v2-page-title">퇴직금 계산기</h1>
+      <p class="v2-page-lede">입사일과 퇴사일로부터 예상 퇴직금을 계산합니다.</p>
 
-          <div class="button-group">
-            <button id="retirementCalcBtn" class="primary-btn">계산하기</button>
-            <button id="retirementCopyBtn" class="secondary-btn">복사</button>
-            <button id="retirementResetBtn" class="text-button">초기화</button>
+      <!-- ========== 계산 ========== -->
+      <section class="v2-card" aria-label="계산">
+        <div class="v2-field-grid">
+          <div>
+            <label class="v2-label" for="joinDate">입사일</label>
+            <input type="date" id="joinDate" class="v2-input">
           </div>
+          <div>
+            <label class="v2-label" for="leaveDate">퇴사일</label>
+            <input type="date" id="leaveDate" class="v2-input">
+          </div>
+          <div>
+            <label class="v2-label" for="lastSalary">마지막 월급 (원)</label>
+            <input type="number" id="lastSalary" class="v2-input" placeholder="예: 3000000" step="100000">
+          </div>
+          <div>
+            <label class="v2-label" for="bonus">보너스/상여금 (원)</label>
+            <input type="number" id="bonus" class="v2-input" placeholder="0" value="0" step="100000">
+          </div>
+        </div>
 
-          <div id="retirementResult" class="result hidden">
-            <div class="result-row">
-              <span>근무기간:</span>
-              <span id="serviceYears"></span>
-            </div>
-            <div class="result-row">
-              <span>평균임금:</span>
-              <span id="averageWage"></span>
-            </div>
-            <div class="result-row">
-              <span>예상퇴직금:</span>
-              <span id="estimatedRetirement"></span>
-            </div>
+        <div class="v2-action-row">
+          <button type="button" id="retirementCalcBtn" class="v2-btn-primary">계산하기</button>
+          <button type="button" id="retirementCopyBtn" class="v2-btn-ghost">복사</button>
+          <button type="button" id="retirementResetBtn" class="v2-btn-ghost">초기화</button>
+        </div>
+
+        <div id="retirementResult" class="v2-result hidden">
+          <div class="v2-result-detail">
+            <div>근무기간: <span id="serviceYears"></span></div>
+            <div>평균임금: <span id="averageWage"></span></div>
+            <div>예상퇴직금: <span id="estimatedRetirement"></span></div>
           </div>
         </div>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="retirement_about_title">퇴직금은 어떻게 계산되나요</h2>
-        <p data-i18n="retirement_about_intro">법정 퇴직금은 계속 근로기간 1년에 대해 30일분의 평균임금을 지급하는 것이 기준입니다. 공식은 대략 ‘1일 평균임금 × 30 × (재직일수 ÷ 365)’ 입니다.</p>
-        <ul>
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline" id="ads-slot"></div>
+
+      <!-- ========== 설명 ========== -->
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title" data-i18n="retirement_about_title">퇴직금은 어떻게 계산되나요</h2>
+        <p class="v2-card-copy" data-i18n="retirement_about_intro">법정 퇴직금은 계속 근로기간 1년에 대해 30일분의 평균임금을 지급하는 것이 기준입니다. 공식은 대략 ‘1일 평균임금 × 30 × (재직일수 ÷ 365)’ 입니다.</p>
+        <ul class="v2-card-list">
           <li data-i18n="retirement_about_1">계속 근로기간이 1년 미만이면 법정 퇴직금 지급 대상이 아닙니다.</li>
           <li data-i18n="retirement_about_2">평균임금은 퇴직 직전 3개월 동안 받은 임금 총액을 그 기간의 총일수로 나눈 값이며, 연간 상여금과 연차수당의 일부도 포함됩니다.</li>
           <li data-i18n="retirement_about_3">주 15시간 미만 초단시간 근로 등 일부 예외가 있습니다.</li>
         </ul>
-        <p data-i18n="retirement_about_note">이 계산기는 입력한 마지막 월급과 보너스를 바탕으로 한 단순 추정치를 보여 줍니다. 실제 평균임금 산정과는 차이가 있을 수 있습니다.</p>
+        <p class="v2-card-copy" data-i18n="retirement_about_note">이 계산기는 입력한 마지막 월급과 보너스를 바탕으로 한 단순 추정치를 보여 줍니다. 실제 평균임금 산정과는 차이가 있을 수 있습니다.</p>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="retirement_example_title">계산 예시</h2>
-        <p data-i18n="retirement_example_body">마지막 월급 300만 원, 보너스 없음, 3년(약 1,096일) 근무로 계산하면 예상 퇴직금은 약 900만 원으로 표시됩니다. 대략 ‘월급 × 근속연수’ 수준입니다.</p>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="retirement_example_title">계산 예시</h2>
+        <p class="v2-card-copy" data-i18n="retirement_example_body">마지막 월급 300만 원, 보너스 없음, 3년(약 1,096일) 근무로 계산하면 예상 퇴직금은 약 900만 원으로 표시됩니다. 대략 ‘월급 × 근속연수’ 수준입니다.</p>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="retirement_notice_title">이용 시 유의사항</h2>
-        <ul>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="retirement_notice_title">이용 시 유의사항</h2>
+        <ul class="v2-card-list">
           <li data-i18n="retirement_notice_1">퇴직소득세는 별도로 공제되며 이 계산기 결과에는 반영되지 않습니다. 근속연수가 길수록 세 부담은 낮아집니다.</li>
           <li data-i18n="retirement_notice_2">확정기여형(DC) 퇴직연금은 회사가 매년 납입한 금액과 운용 수익에 따라 최종 수령액이 달라집니다.</li>
           <li data-i18n="retirement_notice_3">회사 규정이 법정 기준보다 유리한 경우 그 규정이 우선 적용됩니다.</li>
@@ -105,20 +106,38 @@
         </ul>
       </section>
 
-      <section class="faq-section" hidden>
-        <h2 data-i18n="retirement_faq_title">❓ 자주 묻는 질문</h2>
+      <section class="v2-card faq-section" hidden>
+        <h2 class="v2-card-title" data-i18n="retirement_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list" data-faq-category="retirement"></div>
-        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+        <p class="v2-card-more"><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문 →</a></p>
       </section>
+    </div>
 
-</div>
-  </main>
-  <div id="ads-slot" class="ads-slot"></div>
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2>관련 도구</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../../cal/">계산기 전체 보기 →</a>
+      </div>
+
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <p class="v2-side-note">모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
 <script src="../../assets/js/header-nav.js"></script>
-  <script src="./retirement.js"></script>
+<script src="../../assets/js/tools-data.js"></script>
+<script src="../../assets/js/tool-sidebar.js"></script>
+<script src="./retirement.js"></script>
 <script src="../../assets/js/faq.js"></script>
 <script>
   (function () {

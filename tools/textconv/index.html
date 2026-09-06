@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -18,85 +18,108 @@
   <meta name="description" content="텍스트 변환 도구. 텍스트를 다양한 방식으로 변환하고 처리합니다.">
   <meta name="keywords" content="텍스트변환, 대문자, 소문자, 공백제거, 무료 온라인 도구">
   <meta name="robots" content="index,follow">
-  
+
   <link rel="canonical" href="https://is-an.github.io/tools/textconv/">
   <link rel="stylesheet" href="../../assets/css/style.css">
-  <link rel="stylesheet" href="../../assets/css/v2.css">
+  <link rel="stylesheet" href="../../assets/css/v2.css">
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
+
 <main>
-    <section class="hero">
-      <div class="container">
-        <h1>텍스트 변환 도구</h1>
-        <p class="hero-copy">텍스트를 다양한 방식으로 변환하고 처리합니다.</p>
-      </div>
-    </section>
+  <div class="v2-tool-layout">
+    <div>
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="../" data-i18n="nav.tools">도구</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current">텍스트 변환 도구</span>
+      </nav>
 
-    <div class="container">
-      <section class="calculator-section">
-        <div class="calculator-card">
-          <div class="form-group">
-            <label for="textConvInput">입력 텍스트</label>
-            <textarea id="textConvInput" placeholder="변환할 텍스트를 입력하세요." rows="6"></textarea>
-          </div>
+      <h1 class="v2-page-title">텍스트 변환 도구</h1>
+      <p class="v2-page-lede">텍스트를 다양한 방식으로 변환하고 처리합니다.</p>
 
-          <div class="button-group">
-            <button id="textRemoveSpaceBtn" class="secondary-btn" style="width: 100%;">공백 제거</button>
-            <button id="textRemoveLineBtn" class="secondary-btn" style="width: 100%;">줄바꿈 제거</button>
-            <button id="textUpperBtn" class="secondary-btn" style="width: 100%;">대문자</button>
-            <button id="textLowerBtn" class="secondary-btn" style="width: 100%;">소문자</button>
-            <button id="textTrimBtn" class="secondary-btn" style="width: 100%;">정렬</button>
-            <button id="textReverseBtn" class="secondary-btn" style="width: 100%;">역순</button>
-          </div>
+      <!-- ========== 계산 ========== -->
+      <section class="v2-card" aria-label="변환">
+        <label class="v2-label" for="textConvInput">입력 텍스트</label>
+        <textarea id="textConvInput" class="v2-input" placeholder="변환할 텍스트를 입력하세요." rows="6" style="resize: vertical;"></textarea>
 
-          <div class="form-group">
-            <label for="textConvOutput">변환 결과</label>
-            <textarea id="textConvOutput" placeholder="변환된 텍스트가 여기에 표시됩니다." rows="6" readonly></textarea>
-          </div>
+        <div class="v2-action-row">
+          <button type="button" id="textRemoveSpaceBtn" class="v2-btn-ghost">공백 제거</button>
+          <button type="button" id="textRemoveLineBtn" class="v2-btn-ghost">줄바꿈 제거</button>
+          <button type="button" id="textUpperBtn" class="v2-btn-ghost">대문자</button>
+          <button type="button" id="textLowerBtn" class="v2-btn-ghost">소문자</button>
+          <button type="button" id="textTrimBtn" class="v2-btn-ghost">정렬</button>
+          <button type="button" id="textReverseBtn" class="v2-btn-ghost">역순</button>
+        </div>
 
-          <div class="button-group">
-            <button id="textConvCopyBtn" class="secondary-btn">복사</button>
-            <button id="textConvResetBtn" class="text-button">초기화</button>
-          </div>
+        <label class="v2-label v2-section-gap" for="textConvOutput">변환 결과</label>
+        <textarea id="textConvOutput" class="v2-input v2-readonly" placeholder="변환된 텍스트가 여기에 표시됩니다." rows="6" style="resize: vertical;" readonly></textarea>
+
+        <div class="v2-action-row">
+          <button type="button" id="textConvCopyBtn" class="v2-btn-ghost">복사</button>
+          <button type="button" id="textConvResetBtn" class="v2-btn-ghost">초기화</button>
         </div>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="textconv_about_title">각 버튼이 하는 일</h2>
-        <ul>
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline" id="ads-slot"></div>
+
+      <!-- ========== 설명 ========== -->
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title" data-i18n="textconv_about_title">각 버튼이 하는 일</h2>
+        <ul class="v2-card-list">
           <li data-i18n="textconv_about_1">공백 제거: 스페이스·탭·줄바꿈 등 모든 공백 문자를 없앱니다.</li>
           <li data-i18n="textconv_about_2">줄바꿈 제거: 줄바꿈을 공백 한 칸으로 바꿔 여러 줄을 한 줄로 만듭니다.</li>
           <li data-i18n="textconv_about_3">대문자 / 소문자: 영문 알파벳의 대소문자를 일괄 변환합니다.</li>
           <li data-i18n="textconv_about_4">정렬: 각 줄의 앞뒤 공백을 제거합니다(줄 순서는 그대로).</li>
           <li data-i18n="textconv_about_5">역순: 전체 글자 순서를 거꾸로 뒤집습니다.</li>
         </ul>
-        <p data-i18n="textconv_about_note">변환 결과는 위 입력을 바꾸지 않고 아래 결과 칸에 표시되며, 복사 버튼으로 가져갈 수 있습니다.</p>
+        <p class="v2-card-copy" data-i18n="textconv_about_note">변환 결과는 위 입력을 바꾸지 않고 아래 결과 칸에 표시되며, 복사 버튼으로 가져갈 수 있습니다.</p>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="textconv_use_title">이런 데 쓸 수 있어요</h2>
-        <ul>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="textconv_use_title">이런 데 쓸 수 있어요</h2>
+        <ul class="v2-card-list">
           <li data-i18n="textconv_use_1">엑셀·표에서 복사한 텍스트의 불필요한 줄바꿈·공백 정리</li>
           <li data-i18n="textconv_use_2">코드·상수 이름을 대문자 또는 소문자로 통일</li>
           <li data-i18n="textconv_use_3">문장 부호나 공백이 섞인 목록을 한 줄로 합치기</li>
         </ul>
       </section>
 
-      <section class="faq-section" hidden>
-        <h2 data-i18n="textconv_faq_title">❓ 자주 묻는 질문</h2>
+      <section class="v2-card faq-section" hidden>
+        <h2 class="v2-card-title" data-i18n="textconv_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list" data-faq-category="textconv"></div>
-        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+        <p class="v2-card-more"><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문 →</a></p>
       </section>
+    </div>
 
-</div>
-  </main>
-  <div id="ads-slot" class="ads-slot"></div>
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2>관련 도구</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../">도구 전체 보기 →</a>
+      </div>
+
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <p class="v2-side-note">모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
 <script src="../../assets/js/header-nav.js"></script>
-  <script src="./textconv.js"></script>
+<script src="../../assets/js/tools-data.js"></script>
+<script src="../../assets/js/tool-sidebar.js"></script>
+<script src="./textconv.js"></script>
 <script src="../../assets/js/faq.js"></script>
 <script>
   (function () {

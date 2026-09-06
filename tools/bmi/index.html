@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -18,10 +18,10 @@
   <meta name="description" content="BMI 계산기. 키와 체중을 입력하면 BMI와 건강 상태, 적정 체중을 표시합니다.">
   <meta name="keywords" content="BMI계산, 체중계산, 건강지수, 비만도, 무료 온라인 도구">
   <meta name="robots" content="index,follow">
-  
+
   <link rel="canonical" href="https://is-an.github.io/tools/bmi/">
   <link rel="stylesheet" href="../../assets/css/style.css">
-  <link rel="stylesheet" href="../../assets/css/v2.css">
+  <link rel="stylesheet" href="../../assets/css/v2.css">
   <style>
     .bmi-display { font-size: 2.5em; font-weight: bold; text-align: center; margin: 20px 0; }
     .status { display: inline-block; padding: 8px 16px; border-radius: 20px; font-weight: bold; }
@@ -31,51 +31,61 @@
     .status.obese { background: #F44336; color: white; }
   </style>
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
+
 <main>
-    <section class="hero">
-      <div class="container">
-        <h1>BMI 계산기</h1>
-        <p class="hero-copy">키와 체중을 입력하면 BMI와 건강 상태를 확인합니다.</p>
-      </div>
-    </section>
+  <div class="v2-tool-layout">
+    <div>
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="../" data-i18n="nav.tools">도구</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current">BMI 계산기</span>
+      </nav>
 
-    <div class="container">
-      <section class="calculator-section">
-        <div class="calculator-card">
-          <div class="form-group">
-            <label for="bmiHeight">키 (cm)</label>
-            <input type="number" id="bmiHeight" placeholder="예: 170" step="0.1">
-          </div>
-          
-          <div class="form-group">
-            <label for="bmiWeight">체중 (kg)</label>
-            <input type="number" id="bmiWeight" placeholder="예: 65" step="0.1">
-          </div>
+      <h1 class="v2-page-title">BMI 계산기</h1>
+      <p class="v2-page-lede">키와 체중을 입력하면 BMI와 건강 상태를 확인합니다.</p>
 
-          <div class="button-group">
-            <button id="bmiCalcBtn" class="primary-btn">계산하기</button>
-            <button id="bmiCopyBtn" class="secondary-btn">복사</button>
-            <button id="bmiResetBtn" class="text-button">초기화</button>
+      <!-- ========== 계산 ========== -->
+      <section class="v2-card" aria-label="계산">
+        <div class="v2-field-grid">
+          <div>
+            <label class="v2-label" for="bmiHeight">키 (cm)</label>
+            <input type="number" id="bmiHeight" class="v2-input" placeholder="예: 170" step="0.1">
           </div>
+          <div>
+            <label class="v2-label" for="bmiWeight">체중 (kg)</label>
+            <input type="number" id="bmiWeight" class="v2-input" placeholder="예: 65" step="0.1">
+          </div>
+        </div>
 
-          <div id="bmiResult" class="result hidden">
-            <div class="bmi-display" id="bmiValue"></div>
-            <div style="text-align: center;" id="bmiStatus"></div>
-            <div style="text-align: center; margin: 15px 0;" id="idealWeight"></div>
-          </div>
+        <div class="v2-action-row">
+          <button type="button" id="bmiCalcBtn" class="v2-btn-primary">계산하기</button>
+          <button type="button" id="bmiCopyBtn" class="v2-btn-ghost">복사</button>
+          <button type="button" id="bmiResetBtn" class="v2-btn-ghost">초기화</button>
+        </div>
+
+        <div id="bmiResult" class="v2-result hidden">
+          <div class="bmi-display" id="bmiValue"></div>
+          <div style="text-align: center;" id="bmiStatus"></div>
+          <div style="text-align: center; margin: 15px 0;" id="idealWeight"></div>
         </div>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="bmi_about_title">BMI란 무엇인가</h2>
-        <p data-i18n="bmi_about_intro">BMI(체질량지수, Body Mass Index)는 체중(kg)을 키(m)의 제곱으로 나눈 값입니다. 키 170cm, 체중 68kg이면 68 ÷ (1.7 × 1.7) ≈ 23.5입니다. 키 대비 체중이 어느 정도인지 간단히 가늠하는 지표로, 세계보건기구(WHO)와 여러 보건기관이 비만 정도를 분류할 때 사용합니다.</p>
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline" id="ads-slot"></div>
+
+      <!-- ========== 설명 ========== -->
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title" data-i18n="bmi_about_title">BMI란 무엇인가</h2>
+        <p class="v2-card-copy" data-i18n="bmi_about_intro">BMI(체질량지수, Body Mass Index)는 체중(kg)을 키(m)의 제곱으로 나눈 값입니다. 키 170cm, 체중 68kg이면 68 ÷ (1.7 × 1.7) ≈ 23.5입니다. 키 대비 체중이 어느 정도인지 간단히 가늠하는 지표로, 세계보건기구(WHO)와 여러 보건기관이 비만 정도를 분류할 때 사용합니다.</p>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="bmi_table_title">BMI 판정 기준</h2>
-        <p data-i18n="bmi_table_intro">이 계산기는 WHO 국제 기준을 사용합니다.</p>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="bmi_table_title">BMI 판정 기준</h2>
+        <p class="v2-card-copy" data-i18n="bmi_table_intro">이 계산기는 WHO 국제 기준을 사용합니다.</p>
         <div class="info-table-wrap">
           <table class="info-table">
             <thead>
@@ -89,12 +99,12 @@
             </tbody>
           </table>
         </div>
-        <p data-i18n="bmi_table_note">대한비만학회 등 아시아·태평양 기준에서는 BMI 23 이상을 과체중(비만 전 단계), 25 이상을 비만으로 봅니다. 같은 체중이라도 적용 기준에 따라 분류가 달라질 수 있습니다.</p>
+        <p class="v2-card-copy" data-i18n="bmi_table_note">대한비만학회 등 아시아·태평양 기준에서는 BMI 23 이상을 과체중(비만 전 단계), 25 이상을 비만으로 봅니다. 같은 체중이라도 적용 기준에 따라 분류가 달라질 수 있습니다.</p>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="bmi_limit_title">결과 해석 시 주의할 점</h2>
-        <ul>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="bmi_limit_title">결과 해석 시 주의할 점</h2>
+        <ul class="v2-card-list">
           <li data-i18n="bmi_limit_1">BMI는 근육량과 체지방을 구분하지 못합니다. 근육량이 많은 사람은 실제 체지방이 적어도 BMI가 높게 나올 수 있습니다.</li>
           <li data-i18n="bmi_limit_2">성장기 어린이·청소년, 임산부, 고령자에게는 그대로 적용하기 어렵습니다.</li>
           <li data-i18n="bmi_limit_3">같은 BMI라도 복부 지방(허리둘레)에 따라 건강 위험도가 다릅니다.</li>
@@ -102,20 +112,38 @@
         </ul>
       </section>
 
-      <section class="faq-section" hidden>
-        <h2 data-i18n="bmi_faq_title">❓ 자주 묻는 질문</h2>
+      <section class="v2-card faq-section" hidden>
+        <h2 class="v2-card-title" data-i18n="bmi_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list" data-faq-category="bmi"></div>
-        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+        <p class="v2-card-more"><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문 →</a></p>
       </section>
+    </div>
 
-</div>
-  </main>
-  <div id="ads-slot" class="ads-slot"></div>
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2>관련 도구</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../">도구 전체 보기 →</a>
+      </div>
+
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <p class="v2-side-note">모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
 <script src="../../assets/js/header-nav.js"></script>
-  <script src="./bmi.js"></script>
+<script src="../../assets/js/tools-data.js"></script>
+<script src="../../assets/js/tool-sidebar.js"></script>
+<script src="./bmi.js"></script>
 <script src="../../assets/js/faq.js"></script>
 <script>
   (function () {

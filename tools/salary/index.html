@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -18,70 +18,74 @@
   <meta name="description" content="연봉 계산기. 연봉을 입력하면 월급, 세전/세후 금액을 계산합니다.">
   <meta name="keywords" content="연봉계산, 급여계산, 세금계산, 실수령액, 무료 온라인 도구">
   <meta name="robots" content="index,follow">
-  
+
   <link rel="canonical" href="https://is-an.github.io/tools/salary/">
   <link rel="stylesheet" href="../../assets/css/style.css">
-  <link rel="stylesheet" href="../../assets/css/v2.css">
+  <link rel="stylesheet" href="../../assets/css/v2.css">
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
+
 <main>
-    <section class="hero">
-      <div class="container">
-        <h1>연봉 계산기</h1>
-        <p class="hero-copy">연봉을 입력하면 월급과 실수령액을 계산합니다.</p>
-      </div>
-    </section>
+  <div class="v2-tool-layout">
+    <div>
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="../../cal/" data-i18n="nav.calculator">계산기</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current">연봉 계산기</span>
+      </nav>
 
-    <div class="container">
-      <section class="calculator-section">
-        <div class="calculator-card">
-          <div class="form-group">
-            <label for="annualSalary">연봉 (원)</label>
-            <input type="number" id="annualSalary" placeholder="예: 30000000" step="100000">
+      <h1 class="v2-page-title">연봉 계산기</h1>
+      <p class="v2-page-lede">연봉을 입력하면 월급과 실수령액을 계산합니다.</p>
+
+      <!-- ========== 계산 ========== -->
+      <section class="v2-card" aria-label="계산">
+        <div class="v2-field-grid">
+          <div>
+            <label class="v2-label" for="annualSalary">연봉 (원)</label>
+            <input type="number" id="annualSalary" class="v2-input" placeholder="예: 30000000" step="100000">
           </div>
+        </div>
 
-          <div class="button-group">
-            <button id="salaryCalcBtn" class="primary-btn">계산하기</button>
-            <button id="salaryCopyBtn" class="secondary-btn">복사</button>
-            <button id="salaryResetBtn" class="text-button">초기화</button>
-          </div>
+        <div class="v2-action-row">
+          <button type="button" id="salaryCalcBtn" class="v2-btn-primary">계산하기</button>
+          <button type="button" id="salaryCopyBtn" class="v2-btn-ghost">복사</button>
+          <button type="button" id="salaryResetBtn" class="v2-btn-ghost">초기화</button>
+        </div>
 
-          <div id="salaryResult" class="result hidden">
-            <div class="result-row">
-              <span>월급 (세전):</span>
-              <span id="monthlySalary"></span>
-            </div>
-            <div class="result-row">
-              <span>월 실수령액:</span>
-              <span id="monthlyNetSalary"></span>
-            </div>
-            <div class="result-row">
-              <span>연 실수령액:</span>
-              <span id="annualNetSalary"></span>
-            </div>
+        <div id="salaryResult" class="v2-result hidden">
+          <div class="v2-result-detail">
+            <div>월급 (세전): <span id="monthlySalary"></span></div>
+            <div>월 실수령액: <span id="monthlyNetSalary"></span></div>
+            <div>연 실수령액: <span id="annualNetSalary"></span></div>
           </div>
         </div>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="salary_about_title">실수령액은 어떻게 정해지나요</h2>
-        <p data-i18n="salary_about_intro">세전 월급에서 아래 항목이 빠진 금액이 실제로 통장에 들어오는 실수령액입니다.</p>
-        <ul>
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline" id="ads-slot"></div>
+
+      <!-- ========== 설명 ========== -->
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title" data-i18n="salary_about_title">실수령액은 어떻게 정해지나요</h2>
+        <p class="v2-card-copy" data-i18n="salary_about_intro">세전 월급에서 아래 항목이 빠진 금액이 실제로 통장에 들어오는 실수령액입니다.</p>
+        <ul class="v2-card-list">
           <li data-i18n="salary_about_1">국민연금·건강보험·장기요양보험·고용보험 등 4대 보험료(근로자 부담분)</li>
           <li data-i18n="salary_about_2">근로소득세와 지방소득세(소득세의 10%)</li>
         </ul>
-        <p data-i18n="salary_about_note">소득세는 부양가족 수와 공제 항목에 따라 간이세액표로 정해지고, 국민연금은 기준소득월액 상한이 있으며 건강보험료율은 해마다 조정됩니다. 이 계산기는 이해를 돕기 위한 단순화된 비율을 사용하므로, 실제 급여명세서 금액과는 차이가 있을 수 있습니다.</p>
+        <p class="v2-card-copy" data-i18n="salary_about_note">소득세는 부양가족 수와 공제 항목에 따라 간이세액표로 정해지고, 국민연금은 기준소득월액 상한이 있으며 건강보험료율은 해마다 조정됩니다. 이 계산기는 이해를 돕기 위한 단순화된 비율을 사용하므로, 실제 급여명세서 금액과는 차이가 있을 수 있습니다.</p>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="salary_example_title">계산 예시</h2>
-        <p data-i18n="salary_example_body">연봉 3,600만 원을 입력하면 세전 월급은 300만 원이고, 이 계산기의 단순 모델 기준 공제액은 약 50만 원, 월 실수령액은 약 250만 원으로 표시됩니다. 실제 금액은 공제 조건에 따라 달라집니다.</p>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="salary_example_title">계산 예시</h2>
+        <p class="v2-card-copy" data-i18n="salary_example_body">연봉 3,600만 원을 입력하면 세전 월급은 300만 원이고, 이 계산기의 단순 모델 기준 공제액은 약 50만 원, 월 실수령액은 약 250만 원으로 표시됩니다. 실제 금액은 공제 조건에 따라 달라집니다.</p>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="salary_notice_title">이용 시 유의사항</h2>
-        <ul>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="salary_notice_title">이용 시 유의사항</h2>
+        <ul class="v2-card-list">
           <li data-i18n="salary_notice_1">비과세 항목(식대, 자가운전보조금 등), 부양가족, 연장근로수당, 성과급은 반영하지 않습니다.</li>
           <li data-i18n="salary_notice_2">연말정산 결과에 따라 실제 부담하는 세액은 매달 원천징수액과 달라질 수 있습니다.</li>
           <li data-i18n="salary_notice_3">4대 보험료율과 소득세 간이세액표는 매년 바뀌므로 정확한 금액은 급여명세서나 국세청·건강보험공단 자료로 확인하세요.</li>
@@ -89,20 +93,38 @@
         </ul>
       </section>
 
-      <section class="faq-section" hidden>
-        <h2 data-i18n="salary_faq_title">❓ 자주 묻는 질문</h2>
+      <section class="v2-card faq-section" hidden>
+        <h2 class="v2-card-title" data-i18n="salary_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list" data-faq-category="salary"></div>
-        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+        <p class="v2-card-more"><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문 →</a></p>
       </section>
+    </div>
 
-</div>
-  </main>
-  <div id="ads-slot" class="ads-slot"></div>
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2>관련 도구</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../../cal/">계산기 전체 보기 →</a>
+      </div>
+
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <p class="v2-side-note">모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
 <script src="../../assets/js/header-nav.js"></script>
-  <script src="./salary.js"></script>
+<script src="../../assets/js/tools-data.js"></script>
+<script src="../../assets/js/tool-sidebar.js"></script>
+<script src="./salary.js"></script>
 <script src="../../assets/js/faq.js"></script>
 <script>
   (function () {

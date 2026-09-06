@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -18,62 +18,69 @@
   <meta name="description" content="글자수 계산기. 텍스트의 글자수, 공백 포함/제외, 바이트 수, 줄 수를 실시간으로 계산합니다.">
   <meta name="keywords" content="글자수계산, 바이트계산, 텍스트분석, 글자수세기, 무료 온라인 도구">
   <meta name="robots" content="index,follow">
-  
+
   <link rel="canonical" href="https://is-an.github.io/tools/charcount/">
   <link rel="stylesheet" href="../../assets/css/style.css">
-  <link rel="stylesheet" href="../../assets/css/v2.css">
+  <link rel="stylesheet" href="../../assets/css/v2.css">
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
+
 <main>
-    <section class="hero">
-      <div class="container">
-        <h1>글자수/바이트 계산기</h1>
-        <p class="hero-copy">텍스트를 입력하면 글자수, 바이트 수, 줄 수 등을 실시간으로 계산합니다.</p>
-      </div>
-    </section>
+  <div class="v2-tool-layout">
+    <div>
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="../" data-i18n="nav.tools">도구</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current">글자수/바이트 계산기</span>
+      </nav>
 
-    <div class="container">
-      <section class="calculator-section">
-        <div class="calculator-card">
-          <div class="form-group">
-            <label for="charCountText">텍스트 입력</label>
-            <textarea id="charCountText" placeholder="계산할 텍스트를 여기에 입력하세요." rows="8"></textarea>
-          </div>
+      <h1 class="v2-page-title">글자수/바이트 계산기</h1>
+      <p class="v2-page-lede">텍스트를 입력하면 글자수, 바이트 수, 줄 수 등을 실시간으로 계산합니다.</p>
 
-          <div class="stats-grid">
-            <div class="stat-item">
-              <div class="stat-label">전체 글자수</div>
-              <div class="stat-value" id="totalChars">0</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-label">공백 제외</div>
-              <div class="stat-value" id="charsWithoutSpace">0</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-label">바이트 수</div>
-              <div class="stat-value" id="byteCount">0</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-label">줄 수</div>
-              <div class="stat-value" id="lineCount">0</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-label">단어 수</div>
-              <div class="stat-value" id="wordCount">0</div>
-            </div>
-          </div>
+      <!-- ========== 계산 ========== -->
+      <section class="v2-card" aria-label="계산">
+        <label class="v2-label" for="charCountText">텍스트 입력</label>
+        <textarea id="charCountText" class="v2-input" placeholder="계산할 텍스트를 여기에 입력하세요." rows="8" style="resize: vertical;"></textarea>
 
-          <div class="button-group">
-            <button id="charCountCopyBtn" class="secondary-btn">복사</button>
-            <button id="charCountResetBtn" class="text-button">초기화</button>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-label">전체 글자수</div>
+            <div class="stat-value" id="totalChars">0</div>
           </div>
+          <div class="stat-item">
+            <div class="stat-label">공백 제외</div>
+            <div class="stat-value" id="charsWithoutSpace">0</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">바이트 수</div>
+            <div class="stat-value" id="byteCount">0</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">줄 수</div>
+            <div class="stat-value" id="lineCount">0</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">단어 수</div>
+            <div class="stat-value" id="wordCount">0</div>
+          </div>
+        </div>
+
+        <div class="v2-action-row">
+          <button type="button" id="charCountCopyBtn" class="v2-btn-ghost">복사</button>
+          <button type="button" id="charCountResetBtn" class="v2-btn-ghost">초기화</button>
         </div>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="charcount_about_title">글자수는 어떻게 세나요</h2>
-        <ul>
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline" id="ads-slot"></div>
+
+      <!-- ========== 설명 ========== -->
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title" data-i18n="charcount_about_title">글자수는 어떻게 세나요</h2>
+        <ul class="v2-card-list">
           <li data-i18n="charcount_about_1">전체 글자수: 공백과 줄바꿈을 포함한 모든 문자 수입니다. 대부분의 지원서·SNS 입력란이 이 기준을 씁니다.</li>
           <li data-i18n="charcount_about_2">공백 제외: 스페이스와 줄바꿈을 뺀 순수 문자 수입니다. ‘공백 제외 800자’ 같은 조건에서 사용합니다.</li>
           <li data-i18n="charcount_about_3">바이트 수: UTF-8 기준으로 한글은 3바이트, 영문·숫자·기본 문장부호는 1바이트, 이모지는 4바이트 이상입니다.</li>
@@ -81,29 +88,47 @@
         </ul>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="charcount_use_title">이런 데 쓸 수 있어요</h2>
-        <ul>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="charcount_use_title">이런 데 쓸 수 있어요</h2>
+        <ul class="v2-card-list">
           <li data-i18n="charcount_use_1">자기소개서·리포트의 글자수 제한 확인</li>
           <li data-i18n="charcount_use_2">문자 메시지(SMS 90바이트, LMS) 분할 여부 확인</li>
           <li data-i18n="charcount_use_3">메타 설명문, 게시글 제목 등 글자수 제한이 있는 텍스트 작성</li>
         </ul>
       </section>
 
-      <section class="faq-section" hidden>
-        <h2 data-i18n="charcount_faq_title">❓ 자주 묻는 질문</h2>
+      <section class="v2-card faq-section" hidden>
+        <h2 class="v2-card-title" data-i18n="charcount_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list" data-faq-category="charcount"></div>
-        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+        <p class="v2-card-more"><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문 →</a></p>
       </section>
+    </div>
 
-</div>
-  </main>
-  <div id="ads-slot" class="ads-slot"></div>
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2>관련 도구</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../">도구 전체 보기 →</a>
+      </div>
+
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <p class="v2-side-note">모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
 <script src="../../assets/js/header-nav.js"></script>
-  <script src="./charcount.js"></script>
+<script src="../../assets/js/tools-data.js"></script>
+<script src="../../assets/js/tool-sidebar.js"></script>
+<script src="./charcount.js"></script>
 <script src="../../assets/js/faq.js"></script>
 <script>
   (function () {

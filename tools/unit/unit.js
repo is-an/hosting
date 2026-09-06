@@ -103,3 +103,7 @@ unitResetBtn.addEventListener("click", () => {
 });
 
 updateUnitOptions();
+
+if (typeof renderRelatedByCategory === "function") {
+  renderRelatedByCategory("relatedList", "tools", "unit", 5);
+}
