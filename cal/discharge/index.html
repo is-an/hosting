@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -18,32 +18,38 @@
   <meta name="description" content="전역일 계산기. 입대일과 군 종류를 입력하면 예상 전역일을 계산합니다.">
   <meta name="keywords" content="전역일계산, 군복무, 입대, 군계산기, 무료 온라인 도구">
   <meta name="robots" content="index,follow">
-  
+
   <link rel="canonical" href="https://is-an.github.io/cal/discharge/">
   <link rel="stylesheet" href="../../assets/css/style.css">
-  <link rel="stylesheet" href="../../assets/css/v2.css">
+  <link rel="stylesheet" href="../../assets/css/v2.css">
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
-<main>
-    <section class="hero">
-      <div class="container">
-        <h1>전역일 계산기</h1>
-        <p class="hero-copy">입대일과 군 종류를 입력하면 전역일을 계산합니다.</p>
-      </div>
-    </section>
 
-    <div class="container">
-      <section class="calculator-section">
-        <div class="calculator-card">
-          <div class="form-group">
-            <label for="enlistDate">입대일</label>
-            <input type="date" id="enlistDate">
+<main>
+  <div class="v2-tool-layout">
+    <div>
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="../" data-i18n="nav.calculator">계산기</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current">전역일 계산기</span>
+      </nav>
+
+      <h1 class="v2-page-title">전역일 계산기</h1>
+      <p class="v2-page-lede">입대일과 군 종류를 입력하면 전역일을 계산합니다.</p>
+
+      <!-- ========== 계산 ========== -->
+      <section class="v2-card" aria-label="계산">
+        <div class="v2-field-grid">
+          <div>
+            <label class="v2-label" for="enlistDate">입대일</label>
+            <input type="date" id="enlistDate" class="v2-input">
           </div>
-          
-          <div class="form-group">
-            <label for="dischargeType">군 종류</label>
-            <select id="dischargeType">
+          <div>
+            <label class="v2-label" for="dischargeType">군 종류</label>
+            <select id="dischargeType" class="v2-select">
               <option value="army">육군 (18개월)</option>
               <option value="navy">해군 (20개월)</option>
               <option value="airforce">공군 (21개월)</option>
@@ -51,37 +57,33 @@
               <option value="custom">기타 (직접입력)</option>
             </select>
           </div>
-
-          <div id="customTermDiv" class="form-group" style="display: none;">
-            <label for="customTerm">복무기간 (개월)</label>
-            <input type="number" id="customTerm" placeholder="예: 18" min="1">
+          <div id="customTermDiv" style="display: none;">
+            <label class="v2-label" for="customTerm">복무기간 (개월)</label>
+            <input type="number" id="customTerm" class="v2-input" placeholder="예: 18" min="1">
           </div>
+        </div>
 
-          <div class="button-group">
-            <button id="dischargeCalcBtn" class="primary-btn">계산하기</button>
-            <button id="dischargeCopyBtn" class="secondary-btn">복사</button>
-            <button id="dischargeResetBtn" class="text-button">초기화</button>
-          </div>
+        <div class="v2-action-row">
+          <button type="button" id="dischargeCalcBtn" class="v2-btn-primary">계산하기</button>
+          <button type="button" id="dischargeCopyBtn" class="v2-btn-ghost">복사</button>
+          <button type="button" id="dischargeResetBtn" class="v2-btn-ghost">초기화</button>
+        </div>
 
-          <div id="dischargeResult" class="result hidden">
-            <div class="result-row">
-              <span>전역일:</span>
-              <span id="dischargeDate"></span>
-            </div>
-            <div class="result-row">
-              <span>남은 기간:</span>
-              <span id="remainingDays"></span>
-            </div>
-            <div class="result-row">
-              <span>진행률:</span>
-              <span id="progressPercent"></span>
-            </div>
+        <div id="dischargeResult" class="v2-result hidden">
+          <div class="v2-result-detail">
+            <div>전역일: <span id="dischargeDate"></span></div>
+            <div>남은 기간: <span id="remainingDays"></span></div>
+            <div>진행률: <span id="progressPercent"></span></div>
           </div>
         </div>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="discharge_term_title">군별 복무기간</h2>
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline" id="ads-slot"></div>
+
+      <!-- ========== 설명 ========== -->
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title" data-i18n="discharge_term_title">군별 복무기간</h2>
         <div class="info-table-wrap">
           <table class="info-table">
             <thead>
@@ -94,28 +96,51 @@
             </tbody>
           </table>
         </div>
-        <p data-i18n="discharge_term_note">사회복무요원, 산업기능요원 등은 복무기간이 다릅니다. ‘기타(직접입력)’를 선택해 개월수를 입력하세요.</p>
+        <p class="v2-card-copy" data-i18n="discharge_term_note">사회복무요원, 산업기능요원 등은 복무기간이 다릅니다. ‘기타(직접입력)’를 선택해 개월수를 입력하세요.</p>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="discharge_how_title">전역일과 진행률 계산 방식</h2>
-        <p data-i18n="discharge_how_body">전역일은 입대일에 복무 개월수를 더한 날의 전날을 기준으로 합니다(현역병은 만기 전역 시 전역일이 그렇게 정해집니다). 이 계산기는 입대일에 개월수를 더한 날짜를 전역일로 표시하고, 오늘까지 지난 비율을 진행률로 보여 줍니다. 진행률은 한 달을 30일로 어림해 계산하므로 실제와 소폭 차이가 있을 수 있습니다.</p>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="discharge_how_title">전역일과 진행률 계산 방식</h2>
+        <p class="v2-card-copy" data-i18n="discharge_how_body">전역일은 입대일에 복무 개월수를 더한 날의 전날을 기준으로 합니다(현역병은 만기 전역 시 전역일이 그렇게 정해집니다). 이 계산기는 입대일에 개월수를 더한 날짜를 전역일로 표시하고, 오늘까지 지난 비율을 진행률로 보여 줍니다. 진행률은 한 달을 30일로 어림해 계산하므로 실제와 소폭 차이가 있을 수 있습니다.</p>
       </section>
 
-      <section class="faq-section" hidden>
-        <h2 data-i18n="discharge_faq_title">❓ 자주 묻는 질문</h2>
+      <section class="v2-card faq-section" hidden>
+        <h2 class="v2-card-title" data-i18n="discharge_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list" data-faq-category="discharge"></div>
-        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+        <p class="v2-card-more"><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문 →</a></p>
       </section>
+    </div>
 
-</div>
-  </main>
-  <div id="ads-slot" class="ads-slot"></div>
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2>관련 도구</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../">계산기 전체 보기 →</a>
+      </div>
+
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <div class="v2-side-panel">
+        <h2 data-i18n="home_guides_title">계산 가이드</h2>
+        <div id="guideList"></div>
+      </div>
+
+      <p class="v2-side-note">모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
 <script src="../../assets/js/header-nav.js"></script>
-  <script src="./discharge.js"></script>
+<script src="../../assets/js/tools-data.js"></script>
+<script src="../../assets/js/tool-sidebar.js"></script>
+<script src="./discharge.js"></script>
 <script src="../../assets/js/faq.js"></script>
 <script>
   (function () {

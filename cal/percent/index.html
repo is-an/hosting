@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -18,12 +18,12 @@
   <meta name="description" content="무료 퍼센트 계산기. A의 B%, A는 B의 몇%, 증감 비율, 할인율을 빠르고 정확하게 계산하세요.">
   <meta name="keywords" content="퍼센트 계산기, 할인계산, 증감비율, 비율계산, 무료 온라인 도구">
   <meta name="robots" content="index,follow">
-  
+
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://is-an.github.io/cal/percent/">
   <meta property="og:title" content="퍼센트 계산기">
   <meta property="og:description" content="A의 B%, 증감 비율, 할인율을 빠르게 계산">
-  
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -34,23 +34,30 @@
     "applicationCategory": "UtilityApplication"
   }
   </script>
-  
+
   <link rel="canonical" href="https://is-an.github.io/cal/percent/">
   <link rel="stylesheet" href="../../assets/css/style.css">
-  <link rel="stylesheet" href="../../assets/css/v2.css">
+  <link rel="stylesheet" href="../../assets/css/v2.css">
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
-<main>
-    <section class="hero">
-      <div class="container">
-        <h1>퍼센트 계산기</h1>
-        <p class="hero-copy" data-i18n="sub_percent_copy">A의 B%, A는 B의 몇%, 증감 비율을 쉽고 빠르게 계산하세요.</p>
-      </div>
-    </section>
 
-    <div class="container">
-      <section class="calculator-section">
+<main>
+  <div class="v2-tool-layout">
+    <div>
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="../" data-i18n="nav.calculator">계산기</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current">퍼센트 계산기</span>
+      </nav>
+
+      <h1 class="v2-page-title">퍼센트 계산기</h1>
+      <p class="v2-page-lede" data-i18n="sub_percent_copy">A의 B%, A는 B의 몇%, 증감 비율을 쉽고 빠르게 계산하세요.</p>
+
+      <!-- ========== 계산 ========== -->
+      <section class="v2-card" aria-label="계산">
         <div class="calc-tabs">
           <button class="calc-tab-btn active" data-calc="percent-of" data-i18n="sub_percent_tabOf">A의 B%</button>
           <button class="calc-tab-btn" data-calc="percent-is" data-i18n="sub_percent_tabIs">A는 B의 몇%</button>
@@ -59,92 +66,119 @@
         </div>
 
         <div id="percent-of" class="calc-tab-content active">
-          <div class="calculator-card">
-            <div class="form-group">
-              <label for="percentOf_a" data-i18n="sub_percent_base">A (기준값)</label>
-              <input type="number" id="percentOf_a" placeholder="예: 1000" step="0.01">
+          <div class="v2-field-grid">
+            <div>
+              <label class="v2-label" for="percentOf_a" data-i18n="sub_percent_base">A (기준값)</label>
+              <input type="number" id="percentOf_a" class="v2-input" placeholder="예: 1000" step="0.01">
             </div>
-            <div class="form-group">
-              <label for="percentOf_b" data-i18n="sub_percent_percent">B (%)</label>
-              <input type="number" id="percentOf_b" placeholder="예: 15" step="0.01">
+            <div>
+              <label class="v2-label" for="percentOf_b" data-i18n="sub_percent_percent">B (%)</label>
+              <input type="number" id="percentOf_b" class="v2-input" placeholder="예: 15" step="0.01">
             </div>
-            <div id="percentOf_result" class="result-display"></div>
           </div>
+          <div id="percentOf_result" class="result-display"></div>
         </div>
 
         <div id="percent-is" class="calc-tab-content">
-          <div class="calculator-card">
-            <div class="form-group">
-              <label for="percentIs_a" data-i18n="sub_percent_value">A (값)</label>
-              <input type="number" id="percentIs_a" placeholder="예: 150" step="0.01">
+          <div class="v2-field-grid">
+            <div>
+              <label class="v2-label" for="percentIs_a" data-i18n="sub_percent_value">A (값)</label>
+              <input type="number" id="percentIs_a" class="v2-input" placeholder="예: 150" step="0.01">
             </div>
-            <div class="form-group">
-              <label for="percentIs_b" data-i18n="sub_percent_base">B (기준값)</label>
-              <input type="number" id="percentIs_b" placeholder="예: 1000" step="0.01">
+            <div>
+              <label class="v2-label" for="percentIs_b" data-i18n="sub_percent_base">B (기준값)</label>
+              <input type="number" id="percentIs_b" class="v2-input" placeholder="예: 1000" step="0.01">
             </div>
-            <div id="percentIs_result" class="result-display"></div>
           </div>
+          <div id="percentIs_result" class="result-display"></div>
         </div>
 
         <div id="percent-increase" class="calc-tab-content">
-          <div class="calculator-card">
-            <div class="form-group">
-              <label for="increase_from" data-i18n="sub_percent_previous">이전 값</label>
-              <input type="number" id="increase_from" placeholder="예: 100" step="0.01">
+          <div class="v2-field-grid">
+            <div>
+              <label class="v2-label" for="increase_from" data-i18n="sub_percent_previous">이전 값</label>
+              <input type="number" id="increase_from" class="v2-input" placeholder="예: 100" step="0.01">
             </div>
-            <div class="form-group">
-              <label for="increase_to" data-i18n="sub_percent_current">현재 값</label>
-              <input type="number" id="increase_to" placeholder="예: 120" step="0.01">
+            <div>
+              <label class="v2-label" for="increase_to" data-i18n="sub_percent_current">현재 값</label>
+              <input type="number" id="increase_to" class="v2-input" placeholder="예: 120" step="0.01">
             </div>
-            <div id="increase_result" class="result-display"></div>
           </div>
+          <div id="increase_result" class="result-display"></div>
         </div>
 
         <div id="percent-decrease" class="calc-tab-content">
-          <div class="calculator-card">
-            <div class="form-group">
-              <label for="decrease_from" data-i18n="sub_percent_previous">이전 값</label>
-              <input type="number" id="decrease_from" placeholder="예: 100" step="0.01">
+          <div class="v2-field-grid">
+            <div>
+              <label class="v2-label" for="decrease_from" data-i18n="sub_percent_previous">이전 값</label>
+              <input type="number" id="decrease_from" class="v2-input" placeholder="예: 100" step="0.01">
             </div>
-            <div class="form-group">
-              <label for="decrease_to" data-i18n="sub_percent_current">현재 값</label>
-              <input type="number" id="decrease_to" placeholder="예: 80" step="0.01">
+            <div>
+              <label class="v2-label" for="decrease_to" data-i18n="sub_percent_current">현재 값</label>
+              <input type="number" id="decrease_to" class="v2-input" placeholder="예: 80" step="0.01">
             </div>
-            <div id="decrease_result" class="result-display"></div>
           </div>
+          <div id="decrease_result" class="result-display"></div>
         </div>
 
-        <div class="button-group">
-          <button id="percentCalcBtn" class="primary-btn">계산하기</button>
-          <button id="percentCopyBtn" class="secondary-btn">복사</button>
-          <button id="percentResetBtn" class="text-button">초기화</button>
+        <div class="v2-action-row">
+          <button type="button" id="percentCalcBtn" class="v2-btn-primary">계산하기</button>
+          <button type="button" id="percentCopyBtn" class="v2-btn-ghost">복사</button>
+          <button type="button" id="percentResetBtn" class="v2-btn-ghost">초기화</button>
         </div>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="percent_guide_title">퍼센트 계산 공식</h2>
-        <ul>
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline" id="ads-slot"></div>
+
+      <!-- ========== 설명 ========== -->
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title" data-i18n="percent_guide_title">퍼센트 계산 공식</h2>
+        <ul class="v2-card-list">
           <li data-i18n="percent_guide_1">A의 B%: A × (B ÷ 100). 예) 1,000의 15% = 1,000 × 0.15 = 150</li>
           <li data-i18n="percent_guide_2">A는 B의 몇 %: (A ÷ B) × 100. 예) 150은 1,000의 (150 ÷ 1,000) × 100 = 15%</li>
           <li data-i18n="percent_guide_3">증감 비율: (현재 값 − 이전 값) ÷ 이전 값 × 100. 예) 100 → 120이면 20% 증가, 100 → 80이면 20% 감소</li>
         </ul>
-        <p data-i18n="percent_guide_note">할인가는 ‘원래 가격 × (100 − 할인율) ÷ 100’으로 구합니다. 10,000원에서 20% 할인이면 10,000 × 0.8 = 8,000원입니다.</p>
+        <p class="v2-card-copy" data-i18n="percent_guide_note">할인가는 ‘원래 가격 × (100 − 할인율) ÷ 100’으로 구합니다. 10,000원에서 20% 할인이면 10,000 × 0.8 = 8,000원입니다.</p>
       </section>
 
-      <section class="faq-section" hidden>
-        <h2>❓ 자주 묻는 질문</h2>
+      <section class="v2-card faq-section" hidden>
+        <h2 class="v2-card-title">❓ 자주 묻는 질문</h2>
         <div class="faq-list" data-faq-category="percent"></div>
-        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+        <p class="v2-card-more"><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문 →</a></p>
       </section>
+    </div>
 
-</div>
-  </main>
-  <div id="ads-slot" class="ads-slot"></div>
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2>관련 도구</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../">계산기 전체 보기 →</a>
+      </div>
+
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <div class="v2-side-panel">
+        <h2 data-i18n="home_guides_title">계산 가이드</h2>
+        <div id="guideList"></div>
+      </div>
+
+      <p class="v2-side-note">모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
 <script src="../../assets/js/header-nav.js"></script>
-  <script src="./percent.js"></script>
+<script src="../../assets/js/tools-data.js"></script>
+<script src="../../assets/js/tool-sidebar.js"></script>
+<script src="./percent.js"></script>
 <script src="../../assets/js/faq.js"></script>
 <script>
   (function () {

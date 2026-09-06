@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
@@ -18,86 +18,115 @@
   <meta name="description" content="나이 계산기. 생년월일을 입력하면 만 나이, 경과 일수, 다음 생일까지 남은 날짜를 계산합니다.">
   <meta name="keywords" content="나이계산, 나이계산기, 만나이, 생일계산, 무료 온라인 도구">
   <meta name="robots" content="index,follow">
-  
+
   <link rel="canonical" href="https://is-an.github.io/cal/age/">
   <link rel="stylesheet" href="../../assets/css/style.css">
-  <link rel="stylesheet" href="../../assets/css/v2.css">
+  <link rel="stylesheet" href="../../assets/css/v2.css">
 </head>
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
+
 <main>
-    <section class="hero">
-      <div class="container">
-        <h1>나이 계산기</h1>
-        <p class="hero-copy">생년월일을 입력하면 만 나이와 경과 일수를 계산합니다.</p>
-      </div>
-    </section>
+  <div class="v2-tool-layout">
+    <div>
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="../" data-i18n="nav.calculator">계산기</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current">나이 계산기</span>
+      </nav>
 
-    <div class="container">
-      <section class="calculator-section">
-        <div class="calculator-card">
-          <div class="form-group">
-            <label for="birthDate">생년월일</label>
-            <input type="date" id="birthDate">
-          </div>
-          
-          <div class="form-group">
-            <label for="baseDate">기준 날짜</label>
-            <input type="date" id="baseDate">
-            <button id="setTodayBtn" class="text-button">오늘로 설정</button>
-          </div>
+      <h1 class="v2-page-title">나이 계산기</h1>
+      <p class="v2-page-lede">생년월일을 입력하면 만 나이와 경과 일수를 계산합니다.</p>
 
-          <div class="button-group">
-            <button id="ageCalcBtn" class="primary-btn">계산하기</button>
-            <button id="ageCopyBtn" class="secondary-btn">복사</button>
-            <button id="ageResetBtn" class="text-button">초기화</button>
+      <!-- ========== 계산 ========== -->
+      <section class="v2-card" aria-label="계산">
+        <div class="v2-field-grid">
+          <div>
+            <label class="v2-label" for="birthDate">생년월일</label>
+            <input type="date" id="birthDate" class="v2-input">
           </div>
+          <div>
+            <label class="v2-label" for="baseDate">기준 날짜</label>
+            <input type="date" id="baseDate" class="v2-input">
+          </div>
+        </div>
 
-          <div id="ageResult" class="result hidden">
-            <div class="result-row">
-              <span>만 나이:</span>
-              <span id="ageValue"></span>
-            </div>
-            <div class="result-row">
-              <span>경과 일수:</span>
-              <span id="ageDays"></span>
-            </div>
-            <div class="result-row">
-              <span>다음 생일까지:</span>
-              <span id="daysUntilBirthday"></span>
-            </div>
+        <div class="v2-preset-row">
+          <button type="button" class="v2-preset" id="setTodayBtn">오늘로 설정</button>
+        </div>
+
+        <div class="v2-action-row">
+          <button type="button" class="v2-btn-primary" id="ageCalcBtn">계산하기</button>
+          <button type="button" class="v2-btn-ghost" id="ageCopyBtn">복사</button>
+          <button type="button" class="v2-btn-ghost" id="ageResetBtn">초기화</button>
+        </div>
+
+        <div id="ageResult" class="v2-result hidden">
+          <div class="v2-result-detail">
+            <div>만 나이: <span id="ageValue"></span></div>
+            <div>경과 일수: <span id="ageDays"></span></div>
+            <div>다음 생일까지: <span id="daysUntilBirthday"></span></div>
           </div>
         </div>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="age_about_title">만 나이·연 나이·세는 나이</h2>
-        <ul>
+      <!-- ========== 광고 ========== -->
+      <div class="v2-ad-inline" id="ads-slot"></div>
+
+      <!-- ========== 설명 ========== -->
+      <section class="v2-card v2-section-gap">
+        <h2 class="v2-card-title" data-i18n="age_about_title">만 나이·연 나이·세는 나이</h2>
+        <ul class="v2-card-list">
           <li data-i18n="age_about_1">만 나이: 태어난 날을 0세로 시작해 생일마다 한 살씩 더합니다. 2023년 6월부터 법령·행정의 기본 기준입니다. 이 계산기가 계산하는 값입니다.</li>
           <li data-i18n="age_about_2">연 나이: 생일과 관계없이 ‘올해 연도 − 태어난 연도’로 계산합니다. 병역법 등 일부 법률에서 사용합니다.</li>
           <li data-i18n="age_about_3">세는 나이: 태어나면 1세, 매년 1월 1일에 한 살씩 더하는 전통 방식입니다. 만 나이보다 한두 살 많습니다.</li>
         </ul>
       </section>
 
-      <section class="content-section">
-        <h2 data-i18n="age_example_title">계산 예시</h2>
-        <p data-i18n="age_example_body">1990년 5월 10일생을 2026년 9월 1일 기준으로 계산하면, 올해 생일이 지났으므로 만 36세입니다. 생일 전이라면 만 35세가 됩니다. 경과 일수는 태어난 날부터 기준일까지의 총 일수입니다.</p>
+      <section class="v2-card">
+        <h2 class="v2-card-title" data-i18n="age_example_title">계산 예시</h2>
+        <p class="v2-card-copy" data-i18n="age_example_body">1990년 5월 10일생을 2026년 9월 1일 기준으로 계산하면, 올해 생일이 지났으므로 만 36세입니다. 생일 전이라면 만 35세가 됩니다. 경과 일수는 태어난 날부터 기준일까지의 총 일수입니다.</p>
       </section>
 
-      <section class="faq-section" hidden>
-        <h2 data-i18n="age_faq_title">❓ 자주 묻는 질문</h2>
+      <section class="v2-card faq-section" hidden>
+        <h2 class="v2-card-title" data-i18n="age_faq_title">❓ 자주 묻는 질문</h2>
         <div class="faq-list" data-faq-category="age"></div>
-        <p><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문</a></p>
+        <p class="v2-card-more"><a href="../../faq/" data-i18n="faq_page_title">자주 묻는 질문 →</a></p>
       </section>
+    </div>
 
-</div>
-  </main>
-  <div id="ads-slot" class="ads-slot"></div>
+    <!-- ========== 사이드바 ========== -->
+    <aside class="v2-side">
+      <div class="v2-side-card">
+        <div class="v2-side-head">
+          <span class="v2-side-dot" aria-hidden="true"></span>
+          <h2>관련 도구</h2>
+        </div>
+        <div id="relatedList"></div>
+        <a class="v2-side-all" href="../">계산기 전체 보기 →</a>
+      </div>
+
+      <div class="v2-ad-side" aria-hidden="true"></div>
+
+      <div class="v2-side-panel">
+        <h2 data-i18n="home_guides_title">계산 가이드</h2>
+        <div id="guideList"></div>
+      </div>
+
+      <p class="v2-side-note">모든 계산은 브라우저에서 처리되어 입력값이 서버로 전송되지 않습니다.</p>
+    </aside>
+  </div>
+</main>
+
   <div id="site-footer"></div>
 <script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/common.js"></script>
 <script src="../../assets/js/header-nav.js"></script>
-  <script src="./age.js"></script>
+<script src="../../assets/js/tools-data.js"></script>
+<script src="../../assets/js/tool-sidebar.js"></script>
+<script src="./age.js"></script>
 <script src="../../assets/js/faq.js"></script>
 <script>
   (function () {

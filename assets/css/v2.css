@@ -546,6 +546,17 @@ body.v2-page *:focus-visible { outline: 2px solid var(--v2-accent); outline-offs
   align-items: start;
 }
 
+/* 사이드바 없이 단일 컬럼인 페이지(카테고리 허브, 안내 페이지 등)용.
+   .v2-tool-layout과 동일한 폭/여백을 쓰되 그리드가 아니라 단일 컬럼이다. */
+.v2-page .v2-simple-layout {
+  max-width: var(--v2-max);
+  margin: 0 auto;
+  padding: 22px 24px 44px;
+}
+@media (max-width: 640px) {
+  .v2-page .v2-simple-layout { padding: 16px 16px 32px; }
+}
+
 /* ---------- 브레드크럼 / 헤딩 ---------- */
 .v2-page .v2-crumb {
   display: flex;
@@ -832,3 +843,70 @@ body.v2-page *:focus-visible { outline: 2px solid var(--v2-accent); outline-offs
   .v2-page .v2-btn-ghost { width: 100%; }
   .v2-page .v2-share-row .v2-share-btn { flex: 1; min-width: 120px; }
 }
+
+
+/* =========================================================
+   5. LEGACY 컴포넌트 재스킨
+   ---------------------------------------------------------
+   cal/ · tools/ · games/ 등 여러 페이지가 공유하는 레거시 클래스
+   (.tools-grid, .info-table, .calc-tabs, .home-more-list)는
+   구조/마크업은 그대로 두고 .v2-page 범위에서 색·간격만 v2 토큰으로
+   덮어써 다른 v2 페이지와 톤을 맞춘다. 새 클래스를 만들지 않는다.
+   ========================================================= */
+
+.v2-page .tools-grid { gap: 16px; }
+.v2-page .tool-card {
+  padding: 20px;
+  background: var(--v2-surface);
+  border: 1px solid var(--v2-border);
+  border-radius: var(--v2-radius-lg);
+  transition: border-color .15s ease, background-color .15s ease;
+}
+.v2-page .tool-card:hover,
+.v2-page .tool-card:focus-visible {
+  border-color: var(--v2-accent);
+  background: var(--v2-surface);
+  outline: 0;
+}
+.v2-page .tool-card h3 { color: var(--v2-text); }
+.v2-page .tool-card p { color: var(--v2-muted); }
+.v2-page .tool-card .arrow {
+  background: var(--v2-accent-bg);
+  color: var(--v2-accent);
+}
+.v2-page .tool-card:hover .arrow { background: var(--v2-accent-bg); }
+
+.v2-page .info-table-wrap { margin: 14px 0 4px; }
+.v2-page .info-table { font-size: 13.5px; }
+.v2-page .info-table th,
+.v2-page .info-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--v2-border-soft);
+}
+.v2-page .info-table thead th {
+  color: var(--v2-muted);
+  font-weight: 600;
+  border-bottom-color: var(--v2-border);
+}
+
+.v2-page .calc-tabs { border-bottom-color: var(--v2-border); }
+.v2-page .calc-tab-btn {
+  font-family: var(--v2-sans);
+  color: var(--v2-muted);
+  font-weight: 500;
+}
+.v2-page .calc-tab-btn.active { color: var(--v2-accent); border-bottom-color: var(--v2-accent); }
+.v2-page .result-display {
+  background: var(--v2-accent-bg);
+  color: var(--v2-text);
+  border-radius: 10px;
+}
+
+.v2-page .home-more-list a {
+  border-color: var(--v2-border);
+  background: var(--v2-surface);
+  color: var(--v2-text);
+  border-radius: 999px;
+  font-weight: 500;
+}
+.v2-page .home-more-list a:hover { border-color: var(--v2-accent); background: var(--v2-surface-2); }
