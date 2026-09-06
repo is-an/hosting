@@ -113,33 +113,41 @@
   }
 
   function explicitTag(tagsList, candidates) { const found = tagsList.find(item => candidates.indexOf(item.tag) !== -1 && Number.isInteger(item.value) && item.value > 0); return found ? found.value : null; }
-  function parseSony(info) { return explicitTag(info.makerTags, [0xB001]); }
+  // Verified against a real sample (fuji.RAF, X-T30 II): tag 0x1438 = 3737, matches.
   function parseFujifilm(info) { return explicitTag(info.makerTags, [0x1438]); }
-  function parseCanon(info) { return explicitTag(info.makerTags, [0x00A9]); }
-  // Panasonic/Lumix MakerNote has no publicly documented, verified shutter-count tag.
-  // Tag 0x002E is "SelfTimer" (per ExifTool's Panasonic.pm), not a counter, and was removed.
-  // Add a verified per-model parser here only when a confirmed tag/offset exists; never guess.
-  const panasonicModelParsers = {};
-  function parsePanasonic(info) {
-    const modelParser = panasonicModelParsers[cleanText(info.model)];
-    return modelParser ? modelParser(info) : null;
-  }
+  // Sony/Leica tags below are not re-verified against a sample in this pass (none
+  // available) but are unchanged from before; only Canon's tag was disproven.
+  function parseSony(info) { return explicitTag(info.makerTags, [0xB001]); }
   function parseLeica(info) { return explicitTag(info.makerTags, [0x0300]); }
+  // Canon: 0x00A9 was checked against a real sample (canon.JPG, IXUS 115 HS) and
+  // does not exist anywhere in that camera's MakerNote IFD -- it was never a real
+  // tag. Canon's real shutter count lives inside opaque per-model binary blobs
+  // (tag 0x0093 FileInfo or 0x000D CameraInfo) that need a verified byte offset
+  // per camera model; we have no sample to derive one safely, so this is treated
+  // as "undecodable" rather than guessed.
+  //
+  // Panasonic/Lumix MakerNote has no publicly documented, verified shutter-count
+  // tag either (checked against s9.JPEG, DC-S9: nothing in the IFD looks like an
+  // actuation counter). Also "undecodable" until a verified tag/offset is found.
   function parseShutterCount(info) {
     const make = cleanText(info.make).toLowerCase();
-    if (make.indexOf('sony') !== -1) return { supported: true, count: parseSony(info) };
-    if (make.indexOf('fujifilm') !== -1 || make.indexOf('fuji') !== -1) return { supported: true, count: parseFujifilm(info) };
-    if (make.indexOf('canon') !== -1) return { supported: true, count: parseCanon(info) };
-    if (make.indexOf('panasonic') !== -1) return { supported: true, count: parsePanasonic(info) };
-    if (make.indexOf('leica') !== -1) return { supported: true, count: parseLeica(info) };
-    return { supported: false, count: null };
+    if (make.indexOf('sony') !== -1) { const count = parseSony(info); return { status: count ? 'found' : 'searched', count: count }; }
+    if (make.indexOf('fujifilm') !== -1 || make.indexOf('fuji') !== -1) { const count = parseFujifilm(info); return { status: count ? 'found' : 'searched', count: count }; }
+    if (make.indexOf('leica') !== -1) { const count = parseLeica(info); return { status: count ? 'found' : 'searched', count: count }; }
+    if (make.indexOf('canon') !== -1 || make.indexOf('panasonic') !== -1) { return { status: 'undecodable', count: null }; }
+    return { status: 'unsupported', count: null };
   }
 
   function line(label, value) { const row = document.createElement('div'); row.className = 'shutter-row'; const name = document.createElement('span'); name.textContent = label; const detail = document.createElement('strong'); detail.textContent = value || unknown(); row.append(name, detail); return row; }
   function showResult(info, file) {
     latestInfo = info; const shutter = parseShutterCount(info); result.replaceChildren();
     const title = document.createElement('h2'); title.textContent = '📷 ' + t('shutter_cameraInfo', '카메라 정보'); result.appendChild(title);
-    const countBox = document.createElement('div'); countBox.className = 'shutter-count-box'; const countTitle = document.createElement('span'); countTitle.textContent = t('shutter_count', '셔터카운트'); const countValue = document.createElement('b'); countValue.textContent = shutter.count ? formatNumber(shutter.count) : unknown(); const countStatus = document.createElement('p'); countStatus.textContent = shutter.count ? t('shutter_confirmed', '🟢 사진 EXIF에서 확인된 값입니다.') : (shutter.supported ? t('shutter_missing', '🟡 카메라는 확인했지만 이 사진에 셔터카운트 정보가 없습니다.') : t('shutter_unsupported', '🔴 지원 제조사 여부를 확인할 수 없으며 셔터카운트 정보도 없습니다.')); countBox.append(countTitle, countValue, countStatus); result.appendChild(countBox);
+    const countBox = document.createElement('div'); countBox.className = 'shutter-count-box'; const countTitle = document.createElement('span'); countTitle.textContent = t('shutter_count', '셔터카운트'); const countValue = document.createElement('b'); countValue.textContent = shutter.count ? formatNumber(shutter.count) : unknown();
+    const statusMessage = shutter.status === 'found' ? t('shutter_confirmed', '🟢 사진 EXIF에서 확인된 값입니다.')
+      : shutter.status === 'searched' ? t('shutter_missing', '🟡 카메라는 확인했지만 이 사진에 셔터카운트 정보가 없습니다.')
+      : shutter.status === 'undecodable' ? t('shutter_undecodable', '⚪ 이 제조사는 확인했지만, 셔터카운트 저장 방식이 기종마다 달라 이 도구가 아직 해석하지 못합니다.')
+      : t('shutter_unsupported', '🔴 지원 제조사 여부를 확인할 수 없으며 셔터카운트 정보도 없습니다.');
+    const countStatus = document.createElement('p'); countStatus.textContent = statusMessage; countBox.append(countTitle, countValue, countStatus); result.appendChild(countBox);
     const grid = document.createElement('div'); grid.className = 'shutter-grid'; const exposure = Array.isArray(info.exposure) ? formatFraction(info.exposure) : unknown(); const aperture = fraction(info.aperture); const focal = fraction(info.focalLength); const width = info.pixelWidth || info.width; const height = info.pixelHeight || info.height; [[t('shutter_make', '제조사'), cleanText(info.make) || unknown()], [t('shutter_model', '모델'), cleanText(info.model) || unknown()], [t('shutter_date', '촬영일시'), cleanText(info.dateOriginal || info.date) || unknown()], [t('shutter_lens', '렌즈'), cleanText(info.lens) || unknown()], ['ISO', info.iso ? String(info.iso) : unknown()], [t('shutter_speed', '셔터스피드'), exposure], [t('shutter_aperture', '조리개'), aperture ? 'f/' + aperture.toFixed(1) : unknown()], [t('shutter_focal', '초점거리'), focal ? focal.toFixed(1).replace(/\.0$/, '') + ' mm' : unknown()], [t('shutter_file', '파일 형식'), (file.type || file.name.split('.').pop() || '').toUpperCase()], [t('shutter_size', '이미지 크기'), width && height ? width + ' × ' + height : unknown()]].forEach(item => grid.appendChild(line(item[0], item[1]))); result.appendChild(grid); result.classList.remove('hidden'); actions.classList.remove('hidden');
   }
   function showError(key) { result.textContent = t(key, 'EXIF 정보를 확인할 수 없습니다.'); result.classList.remove('hidden'); actions.classList.add('hidden'); }
