@@ -930,3 +930,15 @@ body.v2-page *:focus-visible { outline: 2px solid var(--v2-accent); outline-offs
   font-weight: 700;
   color: var(--v2-accent);
 }
+
+.v2-page .faq-item {
+  border: 1px solid var(--v2-border);
+  border-radius: var(--v2-radius-lg);
+  background: var(--v2-surface);
+}
+.v2-page .faq-item h4 { color: var(--v2-accent); }
+.v2-page .faq-item p { color: var(--v2-muted); }
+
+.v2-page .blog-meta { color: var(--v2-muted); }
+.v2-page .blog-read-link { background: var(--v2-invert); color: var(--v2-invert-text); }
+.v2-page .blog-back-link { color: var(--v2-accent); }

@@ -142,6 +142,10 @@
     }
   });
 
+  if (typeof renderRelatedByCategory === 'function') {
+    renderRelatedByCategory('relatedList', 'cal', 'stock', 5);
+  }
+
   function show(el) { el.classList.remove('hidden'); }
   function hide(el) { el.classList.add('hidden'); }
 

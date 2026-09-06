@@ -456,20 +456,22 @@
   <link rel="stylesheet" href="../assets/css/v2.css">
 </head>
 
-<body>
+<body class="v2-page">
   <div id="site-header"></div>
 
   <main>
-    <section class="hero">
-      <div class="container">
-        <p class="eyebrow" data-i18n="faq_eyebrow">도움말</p>
-        <h1 data-i18n="faq_page_title">자주 묻는 질문</h1>
-        <p class="hero-copy" data-i18n="faq_page_copy">서비스 이용에 관한 공통 질문과 각 도구별 질문을 정리했습니다.</p>
-      </div>
-    </section>
+    <div class="v2-simple-layout">
+      <nav class="v2-crumb" aria-label="현재 위치">
+        <a href="../" data-i18n="nav.home">홈</a>
+        <span aria-hidden="true">›</span>
+        <span class="v2-crumb-current" data-i18n="faq_page_title">자주 묻는 질문</span>
+      </nav>
 
-    <div class="container">
-      <section class="faq-section faq-category" data-faq-category="general">
+      <p class="v2-eyebrow" data-i18n="faq_eyebrow">도움말</p>
+      <h1 class="v2-page-title" data-i18n="faq_page_title">자주 묻는 질문</h1>
+      <p class="v2-page-lede" data-i18n="faq_page_copy">서비스 이용에 관한 공통 질문과 각 도구별 질문을 정리했습니다.</p>
+
+      <section class="v2-card faq-section faq-category" data-faq-category="general">
         <h2 data-i18n="faq_cat_general">공통 질문</h2>
         <div class="faq-list">
           <div class="faq-item">
@@ -491,7 +493,7 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="lotto">
+      <section class="v2-card faq-section faq-category" data-faq-category="lotto">
         <h2 data-i18n="nav_lotto">로또</h2>
         <div class="faq-list">
           <div class="faq-item">
@@ -513,7 +515,7 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="age">
+      <section class="v2-card faq-section faq-category" data-faq-category="age">
         <h2><a href="../cal/age/" data-i18n="tool_age_title">age</a></h2>
         <div class="faq-list">
           <div class="faq-item">
@@ -536,7 +538,7 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="dday">
+      <section class="v2-card faq-section faq-category" data-faq-category="dday">
         <h2><a href="../cal/dday/" data-i18n="tool_dday_title">dday</a></h2>
         <div class="faq-list">
           <div class="faq-item">
@@ -559,7 +561,7 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="discharge">
+      <section class="v2-card faq-section faq-category" data-faq-category="discharge">
         <h2><a href="../cal/discharge/" data-i18n="tool_discharge_title">discharge</a></h2>
         <div class="faq-list">
           <div class="faq-item">
@@ -578,7 +580,7 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="percent">
+      <section class="v2-card faq-section faq-category" data-faq-category="percent">
         <h2><a href="../cal/percent/" data-i18n="tool_percent_title">percent</a></h2>
         <div class="faq-list">
           <div class="faq-item">
@@ -597,7 +599,7 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="games">
+      <section class="v2-card faq-section faq-category" data-faq-category="games">
         <h2><a href="../games/" data-i18n="nav_games">games</a></h2>
         <div class="faq-list">
         <div class="faq-item">
@@ -616,31 +618,31 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="block">
+      <section class="v2-card faq-section faq-category" data-faq-category="block">
         <h2><a href="../games/block-puzzle/" data-i18n="game_block_title">block</a></h2>
         <div class="faq-list"><div class="faq-item"><h4 data-i18n="block_faq1_q">모바일에서도 할 수 있나요?</h4><p data-i18n="block_faq1_a">네. 화면 아래 터치 버튼으로 이동·회전·낙하를 조작할 수 있습니다.</p></div><div class="faq-item"><h4 data-i18n="block_faq2_q">한 번에 몇 줄까지 지울 수 있나요?</h4><p data-i18n="block_faq2_a">최대 네 줄을 동시에 지울 수 있으며, 이때 점수가 가장 많이 오릅니다.</p></div><div class="faq-item"><h4 data-i18n="block_faq3_q">기록이 서버에 저장되나요?</h4><p data-i18n="block_faq3_a">아니요. 최고 점수는 이 브라우저에만 저장됩니다.</p></div>
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="reaction">
+      <section class="v2-card faq-section faq-category" data-faq-category="reaction">
         <h2><a href="../games/reaction/" data-i18n="game_reaction_title">reaction</a></h2>
         <div class="faq-list"><div class="faq-item"><h4 data-i18n="reaction_faq1_q">기록이 너무 안 좋게 나와요.</h4><p data-i18n="reaction_faq1_a">무선 마우스, 블루투스 지연, 60Hz 모니터, 브라우저 백그라운드 작업 등이 영향을 줍니다. 여러 번 측정한 평균을 참고하세요.</p></div><div class="faq-item"><h4 data-i18n="reaction_faq2_q">모바일에서도 정확한가요?</h4><p data-i18n="reaction_faq2_a">터치 입력도 측정되지만 화면 터치 인식 지연이 있어 PC보다 느리게 나오는 경향이 있습니다.</p></div><div class="faq-item"><h4 data-i18n="reaction_faq3_q">기록이 저장되나요?</h4><p data-i18n="reaction_faq3_a">최고 기록은 이 브라우저에만 저장되며 서버로 전송되지 않습니다.</p></div>
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="sudoku">
+      <section class="v2-card faq-section faq-category" data-faq-category="sudoku">
         <h2><a href="../games/sudoku/" data-i18n="game_sudoku_title">sudoku</a></h2>
         <div class="faq-list"><div class="faq-item"><h4 data-i18n="sudoku_faq1_q">난이도별로 무엇이 다른가요?</h4><p data-i18n="sudoku_faq1_a">쉬움일수록 처음 채워진 숫자가 많아 논리만으로 빠르게 풀리고, 어려움은 주어진 숫자가 적어 여러 단계의 추론이 필요합니다.</p></div><div class="faq-item"><h4 data-i18n="sudoku_faq2_q">정답이 여러 개일 수도 있나요?</h4><p data-i18n="sudoku_faq2_a">아니요. 생성되는 퍼즐은 항상 유일한 정답을 갖습니다.</p></div><div class="faq-item"><h4 data-i18n="sudoku_faq3_q">진행 상황이 저장되나요?</h4><p data-i18n="sudoku_faq3_a">새 게임을 누르거나 페이지를 새로 고치면 초기화됩니다. 기록은 서버로 전송되지 않습니다.</p></div>
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="typing">
+      <section class="v2-card faq-section faq-category" data-faq-category="typing">
         <h2><a href="../games/typing/" data-i18n="game_typing_title">typing</a></h2>
         <div class="faq-list"><div class="faq-item"><h4 data-i18n="typing_faq1_q">평균 타자 속도는 어느 정도인가요?</h4><p data-i18n="typing_faq1_a">일반적으로 한글 200~300타/분, 영문 30~50WPM 정도를 평균으로 봅니다. 숙련자는 그 두 배 이상입니다.</p></div><div class="faq-item"><h4 data-i18n="typing_faq2_q">한국어와 영어 점수를 비교할 수 있나요?</h4><p data-i18n="typing_faq2_a">입력 방식이 달라 직접 비교는 어렵습니다. 같은 언어에서 자신의 기록 변화를 보는 용도로 쓰세요.</p></div><div class="faq-item"><h4 data-i18n="typing_faq3_q">입력한 내용이 저장되나요?</h4><p data-i18n="typing_faq3_a">아니요. 입력과 채점은 브라우저에서만 이뤄지며 서버로 전송되지 않습니다.</p></div>
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="saju">
+      <section class="v2-card faq-section faq-category" data-faq-category="saju">
         <h2><a href="../saju/" data-i18n="saju_title">saju</a></h2>
         <div class="faq-list">
 
@@ -686,7 +688,7 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="stock">
+      <section class="v2-card faq-section faq-category" data-faq-category="stock">
         <h2><a href="../stock/" data-i18n="tool_stock_title">stock</a></h2>
         <div class="faq-list">
         <div class="faq-item">
@@ -709,7 +711,7 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="bmi">
+      <section class="v2-card faq-section faq-category" data-faq-category="bmi">
         <h2><a href="../tools/bmi/" data-i18n="tool_bmi_title">bmi</a></h2>
         <div class="faq-list">
           <div class="faq-item">
@@ -732,7 +734,7 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="charcount">
+      <section class="v2-card faq-section faq-category" data-faq-category="charcount">
         <h2><a href="../tools/charcount/" data-i18n="tool_charcount_title">charcount</a></h2>
         <div class="faq-list">
           <div class="faq-item">
@@ -755,7 +757,7 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="loan">
+      <section class="v2-card faq-section faq-category" data-faq-category="loan">
         <h2><a href="../tools/loan/" data-i18n="tool_loan_title">loan</a></h2>
         <div class="faq-list">
           <div class="faq-item">
@@ -778,7 +780,7 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="retirement">
+      <section class="v2-card faq-section faq-category" data-faq-category="retirement">
         <h2><a href="../tools/retirement/" data-i18n="tool_retirement_title">retirement</a></h2>
         <div class="faq-list">
           <div class="faq-item">
@@ -801,7 +803,7 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="salary">
+      <section class="v2-card faq-section faq-category" data-faq-category="salary">
         <h2><a href="../tools/salary/" data-i18n="tool_salary_title">salary</a></h2>
         <div class="faq-list">
           <div class="faq-item">
@@ -824,7 +826,7 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="savings">
+      <section class="v2-card faq-section faq-category" data-faq-category="savings">
         <h2><a href="../tools/savings/" data-i18n="tool_savings_title">savings</a></h2>
         <div class="faq-list">
           <div class="faq-item">
@@ -847,13 +849,13 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="shutter">
+      <section class="v2-card faq-section faq-category" data-faq-category="shutter">
         <h2><a href="../tools/shutter-count/" data-i18n="tool_shutter_count_title">shutter</a></h2>
         <div class="faq-list"><div class="faq-item"><h4 data-i18n="shutter_faq1q">셔터카운트란 무엇인가요?</h4><p data-i18n="shutter_faq1a">카메라가 촬영한 횟수를 뜻하는 기록입니다.</p></div><div class="faq-item"><h4 data-i18n="shutter_faq2q">사진만으로 항상 확인할 수 있나요?</h4><p data-i18n="shutter_faq2a">아니요. 카메라와 파일에 따라 셔터카운트가 EXIF에 저장되지 않을 수 있습니다.</p></div><div class="faq-item"><h4 data-i18n="shutter_faq3q">사진이 서버에 업로드되나요?</h4><p data-i18n="shutter_faq3a">아니요. 이 페이지는 네트워크로 사진을 전송하지 않고 브라우저에서만 분석합니다.</p></div>
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="textconv">
+      <section class="v2-card faq-section faq-category" data-faq-category="textconv">
         <h2><a href="../tools/textconv/" data-i18n="tool_textconv_title">textconv</a></h2>
         <div class="faq-list">
           <div class="faq-item">
@@ -872,7 +874,7 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="unit">
+      <section class="v2-card faq-section faq-category" data-faq-category="unit">
         <h2><a href="../tools/unit/" data-i18n="tool_unit_title">unit</a></h2>
         <div class="faq-list">
           <div class="faq-item">
@@ -891,7 +893,7 @@
         </div>
       </section>
 
-      <section class="faq-section faq-category" data-faq-category="vat">
+      <section class="v2-card faq-section faq-category" data-faq-category="vat">
         <h2><a href="../tools/vat/" data-i18n="tool_vat_title">vat</a></h2>
         <div class="faq-list">
           <div class="faq-item">
