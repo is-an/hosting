@@ -4,27 +4,35 @@
  * 숫자를 천 단위 구분자로 포매팅
  */
 function formatNumber(num) {
-  return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return Math.round(num).toLocaleString("en-US");
 }
 
 /**
  * 숫자를 지정된 소수 자리로 반올림
  */
 function formatDecimal(num, digits = 2) {
-  return (Math.round(num * Math.pow(10, digits)) / Math.pow(10, digits)).toFixed(digits);
+  return Number(num).toFixed(digits);
 }
 
 /**
  * 텍스트를 클립보드에 복사
  */
 function copyToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).catch(() => legacyCopyText(text));
+  } else {
+    legacyCopyText(text);
+  }
+  alert("복사되었습니다!");
+}
+
+function legacyCopyText(text) {
   const el = document.createElement("textarea");
   el.value = text;
   document.body.appendChild(el);
   el.select();
   document.execCommand("copy");
   document.body.removeChild(el);
-  alert("복사되었습니다!");
 }
 
 // ============ 날짜 관련 유틸리티 함수 ============
@@ -217,11 +225,11 @@ function applyHeaderLinks() {
   const logoImage = header.querySelector('.logo-img');
 
   if (logoLink) {
-    logoLink.href = `${siteRootPath}/` || '/';
+    logoLink.href = `${siteRootPath}/`;
   }
 
   if (logoImage) {
-    logoImage.src = `${siteRootPath}/logo.png` || '/logo.png';
+    logoImage.src = `${siteRootPath}/logo.png`;
   }
 
   const currentPath = window.location.pathname.replace(/\/+$/, '');
@@ -288,9 +296,9 @@ function loadComponent(targetId, componentPath) {
 function initSharedComponents() {
   ensureFavicon();
   const siteRootPath = getSiteBasePath();
-  const headerUrl = `${siteRootPath}/components/header.html` || '/components/header.html';
-  const footerUrl = `${siteRootPath}/components/footer.html` || '/components/footer.html';
-  const adUrl = `${siteRootPath}/components/ads.html` || '/components/ads.html';
+  const headerUrl = `${siteRootPath}/components/header.html`;
+  const footerUrl = `${siteRootPath}/components/footer.html`;
+  const adUrl = `${siteRootPath}/components/ads.html`;
 
   const headerPromise = loadComponent('site-header', headerUrl);
   const footerPromise = loadComponent('site-footer', footerUrl);

@@ -5,22 +5,16 @@
 //        loadCategoryFaq('lotto', '.faq-list[data-faq-category="lotto"]') 호출.
 
 (function () {
-  // 이 스크립트(assets/js/faq.js)의 경로에서 사이트 루트를 유도한다. common.js 와 동일한 방식.
-  function getFaqBasePath() {
-    var script = Array.prototype.find.call(document.scripts, function (s) {
-      return s.src && /assets\/js\/faq\.js(?:\?.*)?$/.test(s.src);
-    });
-    if (!script) return '';
-    var pathname = new URL(script.src, window.location.href).pathname
-      .replace(/\/assets\/js\/faq\.js.*$/, '');
-    return pathname === '/' ? '' : pathname;
+  // 사이트 루트는 common.js 의 getSiteBasePath() 로 유도한다(faq.js 는 common.js 뒤에 로드됨).
+  function faqBasePath() {
+    return (typeof getSiteBasePath === 'function') ? getSiteBasePath() : '';
   }
 
   var faqDocPromise = null;
 
   function fetchFaqDocument() {
     if (!faqDocPromise) {
-      var url = getFaqBasePath() + '/faq/';
+      var url = faqBasePath() + '/faq/';
       faqDocPromise = fetch(url, { cache: 'no-cache' })
         .then(function (response) {
           if (!response.ok) throw new Error('FAQ 페이지를 불러오지 못했습니다: ' + response.status);

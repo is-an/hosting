@@ -69,3 +69,6 @@ coverage/
 out/
 
 .test
+
+# Local-only manual test fixtures (raw camera files for shutter-count/EXIF)
+test/
